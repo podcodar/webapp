@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import NavBar from "./NavBar";
 
 interface Props {
   children: ReactNode;
@@ -7,8 +8,7 @@ interface Props {
 function Layout({ children }: Props) {
   return (
     <div>
-      {/* TODO: navbar */}
-      <div>navbar: </div>
+      <NavBar />
       {/* TODO: container */}
       <div>{children}</div>
     </div>
