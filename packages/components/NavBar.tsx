@@ -12,7 +12,7 @@ function NavBar() {
   ];
 
   return (
-    <Container p="0.5rem" display="flex">
+    <Container p="0.5rem" display="flex" maxW={"5xl"}>
       <Box flex="1">
         <Image textAlign="left" height="2rem" src="/vercel.svg" alt="logo" />
       </Box>
