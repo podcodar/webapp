@@ -21,8 +21,8 @@ export default function CallToActionWithIllustration() {
           fontWeight={600}
           fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
           lineHeight={'110%'}>
-          Meeting scheduling{' '}
-          <Text as={'span'} color={'orange.400'}>
+          Lean programming{' '}
+          <Text as={'span'} color={'purple.400'}>
             made easy
           </Text>
         </Heading>
@@ -35,13 +35,13 @@ export default function CallToActionWithIllustration() {
           <Button
             rounded={'full'}
             px={6}
-            colorScheme={'orange'}
-            bg={'orange.400'}
-            _hover={{ bg: 'orange.500' }}>
-            Get started
+            colorScheme={'purple'}
+            bg={'purple.400'}
+            _hover={{ bg: 'purple.500' }}>
+            Faça parte!
           </Button>
           <Button rounded={'full'} px={6}>
-            Learn more
+            Como funciona?
           </Button>
         </Stack>
         <Flex w={'full'}>
