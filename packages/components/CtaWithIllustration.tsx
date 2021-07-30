@@ -21,9 +21,9 @@ export default function CallToActionWithIllustration() {
           fontWeight={600}
           fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
           lineHeight={'110%'}>
-          Lean programming{' '}
+          Lean programming the{' '}
           <Text as={'span'} color={'purple.400'}>
-            made easy
+            easy way
           </Text>
         </Heading>
         <Text color={'gray.500'} maxW={'3xl'}>
