@@ -7,8 +7,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "prepublish": "npm install && npm build",
-    "publish": "firebase deploy",
+    "deploy": "firebase deploy",
     "lint": "next lint"
   },
   "dependencies": {
