@@ -33,8 +33,8 @@ yarn-error.log*
 # vercel
 .vercel
 
-# firebase
+# project
 .firebase
-
-# node
 *.lock
+.husky
+.prettier*
