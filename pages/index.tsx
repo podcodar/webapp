@@ -1,4 +1,4 @@
-import CallToActionWithIllustration from "@packages/components/CtaWithIllustration";
+import CallToActionWithIllustration from '@packages/components/CtaWithIllustration';
 
 export default function Home() {
   return (

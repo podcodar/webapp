@@ -1,20 +1,20 @@
-type Sizes = "default" | "small" | "large";
+type Sizes = 'default' | 'small' | 'large';
 interface Props {
   size?: Sizes;
 }
 
 function getWidthBySize(size: Sizes) {
   switch (size) {
-    case "small":
+    case 'small':
       return 32;
-    case "default":
+    case 'default':
       return 64;
-    case "large":
+    case 'large':
       return 80;
   }
 }
 
-function Logo({ size = "default" }: Props) {
+function Logo({ size = 'default' }: Props) {
   const width = getWidthBySize(size);
   return (
     <svg
@@ -26,7 +26,12 @@ function Logo({ size = "default" }: Props) {
     >
       <rect width="2000" height="2000" fill="url(#pattern0)" />
       <defs>
-        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+        <pattern
+          id="pattern0"
+          patternContentUnits="objectBoundingBox"
+          width="1"
+          height="1"
+        >
           <use xlinkHref="#image0" transform="scale(0.001)" />
         </pattern>
         <image
