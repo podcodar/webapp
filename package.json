@@ -9,7 +9,7 @@
     "start": "next start",
     "deploy": "firebase deploy",
     "lint": "next lint",
-    "fmt": "prettier --write . && next lint --fix",
+    "fmt": "prettier --write . && next lint --fix --dir packages",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -33,6 +33,6 @@
   },
   "lint-staged": {
     "*": "prettier --write .",
-    "**/*.{tsx,ts,js,jsx}": "next lint --fix "
+    "**/*.{tsx,ts,js,jsx}": "eslint --fix ."
   }
 }
