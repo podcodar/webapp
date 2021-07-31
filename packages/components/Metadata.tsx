@@ -1,5 +1,5 @@
-import { description, descriptionImage, title } from "@packages/configs";
-import Head from "next/head";
+import { description, descriptionImage, pageURL, title } from '@packages/configs';
+import Head from 'next/head';
 
 function Metadata() {
   return (
@@ -16,7 +16,7 @@ function Metadata() {
 
         {/* Facebook Meta Tags */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://tremtec.com" />
+        <meta property="og:url" content={pageURL} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={descriptionImage} />
