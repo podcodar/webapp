@@ -1,4 +1,9 @@
-import { description, descriptionImage, pageURL, title } from '@packages/configs';
+import {
+  description,
+  descriptionImage,
+  pageURL,
+  title,
+} from '@packages/configs';
 import Head from 'next/head';
 
 function Metadata() {
