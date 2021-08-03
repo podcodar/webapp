@@ -8,9 +8,11 @@ import {
   Link,
   Text,
 } from '@chakra-ui/react';
+import { useModalActions } from '@packages/features/modal-context';
 import Logo from '@packages/icons/Logo';
 
 function NavBar() {
+  const { open } = useModalActions();
   const menuItems = [
     <Link key="home" href="/">
       Home
@@ -18,7 +20,15 @@ function NavBar() {
     <Link key="member" href="/">
       Members
     </Link>,
-    <Button key="cta">Join</Button>,
+    <Button
+      key="cta"
+      colorScheme={'purple'}
+      bg={'purple.400'}
+      _hover={{ bg: 'purple.500' }}
+      onClick={open}
+    >
+      Join
+    </Button>,
   ];
 
   return (
