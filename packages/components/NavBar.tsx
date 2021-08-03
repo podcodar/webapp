@@ -23,11 +23,13 @@ function NavBar() {
 
   return (
     <Container p="0.5rem" display="flex" maxW={'5xl'}>
-      <Flex flex="1" alignItems="center">
-        <Logo size="small" />
-        <Text m="0 0.5rem" fontWeight="bold">
-          PodCodar
-        </Text>
+      <Flex flex="1">
+        <Link href="/" display="flex" alignItems="center">
+          <Logo size="small" />
+          <Text m="0 0.5rem" fontWeight="bold">
+            PodCodar
+          </Text>
+        </Link>
       </Flex>
 
       <Grid
