@@ -1,12 +1,16 @@
 import CallToActionWithIllustration from '@packages/components/CtaWithIllustration';
+import CallToActionModal from '@packages/components/dialogs/CallToActionModal';
 
 export default function Home() {
   return (
-    <div>
-      <main>
-        {/* Setup placeholder component */}
-        <CallToActionWithIllustration />
-      </main>
-    </div>
+    <>
+      <CallToActionModal />
+      <div>
+        <main>
+          {/* Setup placeholder component */}
+          <CallToActionWithIllustration />
+        </main>
+      </div>
+    </>
   );
 }

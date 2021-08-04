@@ -8,8 +8,10 @@ import {
   Icon,
   IconProps,
 } from '@chakra-ui/react';
+import { useModalActions } from '@packages/features/modal-context';
 
 export default function CallToActionWithIllustration() {
+  const { open } = useModalActions();
   return (
     <Container maxW={'5xl'}>
       <Stack
@@ -40,6 +42,7 @@ export default function CallToActionWithIllustration() {
             colorScheme={'purple'}
             bg={'purple.400'}
             _hover={{ bg: 'purple.500' }}
+            onClick={open}
           >
             Faça parte!
           </Button>
