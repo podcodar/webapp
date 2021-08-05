@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useModalActions } from '@packages/features/modal-context';
 import Logo from '@packages/icons/Logo';
+import { AiOutlineGithub, AiFillLinkedin } from 'react-icons/ai';
 
 function NavBar() {
   const { open } = useModalActions();
@@ -26,6 +27,16 @@ function NavBar() {
     </Link>,
     <Link key="team" href="/team">
       Equipe
+    </Link>,
+    <Link key="github" target="_blank" href="https://github.com/podcodar">
+      <AiOutlineGithub style={{ height: '30px', width: '30px' }} />
+    </Link>,
+    <Link
+      key="linkedin"
+      target="_blank"
+      href="https://www.linkedin.com/company/podcodar/"
+    >
+      <AiFillLinkedin style={{ height: '30px', width: '30px' }} />
     </Link>,
     <Button
       key="cta"
@@ -48,7 +59,6 @@ function NavBar() {
           </Text>
         </Link>
       </Flex>
-
       <Grid
         gap="1rem"
         templateColumns={`repeat(${menuItems.length}, auto)`}
