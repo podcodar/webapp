@@ -14,11 +14,18 @@ import Logo from '@packages/icons/Logo';
 function NavBar() {
   const { open } = useModalActions();
   const menuItems = [
-    <Link key="home" href="/">
-      Home
+    <Link key="home" target="_blank" href="http://wiki.podcodar.com">
+      Wiki
     </Link>,
-    <Link key="member" href="/">
-      Members
+    <Link
+      key="home"
+      target="_blank"
+      href="https://github.com/podcodar/forum/discussions"
+    >
+      Fórum
+    </Link>,
+    <Link key="team" href="/team">
+      Equipe
     </Link>,
     <Button
       key="cta"
