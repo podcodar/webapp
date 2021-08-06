@@ -1,4 +1,3 @@
-import { ReactNode } from 'react';
 import { createIcon } from '@chakra-ui/react';
 
 export const GithubIcon = createIcon({
@@ -23,24 +22,12 @@ export const LinkedInIcon = createIcon({
   ),
 });
 
-type Sizes = 'default' | 'small' | 'large';
-interface Props {
-  size?: Sizes;
+interface LogoProps {
+  size?: SizeVariant;
 }
 
-function getWidthBySize(size: Sizes) {
-  switch (size) {
-    case 'small':
-      return 32;
-    case 'default':
-      return 64;
-    case 'large':
-      return 80;
-  }
-}
-
-export function Logo({ size = 'default' }: Props) {
-  const width = getWidthBySize(size);
+export function Logo({ size = 'default' }: LogoProps) {
+  const width = sizeMap[size];
   return (
     <svg
       width={width}
@@ -69,3 +56,12 @@ export function Logo({ size = 'default' }: Props) {
     </svg>
   );
 }
+
+type SizeVariant = 'default' | 'small' | 'large';
+type SizeMap = Record<SizeVariant, number>;
+
+const sizeMap: SizeMap = {
+  small: 32,
+  default: 64,
+  large: 80,
+};
