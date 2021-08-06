@@ -9,8 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useModalActions } from '@packages/features/modal-context';
-import Logo from '@packages/icons/Logo';
-import { LinkedInIcon, GithubIcon } from '@packages/components/icons';
+import { LinkedInIcon, GithubIcon, Logo } from '@packages/components/icons';
 
 function NavBar() {
   const { open } = useModalActions();
