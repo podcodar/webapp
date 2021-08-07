@@ -9,7 +9,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useModalActions } from '@packages/features/modal-context';
-import Logo from '@packages/icons/Logo';
+import { LinkedInIcon, GithubIcon, Logo } from '@packages/components/icons';
 
 function NavBar() {
   const { open } = useModalActions();
@@ -26,6 +26,16 @@ function NavBar() {
     </Link>,
     <Link key="team" href="/team">
       Equipe
+    </Link>,
+    <Link key="github" target="_blank" href="https://github.com/podcodar">
+      <GithubIcon />
+    </Link>,
+    <Link
+      key="linkedin"
+      target="_blank"
+      href="https://www.linkedin.com/company/podcodar/"
+    >
+      <LinkedInIcon />
     </Link>,
     <Button
       key="cta"
@@ -48,7 +58,6 @@ function NavBar() {
           </Text>
         </Link>
       </Flex>
-
       <Grid
         gap="1rem"
         templateColumns={`repeat(${menuItems.length}, auto)`}
