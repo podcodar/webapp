@@ -22,7 +22,7 @@ export default function CallToActionWithIllustration() {
       >
         <Heading
           fontWeight={600}
-          fontSize={{ base: '3xl', sm: '4xl', md: '4xl' }}
+          fontSize={{ base: '3xl', sm: '4xl' }}
           lineHeight={'110%'}
         >
           Formação profissional para o{' '}
