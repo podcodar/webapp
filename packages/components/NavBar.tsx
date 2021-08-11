@@ -69,7 +69,7 @@ function NavBar() {
           size={'md'}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label={'Open Menu'}
-          display={{ md: 'none' }}
+          display={{ base: 'inherit', md: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
         <Link href="/" display="flex" alignItems="center">
@@ -78,6 +78,7 @@ function NavBar() {
             PodCodar
           </Text>
         </Link>
+
         <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
           {menuItems}
           <Button
@@ -90,16 +91,6 @@ function NavBar() {
             Join
           </Button>
         </HStack>
-        <Button
-          display={{ md: 'none' }}
-          key="cta"
-          colorScheme={'purple'}
-          bg={'purple.400'}
-          _hover={{ bg: 'purple.500' }}
-          onClick={open}
-        >
-          Join
-        </Button>
       </Container>
 
       {isOpen ? (
