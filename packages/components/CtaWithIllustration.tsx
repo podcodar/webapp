@@ -22,18 +22,19 @@ export default function CallToActionWithIllustration() {
       >
         <Heading
           fontWeight={600}
-          fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+          fontSize={{ base: '3xl', sm: '4xl' }}
           lineHeight={'110%'}
         >
-          Lean programming the{' '}
+          Formação profissional para o{' '}
           <Text as={'span'} color={'purple.400'}>
-            easy way
+            mercado de tecnologia.
           </Text>
         </Heading>
         <Text color={'gray.500'} maxW={'3xl'}>
-          Never miss a meeting. Never be late for one too. Keep track of your
-          meetings and receive smart reminders in appropriate times. Read your
-          smart “Daily Agenda” every morning.
+          Somos uma comunidade de tecnologia e computação que ensina programação
+          com foco na formação de profissionais. Existimos para democratizar o
+          conhecimento e o acesso às oportunidades de trabalho na área de
+          tecnologia.
         </Text>
         <Stack spacing={6} direction={'row'}>
           <Button
