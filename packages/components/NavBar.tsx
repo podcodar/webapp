@@ -20,13 +20,19 @@ function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const socialIcons = [
-    <Link key="github" target="_blank" href="https://github.com/podcodar">
+    <Link
+      key="github"
+      target="_blank"
+      href="https://github.com/podcodar"
+      padding={isOpen ? '0 5px' : ''}
+    >
       <GithubIcon />
     </Link>,
     <Link
       key="linkedin"
       target="_blank"
       href="https://www.linkedin.com/company/podcodar/"
+      padding={isOpen ? '0 5px' : ''}
     >
       <LinkedInIcon />
     </Link>,
@@ -97,15 +103,17 @@ function NavBar() {
       </Container>
 
       {isOpen ? (
-        <Box pb={4} display={{ md: 'none' }} backgroundColor="white">
-          <Stack as={'nav'} spacing={4}>
-            {communityLinks}
-          </Stack>
-          <Divider paddingTop="5px" />
-          <Flex justifyContent={'space-around'} paddingTop="5px">
-            {socialIcons}
-          </Flex>
-        </Box>
+        <>
+          <Box pb={4} display={{ md: 'none' }} backgroundColor="white">
+            <Stack as={'nav'} spacing={4}>
+              {communityLinks}
+            </Stack>
+            <Divider />
+            <Flex justifyContent={'center'} paddingTop="5px">
+              {socialIcons}
+            </Flex>
+          </Box>
+        </>
       ) : null}
     </Box>
   );
