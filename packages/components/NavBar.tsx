@@ -78,12 +78,12 @@ function NavBar() {
             PodCodar
           </Text>
         </Link>
-        <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+        <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
           {menuItems}
           <Button
             key="cta"
-            colorScheme={'purple'}
-            bg={'purple.400'}
+            colorScheme="purple"
+            bg="purple.400"
             _hover={{ bg: 'purple.500' }}
             onClick={open}
           >
