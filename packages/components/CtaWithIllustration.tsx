@@ -32,7 +32,7 @@ export default function CallToActionWithIllustration() {
         </Heading>
         <Text color={'gray.500'} maxW={'3xl'}>
           Somos uma comunidade de tecnologia e computação que ensina programação
-          com o foco na formação de profissionais. Existimos para democratizar o
+          com foco na formação de profissionais. Existimos para democratizar o
           conhecimento e o acesso às oportunidades de trabalho na área de
           tecnologia.
         </Text>
