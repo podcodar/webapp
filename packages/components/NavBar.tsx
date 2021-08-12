@@ -16,13 +16,20 @@ import { useModalActions } from '@packages/features/modal-context';
 import { LinkedInIcon, GithubIcon, Logo } from '@packages/components/icons';
 
 const socialIcons = [
-  <Link key="github" target="_blank" href="https://github.com/podcodar">
+  <Link
+    key="github"
+    target="_blank"
+    href="https://github.com/podcodar"
+    gridColumnStart="2"
+    justifySelf="end"
+  >
     <GithubIcon />
   </Link>,
   <Link
     key="linkedin"
     target="_blank"
     href="https://www.linkedin.com/company/podcodar/"
+    gridColumnStart="3"
   >
     <LinkedInIcon />
   </Link>,
@@ -54,10 +61,9 @@ function NavBar() {
     <Box px={4} position="fixed" w="100%" top={0} shadow="base" zIndex={2}>
       <Container
         p="0.5rem"
-        display="flex"
+        display="grid"
+        gridTemplateColumns={{ md: '1fr 1fr 0.2fr', base: '0.5fr 2fr 0.5fr' }}
         maxW={'5xl'}
-        alignItems={'center'}
-        justifyContent={'space-between'}
       >
         <IconButton
           size={'md'}
@@ -66,35 +72,58 @@ function NavBar() {
           display={{ base: 'inherit', md: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
-        <Link href="/" display="flex" alignItems="center">
+
+        <Link
+          href="/"
+          display="flex"
+          alignItems="center"
+          justifyContent={{ md: 'left', base: 'center' }}
+        >
           <Logo size="small" />
           <Text m="0 0.5rem" fontWeight="bold">
             PodCodar
           </Text>
         </Link>
 
-        <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
-          {menuItems}
-          <Button
-            key="cta"
-            colorScheme="purple"
-            bg="purple.400"
-            _hover={{ bg: 'purple.500' }}
-            onClick={open}
-          >
-            Join
-          </Button>
-        </HStack>
+        <Container
+          gridColumnStart="2"
+          justifyContent="flex-end"
+          display={{ base: 'none', md: 'flex' }}
+        >
+          <HStack as="nav" spacing={4}>
+            {menuItems}
+          </HStack>
+        </Container>
+
+        <Button
+          key="cta"
+          colorScheme="purple"
+          bg="purple.400"
+          _hover={{ bg: 'purple.500' }}
+          onClick={open}
+        >
+          Join
+        </Button>
       </Container>
 
       {isOpen ? (
         <>
-          <Box pb={4} display={{ md: 'none' }} backgroundColor="white">
+          <Box
+            pb={4}
+            display={{ md: 'none' }}
+            backgroundColor="white"
+            paddingBottom="0.5rem"
+          >
             <Stack as={'nav'} spacing={4}>
               {communityLinks}
             </Stack>
             <Divider />
-            <Flex justifyContent={'center'} paddingTop="5px">
+            <Flex
+              display="grid"
+              justifyContent={'center'}
+              gridTemplateColumns="1fr 1fr 1fr 1fr"
+              gridGap="0.5rem"
+            >
               {socialIcons}
             </Flex>
           </Box>
