@@ -15,46 +15,40 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useModalActions } from '@packages/features/modal-context';
 import { LinkedInIcon, GithubIcon, Logo } from '@packages/components/icons';
 
+const socialIcons = [
+  <Link key="github" target="_blank" href="https://github.com/podcodar">
+    <GithubIcon />
+  </Link>,
+  <Link
+    key="linkedin"
+    target="_blank"
+    href="https://www.linkedin.com/company/podcodar/"
+  >
+    <LinkedInIcon />
+  </Link>,
+];
+
+const communityLinks = [
+  <Link key="home" target="_blank" href="http://wiki.podcodar.com">
+    Wiki
+  </Link>,
+  <Link
+    key="home"
+    target="_blank"
+    href="https://github.com/podcodar/forum/discussions"
+  >
+    Fórum
+  </Link>,
+  <Link key="team" href="/team">
+    Equipe
+  </Link>,
+];
+
+const menuItems = [...communityLinks, ...socialIcons];
+
 function NavBar() {
   const { open } = useModalActions();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  const socialIcons = [
-    <Link
-      key="github"
-      target="_blank"
-      href="https://github.com/podcodar"
-      padding={isOpen ? '0 5px' : ''}
-    >
-      <GithubIcon />
-    </Link>,
-    <Link
-      key="linkedin"
-      target="_blank"
-      href="https://www.linkedin.com/company/podcodar/"
-      padding={isOpen ? '0 5px' : ''}
-    >
-      <LinkedInIcon />
-    </Link>,
-  ];
-
-  const communityLinks = [
-    <Link key="home" target="_blank" href="http://wiki.podcodar.com">
-      Wiki
-    </Link>,
-    <Link
-      key="home"
-      target="_blank"
-      href="https://github.com/podcodar/forum/discussions"
-    >
-      Fórum
-    </Link>,
-    <Link key="team" href="/team">
-      Equipe
-    </Link>,
-  ];
-
-  const menuItems = [...communityLinks, ...socialIcons];
 
   return (
     <Box px={4} position="fixed" w="100%" top={0} shadow="base" zIndex={2}>
