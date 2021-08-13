@@ -10,6 +10,7 @@ import {
   Text,
   useDisclosure,
   HStack,
+  Grid,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useModalActions } from '@packages/features/modal-context';
@@ -51,25 +52,18 @@ const communityLinks = [
   </Link>,
 ];
 
-const menuItems = [...communityLinks, ...socialIcons];
-
 function NavBar() {
   const { open } = useModalActions();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box px={4} position="fixed" w="100%" top={0} shadow="base" zIndex={2}>
-      <Container
-        p="0.5rem"
-        display="grid"
-        gridTemplateColumns={{ md: '1fr 1fr 0.2fr', base: '0.5fr 2fr 0.5fr' }}
-        maxW={'5xl'}
-      >
+      <Container p="0.5rem" display="flex" maxW={'5xl'}>
         <IconButton
           size={'md'}
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label={'Open Menu'}
-          display={{ base: 'inherit', md: 'none' }}
+          display={{ sm: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
 
@@ -77,7 +71,8 @@ function NavBar() {
           href="/"
           display="flex"
           alignItems="center"
-          justifyContent={{ md: 'left', base: 'center' }}
+          justifyContent="center"
+          w={{ base: '100%', sm: 'auto' }}
         >
           <Logo size="small" />
           <Text m="0 0.5rem" fontWeight="bold">
@@ -85,15 +80,29 @@ function NavBar() {
           </Text>
         </Link>
 
-        <Container
-          gridColumnStart="2"
-          justifyContent="flex-end"
-          display={{ base: 'none', md: 'flex' }}
+        <Flex
+          w="100%"
+          justifyContent="space-between"
+          alignItems="center"
+          p=" 0 1rem"
+          d={{ base: 'none', sm: 'flex' }}
         >
-          <HStack as="nav" spacing={4}>
-            {menuItems}
-          </HStack>
-        </Container>
+          <Box>
+            <Grid
+              flex={1}
+              gridTemplateColumns={`repeat(${communityLinks.length}, auto)`}
+              columnGap="1rem"
+            >
+              {communityLinks}
+            </Grid>
+          </Box>
+          <Grid
+            gridTemplateColumns={`repeat(${socialIcons.length}, auto)`}
+            columnGap="1rem"
+          >
+            {socialIcons}
+          </Grid>
+        </Flex>
 
         <Button
           key="cta"
@@ -110,7 +119,7 @@ function NavBar() {
         <>
           <Box
             pb={4}
-            display={{ md: 'none' }}
+            display={{ sm: 'none' }}
             backgroundColor="white"
             paddingBottom="0.5rem"
           >
