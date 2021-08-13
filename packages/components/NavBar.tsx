@@ -58,7 +58,6 @@ function NavBar() {
 
   return (
     <Box
-      px={4}
       position="fixed"
       w="100%"
       top={0}
