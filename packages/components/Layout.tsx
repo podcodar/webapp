@@ -1,3 +1,4 @@
+import { Container } from '@chakra-ui/react';
 import { ReactNode } from 'react';
 import NavBar from './NavBar';
 
@@ -9,8 +10,9 @@ function Layout({ children }: Props) {
   return (
     <div>
       <NavBar />
-      {/* TODO: container */}
-      <div>{children}</div>
+      <Container maxW={'5xl'} mt="5rem">
+        {children}
+      </Container>
     </div>
   );
 }

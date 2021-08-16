@@ -57,7 +57,14 @@ function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box px={4} position="fixed" w="100%" top={0} shadow="base" zIndex={2}>
+    <Box
+      position="fixed"
+      w="100%"
+      top={0}
+      shadow="base"
+      zIndex={1}
+      bg="gray.50"
+    >
       <Container p="0.5rem" display="flex" maxW={'5xl'}>
         <IconButton
           size={'md'}
