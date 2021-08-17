@@ -104,7 +104,9 @@ function NavBar() {
           <Box>
             <HStack spacing="1rem">{communityLinks}</HStack>
           </Box>
-          <HStack spacing="1rem">{actionButtons}</HStack>
+          <HStack spacing="1rem" fontSize="1.2rem">
+            {actionButtons}
+          </HStack>
         </Flex>
 
         <Button
@@ -130,7 +132,12 @@ function NavBar() {
               {communityLinks}
             </Stack>
             <Divider />
-            <HStack spacing="1rem" justifyContent={'center'} py={2}>
+            <HStack
+              py={2}
+              spacing="1rem"
+              justifyContent={'center'}
+              fontSize="1.3rem"
+            >
               {actionButtons}
             </HStack>
           </Box>
