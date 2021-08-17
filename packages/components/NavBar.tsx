@@ -8,6 +8,7 @@ import {
   Stack,
   Link,
   Text,
+  HStack,
   useDisclosure,
   HStack,
   Grid,
@@ -95,20 +96,9 @@ function NavBar() {
           d={{ base: 'none', sm: 'flex' }}
         >
           <Box>
-            <Grid
-              flex={1}
-              gridTemplateColumns={`repeat(${communityLinks.length}, auto)`}
-              columnGap="1rem"
-            >
-              {communityLinks}
-            </Grid>
+            <HStack spacing="1rem">{communityLinks}</HStack>
           </Box>
-          <Grid
-            gridTemplateColumns={`repeat(${socialIcons.length}, auto)`}
-            columnGap="1rem"
-          >
-            {socialIcons}
-          </Grid>
+          <HStack spacing="1rem">{socialIcons}</HStack>
         </Flex>
 
         <Button
@@ -125,23 +115,18 @@ function NavBar() {
       {isOpen ? (
         <>
           <Box
-            pb={4}
+            px={2}
             display={{ sm: 'none' }}
             backgroundColor="white"
             paddingBottom="0.5rem"
           >
-            <Stack as={'nav'} spacing={4}>
+            <Stack as={'nav'} spacing={4} m={4}>
               {communityLinks}
             </Stack>
             <Divider />
-            <Flex
-              display="grid"
-              justifyContent={'center'}
-              gridTemplateColumns="1fr 1fr 1fr 1fr"
-              gridGap="0.5rem"
-            >
+            <HStack spacing="1rem" justifyContent={'center'} py={2}>
               {socialIcons}
-            </Flex>
+            </HStack>
           </Box>
         </>
       ) : null}
