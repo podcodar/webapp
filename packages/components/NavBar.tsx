@@ -10,12 +10,12 @@ import {
   Text,
   HStack,
   useDisclosure,
-  HStack,
-  Grid,
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useModalActions } from '@packages/features/modal-context';
 import { LinkedInIcon, GithubIcon, Logo } from '@packages/components/icons';
+import ToggleThemeButton from '@packages/components/ToggleThemeButton';
 
 const socialIcons = [
   <Link
@@ -56,6 +56,11 @@ const communityLinks = [
 function NavBar() {
   const { open } = useModalActions();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const actionButtons = [
+    ...socialIcons,
+    <ToggleThemeButton key="toggle-theme" />,
+  ];
+  const navbarBgColor = useColorModeValue('gray.50', 'gray.900');
 
   return (
     <Box
@@ -64,7 +69,7 @@ function NavBar() {
       top={0}
       shadow="base"
       zIndex={1}
-      bg="gray.50"
+      bg={navbarBgColor}
     >
       <Container p="0.5rem" display="flex" maxW={'5xl'}>
         <IconButton
@@ -98,7 +103,7 @@ function NavBar() {
           <Box>
             <HStack spacing="1rem">{communityLinks}</HStack>
           </Box>
-          <HStack spacing="1rem">{socialIcons}</HStack>
+          <HStack spacing="1rem">{actionButtons}</HStack>
         </Flex>
 
         <Button
@@ -117,7 +122,7 @@ function NavBar() {
           <Box
             px={2}
             display={{ sm: 'none' }}
-            backgroundColor="white"
+            backgroundColor={navbarBgColor}
             paddingBottom="0.5rem"
           >
             <Stack as={'nav'} spacing={4} m={4}>
@@ -125,7 +130,7 @@ function NavBar() {
             </Stack>
             <Divider />
             <HStack spacing="1rem" justifyContent={'center'} py={2}>
-              {socialIcons}
+              {actionButtons}
             </HStack>
           </Box>
         </>
