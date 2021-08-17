@@ -16,6 +16,7 @@ import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useModalActions } from '@packages/features/modal-context';
 import { LinkedInIcon, GithubIcon, Logo } from '@packages/components/icons';
 import ToggleThemeButton from '@packages/components/ToggleThemeButton';
+import { useMemo } from 'react';
 
 const socialIcons = [
   <Link
@@ -56,11 +57,11 @@ const communityLinks = [
 function NavBar() {
   const { open } = useModalActions();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const actionButtons = [
-    ...socialIcons,
-    <ToggleThemeButton key="toggle-theme" />,
-  ];
   const navbarBgColor = useColorModeValue('gray.50', 'gray.900');
+  const actionButtons = useMemo(
+    () => [...socialIcons, <ToggleThemeButton key="toggle-theme" />],
+    [],
+  );
 
   return (
     <Box
