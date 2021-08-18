@@ -8,15 +8,13 @@ import {
   Stack,
   Link,
   Text,
-  HStack,
   useDisclosure,
-  useColorModeValue,
+  HStack,
+  Grid,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useModalActions } from '@packages/features/modal-context';
 import { LinkedInIcon, GithubIcon, Logo } from '@packages/components/icons';
-import ToggleThemeButton from '@packages/components/ToggleThemeButton';
-import { useMemo } from 'react';
 
 const socialIcons = [
   <Link
@@ -39,11 +37,11 @@ const socialIcons = [
 ];
 
 const communityLinks = [
-  <Link key="home" target="_blank" href="http://wiki.podcodar.com">
+  <Link key="wiki" target="_blank" href="http://wiki.podcodar.com">
     Wiki
   </Link>,
   <Link
-    key="home"
+    key="forum"
     target="_blank"
     href="https://github.com/podcodar/forum/discussions"
   >
@@ -57,11 +55,6 @@ const communityLinks = [
 function NavBar() {
   const { open } = useModalActions();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const navbarBgColor = useColorModeValue('gray.50', 'gray.900');
-  const actionButtons = useMemo(
-    () => [...socialIcons, <ToggleThemeButton key="toggle-theme" />],
-    [],
-  );
 
   return (
     <Box
@@ -70,7 +63,7 @@ function NavBar() {
       top={0}
       shadow="base"
       zIndex={1}
-      bg={navbarBgColor}
+      bg="gray.50"
     >
       <Container p="0.5rem" display="flex" maxW={'5xl'}>
         <IconButton
@@ -102,11 +95,20 @@ function NavBar() {
           d={{ base: 'none', sm: 'flex' }}
         >
           <Box>
-            <HStack spacing="1rem">{communityLinks}</HStack>
+            <Grid
+              flex={1}
+              gridTemplateColumns={`repeat(${communityLinks.length}, auto)`}
+              columnGap="1rem"
+            >
+              {communityLinks}
+            </Grid>
           </Box>
-          <HStack spacing="1rem" fontSize="1.2rem">
-            {actionButtons}
-          </HStack>
+          <Grid
+            gridTemplateColumns={`repeat(${socialIcons.length}, auto)`}
+            columnGap="1rem"
+          >
+            {socialIcons}
+          </Grid>
         </Flex>
 
         <Button
@@ -123,23 +125,23 @@ function NavBar() {
       {isOpen ? (
         <>
           <Box
-            px={2}
+            pb={4}
             display={{ sm: 'none' }}
-            backgroundColor={navbarBgColor}
+            backgroundColor="white"
             paddingBottom="0.5rem"
           >
-            <Stack as={'nav'} spacing={4} m={4}>
+            <Stack as={'nav'} spacing={4}>
               {communityLinks}
             </Stack>
             <Divider />
-            <HStack
-              py={2}
-              spacing="1rem"
+            <Flex
+              display="grid"
               justifyContent={'center'}
-              fontSize="1.3rem"
+              gridTemplateColumns="1fr 1fr 1fr 1fr"
+              gridGap="0.5rem"
             >
-              {actionButtons}
-            </HStack>
+              {socialIcons}
+            </Flex>
           </Box>
         </>
       ) : null}
