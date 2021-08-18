@@ -1,11 +1,11 @@
 import React from 'react';
-import { Icon, Container } from '@chakra-ui/react';
+import { Icon, Box, useColorModeValue } from '@chakra-ui/react';
 import { GoCode, GoBriefcase, GoCommentDiscussion } from 'react-icons/go';
 import { SimpleGrid } from '@chakra-ui/react';
 
 const HomeSection = () => {
   return (
-    <Container maxW="container.md">
+    <Box bg={useColorModeValue('gray.50', 'gray.900')} p="1rem" mt="3rem">
       <SimpleGrid
         minChildWidth="150px"
         spacing="50px"
@@ -22,12 +22,11 @@ const HomeSection = () => {
           />
 
           <h3 style={{ fontWeight: 'bold', marginBottom: '0.5rem' }}>
-            Participe de uma comunidade
+            Participe da comunidade
           </h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum et
-            voluptates aperiam ipsum enim provident iusto at corporis saepe
-            officiis.
+            Parcicipe de meetups semanais com diversos outros profissionais da
+            área de tecnologia e expanda seus conhecimentos.
           </p>
         </span>
         <span>
@@ -36,12 +35,9 @@ const HomeSection = () => {
             Aprenda a programar
           </h3>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
-            perspiciatis neque ducimus, tempore commodi quia dolorum illum ea
-            nulla porro. Quam laborum repudiandae, similique harum eum illo et
-            minus, obcaecati nobis eos blanditiis quia dolore reiciendis aut rem
-            alias cupiditate perspiciatis quos necessitatibus qui numquam
-            eveniet repellendus. Reiciendis, atque minima.
+            Aprenda a programar de uma forma dinâmica através do
+            compartilhamento de conhecimento e participe de nossas mentorias
+            pesonalizadas ou em grupo.
           </p>
         </span>
         <span>
@@ -56,14 +52,12 @@ const HomeSection = () => {
             Entre no mercado de trabalho
           </h3>
           <p>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel nobis
-            repellat, quo deserunt laboriosam odio adipisci commodi rerum beatae
-            quidem impedit, aut reiciendis eos et esse dolore eius porro
-            numquam.
+            Prepare-se para o mercado através de simulações de entrevistas com
+            profissionais já consolidados na área de tecnologia.
           </p>
         </span>
       </SimpleGrid>
-    </Container>
+    </Box>
   );
 };
 
