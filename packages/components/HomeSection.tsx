@@ -6,7 +6,12 @@ import { SimpleGrid } from '@chakra-ui/react';
 const HomeSection = () => {
   return (
     <Container maxW="container.md">
-      <SimpleGrid minChildWidth="150px" spacing="50px" textAlign="center">
+      <SimpleGrid
+        minChildWidth="150px"
+        spacing="50px"
+        textAlign="center"
+        margin={20}
+      >
         <span>
           <Icon
             as={GoCommentDiscussion}
