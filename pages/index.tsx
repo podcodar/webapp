@@ -1,6 +1,6 @@
 import CallToActionWithIllustration from '@packages/components/CtaWithIllustration';
 import CallToActionModal from '@packages/components/dialogs/CallToActionModal';
-import HomeSection from '@packages/components/HomeSection';
+import HowitWorksSection from '@packages/components/HowItWorksSection';
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
         <main>
           {/* Setup placeholder component */}
           <CallToActionWithIllustration />
-          <HomeSection />
+          <HowitWorksSection />
         </main>
       </div>
     </>
