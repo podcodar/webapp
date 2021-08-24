@@ -38,8 +38,8 @@ const HowItWorksSection = () => {
             <Box as="span" key={item.heading}>
               <Icon
                 as={item.icon}
-                w={10}
-                h={10}
+                w="2rem"
+                h="2rem"
                 marginBottom="1rem"
                 color="purple.500"
               />
@@ -58,14 +58,14 @@ const HowItWorksSection = () => {
       bg={useColorModeValue('gray.50', 'gray.900')}
       p="1rem"
       mt="3rem"
-      borderTop="5px solid"
+      borderTop="0.25rem solid"
       borderColor="purple.500"
     >
       <SimpleGrid
-        minChildWidth="150px"
-        spacing="50px"
+        minChildWidth="9rem"
+        spacing="3rem"
         textAlign="center"
-        margin={20}
+        margin="5rem"
       >
         {ColumnSection()}
       </SimpleGrid>
