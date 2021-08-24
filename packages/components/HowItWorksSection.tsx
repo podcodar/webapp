@@ -9,7 +9,13 @@ import {
 
 const HowItWorksSection = () => {
   return (
-    <Box bg={useColorModeValue('gray.50', 'gray.900')} p="1rem" mt="3rem">
+    <Box
+      bg={useColorModeValue('gray.50', 'gray.900')}
+      p="1rem"
+      mt="3rem"
+      borderTop="5px solid"
+      borderColor="purple.500"
+    >
       <SimpleGrid
         minChildWidth="150px"
         spacing="50px"
@@ -17,33 +23,38 @@ const HowItWorksSection = () => {
         margin={20}
       >
         <Text as="span">
-          <ConversationIcon w={10} h={10} marginBottom={3} color="purple.500" />
-          <Heading size="sm" marginBottom="0.5rem">
+          <ConversationIcon
+            w={10}
+            h={10}
+            marginBottom="1rem"
+            color="purple.500"
+          />
+          <Heading size="sm" marginBottom="1rem">
             Participe da comunidade
           </Heading>
-          <Text>
+          <Text color={'gray.500'}>
             Parcicipe de meetups semanais com diversos outros profissionais da
             área de tecnologia e expanda seus conhecimentos.
           </Text>
         </Text>
         <Text as="span">
-          <CodeIcon w={10} h={10} marginBottom={3} color="purple.500" />
-          <Heading size="sm" marginBottom="0.5rem">
+          <CodeIcon w={10} h={10} marginBottom="1rem" color="purple.500" />
+          <Heading size="sm" marginBottom="1rem">
             Aprenda a programar
           </Heading>
-          <Text>
+          <Text color={'gray.500'}>
             Aprenda a programar de uma forma dinâmica através do
             compartilhamento de conhecimento e participe de nossas mentorias
             pesonalizadas ou em grupo.
           </Text>
         </Text>
         <Text as="span">
-          <BriefcaseIcon w={10} h={10} marginBottom={3} color="purple.500" />
+          <BriefcaseIcon w={10} h={10} marginBottom="1rem" color="purple.500" />
 
-          <Heading size="sm" marginBottom="0.5rem">
+          <Heading size="sm" marginBottom="1rem">
             Entre no mercado de trabalho
           </Heading>
-          <Text>
+          <Text color={'gray.500'}>
             Prepare-se para o mercado através de simulações de entrevistas com
             profissionais já consolidados na área de tecnologia.
           </Text>
