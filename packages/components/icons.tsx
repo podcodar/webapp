@@ -1,6 +1,42 @@
 import { createIcon, Icon, IconProps } from '@chakra-ui/react';
 import React from 'react';
 
+export const CodeIcon = createIcon({
+  displayName: 'CodeIcon',
+  viewBox: '0 0 24 24',
+  path: (
+    <path
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      d="M8.7 15.9L4.8 12l3.9-3.9c.39-.39.39-1.01 0-1.4-.39-.39-1.01-.39-1.4 0l-4.59 4.59c-.39.39-.39 1.02 0 1.41l4.59 4.6c.39.39 1.01.39 1.4 0 .39-.39.39-1.01 0-1.4zm6.6 0l3.9-3.9-3.9-3.9c-.39-.39-.39-1.01 0-1.4.39-.39 1.01-.39 1.4 0l4.59 4.59c.39.39.39 1.02 0 1.41l-4.59 4.6c-.39.39-1.01.39-1.4 0-.39-.39-.39-1.01 0-1.4z"
+    />
+  ),
+});
+
+export const BriefcaseIcon = createIcon({
+  displayName: 'BriefcaseIcon',
+  viewBox: '0 0 24 24',
+  path: (
+    <path
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      d="M13 16h-2c-.55 0-1-.45-1-1H3.01v4c0 1.1.9 2 2 2H19c1.1 0 2-.9 2-2v-4h-7c0 .55-.45 1-1 1zm7-9h-4c0-2.21-1.79-4-4-4S8 4.79 8 7H4c-1.1 0-2 .9-2 2v3c0 1.11.89 2 2 2h6v-1c0-.55.45-1 1-1h2c.55 0 1 .45 1 1v1h6c1.1 0 2-.9 2-2V9c0-1.1-.9-2-2-2zM10 7c0-1.1.9-2 2-2s2 .9 2 2H9.99 10z"
+    />
+  ),
+});
+
+export const ConversationIcon = createIcon({
+  displayName: 'ConversationIcon',
+  viewBox: '0 0 24 24',
+  path: (
+    <path
+      fill="currentColor"
+      viewBox="0 0 24 24"
+      d="M20 6h-1v8c0 .55-.45 1-1 1H6v1c0 1.1.9 2 2 2h10l4 4V8c0-1.1-.9-2-2-2zm-3 5V4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v13l4-4h9c1.1 0 2-.9 2-2z"
+    />
+  ),
+});
+
 export const GithubIcon = createIcon({
   displayName: 'GithubIcon',
   viewBox: '0 0 20 20',
