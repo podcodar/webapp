@@ -1,7 +1,11 @@
 import React from 'react';
-import { Icon, Box, useColorModeValue, Text, Heading } from '@chakra-ui/react';
-import { GoCode, GoBriefcase, GoCommentDiscussion } from 'react-icons/go';
+import { Box, useColorModeValue, Text, Heading } from '@chakra-ui/react';
 import { SimpleGrid } from '@chakra-ui/react';
+import {
+  CodeIcon,
+  BriefcaseIcon,
+  ConversationIcon,
+} from '@packages/components/icons';
 
 const HowItWorksSection = () => {
   return (
@@ -13,13 +17,7 @@ const HowItWorksSection = () => {
         margin={20}
       >
         <Text as="span">
-          <Icon
-            as={GoCommentDiscussion}
-            w={7}
-            h={7}
-            marginBottom={3}
-            color="purple.500"
-          />
+          <ConversationIcon w={10} h={10} marginBottom={3} color="purple.500" />
           <Heading size="sm" marginBottom="0.5rem">
             Participe da comunidade
           </Heading>
@@ -29,7 +27,7 @@ const HowItWorksSection = () => {
           </Text>
         </Text>
         <Text as="span">
-          <Icon as={GoCode} w={7} h={7} marginBottom={3} color="purple.500" />
+          <CodeIcon w={10} h={10} marginBottom={3} color="purple.500" />
           <Heading size="sm" marginBottom="0.5rem">
             Aprenda a programar
           </Heading>
@@ -40,13 +38,8 @@ const HowItWorksSection = () => {
           </Text>
         </Text>
         <Text as="span">
-          <Icon
-            as={GoBriefcase}
-            w={7}
-            h={7}
-            marginBottom={3}
-            color="purple.500"
-          />
+          <BriefcaseIcon w={10} h={10} marginBottom={3} color="purple.500" />
+
           <Heading size="sm" marginBottom="0.5rem">
             Entre no mercado de trabalho
           </Heading>
