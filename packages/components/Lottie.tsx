@@ -1,6 +1,6 @@
 import LottieComponent, { Options } from 'react-lottie';
 
-import * as avocadoAnimation from '@packages/utils/lotties/404.json';
+import * as avocadoAnimation from '@packages/assets/lotties/404.json';
 
 interface LottieProps {
   animation: AvaiableAnimations;
