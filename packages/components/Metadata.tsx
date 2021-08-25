@@ -1,10 +1,11 @@
+import Head from 'next/head';
+
 import {
   description,
   descriptionImage,
   pageURL,
   title,
 } from '@packages/configs';
-import Head from 'next/head';
 
 function Metadata() {
   return (

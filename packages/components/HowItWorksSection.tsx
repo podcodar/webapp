@@ -8,6 +8,7 @@ import {
   IconProps,
   Stack,
 } from '@chakra-ui/react';
+
 import {
   CodeIcon,
   BriefcaseIcon,

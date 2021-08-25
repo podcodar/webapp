@@ -11,11 +11,12 @@ import {
   SlideFade,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import { useState } from 'react';
+
 import {
   useModalActions,
   useModalStates,
 } from '@packages/features/modal-context';
-import React, { useState } from 'react';
 
 type ModalVariants = 'md' | 'full' | 'lg' | 'xl';
 

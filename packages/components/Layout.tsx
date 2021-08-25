@@ -1,5 +1,6 @@
 import { Container } from '@chakra-ui/react';
 import { ReactNode } from 'react';
+
 import NavBar from './NavBar';
 
 interface Props {
@@ -10,7 +11,7 @@ function Layout({ children }: Props) {
   return (
     <div>
       <NavBar />
-      <Container maxW={'5xl'} mt="5rem">
+      <Container maxW="5xl" mt="5rem">
         {children}
       </Container>
     </div>

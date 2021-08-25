@@ -13,8 +13,10 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+
 import { useModalActions } from '@packages/features/modal-context';
 import { LinkedInIcon, GithubIcon, Logo } from '@packages/components/icons';
+
 import ToggleThemeButton from './ToggleThemeButton';
 
 const communityLinks = [
@@ -68,11 +70,11 @@ function NavBar() {
       zIndex={1}
       bg={navbarBgColor}
     >
-      <Container p="0.5rem" display="flex" maxW={'5xl'}>
+      <Container p="0.5rem" display="flex" maxW="5xl">
         <IconButton
-          size={'md'}
+          size="md"
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label={'Open Menu'}
+          aria-label="Open Menu"
           display={{ sm: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
@@ -117,27 +119,25 @@ function NavBar() {
       </Container>
 
       {isOpen ? (
-        <>
-          <Box
-            px={2}
-            display={{ sm: 'none' }}
-            backgroundColor={navbarBgColor}
-            paddingBottom="0.5rem"
+        <Box
+          px={2}
+          display={{ sm: 'none' }}
+          backgroundColor={navbarBgColor}
+          paddingBottom="0.5rem"
+        >
+          <Stack as="nav" spacing={4} m={4}>
+            {communityLinks}
+          </Stack>
+          <Divider />
+          <HStack
+            py={2}
+            spacing="1rem"
+            justifyContent="center"
+            fontSize="1.3rem"
           >
-            <Stack as={'nav'} spacing={4} m={4}>
-              {communityLinks}
-            </Stack>
-            <Divider />
-            <HStack
-              py={2}
-              spacing="1rem"
-              justifyContent={'center'}
-              fontSize="1.3rem"
-            >
-              {actionButtons}
-            </HStack>
-          </Box>
-        </>
+            {actionButtons}
+          </HStack>
+        </Box>
       ) : null}
     </Box>
   );
