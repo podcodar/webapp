@@ -4,14 +4,14 @@ import { useModalActions } from '@packages/features/modal-context';
 
 import { Illustration } from './icons';
 
-export default function CallToActionWithIllustration() {
+export default function CallToActionSection() {
   const { open } = useModalActions();
   return (
     <Stack
       textAlign="center"
       align="center"
       spacing={{ base: 8, md: 10 }}
-      pt="4rem"
+      py="5rem"
     >
       <Heading
         fontWeight={600}

@@ -1,4 +1,4 @@
-import CallToActionWithIllustration from '@packages/components/CtaWithIllustration';
+import CallToActionSection from '@packages/components/CallToActionSection';
 import CallToActionModal from '@packages/components/dialogs/CallToActionModal';
 import HowItWorksSection from '@packages/components/HowItWorksSection';
 
@@ -6,13 +6,8 @@ export default function Home() {
   return (
     <>
       <CallToActionModal />
-      <div>
-        <main>
-          {/* Setup placeholder component */}
-          <CallToActionWithIllustration />
-          <HowItWorksSection />
-        </main>
-      </div>
+      <CallToActionSection />
+      <HowItWorksSection />
     </>
   );
 }
