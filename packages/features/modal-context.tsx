@@ -1,6 +1,7 @@
+import { createContext, useContext, useMemo, useState } from 'react';
+
 import { makeThrowMissingImplementation } from '@packages/utils/functions';
 import { ChildrenProps } from '@packages/utils/react';
-import { createContext, useContext, useMemo, useState } from 'react';
 
 interface ModalActions {
   readonly open: () => void;
