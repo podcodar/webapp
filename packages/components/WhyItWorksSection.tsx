@@ -31,10 +31,19 @@ export default function WhyItWorksSection() {
         fontSize={{ base: '3xl', sm: '4xl' }}
         lineHeight="110%"
         textAlign="center"
-        py="3rem"
+        py="2rem"
       >
         E por quê funciona?
       </Heading>
+      <Text
+        color="gray.500"
+        textAlign="center"
+        fontSize={{ base: '1xl', sm: '2xl' }}
+        marginBottom="2rem"
+      >
+        {' '}
+        porque aqui você...
+      </Text>
       <Stack
         direction={{ base: 'column', md: 'row' }}
         textAlign="center"
@@ -65,31 +74,31 @@ function CardItem({ title, icon, description }: CardItemProps) {
         marginBottom="1rem"
         color="purple.500"
       />
-      <Heading size="sm" marginBottom="1rem">
-        {title}
-      </Heading>
-      <Text color="gray.500">{description}</Text>
+      <Heading size="sm">{title}</Heading>
+      <Text color="gray.500" marginTop="1rem" maxWidth="30rem">
+        {description}
+      </Text>
     </Box>
   );
 }
 
 const cardList: CardItemProps[] = [
   {
-    icon: ConversationIcon,
-    title: 'Participe da comunidade',
+    icon: CodeIcon,
+    title: 'Tem um ensino personalizado',
     description:
-      'Parcicipe de meetups semanais com diversos outros profissionais da área de tecnologia e expanda seus conhecimentos.',
+      'Na PodCodar não existe um só caminho de ensino que todos devem seguir. Aqui acreditamos que cada indivíduo é único e por isso é necessário que o processo de aprendizado seja moldado de acordo com as necessidades e desejos de cada um.',
   },
   {
-    icon: CodeIcon,
-    title: 'Aprenda a programar',
+    icon: ConversationIcon,
+    title: 'Faz parte de uma comunidade',
     description:
-      'Aprenda a programar de uma forma dinâmica através do compartilhamento de conhecimento e participe de nossas mentorias pesonalizadas ou em grupo.',
+      'Além de poder participar dos meetups semanais com profissionais estabelicidos da área de tecnologia, a idéia é te ajudar a expandir seu conhecimento através do compartilhamento de informação e das mentorias personalizadas individuais ou focadas em projetos em grupo. Mas é você quem escolhe como irá interagir, nós só te ajudamos a chegar lá!',
   },
   {
     icon: BriefcaseIcon,
-    title: 'Entre no mercado de trabalho',
+    title: 'Entra para o mercado de trabalho',
     description:
-      'Prepare-se para o mercado através de simulações de entrevistas com profissionais já consolidados na área de tecnologia.',
+      'Aqui você tem nosso apoio integral para entrar no mercado de trabalho como um excelente profissional. Através de simulações de entrevistas guiadas por experts da área, você é testado em um cenário o mais próximo possível do mundo real e do mercado de trabalho, ficando consideravelmente mais bem preparado  para lidar com este desafio.',
   },
 ];
