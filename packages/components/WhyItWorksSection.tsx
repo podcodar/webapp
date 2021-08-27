@@ -33,7 +33,7 @@ export default function WhyItWorksSection() {
         textAlign="center"
         py="3rem"
       >
-        E como funciona?
+        E por quê funciona?
       </Heading>
       <Stack
         direction={{ base: 'column', md: 'row' }}
