@@ -1,5 +1,6 @@
-import Lottie from '@packages/components/Lottie';
 import { Box, Heading, Text, Stack } from '@chakra-ui/layout';
+
+import Lottie from '@packages/components/Lottie';
 
 export default function NotFound() {
   return (
@@ -16,11 +17,11 @@ export default function NotFound() {
           lineHeight="110%"
         >
           Não encontramos sua página
-          <Text as="span" color={'purple.400'}>
+          <Text as="span" color="purple.400">
             (╯°□°)╯︵ ┻━┻
           </Text>
         </Heading>
-        <Text color={'gray.500'} maxW={'3xl'}>
+        <Text color="gray.500" maxW="3xl">
           Mas encontramos esse abacate!
         </Text>
         <Lottie animation="avocado" />

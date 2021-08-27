@@ -10,11 +10,7 @@ export default function Lottie(props: LottieProps) {
   const options = processOptions(props);
 
   return (
-    <LottieComponent
-      options={options}
-      isClickToPauseDisabled={true}
-      width="70%"
-    />
+    <LottieComponent options={options} width="70%" isClickToPauseDisabled />
   );
 }
 
