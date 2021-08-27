@@ -1,13 +1,13 @@
 import CallToActionSection from '@packages/components/CallToActionSection';
 import CallToActionModal from '@packages/components/dialogs/CallToActionModal';
-import HowItWorksSection from '@packages/components/HowItWorksSection';
+import WhyItWorksSection from '@packages/components/WhyItWorksSection';
 
 export default function Home() {
   return (
     <>
       <CallToActionModal />
       <CallToActionSection />
-      <HowItWorksSection />
+      <WhyItWorksSection />
     </>
   );
 }
