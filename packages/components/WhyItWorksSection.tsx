@@ -15,7 +15,7 @@ import {
   ConversationIcon,
 } from '@packages/components/icons';
 
-export default function HowItWorksSection() {
+export default function WhyItWorksSection() {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
 
   return (
