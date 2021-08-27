@@ -18,6 +18,7 @@ export default function NotFound() {
         >
           Não encontramos sua página
           <Text as="span" color="purple.400">
+            {' '}
             (╯°□°)╯︵ ┻━┻
           </Text>
         </Heading>
