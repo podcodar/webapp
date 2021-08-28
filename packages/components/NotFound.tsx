@@ -9,7 +9,7 @@ export default function NotFound() {
         textAlign="center"
         align="center"
         spacing={{ base: 8, md: 10 }}
-        pt="0.5rem"
+        pt="4rem"
       >
         <Heading
           fontWeight={600}

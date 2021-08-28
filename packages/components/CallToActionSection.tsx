@@ -11,7 +11,7 @@ export default function CallToActionSection() {
       textAlign="center"
       align="center"
       spacing={{ base: 8, md: 10 }}
-      py="5rem"
+      py="6rem"
     >
       <Heading
         fontWeight={600}
