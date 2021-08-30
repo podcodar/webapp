@@ -59,12 +59,16 @@ function CardItem({ title, icon, description }: CardItemProps) {
   return (
     <Box>
       <Icon as={icon} w="10rem" h="10rem" m="1rem" />
-      <Heading size="md" fontWeight={400} pb="1rem">
+      <Heading
+        size="md"
+        fontWeight={400}
+        pb="1rem"
+        marginTop="2rem"
+        maxWidth="30rem"
+      >
         {title}
       </Heading>
-      <Text color="gray.500" marginTop="1rem" maxWidth="30rem">
-        {description}
-      </Text>
+      <Text color="gray.500">{description}</Text>
     </Box>
   );
 }
