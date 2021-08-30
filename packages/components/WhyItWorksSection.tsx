@@ -10,9 +10,9 @@ import {
 } from '@chakra-ui/react';
 
 import {
-  CodeIcon,
-  BriefcaseIcon,
-  ConversationIcon,
+  PersonalizedLearningIcon,
+  PracticalLearningIcon,
+  TeamworkIcon,
 } from '@packages/components/icons';
 
 export default function WhyItWorksSection() {
@@ -35,20 +35,11 @@ export default function WhyItWorksSection() {
       >
         E por quê funciona?
       </Heading>
-      <Text
-        color="gray.500"
-        textAlign="center"
-        fontSize={{ base: '1xl', sm: '2xl' }}
-        marginBottom="2rem"
-      >
-        {' '}
-        porque aqui você...
-      </Text>
       <Stack
         direction={{ base: 'column', md: 'row' }}
         textAlign="center"
         p="1rem"
-        spacing="2rem"
+        spacing="4rem"
       >
         {cardList.map((cardProps) => (
           <CardItem key={cardProps.title} {...cardProps} />
@@ -67,14 +58,10 @@ interface CardItemProps {
 function CardItem({ title, icon, description }: CardItemProps) {
   return (
     <Box>
-      <Icon
-        as={icon}
-        w="2rem"
-        h="2rem"
-        marginBottom="1rem"
-        color="purple.500"
-      />
-      <Heading size="sm">{title}</Heading>
+      <Icon as={icon} w="10rem" h="10rem" m="1rem" />
+      <Heading size="md" fontWeight={400} pb="1rem">
+        {title}
+      </Heading>
       <Text color="gray.500" marginTop="1rem" maxWidth="30rem">
         {description}
       </Text>
@@ -84,21 +71,22 @@ function CardItem({ title, icon, description }: CardItemProps) {
 
 const cardList: CardItemProps[] = [
   {
-    icon: CodeIcon,
-    title: 'Tem um ensino personalizado',
+    icon: PracticalLearningIcon,
+    title: 'Aprenda na prática',
     description:
-      'Na PodCodar não existe um só caminho de ensino que todos devem seguir. Aqui acreditamos que cada indivíduo é único e por isso é necessário que o processo de aprendizado seja moldado de acordo com as necessidades e desejos de cada um.',
+      'Utilizamos práticas do mercado de trabalho para acelerar seu desenvolvimento profissional. ',
   },
   {
-    icon: ConversationIcon,
-    title: 'Faz parte de uma comunidade',
+    icon: PersonalizedLearningIcon,
+    title: 'Ensino personalizado ',
     description:
-      'Além de poder participar dos meetups semanais com profissionais estabelicidos da área de tecnologia, a idéia é te ajudar a expandir seu conhecimento através do compartilhamento de informação e das mentorias personalizadas individuais ou focadas em projetos em grupo. Mas é você quem escolhe como irá interagir, nós só te ajudamos a chegar lá!',
+      'Cada indivíduo é único e por isso é necessário que o processo de aprendizado seja moldado de acordo com as suas necessidades.',
   },
+
   {
-    icon: BriefcaseIcon,
-    title: 'Entra para o mercado de trabalho',
+    icon: TeamworkIcon,
+    title: 'Trabalho em equipe',
     description:
-      'Aqui você tem nosso apoio integral para entrar no mercado de trabalho como um excelente profissional. Através de simulações de entrevistas guiadas por experts da área, você é testado em um cenário o mais próximo possível do mundo real e do mercado de trabalho, ficando consideravelmente mais bem preparado  para lidar com este desafio.',
+      'Participe das mentorias personalizadas individuais e projetos em grupo. É você quem escolhe como contribuir com a comunidade.',
   },
 ];
