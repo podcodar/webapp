@@ -62,7 +62,7 @@ function CardItem({ title, icon, description }: CardItemProps) {
       <Heading
         size="md"
         fontWeight={400}
-        pb="1rem"
+        pb="2rem"
         marginTop="2rem"
         maxWidth="30rem"
       >
