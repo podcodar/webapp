@@ -57,7 +57,7 @@ interface CardItemProps {
 
 function CardItem({ title, icon, description }: CardItemProps) {
   return (
-    <Box>
+    <Box w="100%">
       <Icon as={icon} w="10rem" h="10rem" m="1rem" />
       <Heading
         size="md"
