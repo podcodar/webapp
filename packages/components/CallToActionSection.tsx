@@ -1,7 +1,7 @@
 import { Button, Flex, Heading, Stack, Text } from '@chakra-ui/react';
 
 import { useModalActions } from '@packages/features/modal-context';
-import { Illustration } from '@packages/assets/icons/Illustration';
+import { Illustration } from '@packages/assets/icons';
 
 export default function CallToActionSection() {
   const { open } = useModalActions();
