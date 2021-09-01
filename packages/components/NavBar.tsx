@@ -14,8 +14,10 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 
+import { GithubIcon } from '@packages/assets/icons/GithubIcon';
+import { LinkedInIcon } from '@packages/assets/icons/LinkedInIcon';
+import { Logo } from '@packages/assets/icons/Logo';
 import { useModalActions } from '@packages/features/modal-context';
-import { LinkedInIcon, GithubIcon, Logo } from '@packages/components/icons';
 
 import ToggleThemeButton from './ToggleThemeButton';
 

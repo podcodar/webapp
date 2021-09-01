@@ -9,11 +9,9 @@ import {
   Stack,
 } from '@chakra-ui/react';
 
-import {
-  PersonalizedLearningIcon,
-  PracticalLearningIcon,
-  TeamworkIcon,
-} from '@packages/components/icons';
+import { PersonalizedLearningIcon } from '@packages/assets/icons/PersonalizedLearningIcon';
+import { PracticalLearningIcon } from '@packages/assets/icons/PracticalLearningIcon';
+import { TeamworkIcon } from '@packages/assets/icons/TeamworkIcon';
 
 export default function WhyItWorksSection() {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
