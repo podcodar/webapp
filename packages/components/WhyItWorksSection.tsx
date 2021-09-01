@@ -8,11 +8,12 @@ import {
   IconProps,
   Stack,
 } from '@chakra-ui/react';
+
 import {
   PersonalizedLearningIcon,
   PracticalLearningIcon,
   TeamworkIcon,
-} from '@packages/assets/icons';
+} from '@packages/components/icons';
 
 export default function WhyItWorksSection() {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
