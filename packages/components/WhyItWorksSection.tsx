@@ -7,7 +7,6 @@ import {
   ComponentWithAs,
   IconProps,
   Stack,
-  Container,
 } from '@chakra-ui/react';
 
 import {
@@ -16,39 +15,33 @@ import {
   TeamworkIcon,
 } from '@packages/components/icons';
 
+import Section from './Section';
+
 export default function WhyItWorksSection() {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
 
   return (
-    <Box
-      bg={bgColor}
-      p="1rem"
-      mt="3rem"
-      borderTop="0.25rem solid"
-      borderColor="purple.500"
-    >
-      <Container maxW="5xl" my="5rem">
-        <Heading
-          fontWeight={600}
-          fontSize={{ base: '3xl', sm: '4xl' }}
-          lineHeight="110%"
-          textAlign="center"
-          py="2rem"
-        >
-          E por quê funciona?
-        </Heading>
-        <Stack
-          direction={{ base: 'column', md: 'row' }}
-          textAlign="center"
-          p="1rem"
-          spacing="4rem"
-        >
-          {cardList.map((cardProps) => (
-            <CardItem key={cardProps.title} {...cardProps} />
-          ))}
-        </Stack>
-      </Container>
-    </Box>
+    <Section bg={bgColor}>
+      <Heading
+        fontWeight={600}
+        fontSize={{ base: '3xl', sm: '4xl' }}
+        lineHeight="110%"
+        textAlign="center"
+        py="2rem"
+      >
+        E por quê funciona?
+      </Heading>
+      <Stack
+        direction={{ base: 'column', md: 'row' }}
+        textAlign="center"
+        p="1rem"
+        spacing="4rem"
+      >
+        {cardList.map((cardProps) => (
+          <CardItem key={cardProps.title} {...cardProps} />
+        ))}
+      </Stack>
+    </Section>
   );
 }
 

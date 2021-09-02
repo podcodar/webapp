@@ -1,25 +1,15 @@
-import {
-  Button,
-  Container,
-  Flex,
-  Heading,
-  Stack,
-  Text,
-} from '@chakra-ui/react';
+import { Button, Flex, Heading, Stack, Text } from '@chakra-ui/react';
 
 import { useModalActions } from '@packages/features/modal-context';
 import { Illustration } from '@packages/components/icons';
 
+import Section from './Section';
+
 export default function CallToActionSection() {
   const { open } = useModalActions();
   return (
-    <Container maxW="5xl" my="5rem">
-      <Stack
-        textAlign="center"
-        align="center"
-        spacing={{ base: 8, md: 10 }}
-        py="8rem"
-      >
+    <Section py="10rem">
+      <Stack textAlign="center" align="center" spacing={{ base: 8, md: 10 }}>
         <Heading
           fontWeight={600}
           fontSize={{ base: '3xl', sm: '4xl' }}
@@ -55,6 +45,6 @@ export default function CallToActionSection() {
           <Illustration height={{ sm: '24rem', lg: '28rem' }} />
         </Flex>
       </Stack>
-    </Container>
+    </Section>
   );
 }

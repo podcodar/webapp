@@ -1,21 +1,27 @@
-import { Grid, GridItem, Text, Heading, Container } from '@chakra-ui/react';
+import {
+  Grid,
+  GridItem,
+  Text,
+  Heading,
+  useColorModeValue,
+} from '@chakra-ui/react';
+
+import Section from './Section';
 
 export default function MentoringSection() {
+  const bgColor = useColorModeValue('#f7f5f4', 'gray.700');
   return (
-    <Container maxW="5xl" my="5rem">
+    <Section bg={bgColor} py="5rem">
       <Grid
-        h="600px"
         templateRows="repeat(3, 1fr)"
         templateColumns="repeat(5, 1fr)"
         gap={4}
-        py="5rem"
       >
         <GridItem rowSpan={{ base: 1, md: 3 }} colSpan={{ base: 5, md: 2 }}>
           <Heading
             size="md"
+            my="2rem"
             fontWeight={400}
-            pb="2rem"
-            marginTop="2rem"
             maxWidth="30rem"
             textAlign="center"
           >
@@ -47,7 +53,7 @@ export default function MentoringSection() {
           estão 100% do tempo simulando o dia a dia do desenvolvedor."
         />
       </Grid>
-    </Container>
+    </Section>
   );
 }
 
@@ -58,14 +64,8 @@ interface CardItemProps {
 
 function CardItem({ title, description }: CardItemProps) {
   return (
-    <GridItem rowSpan={1} colSpan={{ base: 5, md: 3 }} padding="2">
-      <Heading
-        size="md"
-        fontWeight={400}
-        pb="2rem"
-        marginTop="2rem"
-        maxWidth="30rem"
-      >
+    <GridItem rowSpan={1} colSpan={{ base: 5, md: 3 }}>
+      <Heading size="md" fontWeight={400} my="2rem" maxWidth="30rem">
         {title}
       </Heading>
       <Text color="gray.500">{description}</Text>
