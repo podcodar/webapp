@@ -7,6 +7,7 @@ import {
   ComponentWithAs,
   IconProps,
   Stack,
+  Container,
 } from '@chakra-ui/react';
 
 import {
@@ -26,25 +27,27 @@ export default function WhyItWorksSection() {
       borderTop="0.25rem solid"
       borderColor="purple.500"
     >
-      <Heading
-        fontWeight={600}
-        fontSize={{ base: '3xl', sm: '4xl' }}
-        lineHeight="110%"
-        textAlign="center"
-        py="2rem"
-      >
-        E por quê funciona?
-      </Heading>
-      <Stack
-        direction={{ base: 'column', md: 'row' }}
-        textAlign="center"
-        p="1rem"
-        spacing="4rem"
-      >
-        {cardList.map((cardProps) => (
-          <CardItem key={cardProps.title} {...cardProps} />
-        ))}
-      </Stack>
+      <Container maxW="5xl" my="5rem">
+        <Heading
+          fontWeight={600}
+          fontSize={{ base: '3xl', sm: '4xl' }}
+          lineHeight="110%"
+          textAlign="center"
+          py="2rem"
+        >
+          E por quê funciona?
+        </Heading>
+        <Stack
+          direction={{ base: 'column', md: 'row' }}
+          textAlign="center"
+          p="1rem"
+          spacing="4rem"
+        >
+          {cardList.map((cardProps) => (
+            <CardItem key={cardProps.title} {...cardProps} />
+          ))}
+        </Stack>
+      </Container>
     </Box>
   );
 }

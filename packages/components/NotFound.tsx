@@ -1,10 +1,11 @@
-import { Box, Heading, Text, Stack } from '@chakra-ui/layout';
+import { Heading, Text, Stack } from '@chakra-ui/layout';
+import { Container } from '@chakra-ui/react';
 
 import Lottie from '@packages/components/Lottie';
 
 export default function NotFound() {
   return (
-    <Box>
+    <Container maxW="5xl" my="5rem">
       <Stack
         textAlign="center"
         align="center"
@@ -27,6 +28,6 @@ export default function NotFound() {
         </Text>
         <Lottie animation="avocado" />
       </Stack>
-    </Box>
+    </Container>
   );
 }
