@@ -1,19 +1,17 @@
-import { useLottie, LottieOptions, CSSProperties } from 'lottie-react';
+import { CSSProperties } from 'react';
+import { useLottie, LottieOptions } from 'lottie-react';
 
 import avocadoAnimation from '@packages/assets/lotties/404.json';
 
-const style = {
-  width: '70%',
-};
-
 export default function Lottie(props: LottieProps) {
   const options = processOptions(props);
-  const { View } = useLottie(options, style);
+  const { View } = useLottie(options, props.styles);
   return View;
 }
 
 interface LottieProps {
   animation: AvaiableAnimations;
+  styles: CSSProperties;
 }
 
 type AvaiableAnimations = 'avocado';
