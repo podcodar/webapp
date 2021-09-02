@@ -15,17 +15,13 @@ import {
   TeamworkIcon,
 } from '@packages/components/icons';
 
+import Section from './Section';
+
 export default function WhyItWorksSection() {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
 
   return (
-    <Box
-      bg={bgColor}
-      p="1rem"
-      mt="3rem"
-      borderTop="0.25rem solid"
-      borderColor="purple.500"
-    >
+    <Section bg={bgColor}>
       <Heading
         fontWeight={600}
         fontSize={{ base: '3xl', sm: '4xl' }}
@@ -45,7 +41,7 @@ export default function WhyItWorksSection() {
           <CardItem key={cardProps.title} {...cardProps} />
         ))}
       </Stack>
-    </Box>
+    </Section>
   );
 }
 
