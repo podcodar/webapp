@@ -11,9 +11,7 @@ function Layout({ children }: Props) {
   return (
     <div>
       <NavBar />
-      <Container maxW="5xl" my="5rem">
-        {children}
-      </Container>
+      {children}
     </div>
   );
 }
