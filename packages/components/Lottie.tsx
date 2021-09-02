@@ -1,17 +1,19 @@
-import LottieComponent, { Options } from 'react-lottie';
+import { useLottie, LottieOptions, CSSProperties } from 'lottie-react';
 
-import * as avocadoAnimation from '@packages/assets/lotties/404.json';
+import avocadoAnimation from '@packages/assets/lotties/404.json';
 
-interface LottieProps {
-  animation: AvaiableAnimations;
-}
+const style = {
+  width: '70%',
+};
 
 export default function Lottie(props: LottieProps) {
   const options = processOptions(props);
+  const { View } = useLottie(options, style);
+  return View;
+}
 
-  return (
-    <LottieComponent options={options} width="70%" isClickToPauseDisabled />
-  );
+interface LottieProps {
+  animation: AvaiableAnimations;
 }
 
 type AvaiableAnimations = 'avocado';
@@ -20,12 +22,10 @@ const lottieAnimations: Record<AvaiableAnimations, Object> = {
   avocado: avocadoAnimation,
 };
 
-function processOptions(props: LottieProps): Options {
+function processOptions(props: LottieProps): LottieOptions {
   return {
-    loop: false,
     animationData: lottieAnimations[props.animation],
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
+    loop: true,
+    autoplay: true,
   };
 }
