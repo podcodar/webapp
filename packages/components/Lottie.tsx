@@ -1,31 +1,36 @@
-import LottieComponent, { Options } from 'react-lottie';
+import lottie from 'lottie-web';
+import { Box, ChakraProps } from '@chakra-ui/react';
+import { useLayoutEffect, useRef } from 'react';
 
-import * as avocadoAnimation from '@packages/assets/lotties/404.json';
-
-interface LottieProps {
-  animation: AvaiableAnimations;
+interface LottieProps extends ChakraProps {
+  animation: AvailableAnimations;
 }
 
-export default function Lottie(props: LottieProps) {
-  const options = processOptions(props);
+export default function Lottie({ animation, ...props }: LottieProps) {
+  const lottieBodyRef = useRef<HTMLDivElement>(null);
 
-  return (
-    <LottieComponent options={options} width="70%" isClickToPauseDisabled />
-  );
+  useLayoutEffect(() => {
+    if (lottieBodyRef.current === null) return;
+
+    const container = lottieBodyRef.current;
+    const path = lottieAnimations[animation];
+
+    lottie.loadAnimation({
+      path,
+      container,
+      loop: true,
+      autoplay: true,
+      renderer: 'svg',
+    });
+
+    return () => lottie.destroy();
+  }, [animation]);
+
+  return <Box ref={lottieBodyRef} {...props} />;
 }
 
-type AvaiableAnimations = 'avocado';
+type AvailableAnimations = 'avocado';
 
-const lottieAnimations: Record<AvaiableAnimations, Object> = {
-  avocado: avocadoAnimation,
+const lottieAnimations: Record<AvailableAnimations, string> = {
+  avocado: '/assets/404_avocado.json',
 };
-
-function processOptions(props: LottieProps): Options {
-  return {
-    loop: false,
-    animationData: lottieAnimations[props.animation],
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice',
-    },
-  };
-}
