@@ -55,13 +55,7 @@ function CardItem({ title, icon, description }: CardItemProps) {
   return (
     <Box w="100%">
       <Icon as={icon} w="10rem" h="10rem" m="1rem" />
-      <Heading
-        size="md"
-        fontWeight={400}
-        pb="2rem"
-        marginTop="2rem"
-        maxWidth="30rem"
-      >
+      <Heading size="md" fontWeight={400} my="2rem">
         {title}
       </Heading>
       <Text color="gray.500">{description}</Text>

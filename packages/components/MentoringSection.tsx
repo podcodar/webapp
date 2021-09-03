@@ -12,19 +12,9 @@ export default function MentoringSection() {
   const bgColor = useColorModeValue('#f7f5f4', 'gray.700');
   return (
     <Section bg={bgColor} py="5rem">
-      <Grid
-        templateRows="repeat(3, 1fr)"
-        templateColumns="repeat(5, 1fr)"
-        gap={4}
-      >
+      <Grid templateColumns="repeat(5, 1fr)" gap={{ basE: 0, md: 4 }}>
         <GridItem rowSpan={{ base: 1, md: 3 }} colSpan={{ base: 5, md: 2 }}>
-          <Heading
-            size="md"
-            my="2rem"
-            fontWeight={400}
-            maxWidth="30rem"
-            textAlign="center"
-          >
+          <Heading size="md" my="2rem" fontWeight={400} textAlign="center">
             Nossa metodologia
           </Heading>
 
@@ -64,8 +54,11 @@ interface CardItemProps {
 
 function CardItem({ title, description }: CardItemProps) {
   return (
-    <GridItem rowSpan={1} colSpan={{ base: 5, md: 3 }}>
-      <Heading size="md" fontWeight={400} my="2rem" maxWidth="30rem">
+    <GridItem
+      colSpan={{ base: 5, md: 3 }}
+      textAlign={{ base: 'center', md: 'left' }}
+    >
+      <Heading size="md" fontWeight={400} my="2rem">
         {title}
       </Heading>
       <Text color="gray.500">{description}</Text>
