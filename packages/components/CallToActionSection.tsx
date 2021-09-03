@@ -26,7 +26,11 @@ export default function CallToActionSection() {
           conhecimento e o acesso às oportunidades de trabalho na área de
           tecnologia.
         </Text>
-        <Stack spacing={6} direction="row">
+        <Stack
+          spacing={6}
+          w={{ base: '100%', sm: 'auto' }}
+          direction={{ base: 'column', sm: 'row' }}
+        >
           <Button
             rounded="full"
             px={6}
