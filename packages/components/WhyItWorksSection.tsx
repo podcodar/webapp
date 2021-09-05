@@ -15,9 +15,12 @@ import {
   TeamworkIcon,
 } from '@packages/components/icons';
 
+import { useI18n } from '../utils/i18n-react';
+
 import Section from './Section';
 
 export default function WhyItWorksSection() {
+  const { t } = useI18n('whyItWorks');
   const bgColor = useColorModeValue('gray.50', 'gray.900');
 
   return (
@@ -37,8 +40,13 @@ export default function WhyItWorksSection() {
         p="1rem"
         spacing="4rem"
       >
-        {cardList.map((cardProps) => (
-          <CardItem key={cardProps.title} {...cardProps} />
+        {cardList.map((card) => (
+          <CardItem
+            key={card.translation}
+            icon={card.icon}
+            title={t(`${card.translation}.title`)}
+            description={t(`${card.translation}.description`)}
+          />
         ))}
       </Stack>
     </Section>
@@ -63,24 +71,17 @@ function CardItem({ title, icon, description }: CardItemProps) {
   );
 }
 
-const cardList: CardItemProps[] = [
+const cardList = [
   {
     icon: PracticalLearningIcon,
-    title: 'Aprenda na prática',
-    description:
-      'Utilizamos práticas do mercado de trabalho para acelerar seu desenvolvimento profissional. ',
+    translation: 'practicalLearn',
   },
   {
     icon: PersonalizedLearningIcon,
-    title: 'Ensino personalizado ',
-    description:
-      'Cada indivíduo é único e por isso é necessário que o processo de aprendizado seja moldado de acordo com as suas necessidades.',
+    translation: 'personalizedLearning',
   },
-
   {
     icon: TeamworkIcon,
-    title: 'Trabalho em equipe',
-    description:
-      'Participe das mentorias personalizadas individuais e projetos em grupo. É você quem escolhe como contribuir com a comunidade.',
+    translation: 'teamwork',
   },
 ];

@@ -14,3 +14,17 @@ callToAction:
     opportunities in the technology area
   mainButton: Join us!
   secondaryButton: How it works?
+
+whyItWorks:
+  title: And why it works?
+  practicalLearn.title: Learn by practicing
+  practicalLearn.description: >
+    We use market best practices to accelerate your professional development.
+  personalizedLearning.title: Personalized Learning
+  personalizedLearning.description: >
+    Each individual is unique and therefore it is necessary that
+    the learning process is shaped according to their needs.
+  teamwork.title: Teamwork
+  teamwork.description: >
+    Participate in personalized individual mentoring and group projects. It is
+    you who chooses how to contribute to the community.

@@ -15,3 +15,18 @@ callToAction:
     tecnologia
   mainButton: Faça parte!
   secondaryButton: Como funciona?
+
+whyItWorks:
+  title: E por quê funciona?
+  practicalLearn.title: Aprenda na prática
+  practicalLearn.description: >
+    Utilizamos práticas do mercado de trabalho para acelerar seu
+    desenvolvimento profissional.
+  customizedLearning.title: Ensino personalizado
+  customizedLearning.description: >
+    Cada indivíduo é único e por isso é necessário que o processo
+    de aprendizado seja moldado de acordo com as suas necessidades.
+  teamwork.title: Trabalho em equipe
+  teamwork.description: >
+    Participe das mentorias personalizadas individuais e projetos
+    em grupo. É você quem escolhe como contribuir com a comunidade.
