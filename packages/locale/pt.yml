@@ -1,1 +1,10 @@
 common: {}
+callToAction:
+  title: Formação profissional para o <span>mercado <i>de</i> tecnologia</span>
+  description: >-
+    Somos uma comunidade de tecnologia e computação que ensina programação
+    com foco na formação de profissionais. Existimos para democratizar o
+    conhecimento e o acesso às oportunidades de trabalho na área de
+    tecnologia
+  mainButton: Faça parte!
+  secondaryButton: Como funciona?

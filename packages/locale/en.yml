@@ -1,1 +1,9 @@
 common: {}
+callToAction:
+  title: Where professional meets <span>the IT market</span>
+  description: >-
+    We are a technology and work community that teaches programming with a focus
+    on training professionals. We exist to democratize knowledge and access to job
+    opportunities in the technology area
+  mainButton: Join us!
+  secondaryButton: How it works?

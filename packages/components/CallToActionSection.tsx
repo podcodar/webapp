@@ -1,12 +1,15 @@
+import { Trans } from 'next-i18next';
 import { Button, Flex, Heading, Stack, Text } from '@chakra-ui/react';
 
 import { useModalActions } from '@packages/features/modal-context';
 import { Illustration } from '@packages/components/icons';
+import { useI18n } from '@packages/utils/i18n-react';
 
 import Section from './Section';
 
 export default function CallToActionSection() {
   const { open } = useModalActions();
+  const { t } = useI18n('callToAction');
   return (
     <Section py="10rem">
       <Stack textAlign="center" align="center" spacing={{ base: 8, md: 10 }}>
@@ -15,16 +18,15 @@ export default function CallToActionSection() {
           fontSize={{ base: '3xl', sm: '4xl' }}
           lineHeight="110%"
         >
-          Formação profissional para o{' '}
-          <Text as="span" color="purple.400">
-            mercado de tecnologia.
-          </Text>
+          <Trans
+            i18nKey={t`title`}
+            components={{
+              span: <Text as="span" color="purple.400" />,
+            }}
+          />
         </Heading>
         <Text color="gray.500" maxW="3xl">
-          Somos uma comunidade de tecnologia e computação que ensina programação
-          com foco na formação de profissionais. Existimos para democratizar o
-          conhecimento e o acesso às oportunidades de trabalho na área de
-          tecnologia.
+          {t`description`}
         </Text>
         <Stack
           spacing={6}
@@ -39,10 +41,10 @@ export default function CallToActionSection() {
             _hover={{ bg: 'purple.500' }}
             onClick={open}
           >
-            Faça parte!
+            {t`mainButton`}
           </Button>
           <Button rounded="full" px={6}>
-            Como funciona?
+            {t`secondaryButton`}
           </Button>
         </Stack>
         <Flex w="full">
