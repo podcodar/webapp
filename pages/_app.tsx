@@ -1,4 +1,5 @@
 import { ChakraProvider, CSSReset } from '@chakra-ui/react';
+import { appWithTranslation } from 'next-i18next';
 
 import Layout from '@packages/components/Layout';
 import Metadata from '@packages/components/Metadata';
@@ -19,4 +20,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     </ChakraProvider>
   );
 }
-export default MyApp;
+export default appWithTranslation(MyApp);
