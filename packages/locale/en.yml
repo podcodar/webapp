@@ -28,3 +28,22 @@ whyItWorks:
   teamwork.description: >
     Participate in personalized individual mentoring and group projects. It is
     you who chooses how to contribute to the community.
+
+mentoring:
+  title: Our methodology
+  description: >
+    It is structured by mentorships that are guided by paths according
+    to the needs and time of each person, focusing on access to the job market.
+  personalizedMentoring.title: Personalized mentoring
+  personalizedMentoring.description: >
+    Personalized mentoring aims at individual monitoring of the mentee, focused
+    on introductory trails and specialized exercises.
+  pairMentoring.title: Pair mentoring
+  pairMentoring.description: >
+    Pair mentoring aims to exchange experience between more than one mentee, pair
+    programming and collaboration in the development of exercises and projects.
+  projectMentoring.title: Project mentoring
+  projectMentoring.description: >
+    It is focused on developing internal or external projects. The mentee experiences teamwork,
+    pair programmings and code reviwes, all are 100% of the time simulating the developer's
+    daily life.
