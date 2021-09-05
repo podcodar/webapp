@@ -1,4 +1,11 @@
 common: {}
+
+navbar:
+  join: Join
+  forum: Forum
+  wiki: Wiki
+  team: Team
+
 callToAction:
   title: Where professional meets <span>the IT market</span>
   description: >-

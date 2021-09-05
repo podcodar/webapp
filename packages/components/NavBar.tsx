@@ -13,27 +13,13 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { useMemo } from 'react';
 
 import { GithubIcon, LinkedInIcon, Logo } from '@packages/components/icons';
 import { useModalActions } from '@packages/features/modal-context';
+import { useI18n } from '@packages/utils/i18n-react';
 
 import ToggleThemeButton from './ToggleThemeButton';
-
-const communityLinks = [
-  <Link key="wiki" target="_blank" href="http://wiki.podcodar.com">
-    Wiki
-  </Link>,
-  <Link
-    key="forum"
-    target="_blank"
-    href="https://github.com/podcodar/forum/discussions"
-  >
-    Fórum
-  </Link>,
-  <Link key="team" href="/team">
-    Equipe
-  </Link>,
-];
 
 const actionButtons = [
   <Link
@@ -57,9 +43,29 @@ const actionButtons = [
 ];
 
 function NavBar() {
+  const { t } = useI18n('navbar');
   const { open } = useModalActions();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navbarBgColor = useColorModeValue('gray.50', 'gray.900');
+
+  const communityLinks = useMemo(
+    () => [
+      <Link key="team" href="/team">
+        {t`team`}
+      </Link>,
+      <Link key="wiki" target="_blank" href="http://wiki.podcodar.com">
+        {t`wiki`}
+      </Link>,
+      <Link
+        key="forum"
+        target="_blank"
+        href="https://github.com/podcodar/forum/discussions"
+      >
+        {t`forum`}
+      </Link>,
+    ],
+    [t],
+  );
 
   return (
     <Box
@@ -114,7 +120,7 @@ function NavBar() {
           _hover={{ bg: 'purple.500' }}
           onClick={open}
         >
-          Join
+          {t`join`}
         </Button>
       </Container>
 

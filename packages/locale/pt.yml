@@ -1,4 +1,11 @@
 common: {}
+
+navbar:
+  join: Entrar
+  forum: Fórum
+  wiki: Wiki
+  team: Equipe
+
 callToAction:
   title: Formação profissional para o <span>mercado <i>de</i> tecnologia</span>
   description: >-
