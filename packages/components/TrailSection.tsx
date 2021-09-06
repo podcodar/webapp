@@ -1,4 +1,4 @@
-import { useColorModeValue, Stack, Box, Heading } from '@chakra-ui/react';
+import { useColorModeValue, Stack, Box, Heading, Link } from '@chakra-ui/react';
 
 import Section from './Section';
 
@@ -13,7 +13,7 @@ export default function TrailSection() {
         marginTop="2rem"
         textAlign="center"
       >
-        Comece pelas trilhas de estudo
+        Conteúdo PodCodar
       </Heading>
       <Stack
         direction={{ base: 'column', md: 'row', lg: 'row' }}
@@ -22,9 +22,7 @@ export default function TrailSection() {
         spacing={{ base: '2rem', md: '0rem', lg: '2rem' }}
         // bg={{base: 'red', md: 'purple', lg: 'green'}}
         flexWrap={{ base: 'nowrap', md: 'wrap', lg: 'nowrap' }}
-        justifyContent="space-between"
-        alignItems="stretch"
-        alignContent="center"
+        justifyContent="space-around"
       >
         {cardList.map((cardProps) => (
           <CardItem key={cardProps.title} {...cardProps} />
@@ -36,56 +34,53 @@ export default function TrailSection() {
 
 interface CardItemProps {
   title: string;
-  image: string;
+  link: string;
 }
 
-function CardItem({ title }: CardItemProps) {
+function CardItem({ title, link }: CardItemProps) {
   const boxShadowColor = useColorModeValue('#171923', '#f7fafc');
   return (
-    <Box
-      w={{ base: '100%', md: '48%', lg: '100%' }}
-      mb={{ base: '0', md: '2%', lg: '0' }}
-      h="12rem"
-      border="1px solid"
-      transition="box-shadow 200ms ease-in-out"
-      bg={boxShadowColor === '#171923' ? '#f7fafc' : '#171923'}
-      _hover={{
-        boxShadow: `-8px 8px 0 ${boxShadowColor}`,
-        transform: 'translate(4px, -4px)',
-      }}
-    >
-      <Heading
-        size="md"
-        fontWeight={400}
-        color={boxShadowColor === '#171923' ? '#f7fafc' : '#171923'}
-        bg={boxShadowColor}
-        m="5rem 1rem 1rem 1rem"
+    <Link href={link} isExternal style={{ textDecoration: 'none' }}>
+      <Box
+        w={{ base: '100%', md: '20rem', lg: '100%' }}
+        mb={{ base: '0', md: '2rem', lg: '0' }}
+        h="12rem"
+        border="1px solid"
+        transition="box-shadow 200ms ease-in-out"
+        bg={boxShadowColor === '#171923' ? '#f7fafc' : '#171923'}
+        _hover={{
+          boxShadow: `-8px 8px 0 ${boxShadowColor}`,
+          transform: 'translate(4px, -4px)',
+        }}
       >
-        {title}
-      </Heading>
-    </Box>
+        <Heading
+          size="md"
+          fontWeight={400}
+          color={boxShadowColor === '#171923' ? '#171923' : '#f7fafc'}
+          m="5rem 1rem 1rem 1rem"
+        >
+          {title}
+        </Heading>
+      </Box>
+    </Link>
   );
 }
 
 const cardList: CardItemProps[] = [
   {
-    title: 'Primeiro Card',
-    image:
-      'https://notion-emojis.s3-us-west-2.amazonaws.com/v0/svg-twitter/1f4da.svg',
+    title: 'Trilhas de estudo',
+    link: 'https://www.notion.so/podcodar/Trilhas-de-estudo-eb8954febc0243b681ead5d417cca67b',
   },
   {
-    title: 'Segundo Card',
-    image:
-      'https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0812dad9-c634-471a-891a-fbe91aec4296%2Fjust-llama.png?table=block&id=b3bbe39f-0c60-4e81-b019-b9d31e4c7787&spaceId=ac9f4c1f-75da-4e1b-a9b4-5fe0876b33b4&width=250&userId=c43c8212-08e9-46c6-96f7-cd3888cbe6c9&cache=v2',
+    title: 'Acervo de vídeos',
+    link: 'https://www.notion.so/podcodar/V-deos-cb62802dc021497889fb9923227c0c9a',
   },
   {
-    title: 'Terceiro Card',
-    image:
-      'https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0812dad9-c634-471a-891a-fbe91aec4296%2Fjust-llama.png?table=block&id=b3bbe39f-0c60-4e81-b019-b9d31e4c7787&spaceId=ac9f4c1f-75da-4e1b-a9b4-5fe0876b33b4&width=250&userId=c43c8212-08e9-46c6-96f7-cd3888cbe6c9&cache=v2',
+    title: 'Meetups semanais',
+    link: 'https://www.notion.so/podcodar/ecda231a312e4cedac6fb36766313830?v=e6312d6a390148eda589840f335caaa8',
   },
   {
-    title: 'Quarto Card',
-    image:
-      'https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F0812dad9-c634-471a-891a-fbe91aec4296%2Fjust-llama.png?table=block&id=b3bbe39f-0c60-4e81-b019-b9d31e4c7787&spaceId=ac9f4c1f-75da-4e1b-a9b4-5fe0876b33b4&width=250&userId=c43c8212-08e9-46c6-96f7-cd3888cbe6c9&cache=v2',
+    title: 'Trajetória de design',
+    link: 'https://www.notion.so/podcodar/Trajet-ria-de-Design-29a45806108d4b79aed352d67204033d',
   },
 ];
