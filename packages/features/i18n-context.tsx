@@ -3,11 +3,12 @@ import i18next from 'i18next';
 import { initReactI18next, useTranslation } from 'react-i18next';
 
 import { makeThrowMissingImplementation } from '@packages/utils/functions';
-import { ChildrenProps } from '@packages/utils/react';
+import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
 import * as en from '@packages/locale/en.yml';
 import * as pt from '@packages/locale/pt.yml';
 
 const DEFAULT_LOCALE: Locale = 'pt';
+const LOCAL_STORAGE_KEY = 'podcodar:locale';
 const missingI18nProvider = makeThrowMissingImplementation(
   'Missing I18nProvider upwards in this tree',
 );
@@ -46,10 +47,18 @@ export default function I18nProvider({ children }: ChildrenProps) {
       setLocale: (locale) => {
         setLocale(locale);
         i18next.changeLanguage(locale);
+        localStorage.setItem(LOCAL_STORAGE_KEY, locale);
       },
     }),
     [],
   );
+
+  useEffectOnce(() => {
+    // we need to put it into a effect to access local storage
+    const locale =
+      (localStorage.getItem(LOCAL_STORAGE_KEY) as Locale) ?? DEFAULT_LOCALE;
+    actions.setLocale(locale);
+  });
 
   return (
     <I18nActionsCtx.Provider value={actions}>
