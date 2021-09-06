@@ -1,6 +1,6 @@
 import { Button } from '@chakra-ui/react';
 
-import { useI18nActions, useI18nStates } from '../features/i18n-context';
+import { useI18nActions, useI18nStates } from '@packages/features/i18n-context';
 
 export default function ToggleLanguage() {
   const { locale } = useI18nStates();
