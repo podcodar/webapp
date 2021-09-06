@@ -1,0 +1,50 @@
+navbar:
+  join: Entrar
+  forum: Fórum
+  wiki: Wiki
+  team: Equipe
+
+callToAction:
+  title: Formação profissional para o <span>mercado de tecnologia</span>
+  description: >-
+    Somos uma comunidade de tecnologia e computação que ensina programação
+    com foco na formação de profissionais. Existimos para democratizar o
+    conhecimento e o acesso às oportunidades de trabalho na área de
+    tecnologia
+  mainButton: Faça parte!
+  secondaryButton: Como funciona?
+
+whyItWorks:
+  title: E por quê funciona?
+  practicalLearn.title: Aprenda na prática
+  practicalLearn.description: >
+    Utilizamos práticas do mercado de trabalho para acelerar seu
+    desenvolvimento profissional.
+  personalizedLearning.title: Ensino personalizado
+  personalizedLearning.description: >
+    Cada indivíduo é único e por isso é necessário que o processo
+    de aprendizado seja moldado de acordo com as suas necessidades.
+  teamwork.title: Trabalho em equipe
+  teamwork.description: >
+    Participe das mentorias personalizadas individuais e projetos
+    em grupo. É você quem escolhe como contribuir com a comunidade.
+
+mentoring:
+  title: Nossa metodologia
+  description: >
+    É estruturada por mentorias que são direcionadas por trilhas
+    conforme a necessidade e o tempo de cada pessoa, focando no acesso
+    ao mercado de trabalho.
+  personalizedMentoring.title: Mentoria personalizada
+  personalizedMentoring.description: >
+    A mentoria personalizada tem como objetivo um acompanhamento individual
+    do mentorando, focado em trilhas introdutórias e exercícios especializados.
+  pairMentoring.title: Mentoria em dupla
+  pairMentoring.description: >
+    A mentoria em dupla tem como objetivo a troca de experiência entre mais de um
+    mentorado, pair programming e colaboração no desenvolvimento de exercícios e projetos.
+  projectMentoring.title: Mentoria de projetos
+  projectMentoring.description: >
+    É focada em desenvolver projetos internos ou externos. O mentorando vivencia trabalho
+    em equipe, pair programmings e code reviwes, todos estão 100% do tempo simulando o dia
+    a dia do desenvolvedor.

@@ -13,27 +13,14 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { useMemo } from 'react';
 
 import { GithubIcon, LinkedInIcon, Logo } from '@packages/components/icons';
 import { useModalActions } from '@packages/features/modal-context';
+import { useI18n } from '@packages/features/i18n-context';
 
 import ToggleThemeButton from './ToggleThemeButton';
-
-const communityLinks = [
-  <Link key="wiki" target="_blank" href="http://wiki.podcodar.com">
-    Wiki
-  </Link>,
-  <Link
-    key="forum"
-    target="_blank"
-    href="https://github.com/podcodar/forum/discussions"
-  >
-    Fórum
-  </Link>,
-  <Link key="team" href="/team">
-    Equipe
-  </Link>,
-];
+import ToggleLanguage from './ToggleLanguage';
 
 const actionButtons = [
   <Link
@@ -53,13 +40,34 @@ const actionButtons = [
   >
     <LinkedInIcon />
   </Link>,
+  <ToggleLanguage key="toggle-lang" />,
   <ToggleThemeButton key="toggle-theme" />,
 ];
 
 function NavBar() {
+  const { t } = useI18n('navbar');
   const { open } = useModalActions();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navbarBgColor = useColorModeValue('gray.50', 'gray.900');
+
+  const communityLinks = useMemo(
+    () => [
+      <Link key="team" href="/team">
+        {t(`team`)}
+      </Link>,
+      <Link key="wiki" target="_blank" href="http://wiki.podcodar.com">
+        {t(`wiki`)}
+      </Link>,
+      <Link
+        key="forum"
+        target="_blank"
+        href="https://github.com/podcodar/forum/discussions"
+      >
+        {t(`forum`)}
+      </Link>,
+    ],
+    [t],
+  );
 
   return (
     <Box
@@ -109,12 +117,13 @@ function NavBar() {
 
         <Button
           key="cta"
+          minW="5rem"
           colorScheme="purple"
           bg="purple.400"
           _hover={{ bg: 'purple.500' }}
           onClick={open}
         >
-          Join
+          {t(`join`)}
         </Button>
       </Container>
 
