@@ -3,19 +3,12 @@ import { Trans } from 'react-i18next';
 
 import { useModalActions } from '@packages/features/modal-context';
 import { Illustration } from '@packages/components/icons';
-
-import {
-  useI18n,
-  useI18nActions,
-  useI18nStates,
-} from '../features/i18n-context';
+import { useI18n } from '@packages/features/i18n-context';
 
 import Section from './Section';
 
 export default function CallToActionSection() {
   const { open } = useModalActions();
-  const { setLocale } = useI18nActions();
-  const { locale } = useI18nStates();
   const { t } = useI18n('callToAction');
   return (
     <Section py="10rem">
@@ -50,11 +43,7 @@ export default function CallToActionSection() {
           >
             {t(`mainButton`)}
           </Button>
-          <Button
-            rounded="full"
-            px={6}
-            onClick={() => setLocale(locale === 'en' ? 'pt' : 'en')}
-          >
+          <Button rounded="full" px={6}>
             {t(`secondaryButton`)}
           </Button>
         </Stack>

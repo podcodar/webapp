@@ -20,6 +20,7 @@ import { useModalActions } from '@packages/features/modal-context';
 import { useI18n } from '@packages/features/i18n-context';
 
 import ToggleThemeButton from './ToggleThemeButton';
+import ToggleLanguage from './ToggleLanguage';
 
 const actionButtons = [
   <Link
@@ -39,6 +40,7 @@ const actionButtons = [
   >
     <LinkedInIcon />
   </Link>,
+  <ToggleLanguage key="toggle-lang" />,
   <ToggleThemeButton key="toggle-theme" />,
 ];
 
@@ -115,6 +117,7 @@ function NavBar() {
 
         <Button
           key="cta"
+          minW="5rem"
           colorScheme="purple"
           bg="purple.400"
           _hover={{ bg: 'purple.500' }}
