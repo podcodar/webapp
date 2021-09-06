@@ -14,8 +14,7 @@ import {
   PracticalLearningIcon,
   TeamworkIcon,
 } from '@packages/components/icons';
-
-import { useI18n } from '../utils/i18n-react';
+import { useI18n } from '@packages/features/i18n-context';
 
 import Section from './Section';
 
@@ -32,7 +31,7 @@ export default function WhyItWorksSection() {
         textAlign="center"
         py="2rem"
       >
-        E por quê funciona?
+        {t(`title`)}
       </Heading>
       <Stack
         direction={{ base: 'column', md: 'row' }}

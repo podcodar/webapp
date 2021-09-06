@@ -17,7 +17,7 @@ import { useMemo } from 'react';
 
 import { GithubIcon, LinkedInIcon, Logo } from '@packages/components/icons';
 import { useModalActions } from '@packages/features/modal-context';
-import { useI18n } from '@packages/utils/i18n-react';
+import { useI18n } from '@packages/features/i18n-context';
 
 import ToggleThemeButton from './ToggleThemeButton';
 
@@ -51,17 +51,17 @@ function NavBar() {
   const communityLinks = useMemo(
     () => [
       <Link key="team" href="/team">
-        {t`team`}
+        {t(`team`)}
       </Link>,
       <Link key="wiki" target="_blank" href="http://wiki.podcodar.com">
-        {t`wiki`}
+        {t(`wiki`)}
       </Link>,
       <Link
         key="forum"
         target="_blank"
         href="https://github.com/podcodar/forum/discussions"
       >
-        {t`forum`}
+        {t(`forum`)}
       </Link>,
     ],
     [t],
@@ -120,7 +120,7 @@ function NavBar() {
           _hover={{ bg: 'purple.500' }}
           onClick={open}
         >
-          {t`join`}
+          {t(`join`)}
         </Button>
       </Container>
 

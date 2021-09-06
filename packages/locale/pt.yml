@@ -7,7 +7,7 @@ navbar:
   team: Equipe
 
 callToAction:
-  title: Formação profissional para o <span>mercado <i>de</i> tecnologia</span>
+  title: Formação profissional para o <span>mercado de tecnologia</span>
   description: >-
     Somos uma comunidade de tecnologia e computação que ensina programação
     com foco na formação de profissionais. Existimos para democratizar o
@@ -22,8 +22,8 @@ whyItWorks:
   practicalLearn.description: >
     Utilizamos práticas do mercado de trabalho para acelerar seu
     desenvolvimento profissional.
-  customizedLearning.title: Ensino personalizado
-  customizedLearning.description: >
+  personalizedLearning.title: Ensino personalizado
+  personalizedLearning.description: >
     Cada indivíduo é único e por isso é necessário que o processo
     de aprendizado seja moldado de acordo com as suas necessidades.
   teamwork.title: Trabalho em equipe
