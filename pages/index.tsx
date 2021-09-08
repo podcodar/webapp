@@ -2,7 +2,7 @@ import CallToActionSection from '@packages/components/CallToActionSection';
 import CallToActionModal from '@packages/components/dialogs/CallToActionModal';
 import WhyItWorksSection from '@packages/components/WhyItWorksSection';
 import MentoringSection from '@packages/components/MentoringSection';
-import TrailSection from '@packages/components/TrailSection';
+import RoadmapSection from '@packages/components/RoadmapSection';
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <CallToActionSection />
       <WhyItWorksSection />
       <MentoringSection />
-      <TrailSection />
+      <RoadmapSection />
     </>
   );
 }
