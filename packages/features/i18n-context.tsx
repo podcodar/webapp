@@ -86,4 +86,5 @@ type TranslationNS =
   | 'callToAction'
   | 'navbar'
   | 'whyItWorks'
-  | 'mentoring';
+  | 'mentoring'
+  | 'roadmap';
