@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 
 import { Logo } from '@packages/components/icons';
+import { useI18n } from '@packages/features/i18n-context';
 
 const ListHeader = ({ children }: { children: ReactNode }) => {
   return (
@@ -22,6 +23,7 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
 export default function Footer() {
   const bgColor = useColorModeValue('gray.200', 'gray.800');
   const color = useColorModeValue('gray.700', 'gray.200');
+  const { t } = useI18n('footer');
   return (
     <Box bg={bgColor} color={color}>
       <Container as={Stack} maxW="6xl" py="1.5rem">
@@ -33,25 +35,19 @@ export default function Footer() {
             <Box>
               <Logo />
             </Box>
-            <Text fontSize="sm">
-              © 2021 PodCodar. Todos os direitos reservados/All rights reserved
-            </Text>
+            <Text fontSize="sm">2021 Podcodar. {t(`legal`)}</Text>
           </Stack>
           <Stack align="flex-start">
-            <ListHeader>Redes</ListHeader>
+            <ListHeader>{t(`socials`)}</ListHeader>
             <Link href="https://github.com/podcodar">Github</Link>
             <Link href="https://www.linkedin.com/company/podcodar/">
               LinkedIn
             </Link>
           </Stack>
           <Stack align="flex-start">
-            <ListHeader>Suporte</ListHeader>
-            <Link href="/terms-of-service">
-              Termos de serviço/Terms of Service
-            </Link>
-            <Link href="/privacy-policy">
-              Politica de privacidade/Privacy Policy
-            </Link>
+            <ListHeader>{t(`support`)}</ListHeader>
+            <Link href="/terms-of-service">{t(`terms`)}</Link>
+            <Link href="/privacy-policy">{t(`privacy`)}</Link>
           </Stack>
         </SimpleGrid>
       </Container>

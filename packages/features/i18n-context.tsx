@@ -87,4 +87,5 @@ type TranslationNS =
   | 'navbar'
   | 'whyItWorks'
   | 'mentoring'
-  | 'roadmap';
+  | 'roadmap'
+  | 'footer';
