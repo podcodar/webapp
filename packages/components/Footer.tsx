@@ -28,7 +28,7 @@ export default function Footer() {
     <Box bg={bgColor} color={color}>
       <Container as={Stack} maxW="6xl" py="1.5rem">
         <SimpleGrid
-          templateColumns={{ sm: '1fr', md: '8fr 1fr 1fr' }}
+          templateColumns={{ sm: '1fr', md: '8fr 2fr 2fr' }}
           spacing={8}
         >
           <Stack spacing="1rem">
