@@ -24,46 +24,33 @@ export default function Footer() {
   const color = useColorModeValue('gray.700', 'gray.200');
   return (
     <Box bg={bgColor} color={color}>
-      <Container as={Stack} maxW="6xl" py={10}>
+      <Container as={Stack} maxW="6xl" py="1.5rem">
         <SimpleGrid
-          templateColumns={{ sm: '1fr 1fr', md: '2fr 1fr 1fr 1fr 1fr' }}
+          templateColumns={{ sm: '1fr', md: '8fr 1fr 1fr' }}
           spacing={8}
         >
-          <Stack spacing={6}>
+          <Stack spacing="1rem">
             <Box>
               <Logo />
             </Box>
-            <Text fontSize="sm">© 2021 PodCodar. All rights reserved</Text>
-          </Stack>
-          <Stack align="flex-start">
-            <ListHeader>Produtos</ListHeader>
-            <Link href="#">Overview</Link>
-            <Link href="#">Features</Link>
-            <Link href="#">Tutorials</Link>
-            <Link href="#">Pricing</Link>
-            <Link href="#">Releases</Link>
-          </Stack>
-          <Stack align="flex-start">
-            <ListHeader>Quem somos</ListHeader>
-            <Link href="#">About</Link>
-            <Link href="#">Press</Link>
-            <Link href="#">Careers</Link>
-            <Link href="#">Contact</Link>
-            <Link href="#">Partners</Link>
-          </Stack>
-          <Stack align="flex-start">
-            <ListHeader>Suporte</ListHeader>
-            <Link href="#">Help Center</Link>
-            <Link href="#">Terms of Service</Link>
-            <Link href="#">Legal</Link>
-            <Link href="#">Privacy Policy</Link>
-            <Link href="#">Status</Link>
+            <Text fontSize="sm">
+              © 2021 PodCodar. Todos os direitos reservados/All rights reserved
+            </Text>
           </Stack>
           <Stack align="flex-start">
             <ListHeader>Redes</ListHeader>
             <Link href="https://github.com/podcodar">Github</Link>
             <Link href="https://www.linkedin.com/company/podcodar/">
               LinkedIn
+            </Link>
+          </Stack>
+          <Stack align="flex-start">
+            <ListHeader>Suporte</ListHeader>
+            <Link href="/terms-of-service">
+              Termos de serviço/Terms of Service
+            </Link>
+            <Link href="/privacy-policy">
+              Politica de privacidade/Privacy Policy
             </Link>
           </Stack>
         </SimpleGrid>
