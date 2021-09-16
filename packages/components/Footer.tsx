@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 import {
   Box,
-  Container,
   Link,
   SimpleGrid,
   Stack,
@@ -44,30 +43,28 @@ export default function Footer() {
     </Link>
   ));
   return (
-    <Box bg={bgColor} color={color}>
-      <Container as={Stack} maxW="6xl" py="1.5rem">
-        <SimpleGrid
-          templateColumns={{ sm: '1fr', md: '8fr 2fr 2fr' }}
-          spacing="2rem"
-        >
-          <Stack spacing="1rem">
-            <Box>
-              <Logo />
-            </Box>
-            <Text fontSize="sm">
-              © {new Date().getFullYear()} Podcodar. {t(`legal`)}
-            </Text>
-          </Stack>
-          <Stack align="flex-start">
-            <ListHeader>{t(`socials`)}</ListHeader>
-            {socialLinks}
-          </Stack>
-          <Stack align="flex-start">
-            <ListHeader>{t(`support`)}</ListHeader>
-            {supportLinks}
-          </Stack>
-        </SimpleGrid>
-      </Container>
+    <Box bg={bgColor} color={color} py="1.5rem" px="1.5rem">
+      <SimpleGrid
+        templateColumns={{ sm: '1fr', md: '8fr 2fr 2fr' }}
+        spacing="2rem"
+      >
+        <Stack spacing="1rem">
+          <Box>
+            <Logo />
+          </Box>
+          <Text fontSize="sm">
+            © {new Date().getFullYear()} Podcodar. {t(`legal`)}
+          </Text>
+        </Stack>
+        <Stack align="flex-start">
+          <ListHeader>{t(`socials`)}</ListHeader>
+          {socialLinks}
+        </Stack>
+        <Stack align="flex-start">
+          <ListHeader>{t(`support`)}</ListHeader>
+          {supportLinks}
+        </Stack>
+      </SimpleGrid>
     </Box>
   );
 }
