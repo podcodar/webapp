@@ -24,12 +24,31 @@ export default function Footer() {
   const bgColor = useColorModeValue('gray.200', 'gray.800');
   const color = useColorModeValue('gray.700', 'gray.200');
   const { t } = useI18n('footer');
+
+  const socialLinksData = [
+    { url: 'https://github.com/podcodar', name: 'Github' },
+    { url: 'https://www.linkedin.com/company/podcodar/', name: 'LinkedIn' },
+  ];
+  const supportLinksData = [
+    { url: '/terms-of-service', name: t(`terms`) },
+    { url: '/privacy-policy', name: t(`privacy`) },
+  ];
+  const socialLinks = socialLinksData.map((obj) => (
+    <Link href={obj.url} key={obj.name}>
+      {obj.name}
+    </Link>
+  ));
+  const supportLinks = supportLinksData.map((obj) => (
+    <Link href={obj.url} key={obj.name}>
+      {obj.name}
+    </Link>
+  ));
   return (
     <Box bg={bgColor} color={color}>
       <Container as={Stack} maxW="6xl" py="1.5rem">
         <SimpleGrid
           templateColumns={{ sm: '1fr', md: '8fr 2fr 2fr' }}
-          spacing={8}
+          spacing="2rem"
         >
           <Stack spacing="1rem">
             <Box>
@@ -39,15 +58,11 @@ export default function Footer() {
           </Stack>
           <Stack align="flex-start">
             <ListHeader>{t(`socials`)}</ListHeader>
-            <Link href="https://github.com/podcodar">Github</Link>
-            <Link href="https://www.linkedin.com/company/podcodar/">
-              LinkedIn
-            </Link>
+            {socialLinks}
           </Stack>
           <Stack align="flex-start">
             <ListHeader>{t(`support`)}</ListHeader>
-            <Link href="/terms-of-service">{t(`terms`)}</Link>
-            <Link href="/privacy-policy">{t(`privacy`)}</Link>
+            {supportLinks}
           </Stack>
         </SimpleGrid>
       </Container>
