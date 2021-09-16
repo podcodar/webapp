@@ -54,7 +54,7 @@ export default function Footer() {
             <Box>
               <Logo />
             </Box>
-            <Text fontSize="sm">2021 Podcodar. {t(`legal`)}</Text>
+            <Text fontSize="sm">© 2021 Podcodar. {t(`legal`)}</Text>
           </Stack>
           <Stack align="flex-start">
             <ListHeader>{t(`socials`)}</ListHeader>
