@@ -38,10 +38,12 @@ export default function Footer() {
     <Box bg={bgColor} color={color}>
       <Container as={Stack} py="1.5rem" px="1.5rem" maxW="100%">
         <SimpleGrid
-          templateColumns={{ sm: '1fr', md: '8fr 2fr 2fr' }}
-          spacing="2rem"
+          flexDirection={{ base: 'column', sm: 'row' }}
+          spacing="5rem"
+          display="flex"
+          justifyContent="space-around"
         >
-          <Stack spacing="1rem">
+          <Stack spacing="1rem" flex="1 1 auto">
             <Box>
               <Logo />
             </Box>
