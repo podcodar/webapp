@@ -1,6 +1,5 @@
 import {
   Box,
-  Link,
   SimpleGrid,
   Stack,
   Text,
@@ -10,30 +9,17 @@ import {
 
 import { Logo } from '@packages/components/icons';
 import { useI18n } from '@packages/features/i18n-context';
+import {
+  HeaderTitle,
+  SocialLinks,
+  SupportLinks,
+} from '@packages/utils/footerData';
 
 export default function Footer() {
   const bgColor = useColorModeValue('gray.200', 'gray.800');
   const color = useColorModeValue('gray.700', 'gray.200');
   const { t } = useI18n('footer');
 
-  const socialLinksData = [
-    { url: 'https://github.com/podcodar', name: 'Github' },
-    { url: 'https://www.linkedin.com/company/podcodar/', name: 'LinkedIn' },
-  ];
-  const supportLinksData = [
-    { url: '/terms-of-service', name: t(`terms`) },
-    { url: '/privacy-policy', name: t(`privacy`) },
-  ];
-  const socialLinks = socialLinksData.map((obj) => (
-    <Link href={obj.url} key={obj.name}>
-      {obj.name}
-    </Link>
-  ));
-  const supportLinks = supportLinksData.map((obj) => (
-    <Link href={obj.url} key={obj.name}>
-      {obj.name}
-    </Link>
-  ));
   return (
     <Box bg={bgColor} color={color}>
       <Container as={Stack} py="1.5rem" px="1.5rem" maxW="100%">
@@ -52,27 +38,15 @@ export default function Footer() {
             </Text>
           </Stack>
           <Stack align="flex-start">
-            <Header title={t(`socials`)} />
-            {socialLinks}
+            <HeaderTitle title={t(`socials`)} />
+            <SocialLinks />
           </Stack>
           <Stack align="flex-start">
-            <Header title={t(`support`)} />
-            {supportLinks}
+            <HeaderTitle title={t(`support`)} />
+            <SupportLinks />
           </Stack>
         </SimpleGrid>
       </Container>
     </Box>
-  );
-}
-
-interface HeaderTitle {
-  title: string;
-}
-
-function Header({ title }: HeaderTitle) {
-  return (
-    <Text fontWeight="500" fontSize="lg" mb={2}>
-      {title}
-    </Text>
   );
 }
