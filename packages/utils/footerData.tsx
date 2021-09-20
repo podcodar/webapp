@@ -12,8 +12,6 @@ export const supportLinksData = [
   { url: '/privacy-policy', name: 'privacy' },
 ];
 
-export const supportLinksNames = supportLinksData.map((link) => link.name);
-
 interface HeaderTitle {
   title: string;
 }
