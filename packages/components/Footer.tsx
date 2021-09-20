@@ -13,6 +13,7 @@ import {
   HeaderTitle,
   SocialLinks,
   SupportLinks,
+  currentYear,
 } from '@packages/utils/footerData';
 
 export default function Footer() {
@@ -34,7 +35,7 @@ export default function Footer() {
               <Logo />
             </Box>
             <Text fontSize="sm">
-              © {new Date().getFullYear()} Podcodar. {t(`legal`)}
+              © {currentYear} Podcodar. {t(`legal`)}
             </Text>
           </Stack>
           <Stack align="flex-start">

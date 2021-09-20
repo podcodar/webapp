@@ -12,6 +12,7 @@ export const supportLinksData = [
   { url: '/privacy-policy', name: 'privacy' },
 ];
 
+export const currentYear = new Date().getFullYear();
 interface HeaderTitle {
   title: string;
 }
