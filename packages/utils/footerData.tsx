@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { Link, Text } from '@chakra-ui/react';
 
 import { useI18n } from '@packages/features/i18n-context';
