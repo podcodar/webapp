@@ -87,7 +87,7 @@ const cardList: CardItemProps[] = [
     color: '#17A9BC',
   },
   {
-    title: 'uxDesign',
+    title: 'ux-design',
     link: 'https://www.notion.so/podcodar/2dc254c4ea26420d94f400cf1275acd2?v=46a0114a307f4071be615feb0e64879f',
     color: '#F99223',
   },
