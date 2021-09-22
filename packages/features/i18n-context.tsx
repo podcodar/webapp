@@ -81,10 +81,12 @@ export function useI18n(namespace: TranslationNS) {
 
 type Locale = 'en' | 'pt';
 
-type TranslationNS =
+export type TranslationNS =
   | 'common'
   | 'callToAction'
   | 'navbar'
   | 'whyItWorks'
   | 'mentoring'
-  | 'roadmap';
+  | 'roadmap'
+  | 'social-links'
+  | 'footer';

@@ -56,3 +56,15 @@ roadmap:
   uxDesign: UX Design
   market: Entrar no mercado
   computing: Computação
+
+footer:
+  podcodar: PodCodar
+  legal: © {{currentYear}} Todos os direitos reservados
+  socials: Redes
+  support: Suporte
+  terms: Termos de serviço
+  privacy: Política de privacidade
+
+social-links:
+  github: Github
+  linkedin: LinkedIn

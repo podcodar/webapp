@@ -53,3 +53,15 @@ roadmap:
   uxDesign: UX Design
   market: Getting hired
   computing: Computing
+
+footer:
+  podcodar: PodCodar
+  legal: © {{currentYear}} All rights reserved
+  socials: Socials
+  support: Support
+  terms: Terms of Service
+  privacy: Privacy Policy
+
+social-links:
+  github: Github
+  linkedin: LinkedIn
