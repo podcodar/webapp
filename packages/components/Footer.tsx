@@ -40,8 +40,8 @@ interface LinkItem {
 }
 
 const socialLinksData: LinkItem[] = [
-  { url: 'https://github.com/podcodar', name: 'Github' },
-  { url: 'https://www.linkedin.com/company/podcodar/', name: 'LinkedIn' },
+  { url: 'https://github.com/podcodar', name: 'github' },
+  { url: 'https://www.linkedin.com/company/podcodar/', name: 'linkedin' },
 ];
 
 const supportLinksData: LinkItem[] = [
