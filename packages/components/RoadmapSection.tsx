@@ -25,7 +25,7 @@ export default function RoadmapSection() {
             href="https://www.notion.so/podcodar/Trilhas-de-estudo-eb8954febc0243b681ead5d417cca67b"
             isExternal
           >
-            {t(`seeAll`)}
+            {t(`see-all`)}
           </Link>
         </Text>
       </Flex>
@@ -82,12 +82,12 @@ function CardItem({ title, link, color }: CardItemProps) {
 
 const cardList: CardItemProps[] = [
   {
-    title: 'webProgramming',
+    title: 'web-programming',
     link: 'https://www.notion.so/podcodar/Programa-o-Web-0a244ea5a20f4b73b2c706141f7a4919',
     color: '#17A9BC',
   },
   {
-    title: 'uxDesign',
+    title: 'ux-design',
     link: 'https://www.notion.so/podcodar/2dc254c4ea26420d94f400cf1275acd2?v=46a0114a307f4071be615feb0e64879f',
     color: '#F99223',
   },

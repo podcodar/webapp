@@ -9,7 +9,7 @@ import Section from './Section';
 
 export default function CallToActionSection() {
   const { open } = useModalActions();
-  const { t } = useI18n('callToAction');
+  const { t } = useI18n('call-to-action');
   return (
     <Section py="10rem">
       <Stack textAlign="center" align="center" spacing={{ base: 8, md: 10 }}>
@@ -41,10 +41,10 @@ export default function CallToActionSection() {
             _hover={{ bg: 'purple.500' }}
             onClick={open}
           >
-            {t(`mainButton`)}
+            {t(`main-button`)}
           </Button>
           <Button rounded="full" px={6}>
-            {t(`secondaryButton`)}
+            {t(`secondary-button`)}
           </Button>
         </Stack>
         <Flex w="full">
