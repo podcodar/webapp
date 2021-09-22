@@ -4,22 +4,22 @@ navbar:
   wiki: Wiki
   team: Team
 
-callToAction:
+call-to-action:
   title: Where professional meets <span>the IT market</span>
   description: >-
     We are a technology and work community that teaches programming with a focus
     on training professionals. We exist to democratize knowledge and access to job
     opportunities in the technology area
-  mainButton: Join us!
-  secondaryButton: How it works?
+  main-button: Join us!
+  secondary-button: How it works?
 
-whyItWorks:
+why-it-works:
   title: And why it works?
-  practicalLearn.title: Learn by practicing
-  practicalLearn.description: >
+  practical-learn.title: Learn by practicing
+  practical-learn.description: >
     We use market best practices to accelerate your professional development.
-  personalizedLearning.title: Personalized Learning
-  personalizedLearning.description: >
+  personalized-learning.title: Personalized Learning
+  personalized-learning.description: >
     Each individual is unique and therefore it is necessary that
     the learning process is shaped according to their needs.
   teamwork.title: Teamwork
@@ -32,25 +32,25 @@ mentoring:
   description: >
     It is structured by mentorships that are guided by paths according
     to the needs and time of each person, focusing on access to the job market.
-  personalizedMentoring.title: Personalized mentoring
-  personalizedMentoring.description: >
+  personalized-mentoring.title: Personalized mentoring
+  personalized-mentoring.description: >
     Personalized mentoring aims at individual monitoring of the mentee, focused
     on introductory trails and specialized exercises.
-  pairMentoring.title: Pair mentoring
-  pairMentoring.description: >
+  pair-mentoring.title: Pair mentoring
+  pair-mentoring.description: >
     Pair mentoring aims to exchange experience between more than one mentee, pair
     programming and collaboration in the development of exercises and projects.
-  projectMentoring.title: Project mentoring
-  projectMentoring.description: >
+  project-mentoring.title: Project mentoring
+  project-mentoring.description: >
     It is focused on developing internal or external projects. The mentee experiences teamwork,
     pair programmings and code reviwes, all are 100% of the time simulating the developer's
     daily life.
 
 roadmap:
   title: Check our roadmaps
-  seeAll: See all
-  webProgramming: Web Programming
-  uxDesign: UX Design
+  see-all: See all
+  web-programming: Web Programming
+  ux-design: UX Design
   market: Getting hired
   computing: Computing
 

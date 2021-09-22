@@ -83,9 +83,9 @@ type Locale = 'en' | 'pt';
 
 export type TranslationNS =
   | 'common'
-  | 'callToAction'
+  | 'call-to-action'
   | 'navbar'
-  | 'whyItWorks'
+  | 'why-it-works'
   | 'mentoring'
   | 'roadmap'
   | 'social-links'

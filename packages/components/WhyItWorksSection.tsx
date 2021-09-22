@@ -19,7 +19,7 @@ import { useI18n } from '@packages/features/i18n-context';
 import Section from './Section';
 
 export default function WhyItWorksSection() {
-  const { t } = useI18n('whyItWorks');
+  const { t } = useI18n('why-it-works');
   const bgColor = useColorModeValue('gray.50', 'gray.900');
 
   return (
@@ -73,11 +73,11 @@ function CardItem({ title, icon, description }: CardItemProps) {
 const cardList = [
   {
     icon: PracticalLearningIcon,
-    translation: 'practicalLearn',
+    translation: 'practical-learn',
   },
   {
     icon: PersonalizedLearningIcon,
-    translation: 'personalizedLearning',
+    translation: 'personalized-learning',
   },
   {
     icon: TeamworkIcon,
