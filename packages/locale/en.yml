@@ -55,8 +55,13 @@ roadmap:
   computing: Computing
 
 footer:
-  legal: All rights reserved
+  podcodar: PodCodar
+  legal: © {{currentYear}} All rights reserved
   socials: Socials
   support: Support
   terms: Terms of Service
   privacy: Privacy Policy
+
+social-links:
+  github: Github
+  linkedin: LinkedIn
