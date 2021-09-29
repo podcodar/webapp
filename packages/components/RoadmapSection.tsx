@@ -10,6 +10,7 @@ import {
 import { useI18n } from '@packages/features/i18n-context';
 
 import Section from './Section';
+import TechSection from './TechSection';
 
 export default function RoadmapSection() {
   const { t } = useI18n('roadmap');
@@ -48,6 +49,7 @@ export default function RoadmapSection() {
           />
         ))}
       </Grid>
+      <TechSection />
     </Section>
   );
 }
