@@ -2,7 +2,7 @@ import { IconProps } from '@chakra-ui/react';
 
 import { TechIcon } from './TechIcon';
 
-export const CssICon = (props: IconProps) => {
+export const CssIcon = (props: IconProps) => {
   return (
     <TechIcon {...props}>
       <path

@@ -17,13 +17,13 @@ import {
   LinuxIcon,
   WebPackIcon,
   HtmlIcon,
-  CssICon,
+  CssIcon,
 } from './icons';
 
 const iconList = [
   GitIcon,
   HtmlIcon,
-  CssICon,
+  CssIcon,
   JavaScriptIcon,
   ReactIcon,
   ReduxIcon,
