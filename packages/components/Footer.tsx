@@ -37,16 +37,21 @@ export default function Footer() {
 interface LinkItem {
   url: string;
   name: string;
+  isExternal: boolean;
 }
 
 const socialLinksData: LinkItem[] = [
-  { url: 'https://github.com/podcodar', name: 'github' },
-  { url: 'https://www.linkedin.com/company/podcodar/', name: 'linkedin' },
+  { url: 'https://github.com/podcodar', name: 'github', isExternal: true },
+  {
+    url: 'https://www.linkedin.com/company/podcodar/',
+    name: 'linkedin',
+    isExternal: true,
+  },
 ];
 
 const supportLinksData: LinkItem[] = [
-  { url: '/terms-of-service', name: 'terms' },
-  { url: '/privacy-policy', name: 'privacy' },
+  { url: '/terms-of-service', name: 'terms', isExternal: false },
+  { url: '/privacy-policy', name: 'privacy', isExternal: false },
 ];
 
 interface HeaderTitleProps {
@@ -72,7 +77,7 @@ function LinksTransalated({ linksData, ns }: LinksTransalatedProps) {
   return (
     <>
       {linksData.map((link) => (
-        <Link href={link.url} key={link.name}>
+        <Link href={link.url} isExternal={link.isExternal} key={link.name}>
           {t(link.name)}
         </Link>
       ))}
