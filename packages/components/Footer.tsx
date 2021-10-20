@@ -1,6 +1,8 @@
 import { Stack, Text, useColorModeValue, Link } from '@chakra-ui/react';
+import QRCode from 'react-qr-code';
 
 import { TranslationNS, useI18n } from '@packages/features/i18n-context';
+import { PIX_QR_CODE, PIX_KEY } from '@packages/config';
 
 import Section from './Section';
 
@@ -8,18 +10,23 @@ export default function Footer() {
   const { t } = useI18n('footer');
   const bgColor = useColorModeValue('gray.200', 'gray.800');
   const currentYear = new Date().getFullYear();
-
   return (
     <Section p="1.5rem" bgColor={bgColor}>
       <Stack
         direction={{ base: 'column', sm: 'row' }}
         spacing={{ base: '5rem', sm: '3rem' }}
       >
-        <Stack spacing="1rem" flex="1">
+        <Stack spacing="0.1rem" flex="0.3">
+          <Text>{t('contribution')}</Text>
+          <Text fontSize="sm" color="#718096">
+            {PIX_KEY}
+          </Text>
+          <QRCode size={90} value={PIX_QR_CODE} />
+        </Stack>
+        <Stack spacing="1rem" flex="0.5">
           <Text>{t('podcodar')}</Text>
           <Text fontSize="sm">{t(`legal`, { currentYear })}</Text>
         </Stack>
-
         <Stack>
           <HeaderTitle title="socials" />
           <LinksTransalated linksData={socialLinksData} ns="social-links" />
