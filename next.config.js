@@ -1,6 +1,7 @@
 const withYaml = require('next-plugin-yaml');
+const withPWA = require('next-pwa');
 
-module.exports = withYaml({
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   eslint: {
@@ -14,4 +15,12 @@ module.exports = withYaml({
     FIREBASE_MESSAGING_ID: process.env.FIREBASE_MESSAGING_ID,
     FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
   },
-});
+  pwa: {
+    mode: 'production',
+    dest: 'public',
+    cacheOnFrontEndNav: true,
+    register: true,
+  },
+};
+
+module.exports = withPWA(withYaml(nextConfig));
