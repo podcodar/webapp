@@ -1,7 +1,7 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 
-import { makeThrowMissingImplementation } from '@packages/utils/functions';
 import { ChildrenProps } from '@packages/utils/react';
+import createCtx from '@packages/utils/createCtx';
 
 interface ModalActions {
   readonly open: () => void;
@@ -12,18 +12,10 @@ interface ModalStates {
   readonly isOpen: boolean;
 }
 
-const missingModalProvider = makeThrowMissingImplementation(
-  'Missing ModalProvider upwards in this tree',
-);
-
-const ModalActionsCtx = createContext<ModalActions>({
-  close: missingModalProvider,
-  open: missingModalProvider,
-});
-
-const ModalStateCtx = createContext<ModalStates>({
-  isOpen: false,
-});
+const [useModalActions, ModalActionsProvider] =
+  createCtx<ModalActions>('ModalActionsCtx');
+const [useModalStates, ModalStatesProvider] =
+  createCtx<ModalStates>('ModalStatesCtx');
 
 function ModalProvider({ children }: ChildrenProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,18 +31,11 @@ function ModalProvider({ children }: ChildrenProps) {
   );
 
   return (
-    <ModalActionsCtx.Provider value={actions}>
-      <ModalStateCtx.Provider value={state}>{children}</ModalStateCtx.Provider>
-    </ModalActionsCtx.Provider>
+    <ModalActionsProvider value={actions}>
+      <ModalStatesProvider value={state}>{children}</ModalStatesProvider>
+    </ModalActionsProvider>
   );
 }
 
 export default ModalProvider;
-
-export function useModalStates() {
-  return useContext(ModalStateCtx);
-}
-
-export function useModalActions() {
-  return useContext(ModalActionsCtx);
-}
+export { useModalActions, useModalStates };
