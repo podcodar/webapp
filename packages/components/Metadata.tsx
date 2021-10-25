@@ -5,7 +5,7 @@ import {
   descriptionImage,
   pageURL,
   title,
-} from '@packages/configs';
+} from '@packages/config/site';
 
 function Metadata() {
   return (

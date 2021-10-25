@@ -1,17 +1,14 @@
-import { createContext, useContext, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import i18next from 'i18next';
 import { initReactI18next, useTranslation } from 'react-i18next';
 
-import { makeThrowMissingImplementation } from '@packages/utils/functions';
 import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
+import createCtx from '@packages/utils/createCtx';
 import * as en from '@packages/locale/en.yml';
 import * as pt from '@packages/locale/pt.yml';
 
 const DEFAULT_LOCALE: Locale = 'pt';
 const LOCAL_STORAGE_KEY = 'podcodar:locale';
-const missingI18nProvider = makeThrowMissingImplementation(
-  'Missing I18nProvider upwards in this tree',
-);
 
 interface I18nActions {
   readonly setLocale: (locale: Locale) => void;
@@ -21,13 +18,12 @@ interface I18nStates {
   readonly locale: Locale;
 }
 
-const I18nActionsCtx = createContext<I18nActions>({
-  setLocale: missingI18nProvider,
-});
+const [useI18nActions, I18nActionsProvider] =
+  createCtx<I18nActions>('I18nActionsCtx');
+const [useI18nStates, I18nStatesProvider] =
+  createCtx<I18nStates>('I18nStatesCtx');
 
-const I18nStateCtx = createContext<I18nStates>({
-  locale: DEFAULT_LOCALE,
-});
+export { useI18nActions, useI18nStates };
 
 i18next.use(initReactI18next).init({
   lng: DEFAULT_LOCALE,
@@ -61,18 +57,10 @@ export default function I18nProvider({ children }: ChildrenProps) {
   });
 
   return (
-    <I18nActionsCtx.Provider value={actions}>
-      <I18nStateCtx.Provider value={state}>{children}</I18nStateCtx.Provider>
-    </I18nActionsCtx.Provider>
+    <I18nActionsProvider value={actions}>
+      <I18nStatesProvider value={state}>{children}</I18nStatesProvider>
+    </I18nActionsProvider>
   );
-}
-
-export function useI18nStates() {
-  return useContext(I18nStateCtx);
-}
-
-export function useI18nActions() {
-  return useContext(I18nActionsCtx);
 }
 
 export function useI18n(namespace: TranslationNS) {

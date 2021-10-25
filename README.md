@@ -14,6 +14,18 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
+**⚠️ WARNING**: will need a `.env.local` file on the project root folder. Ask a copy to someone of the current dev team. The file should be like the following template:
+
+```shell
+# file: .env.local
+
+FIREBASE_APP_ID="***"
+FIREBASE_API_KEY="***"
+FIREBASE_PROJECT_ID="***"
+FIREBASE_MESSAGING_ID="***"
+FIREBASE_MEASUREMENT_ID="***"
+```
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

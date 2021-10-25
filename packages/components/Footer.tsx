@@ -2,7 +2,7 @@ import { Stack, Text, useColorModeValue, Link } from '@chakra-ui/react';
 import QRCode from 'react-qr-code';
 
 import { TranslationNS, useI18n } from '@packages/features/i18n-context';
-import { PIX_QR_CODE, PIX_KEY } from '@packages/config';
+import { PIX_QR_CODE, PIX_KEY } from '@packages/config/site';
 
 import Section from './Section';
 
