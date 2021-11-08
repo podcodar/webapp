@@ -2,6 +2,7 @@ const withYaml = require('next-plugin-yaml');
 
 module.exports = withYaml({
   reactStrictMode: true,
+  swcMinify: true,
   eslint: {
     dirs: ['pages', 'packages'],
   },
