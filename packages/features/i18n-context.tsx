@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import i18next from 'i18next';
+import i18next, { TOptions } from 'i18next';
 import { initReactI18next, useTranslation } from 'react-i18next';
 
 import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
@@ -63,7 +63,11 @@ export default function I18nProvider({ children }: ChildrenProps) {
   );
 }
 
-export function useI18n(namespace: TranslationNS) {
+interface I18nResult {
+  t: (key: string, options?: TOptions) => string;
+}
+
+export function useI18n(namespace: TranslationNS): I18nResult {
   return useTranslation(namespace);
 }
 
