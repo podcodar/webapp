@@ -25,8 +25,7 @@
     "next": "12",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-i18next": "^11.14.0",
-    "react-qr-code": "^2.0.2"
+    "react-i18next": "^11.14.0"
   },
   "devDependencies": {
     "@types/i18next": "^13.0.0",

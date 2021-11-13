@@ -7,6 +7,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 
+import { roadMapsLinks } from '@packages/config/site';
 import { useI18n } from '@packages/features/i18n-context';
 
 import Section from './Section';
@@ -23,7 +24,7 @@ export default function RoadmapSection() {
         </Heading>
         <Text textAlign="right">
           <Link
-            href="https://www.notion.so/podcodar/Trilhas-de-estudo-eb8954febc0243b681ead5d417cca67b"
+            href={roadMapsLinks.all}
             isExternal
           >
             {t(`see-all`)}
@@ -85,22 +86,22 @@ function CardItem({ title, link, color }: CardItemProps) {
 const cardList: CardItemProps[] = [
   {
     title: 'web-programming',
-    link: 'https://www.notion.so/podcodar/Programa-o-Web-0a244ea5a20f4b73b2c706141f7a4919',
+    link: roadMapsLinks.webProgramming,
     color: '#17A9BC',
   },
   {
     title: 'ux-design',
-    link: 'https://www.notion.so/podcodar/2dc254c4ea26420d94f400cf1275acd2?v=46a0114a307f4071be615feb0e64879f',
+    link: roadMapsLinks.uxDesign,
     color: '#F99223',
   },
   {
     title: 'market',
-    link: 'https://www.notion.so/podcodar/Entrar-no-mercado-6132c9e0873948d9943c174f66df7ee3',
+    link: roadMapsLinks.gettingHired,
     color: '#FF4CFF',
   },
   {
     title: 'computing',
-    link: 'https://www.notion.so/podcodar/Computa-o-e7674e02bb924ea495f21575f890a831',
+    link: roadMapsLinks.computerScience,
     color: '#b794f4',
   },
 ];
