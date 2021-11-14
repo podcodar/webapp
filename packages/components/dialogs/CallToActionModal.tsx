@@ -17,6 +17,7 @@ import {
   useModalActions,
   useModalStates,
 } from '@packages/features/modal-context';
+import { IFRAME_FORM_URL } from '@packages/config/site';
 
 type ModalVariants = 'md' | 'full' | 'lg' | 'xl';
 
@@ -86,7 +87,7 @@ function GoogleForm({ isIframeOpen = false, handleLoad = () => {} }) {
   return (
     <SlideFade in={isIframeOpen} offsetY="1rem">
       <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSeoy7Jg_LaXsJMDYJ1gXKBRPu4tIdQiPBG5ZmLennVKSb_GVg/viewform?embedded=true"
+        src={IFRAME_FORM_URL}
         width={width}
         height={height}
         frameBorder="0"

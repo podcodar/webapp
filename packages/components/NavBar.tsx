@@ -18,6 +18,7 @@ import { useMemo } from 'react';
 import { GithubIcon, LinkedInIcon, Logo } from '@packages/components/icons';
 import { useModalActions } from '@packages/features/modal-context';
 import { useI18n } from '@packages/features/i18n-context';
+import { links } from '@packages/config/site';
 
 import ToggleThemeButton from './ToggleThemeButton';
 import ToggleLanguage from './ToggleLanguage';
@@ -26,7 +27,7 @@ const actionButtons = [
   <Link
     key="github"
     target="_blank"
-    href="https://github.com/podcodar"
+    href={links.github}
     gridColumnStart="2"
     justifySelf="end"
   >
@@ -35,7 +36,7 @@ const actionButtons = [
   <Link
     key="linkedin"
     target="_blank"
-    href="https://www.linkedin.com/company/podcodar/"
+    href={links.linkedin}
     gridColumnStart="3"
   >
     <LinkedInIcon />
@@ -52,17 +53,13 @@ function NavBar() {
 
   const communityLinks = useMemo(
     () => [
-      <Link key="team" href="/team">
+      <Link key="team" href={links.team}>
         {t(`team`)}
       </Link>,
-      <Link key="wiki" target="_blank" href="http://wiki.podcodar.com">
+      <Link key="wiki" target="_blank" href={links.wiki}>
         {t(`wiki`)}
       </Link>,
-      <Link
-        key="forum"
-        target="_blank"
-        href="https://github.com/podcodar/forum/discussions"
-      >
+      <Link key="forum" target="_blank" href={links.forum}>
         {t(`forum`)}
       </Link>,
     ],
