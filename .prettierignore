@@ -40,3 +40,6 @@ yarn-error.log*
 .prettier*
 .editorconfig
 .gitignore
+
+# images
+/public/images
