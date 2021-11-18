@@ -4,13 +4,13 @@ It's nice to have you here! This project is the web app created by the PodCodar 
 
 ### Technologies
 
-<div  style=" max-width:200px ;display:grid; grid-template-columns:repeat(6,auto);grid-gap:1rem">
-  <img src="./docs/images/typescript.svg"height="30" />
-  <img src="./docs/images/react.svg"height="30" />
-  <img src="./docs/images/next.svg"height="30" />
-  <img src="./docs/images/node.svg"height="30" />
-  <img src="./docs/images/git.svg"height="30" />
-  <img src="./docs/images/linux.svg"height="30" />
+<div  style="max-width: 200px; display: grid; grid-template-columns: repeat(6,auto); grid-gap: 1rem;">
+  <img src="./docs/images/typescript.svg" height="30" />
+  <img src="./docs/images/react.svg" height="30" />
+  <img src="./docs/images/next.svg" height="30" />
+  <img src="./docs/images/node.svg" height="30" />
+  <img src="./docs/images/git.svg" height="30" />
+  <img src="./docs/images/linux.svg" height="30" />
 </div>
 
 ### Partners
@@ -38,7 +38,7 @@ FIREBASE_MEASUREMENT_ID="***"
 
 ### Our Wikis
 
-- [Web app wiki][2]
+- [WebApp wiki page][2]
 - [Engineering Wiki][3]
 - [Project Board][4]
 
