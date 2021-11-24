@@ -81,4 +81,5 @@ export type TranslationNS =
   | 'mentoring'
   | 'roadmap'
   | 'social-links'
-  | 'footer';
+  | 'footer'
+  | 'team-page';
