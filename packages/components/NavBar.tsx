@@ -15,32 +15,17 @@ import {
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useMemo } from 'react';
 
-import { GithubIcon, LinkedInIcon, Logo } from '@packages/components/icons';
+import { Logo } from '@packages/components/icons';
 import { useModalActions } from '@packages/features/modal-context';
 import { useI18n } from '@packages/features/i18n-context';
 import { links } from '@packages/config/site';
 
 import ToggleThemeButton from './ToggleThemeButton';
 import ToggleLanguage from './ToggleLanguage';
+import SocialButtons from './SocialButtons';
 
 const actionButtons = [
-  <Link
-    key="github"
-    target="_blank"
-    href={links.github}
-    gridColumnStart="2"
-    justifySelf="end"
-  >
-    <GithubIcon />
-  </Link>,
-  <Link
-    key="linkedin"
-    target="_blank"
-    href={links.linkedin}
-    gridColumnStart="3"
-  >
-    <LinkedInIcon />
-  </Link>,
+  <SocialButtons key="social-buttons" />,
   <ToggleLanguage key="toggle-lang" />,
   <ToggleThemeButton key="toggle-theme" />,
 ];
