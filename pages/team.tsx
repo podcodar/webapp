@@ -1,15 +1,14 @@
-import { Heading, Stack, Text } from '@chakra-ui/react';
+import { Heading, Flex, Text } from '@chakra-ui/react';
 import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
+import Section from '@packages/components/Section';
 
-import Section from '../packages/components/Section';
-
-function Team() {
+export default function Team() {
   const { t } = useI18n('team-page');
   return (
     <Section py="10rem">
-      <Stack textAlign="center" align="center" spacing={{ base: 8, md: 10 }}>
+      <Flex justifyContent="center">
         <Heading
           fontWeight={600}
           fontSize={{ base: '3xl', sm: '4xl' }}
@@ -22,9 +21,7 @@ function Team() {
             }}
           />
         </Heading>
-      </Stack>
+      </Flex>
     </Section>
   );
 }
-
-export default Team;
