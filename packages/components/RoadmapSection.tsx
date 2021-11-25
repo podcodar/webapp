@@ -23,10 +23,7 @@ export default function RoadmapSection() {
           {t(`title`)}
         </Heading>
         <Text textAlign="right">
-          <Link
-            href={roadMapsLinks.all}
-            isExternal
-          >
+          <Link href={roadMapsLinks.all} isExternal>
             {t(`see-all`)}
           </Link>
         </Text>
