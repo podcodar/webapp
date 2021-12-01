@@ -21,6 +21,7 @@ export const links = {
   // social
   github: 'https://github.com/podcodar',
   linkedin: 'https://www.linkedin.com/company/podcodar/',
+  secondaryButton: '#why-it-works',
 };
 
 export const roadMapsLinks = {

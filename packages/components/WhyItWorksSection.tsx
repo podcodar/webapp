@@ -23,7 +23,7 @@ export default function WhyItWorksSection() {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
 
   return (
-    <Section bg={bgColor}>
+    <Section bg={bgColor} id="why-it-works">
       <Heading
         fontWeight={600}
         fontSize={{ base: '3xl', sm: '4xl' }}
