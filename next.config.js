@@ -14,4 +14,7 @@ module.exports = withYaml({
     FIREBASE_MESSAGING_ID: process.env.FIREBASE_MESSAGING_ID,
     FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
   },
+  eslint: {
+    dirs: ['pages', 'packages'], // Only run ESLint on the 'pages' and 'packages'
+  },
 });

@@ -9,7 +9,7 @@
     "build:static": "next build && next export",
     "start": "next start",
     "deploy": "firebase deploy",
-    "lint": "next lint",
+    "lint": "prettier . && next lint",
     "fmt": "prettier --write . && next lint --fix --dir packages",
     "prepare": "husky install"
   },
