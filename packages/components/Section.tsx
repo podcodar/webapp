@@ -3,6 +3,7 @@ import { ReactNode } from 'react';
 
 interface Props extends ChakraProps {
   children: ReactNode;
+  id?: string;
 }
 
 function Section({ children, ...props }: Props) {

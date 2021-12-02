@@ -17,6 +17,7 @@ export const links = {
   team: '/team',
   wiki: 'http://wiki.podcodar.com',
   forum: 'https://github.com/podcodar/forum/discussions',
+  secondaryButton: '#why-it-works',
 
   // social
   github: 'https://github.com/podcodar',

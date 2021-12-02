@@ -4,6 +4,7 @@ import { Trans } from 'react-i18next';
 import { useModalActions } from '@packages/features/modal-context';
 import { Illustration } from '@packages/components/icons';
 import { useI18n } from '@packages/features/i18n-context';
+import { links } from '@packages/config/site';
 
 import Section from './Section';
 
@@ -43,7 +44,7 @@ export default function CallToActionSection() {
           >
             {t(`main-button`)}
           </Button>
-          <Button rounded="full" px={6}>
+          <Button as="a" href={links.secondaryButton} rounded="full" px={6}>
             {t(`secondary-button`)}
           </Button>
         </Stack>
