@@ -14,6 +14,21 @@ import firebaseConfig from '@packages/config/firebase';
 import type { Member } from '@packages/entities/members';
 import type { Result } from '@packages/utils/functions';
 
+interface AddMemberResp {
+  id: string;
+}
+
+interface FirebaseApiServices {
+  db: {
+    addMembers: (member: Member) => Promise<Result<AddMemberResp>>;
+    getMembers: () => Promise<Result<Member[]>>;
+  };
+}
+
+export interface FirebaseWebServices {
+  analytics: Analytics;
+}
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
@@ -60,19 +75,4 @@ function processMemberDocumentSnapshot(
     ...doc.data(),
     id: doc.id,
   } as Member;
-}
-
-export interface FirebaseWebServices {
-  analytics: Analytics;
-}
-
-interface FirebaseApiServices {
-  db: {
-    addMembers: (member: Member) => Promise<Result<AddMemberResp>>;
-    getMembers: () => Promise<Result<Member[]>>;
-  };
-}
-
-interface AddMemberResp {
-  id: string;
 }
