@@ -1,5 +1,6 @@
-import { Stack, Text, useColorModeValue, Link, Image } from '@chakra-ui/react';
+import { Stack, Text, useColorModeValue, Image } from '@chakra-ui/react';
 
+import Link from '@packages/components/Link';
 import { useI18n } from '@packages/features/i18n-context';
 import { PIX_KEY, links, images } from '@packages/config/site';
 

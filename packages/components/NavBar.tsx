@@ -6,7 +6,6 @@ import {
   Flex,
   Divider,
   Stack,
-  Link,
   Text,
   useDisclosure,
   HStack,
@@ -19,6 +18,7 @@ import { GithubIcon, LinkedInIcon, Logo } from '@packages/components/icons';
 import { useModalActions } from '@packages/features/modal-context';
 import { useI18n } from '@packages/features/i18n-context';
 import { links } from '@packages/config/site';
+import Link from '@packages/components/Link';
 
 import ToggleThemeButton from './ToggleThemeButton';
 import ToggleLanguage from './ToggleLanguage';
