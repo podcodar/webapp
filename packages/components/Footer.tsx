@@ -51,14 +51,9 @@ function Copyrights() {
   return (
     <Stack alignItems="center">
       <Text>{t('podcodar')}</Text>
-      <Stack
-        spacing="1rem"
-        justifyContent="center"
-        direction="row"
-        fontSize="1.3rem"
-      >
-        <SocialIconLinks />
-      </Stack>
+
+      <SocialIconLinks />
+
       <Text fontSize="sm">{t(`legal`, { currentYear })}</Text>
     </Stack>
   );
