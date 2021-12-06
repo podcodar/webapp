@@ -1,32 +1,22 @@
-import { initializeApp } from 'firebase/app';
-import { getAnalytics, Analytics } from 'firebase/analytics';
 import { useState } from 'react';
 
 import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
-import firebaseConfig from '@packages/config/firebase';
 
-interface FirebaseServices {
-  analytics: Analytics;
-}
+import {
+  FirebaseWebServices,
+  getFirebaseWebServices,
+} from './services/firebase';
 
 const [useFirebaseServices, FirebaseServicesProvider] =
-  createCtx<FirebaseServices>('firebase-context');
-
-function setupFirebase(): FirebaseServices {
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-
-  return { analytics };
-}
+  createCtx<FirebaseWebServices>('firebase-context');
 
 export function FirebaseProvider({ children }: ChildrenProps) {
-  const [services, setServices] = useState<FirebaseServices | null>(null);
+  const [services, setServices] = useState<FirebaseWebServices | null>(null);
 
   useEffectOnce(() => {
     // run after DOM is available (analytics depends on it)
-    setServices(setupFirebase());
+    setServices(getFirebaseWebServices());
   });
 
   return (

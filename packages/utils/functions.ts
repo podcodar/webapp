@@ -5,3 +5,5 @@ export function makeThrowMissingImplementation(
     throw new Error(message);
   };
 }
+
+export type Result<V, E = Error> = [V, null] | [null, E];
