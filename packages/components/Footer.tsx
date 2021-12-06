@@ -1,4 +1,4 @@
-import { Stack, Text, Image, HStack, Grid } from '@chakra-ui/react';
+import { Stack, Text, Image, Grid } from '@chakra-ui/react';
 
 import { useI18n } from '@packages/features/i18n-context';
 import { PIX_KEY, images } from '@packages/config/site';
@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <Section p="1.5rem" bg={bgColor} alignItems="center">
       <Grid
-        gridTemplateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(3, 1fr)' }}
+        gridTemplateColumns={{ base: '1fr', sm: 'repeat(3, 1fr)' }}
         alignItems="center"
         color="gray.50"
       >
@@ -51,9 +51,14 @@ function Copyrights() {
   return (
     <Stack alignItems="center">
       <Text>{t('podcodar')}</Text>
-      <HStack spacing="1rem" justifyContent="center" fontSize="1.3rem">
+      <Stack
+        spacing="1rem"
+        justifyContent="center"
+        direction="row"
+        fontSize="1.3rem"
+      >
         <SocialIconLinks />
-      </HStack>
+      </Stack>
       <Text fontSize="sm">{t(`legal`, { currentYear })}</Text>
     </Stack>
   );
