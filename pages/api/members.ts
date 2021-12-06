@@ -1,52 +1,22 @@
+import { getFirebaseApiServices } from '@packages/features/services/firebase';
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default function members(req: NextApiRequest, res: NextApiResponse) {
-  const response: TeamResponse = {
-    members: [
-      {
-        name: 'Filipe',
-        email: 'barbosasfilipe@gmail.com',
-        role: 'engineer',
-        techs: ['react', 'chakra-ui', 'nextjs', 'git'],
-      },
-      {
-        name: 'Marco',
-        email: 'ma.souza.junior@gmail.com',
-        role: 'engineer',
-        techs: ['react', 'chakra-ui', 'nextjs', 'git'],
-      },
-    ],
+export default async function members(
+  req: NextApiRequest,
+  res: NextApiResponse,
+) {
+  const { db } = getFirebaseApiServices();
+
+  const handleResponse = (resp: unknown, error: Error | null) => {
+    error !== null ? res.status(403).json(error) : res.status(200).json(resp);
   };
 
-  res.status(200).json(response);
+  if (req.method === 'POST') {
+    const [resp, error] = await db.addMembers(req.body);
+    handleResponse(resp, error);
+  } else {
+    const [resp, error] = await db.getMembers();
+    handleResponse(resp, error);
+  }
 }
-
-export interface TeamResponse {
-  members: Member[];
-}
-
-export interface Member {
-  name: string;
-  email: string;
-  role: Role;
-  techs: Techs[];
-}
-
-type Techs =
-  | 'git'
-  | 'html'
-  | 'css'
-  | 'bootstrap'
-  | 'javascript'
-  | 'nodejs'
-  | 'express'
-  | 'typescript'
-  | 'react'
-  | 'chakra-ui'
-  | 'nextjs'
-  | 'firebase'
-  | 'mysql'
-  | 'python'
-  | 'linux';
-
-type Role = 'engineer' | 'mentor' | 'mentored';
