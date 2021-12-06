@@ -1,4 +1,5 @@
 import { Stack, Text, Image, Grid } from '@chakra-ui/react';
+import { css } from '@emotion/react';
 
 import { useI18n } from '@packages/features/i18n-context';
 import { PIX_KEY, images } from '@packages/config/site';
@@ -13,8 +14,8 @@ export default function Footer() {
     <Section p="1.5rem" bg={bgColor} alignItems="center">
       <Grid
         gridTemplateColumns={{ base: '1fr', sm: 'repeat(3, 1fr)' }}
-        alignItems="center"
         color="gray.50"
+        css={centerGridCells}
       >
         <PodCodarLogo />
         <Copyrights />
@@ -26,7 +27,7 @@ export default function Footer() {
 
 function PodCodarLogo() {
   return (
-    <Stack alignItems="center">
+    <Stack>
       <Logo size="large" />
     </Stack>
   );
@@ -35,7 +36,7 @@ function PodCodarLogo() {
 function Pix() {
   const { t } = useI18n('footer');
   return (
-    <Stack alignItems="center">
+    <Stack>
       <Text>{t('contribution')}</Text>
       <Text fontSize="sm" color="#718096">
         {PIX_KEY}
@@ -49,7 +50,7 @@ function Copyrights() {
   const { t } = useI18n('footer');
   const currentYear = new Date().getFullYear();
   return (
-    <Stack alignItems="center">
+    <Stack>
       <Text>{t('podcodar')}</Text>
 
       <SocialIconLinks />
@@ -58,3 +59,9 @@ function Copyrights() {
     </Stack>
   );
 }
+
+const centerGridCells = css`
+  & > * {
+    align-items: center;
+  }
+`;
