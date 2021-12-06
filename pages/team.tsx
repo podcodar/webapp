@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { Heading, Flex, Text, VStack } from '@chakra-ui/react';
+import { Heading, Flex, Text } from '@chakra-ui/react';
 import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
@@ -14,6 +14,7 @@ interface Props {
 
 export default function Team({ members, error }: Props) {
   const { t } = useI18n('team-page');
+  console.log(members, error);
   return (
     <Section py="10rem">
       <Flex justifyContent="center">
@@ -31,6 +32,8 @@ export default function Team({ members, error }: Props) {
         </Heading>
       </Flex>
 
+      {/* TODO: add member cards here
+
       <VStack>
         {error != null
           ? error.message
@@ -39,7 +42,7 @@ export default function Team({ members, error }: Props) {
                 {m.id} {m.name} {m.role}
               </p>
             ))}
-      </VStack>
+      </VStack> */}
     </Section>
   );
 }
