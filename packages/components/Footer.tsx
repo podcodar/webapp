@@ -1,53 +1,34 @@
-import { Stack, Text, useColorModeValue, Link, Image } from '@chakra-ui/react';
+import { Stack, Text, Image, Grid } from '@chakra-ui/react';
+import { css } from '@emotion/react';
 
 import { useI18n } from '@packages/features/i18n-context';
-import { PIX_KEY, links, images } from '@packages/config/site';
+import { PIX_KEY, images } from '@packages/config/site';
+import { Logo } from '@packages/components/icons';
 
 import Section from './Section';
+import SocialIconLinks from './SocialIconLinks';
 
 export default function Footer() {
-  const bgColor = useColorModeValue('gray.200', 'gray.800');
-
+  const bgColor = '#0a1523';
   return (
-    <Section p="1.5rem" bgColor={bgColor}>
-      <Stack
-        direction={{ base: 'column', sm: 'row' }}
-        spacing={{ base: '5rem', sm: '3rem' }}
+    <Section p="1.5rem" bg={bgColor} alignItems="center">
+      <Grid
+        gridTemplateColumns={{ base: '1fr', sm: 'repeat(3, 1fr)' }}
+        color="gray.50"
+        css={centerGridCells}
       >
-        <Pix />
-
+        <PodCodarLogo />
         <Copyrights />
-
-        <SocialLinks />
-      </Stack>
+        <Pix />
+      </Grid>
     </Section>
   );
 }
 
-interface LinkItem {
-  url: string;
-  name: string;
-  isExternal: boolean;
-}
-
-const socialLinks: LinkItem[] = [
-  { url: links.github, name: 'github', isExternal: true },
-  { url: links.linkedin, name: 'linkedin', isExternal: true },
-];
-
-function SocialLinks() {
-  const { t } = useI18n('social-links');
+function PodCodarLogo() {
   return (
     <Stack>
-      <Text fontWeight="500" fontSize="lg" mb={2}>
-        {t('socials')}
-      </Text>
-
-      {socialLinks.map((link) => (
-        <Link href={link.url} isExternal={link.isExternal} key={link.name}>
-          {t(link.name)}
-        </Link>
-      ))}
+      <Logo size="large" />
     </Stack>
   );
 }
@@ -55,12 +36,12 @@ function SocialLinks() {
 function Pix() {
   const { t } = useI18n('footer');
   return (
-    <Stack spacing="0.1rem" flex="0.3">
+    <Stack>
       <Text>{t('contribution')}</Text>
       <Text fontSize="sm" color="#718096">
         {PIX_KEY}
       </Text>
-      <Image src={images.pixQRCode} width="50%" alt={t('contribution')} />
+      <Image src={images.pixQRCode} width="40%" alt={t('contribution')} />
     </Stack>
   );
 }
@@ -69,9 +50,18 @@ function Copyrights() {
   const { t } = useI18n('footer');
   const currentYear = new Date().getFullYear();
   return (
-    <Stack spacing="1rem" flex="0.5">
+    <Stack>
       <Text>{t('podcodar')}</Text>
+
+      <SocialIconLinks />
+
       <Text fontSize="sm">{t(`legal`, { currentYear })}</Text>
     </Stack>
   );
 }
+
+const centerGridCells = css`
+  & > * {
+    align-items: center;
+  }
+`;
