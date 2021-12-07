@@ -1,12 +1,6 @@
-import {
-  useColorModeValue,
-  Grid,
-  Heading,
-  Link,
-  Flex,
-  Text,
-} from '@chakra-ui/react';
+import { useColorModeValue, Grid, Heading, Flex, Text } from '@chakra-ui/react';
 
+import Link from '@packages/components/Link';
 import { roadMapsLinks } from '@packages/config/site';
 import { useI18n } from '@packages/features/i18n-context';
 

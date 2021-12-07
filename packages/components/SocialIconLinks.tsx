@@ -1,5 +1,6 @@
-import { Link, Stack } from '@chakra-ui/react';
+import { Stack } from '@chakra-ui/react';
 
+import Link from '@packages/components/Link';
 import { links } from '@packages/config/site';
 import { GithubIcon, LinkedInIcon } from '@packages/components/icons';
 
