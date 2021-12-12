@@ -70,7 +70,15 @@ const createActions = (
       .then(setQuestions)
       .catch(setError);
   };
-  return { addQuestion, upVote };
+  const check = (id: string) => {
+    questions
+      .update(id, { answered: true })
+      .then(questions.list)
+      .then(setQuestions)
+      .catch(setError);
+  };
+
+  return { addQuestion, upVote, check };
 };
 
 const createView = (
