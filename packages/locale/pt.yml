@@ -77,3 +77,7 @@ team-page:
 ask-us-page:
   head: Nos pergunte
   title: Nos pergunte <span>qualquer</span> coisa
+  text-placeholder: Adicione uma pergunta aqui...
+  send-button: Perguntar
+  checkbox-label: Mostrar perguntas respondidas
+  answer-button-label: Marcar como respondida

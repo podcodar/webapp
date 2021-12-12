@@ -17,12 +17,14 @@ import {
   useQuestionView,
   useQuestionActions,
 } from '@packages/features/questions-context';
+import { useI18n } from '@packages/features/i18n-context';
 
 export default function ListQuestions() {
+  const [showAnswered, setShowAnswered] = useState(false);
   const { questions, error, loading } = useQuestionView();
   const { upVote, check } = useQuestionActions();
   const { query } = useRouter();
-  const [showAnswered, setShowAnswered] = useState(false);
+  const { t } = useI18n('ask-us-page');
 
   const selectedQuestions = showAnswered
     ? questions ?? []
@@ -40,7 +42,7 @@ export default function ListQuestions() {
         onChange={() => setShowAnswered((s) => !s)}
         isChecked={showAnswered}
       >
-        Show answered questions
+        {t('checkbox-label')}
       </Checkbox>
 
       {selectedQuestions.map((question) => (
@@ -69,7 +71,7 @@ export default function ListQuestions() {
           {Object.keys(query).includes('edit') && !question.answered && (
             <IconButton
               colorScheme="green"
-              aria-label="Mask as answered"
+              aria-label={t('checkbox-label')}
               icon={<CheckIcon />}
               onClick={() => check(question.id!)}
             />

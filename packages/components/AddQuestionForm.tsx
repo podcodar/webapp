@@ -4,10 +4,12 @@ import { Input } from '@chakra-ui/input';
 import { Grid } from '@chakra-ui/layout';
 
 import { useQuestionActions } from '@packages/features/questions-context';
+import { useI18n } from '@packages/features/i18n-context';
 
 export default function AddQuestionForm() {
   const actions = useQuestionActions();
   const [text, setText] = useState('');
+  const { t } = useI18n('ask-us-page');
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,9 +30,9 @@ export default function AddQuestionForm() {
         <Input
           value={text}
           onChange={(e) => setText(e.target.value)}
-          placeholder="Enter a question here"
+          placeholder={t('text-placeholder')}
         />
-        <Button type="submit">Send</Button>
+        <Button type="submit">{t('send-button')}</Button>
       </Grid>
     </form>
   );
