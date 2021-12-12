@@ -1,4 +1,4 @@
-import { getFirebaseApiServices } from '@packages/features/services/firebase';
+import { getMemberInstance } from '@packages/services/members';
 
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -6,17 +6,17 @@ export default async function members(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  const { db } = getFirebaseApiServices();
+  const membersDao = getMemberInstance();
 
-  const handleResponse = (resp: unknown, error: Error | null) => {
-    error !== null ? res.status(403).json(error) : res.status(200).json(resp);
-  };
-
-  if (req.method === 'POST') {
-    const [resp, error] = await db.addMembers(req.body);
-    handleResponse(resp, error);
-  } else {
-    const [resp, error] = await db.getMembers();
-    handleResponse(resp, error);
+  try {
+    if (req.method === 'POST') {
+      const resp = await membersDao.add(req.body);
+      res.status(200).json(resp);
+    } else {
+      const resp = await membersDao.list();
+      res.status(200).json(resp);
+    }
+  } catch (error) {
+    res.status(403).json(error);
   }
 }
