@@ -4,8 +4,8 @@ import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
 import Section from '@packages/components/Section';
-import { getFirebaseApiServices } from '@packages/features/services/firebase';
 import { Member } from '@packages/entities/members';
+import { getMemberInstance } from '@packages/services/members';
 
 interface Props {
   members: Member[] | null;
@@ -32,9 +32,8 @@ export default function Team({ members, error }: Props) {
         </Heading>
       </Flex>
 
-      {/* TODO: add member cards here
-
-      <VStack>
+      {/* TODO: add member cards here */}
+      {/* <div>
         {error != null
           ? error.message
           : members?.map((m) => (
@@ -42,14 +41,22 @@ export default function Team({ members, error }: Props) {
                 {m.id} {m.name} {m.role}
               </p>
             ))}
-      </VStack> */}
+      </div> */}
     </Section>
   );
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-  const { db } = getFirebaseApiServices();
-  const [members, error] = await db.getMembers();
+  const membersService = getMemberInstance();
+
+  let members: Member[] | null = null;
+  let error: Error | null = null;
+
+  try {
+    members = await membersService.list();
+  } catch (e) {
+    error = e as Error;
+  }
 
   return {
     revalidate: 100, // In Seconds
