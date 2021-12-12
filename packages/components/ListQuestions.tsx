@@ -1,9 +1,21 @@
-import { Spinner, Text, Alert, AlertIcon, Box, Grid } from '@chakra-ui/react';
+import {
+  Spinner,
+  Text,
+  Alert,
+  AlertIcon,
+  Box,
+  Grid,
+  Button,
+} from '@chakra-ui/react';
 
-import { useQuestionView } from '@packages/features/questions-context';
+import {
+  useQuestionView,
+  useQuestionActions,
+} from '@packages/features/questions-context';
 
 export default function ListQuestions() {
   const { questions, error, loading } = useQuestionView();
+  const { upVote } = useQuestionActions();
 
   return error ? (
     <Alert status="error">
@@ -21,8 +33,16 @@ export default function ListQuestions() {
           >
             {question.text}
           </Text>
+
           <Text fontSize="0.9rem" color="grey">
-            {question.votes} votes ()
+            {question.votes} votes
+            <Button
+              disabled={!question.canVote}
+              onClick={() => upVote(question.id!)}
+              variant="link"
+            >
+              +1
+            </Button>
           </Text>
         </Box>
       ))}

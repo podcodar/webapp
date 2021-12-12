@@ -2,6 +2,8 @@ import {
   getFirestore,
   collection,
   getDocs,
+  doc,
+  updateDoc,
   addDoc,
   DocumentData,
   QueryDocumentSnapshot,
@@ -20,6 +22,7 @@ export interface FirestoreResponse {
 
 export interface FirestoreDAO<T> {
   add: (item: T) => Promise<FirestoreResponse>;
+  update: (id: string, item: Object) => Promise<FirestoreResponse>;
   list: () => Promise<T[]>;
 }
 
@@ -35,6 +38,11 @@ export function makeFirestoreDAO<T>({
   return {
     add: async (item: T) => {
       const docRef = await addDoc(dbCollection, item);
+      return { id: docRef.id };
+    },
+    update: async (id: string, item: Object) => {
+      const docRef = doc(db, collectionName, id);
+      await updateDoc(docRef, { ...item } as any);
       return { id: docRef.id };
     },
     list: async () => {

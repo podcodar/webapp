@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
+import { increment } from '@firebase/firestore';
 
 import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
@@ -59,7 +60,17 @@ const createActions = (
       .catch(setError)
       .finally(() => setLoading(false));
   };
-  return { addQuestion };
+  const upVote = (id: string) => {
+    questions
+      .update(id, { votes: increment(1) })
+      .then(() => {
+        localVotes.vote(id);
+        return questions.list();
+      })
+      .then(setQuestions)
+      .catch(setError);
+  };
+  return { addQuestion, upVote };
 };
 
 const createView = (
@@ -67,7 +78,25 @@ const createView = (
   error: Error | null,
   loading: boolean,
 ) => ({
-  questions,
+  questions: questions
+    ?.sort(sortByVotes)
+    .map((q) => ({ ...q, canVote: localVotes.canVote(q.id!) })),
   error,
   loading,
 });
+
+function sortByVotes(q1: Question, q2: Question) {
+  return q2.votes - q1.votes;
+}
+
+const STORE_VOTES = 'podcodar:ama:vote-ids';
+const localVotes = {
+  vote: (id: string) => {
+    const votes = JSON.parse(localStorage.getItem(STORE_VOTES) ?? '[]');
+    localStorage.setItem(STORE_VOTES, JSON.stringify([...votes, id]));
+  },
+  canVote: (id: string) => {
+    const votes = localStorage.getItem(STORE_VOTES) ?? '';
+    return !votes.includes(id);
+  },
+};
