@@ -1,34 +1,24 @@
 import { Dispatch, SetStateAction, useState } from 'react';
-import { increment } from '@firebase/firestore';
 
 import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
 import { Question } from '@packages/entities/questions';
-import { FirestoreDAO } from '@packages/repositories/firestore';
-import { getQuestionInstance } from '@packages/services/questions';
+import { questionsApi } from '@packages/hooks/api';
 
-const questionService = getQuestionInstance();
 export function QuestionsProvider({ children }: ChildrenProps) {
   const [questions, setQuestions] = useState<Question[] | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffectOnce(() => {
-    questionService
+    questionsApi
       .list()
       .then(setQuestions)
       .catch(setError)
       .finally(() => setLoading(false));
   });
 
-  if (questionService == null) return <div>{children}</div>;
-
-  const actions = createActions(
-    questionService,
-    setQuestions,
-    setError,
-    setLoading,
-  );
+  const actions = createActions(setQuestions, setError, setLoading);
   const view = createView(questions, error, loading);
 
   return (
@@ -46,34 +36,33 @@ export const [useQuestionActions, QuestionActionsProvider] =
   createCtx<ReturnType<typeof createActions>>('questions-actions');
 
 const createActions = (
-  questions: FirestoreDAO<Question>,
   setQuestions: Dispatch<SetStateAction<Question[] | null>>,
   setError: Dispatch<SetStateAction<Error | null>>,
   setLoading: Dispatch<SetStateAction<boolean>>,
 ) => {
   const addQuestion = (question: Question) => {
     setLoading(true);
-    questions
-      .add(question)
-      .then(questions.list)
+    questionsApi
+      .create(question)
+      .then(questionsApi.list)
       .then(setQuestions)
       .catch(setError)
       .finally(() => setLoading(false));
   };
-  const upVote = (id: string) => {
-    questions
-      .update(id, { votes: increment(1) })
+  const upVote = (id: string, votes: number) => {
+    questionsApi
+      .update({ id, votes })
       .then(() => {
         localVotes.vote(id);
-        return questions.list();
+        return questionsApi.list();
       })
       .then(setQuestions)
       .catch(setError);
   };
   const check = (id: string) => {
-    questions
-      .update(id, { answered: true })
-      .then(questions.list)
+    questionsApi
+      .update({ id, answered: true })
+      .then(questionsApi.list)
       .then(setQuestions)
       .catch(setError);
   };

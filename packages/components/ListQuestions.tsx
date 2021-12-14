@@ -60,7 +60,8 @@ export default function ListQuestions() {
               {question.votes} votes
               <Button
                 disabled={!question.canVote}
-                onClick={() => upVote(question.id!)}
+                // make API to vote
+                onClick={() => upVote(question.id!, question.votes + 1)}
                 variant="link"
               >
                 +1

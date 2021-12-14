@@ -13,6 +13,7 @@ module.exports = withYaml({
     FIREBASE_PROJECT_ID: process.env.FIREBASE_PROJECT_ID,
     FIREBASE_MESSAGING_ID: process.env.FIREBASE_MESSAGING_ID,
     FIREBASE_MEASUREMENT_ID: process.env.FIREBASE_MEASUREMENT_ID,
+    API_AUTH_TOKEN: process.env.API_AUTH_TOKEN,
   },
   eslint: {
     dirs: ['pages', 'packages'], // Only run ESLint on the 'pages' and 'packages'
