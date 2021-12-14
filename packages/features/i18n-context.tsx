@@ -82,4 +82,5 @@ export type TranslationNS =
   | 'roadmap'
   | 'social-links'
   | 'footer'
-  | 'team-page';
+  | 'team-page'
+  | 'ask-us-page';

@@ -70,3 +70,11 @@ social-links:
 
 team-page:
   title: Community <span>People</span>
+
+ask-us-page:
+  head: Ask us Anything
+  title: Ask us <span>Anything</span>
+  text-placeholder: Enter a question here...
+  send-button: Ask
+  checkbox-label: Show answered questions
+  answer-button-label: Mask as answered
