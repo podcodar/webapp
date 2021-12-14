@@ -1,4 +1,4 @@
-import { DocumentData, QueryDocumentSnapshot } from 'firebase/firestore';
+import { DocumentData, QueryDocumentSnapshot } from '@firebase/firestore';
 
 import {
   makeFirestoreDAO,
