@@ -29,6 +29,7 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 <!-- if error in (desktop, webapp) -->
+
 ### Desktop (complete as informações abaixo)
 
     - OS: [e.g. iOS]
@@ -36,6 +37,7 @@ If applicable, add screenshots to help explain your problem.
     - Version [e.g. 22]
 
 <!-- if error in (mobile) -->
+
 ### Smartphone (complete as informações abaixo)
 
     - Device: [e.g. iPhone6]
