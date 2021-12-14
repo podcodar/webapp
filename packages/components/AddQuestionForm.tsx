@@ -13,6 +13,10 @@ export default function AddQuestionForm() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    // Check if text has at lease one word
+    if (text.split('').length == 0) return;
+
     actions.addQuestion({
       text,
       votes: 0,
