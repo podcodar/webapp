@@ -26,6 +26,8 @@ export default function ListQuestions() {
   const { query } = useRouter();
   const { t } = useI18n('ask-us-page');
 
+  const isEditing = Object.keys(query).includes('edit');
+
   const selectedQuestions = showAnswered
     ? questions ?? []
     : questions?.filter(({ answered }) => !answered) ?? [];
@@ -46,8 +48,16 @@ export default function ListQuestions() {
       </Checkbox>
 
       {selectedQuestions.map((question) => (
-        <Grid gap="1rem" gridTemplateColumns="auto 3rem" key={question.id!}>
-          <Box flex="1">
+        <Grid
+          gap="1rem"
+          key={question.id!}
+          gridTemplateColumns={isEditing ? 'auto 3rem' : '1fr'}
+        >
+          <Box
+            flex="1"
+            width={!isEditing ? 'calc(100vw - 3rem)' : 'auto'}
+            overflowWrap="break-word"
+          >
             <Text
               textDecoration={question.answered ? 'line-through' : 'none'}
               color={question.answered ? 'grey' : 'none'}
@@ -69,7 +79,7 @@ export default function ListQuestions() {
             </Text>
           </Box>
 
-          {Object.keys(query).includes('edit') && !question.answered && (
+          {isEditing && !question.answered && (
             <IconButton
               colorScheme="green"
               aria-label={t('checkbox-label')}
