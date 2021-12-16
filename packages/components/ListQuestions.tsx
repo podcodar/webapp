@@ -55,7 +55,7 @@ export default function ListQuestions() {
         >
           <Box
             flex="1"
-            width={!isEditing ? 'calc(100vw - 3rem)' : 'auto'}
+            width={{ base: 'calc(100vw - 3rem)', lg: 'auto' }}
             overflowWrap="break-word"
           >
             <Text

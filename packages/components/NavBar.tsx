@@ -60,12 +60,12 @@ function NavBar() {
       zIndex={1}
       bg={navbarBgColor}
     >
-      <Container p="0.5rem" display="flex" maxW="5xl">
+      <Container p="1rem" display="flex" maxW="5xl">
         <IconButton
           size="md"
           icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
           aria-label="Open Menu"
-          display={{ sm: 'none' }}
+          display={{ md: 'none' }}
           onClick={isOpen ? onClose : onOpen}
         />
 
@@ -74,7 +74,7 @@ function NavBar() {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          w={{ base: '100%', sm: 'auto' }}
+          w={{ base: '100%', md: 'auto' }}
         >
           <Logo size="small" />
           <Text m="0 0.5rem" fontWeight="bold">
@@ -87,7 +87,7 @@ function NavBar() {
           justifyContent="space-between"
           alignItems="center"
           p=" 0 1rem"
-          d={{ base: 'none', sm: 'flex' }}
+          d={{ base: 'none', md: 'flex' }}
         >
           <Box>
             <HStack spacing="1rem">{communityLinks}</HStack>
@@ -112,7 +112,7 @@ function NavBar() {
       {isOpen ? (
         <Box
           px={2}
-          display={{ sm: 'none' }}
+          display={{ md: 'none' }}
           backgroundColor={navbarBgColor}
           paddingBottom="0.5rem"
         >
