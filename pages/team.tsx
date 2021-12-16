@@ -1,9 +1,10 @@
 import { GetStaticProps } from 'next';
-import { Heading, Flex, Text } from '@chakra-ui/react';
+import { Heading, Flex, Text, Grid } from '@chakra-ui/react';
 import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
 import Section from '@packages/components/Section';
+import FakeCard from '@packages/components/FakeCard';
 import { Member } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
 
@@ -32,6 +33,22 @@ export default function Team({ members, error }: Props) {
         </Heading>
       </Flex>
 
+      <Grid
+        templateColumns={{
+          base: '1fr',
+          sm: 'repeat(2, 1fr)',
+          md: 'repeat(3, 1fr)',
+          lg: 'repeat(4, 1fr)',
+        }}
+        gap={{ base: 4, lg: 6 }}
+        mt={10}
+      >
+        {Array(20)
+          .fill(null)
+          .map((_, index) => (
+            <FakeCard key={index} />
+          ))}
+      </Grid>
       {/* TODO: add member cards here */}
       {/* <div>
         {error != null
