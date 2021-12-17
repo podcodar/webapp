@@ -4,7 +4,7 @@ import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
 import Section from '@packages/components/Section';
-import SkeletonCard from '@packages/components/SkeletonCard';
+import MemberCardProfile from '@packages/components/MemberCard';
 import { Member } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
 
@@ -31,6 +31,7 @@ export default function Team({ members, error }: Props) {
               span: <Text as="span" color="purple.400" />,
             }}
           />
+          <MemberCardProfile />
         </Heading>
 
         <Grid
