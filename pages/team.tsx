@@ -7,6 +7,7 @@ import Section from '@packages/components/Section';
 import MemberCardProfile from '@packages/components/MemberCard';
 import { Member } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
+import Data from '@packages/utils/mocApi.json';
 
 interface Props {
   members: Member[] | null;
@@ -14,6 +15,9 @@ interface Props {
 }
 
 export default function Team({ members, error }: Props) {
+  console.log(Data);
+  const { users } = Data;
+  console.log(users);
   const { t } = useI18n('team-page');
   console.log(members, error);
   return (
@@ -31,7 +35,18 @@ export default function Team({ members, error }: Props) {
               span: <Text as="span" color="purple.400" />,
             }}
           />
-          <MemberCardProfile />
+          {users.map((user, id) => {
+            return (
+              <MemberCardProfile
+                coverImage={user.coverImage}
+                profileImage={user.profileImage}
+                name={user.name}
+                office={user.office}
+                description={user.description}
+                key={id}
+              />
+            );
+          })}
         </Heading>
 
         <Grid
