@@ -15,9 +15,7 @@ interface Props {
 }
 
 export default function Team({ members, error }: Props) {
-  console.log(Data);
   const { users } = Data;
-  console.log(users);
   const { t } = useI18n('team-page');
   console.log(members, error);
   return (
