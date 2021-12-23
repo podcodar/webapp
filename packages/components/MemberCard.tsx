@@ -12,13 +12,21 @@ import {
 
 import SocialIconLinks from './SocialIconLinks';
 
+interface Props {
+  coverImage: string;
+  profileImage: string;
+  name: string;
+  office: string;
+  description: string;
+}
+
 export default function MemberCardProfile({
   coverImage,
   profileImage,
   name,
   office,
   description,
-}) {
+}: Props) {
   const bgColorBody = useColorModeValue('white', 'gray.700');
   const colorTextLighter = useColorModeValue('gray.400', 'gray.500');
   const colorTextDarker = useColorModeValue('gray.500', 'gray.400');
