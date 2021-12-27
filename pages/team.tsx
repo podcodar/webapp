@@ -33,6 +33,17 @@ export default function Team({ members, error }: Props) {
               span: <Text as="span" color="purple.400" />,
             }}
           />
+        </Heading>
+
+        <Grid
+          templateColumns={{
+            base: '1fr',
+            sm: '1fr 1fr',
+            md: 'repeat(3, 1fr)',
+            lg: 'repeat(4, 1fr)',
+          }}
+          gap={{ base: 4, lg: 6 }}
+        >
           {dataMembers.map((member, id) => {
             return (
               <MemberCard
@@ -45,22 +56,6 @@ export default function Team({ members, error }: Props) {
               />
             );
           })}
-        </Heading>
-
-        <Grid
-          templateColumns={{
-            base: '1fr',
-            sm: '1fr 1fr',
-            md: 'repeat(3, 1fr)',
-            lg: 'repeat(4, 1fr)',
-          }}
-          gap={{ base: 4, lg: 6 }}
-        >
-          {Array(20)
-            .fill(null)
-            .map((_, index) => (
-              <SkeletonCard key={index} />
-            ))}
         </Grid>
       </Grid>
 
