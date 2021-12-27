@@ -30,9 +30,8 @@ export default function MemberCard({
   const colorTextLighter = useColorModeValue('gray.400', 'gray.500');
   const colorTextDarker = useColorModeValue('gray.500', 'gray.400');
   return (
-    <Center py={6}>
+    <Center>
       <Box
-        maxW="14.75rem"
         w="full"
         bg={bgColorBody}
         boxShadow="xl"
@@ -52,14 +51,12 @@ export default function MemberCard({
             size="xl"
             src={profileImage}
             alt="Author"
-            css={{
-              border: '2px solid white',
-            }}
+            border="2px solid white"
           />
         </Flex>
         <Box p={3}>
           <Flex direction="column">
-            <Heading fontSize="2xl" fontWeight={500} fontFamily="body">
+            <Heading fontSize="2xl" fontWeight={500}>
               {name}
             </Heading>
             <Text fontSize="md" color={colorTextLighter}>
