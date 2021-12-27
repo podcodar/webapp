@@ -20,7 +20,7 @@ interface Props {
   description: string;
 }
 
-export default function MemberCardProfile({
+export default function MemberCard({
   coverImage,
   profileImage,
   name,
@@ -36,16 +36,17 @@ export default function MemberCardProfile({
         maxW="14.75rem"
         w="full"
         bg={bgColorBody}
-        boxShadow="2xl"
+        boxShadow="xl"
         rounded="md"
         overflow="hidden"
+        textAlign="center"
       >
         <Image
-          h="6.75rem"
+          h="7rem"
           w="full"
           src={coverImage}
           objectFit="cover"
-          alt="memberPhoto"
+          alt="member cover"
         />
         <Flex justify="center" mt="-12">
           <Avatar
@@ -59,7 +60,7 @@ export default function MemberCardProfile({
         </Flex>
 
         <Box p={3}>
-          <Flex textAlign="center" direction="column">
+          <Flex direction="column">
             <Heading fontSize="2xl" fontWeight={500} fontFamily="body">
               {name}
             </Heading>
@@ -75,7 +76,7 @@ export default function MemberCardProfile({
               </Text>
             </Stack>
           </Stack>
-          <Box py={2} px={6}>
+          <Box alignItems="center">
             <SocialIconLinks />
           </Box>
         </Box>

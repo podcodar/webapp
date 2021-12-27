@@ -4,10 +4,10 @@ import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
 import Section from '@packages/components/Section';
-import MemberCardProfile from '@packages/components/MemberCard';
+import MemberCard from '@packages/components/MemberCard';
 import { Member } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
-import Data from '@packages/utils/mocApi.json';
+import data from '@packages/utils/mocApi.json';
 
 interface Props {
   members: Member[] | null;
@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function Team({ members, error }: Props) {
-  const { users } = Data;
+  const { dataMembers } = data;
   const { t } = useI18n('team-page');
   console.log(members, error);
   return (
@@ -33,14 +33,14 @@ export default function Team({ members, error }: Props) {
               span: <Text as="span" color="purple.400" />,
             }}
           />
-          {users.map((user, id) => {
+          {dataMembers.map((member, id) => {
             return (
-              <MemberCardProfile
-                coverImage={user.coverImage}
-                profileImage={user.profileImage}
-                name={user.name}
-                office={user.office}
-                description={user.description}
+              <MemberCard
+                coverImage={member.coverImage}
+                profileImage={member.profileImage}
+                name={member.name}
+                office={member.office}
+                description={member.description}
                 key={id}
               />
             );
