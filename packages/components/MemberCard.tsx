@@ -6,7 +6,6 @@ import {
   Image,
   Flex,
   Text,
-  Stack,
   useColorModeValue,
 } from '@chakra-ui/react';
 
@@ -58,7 +57,6 @@ export default function MemberCard({
             }}
           />
         </Flex>
-
         <Box p={3}>
           <Flex direction="column">
             <Heading fontSize="2xl" fontWeight={500} fontFamily="body">
@@ -67,15 +65,10 @@ export default function MemberCard({
             <Text fontSize="md" color={colorTextLighter}>
               {office}
             </Text>
+            <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
+              {description}
+            </Text>
           </Flex>
-
-          <Stack direction="row" justify="center" spacing={5}>
-            <Stack textAlign="center">
-              <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
-                {description}
-              </Text>
-            </Stack>
-          </Stack>
           <Box alignItems="center">
             <SocialIconLinks />
           </Box>
