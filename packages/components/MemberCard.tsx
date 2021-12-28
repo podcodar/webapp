@@ -15,7 +15,7 @@ interface Props {
   coverImage: string;
   profileImage: string;
   name: string;
-  office: string;
+  communityRole: string;
   description: string;
 }
 
@@ -23,7 +23,7 @@ export default function MemberCard({
   coverImage,
   profileImage,
   name,
-  office,
+  communityRole,
   description,
 }: Props) {
   const bgColorBody = useColorModeValue('white', 'gray.700');
@@ -36,7 +36,6 @@ export default function MemberCard({
         bg={bgColorBody}
         boxShadow="xl"
         rounded="md"
-        overflow="hidden"
         textAlign="center"
       >
         <Image
@@ -55,18 +54,16 @@ export default function MemberCard({
           />
         </Flex>
         <Box p={3}>
-          <Flex direction="column">
+          <Box>
             <Heading fontSize="2xl" fontWeight={500}>
               {name}
             </Heading>
             <Text fontSize="md" color={colorTextLighter}>
-              {office}
+              {communityRole}
             </Text>
             <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
               {description}
             </Text>
-          </Flex>
-          <Box alignItems="center">
             <SocialIconLinks />
           </Box>
         </Box>

@@ -50,7 +50,7 @@ export default function Team({ members, error }: Props) {
                 coverImage={member.coverImage}
                 profileImage={member.profileImage}
                 name={member.name}
-                office={member.office}
+                communityRole={member.communityRole}
                 description={member.description}
                 key={id}
               />

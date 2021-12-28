@@ -4,7 +4,7 @@
       "coverImage": "https://images.unsplash.com/photo-1612865547334-09cb8cb455da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
       "profileImage": "https://media-exp1.licdn.com/dms/image/C4E03AQGP15iS6e_FAA/profile-displayphoto-shrink_200_200/0/1614707894138?e=1645660800&v=beta&t=Z32j9uU3L_uV4nGgxLHuAOSHKoXHQTOWEhi_kdoPiVw",
       "name": "Filipe Barbosa",
-      "office": "Frontend Developer",
+      "communityRole": "Frontend Developer",
       "Social": [
         { "name": "gitHub", "url": "https://github.com/wevertonvetim" },
         {
@@ -18,7 +18,7 @@
       "coverImage": "https://images.unsplash.com/photo-1612865547334-09cb8cb455da?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
       "profileImage": "https://media-exp1.licdn.com/dms/image/C4D03AQGGGz9MlaAqBg/profile-displayphoto-shrink_200_200/0/1638286952669?e=1645660800&v=beta&t=bv3dSJ91ZarcN-zuBfYQBwIHFPamQ2c20W3OofzK-1k",
       "name": "Weverton Soares",
-      "office": "Frontend Developer",
+      "communityRole": "Frontend Developer",
       "Social": [
         { "name": "gitHub", "url": "https://github.com/wevertonvetim" },
         {
