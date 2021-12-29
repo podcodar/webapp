@@ -54,18 +54,16 @@ export default function MemberCard({
           />
         </Flex>
         <Box p={3}>
-          <Box>
-            <Heading fontSize="2xl" fontWeight={500}>
-              {name}
-            </Heading>
-            <Text fontSize="md" color={colorTextLighter}>
-              {communityRole}
-            </Text>
-            <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
-              {description}
-            </Text>
-            <SocialIconLinks />
-          </Box>
+          <Heading fontSize="2xl" fontWeight={500}>
+            {name}
+          </Heading>
+          <Text fontSize="md" color={colorTextLighter}>
+            {communityRole}
+          </Text>
+          <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
+            {description}
+          </Text>
+          <SocialIconLinks />
         </Box>
       </Box>
     </Center>
