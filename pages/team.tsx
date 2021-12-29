@@ -4,9 +4,10 @@ import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
 import Section from '@packages/components/Section';
-import SkeletonCard from '@packages/components/SkeletonCard';
+import MemberCard from '@packages/components/MemberCard';
 import { Member } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
+import data from '@packages/utils/mocApi.json';
 
 interface Props {
   members: Member[] | null;
@@ -14,6 +15,7 @@ interface Props {
 }
 
 export default function Team({ members, error }: Props) {
+  const { dataMembers } = data;
   const { t } = useI18n('team-page');
   console.log(members, error);
   return (
@@ -42,11 +44,18 @@ export default function Team({ members, error }: Props) {
           }}
           gap={{ base: 4, lg: 6 }}
         >
-          {Array(20)
-            .fill(null)
-            .map((_, index) => (
-              <SkeletonCard key={index} />
-            ))}
+          {dataMembers.map((member, id) => {
+            return (
+              <MemberCard
+                coverImage={member.coverImage}
+                profileImage={member.profileImage}
+                name={member.name}
+                communityRole={member.communityRole}
+                description={member.description}
+                key={id}
+              />
+            );
+          })}
         </Grid>
       </Grid>
 
