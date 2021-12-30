@@ -4,7 +4,15 @@ import Link from '@packages/components/Link';
 import { links } from '@packages/config/site';
 import { GithubIcon, LinkedInIcon } from '@packages/components/icons';
 
-export default function SocialIconLinks() {
+interface Props {
+  githubUrl?: string;
+  linkedinUrl?: string;
+}
+
+export default function SocialIconLinks({
+  githubUrl = links.github,
+  linkedinUrl = links.linkedin,
+}: Props) {
   return (
     <Stack
       spacing="1rem"
@@ -12,10 +20,10 @@ export default function SocialIconLinks() {
       direction="row"
       fontSize="1.3rem"
     >
-      <Link key="github" isExternal href={links.github} justifySelf="end">
+      <Link key="github" isExternal href={githubUrl} justifySelf="end">
         <GithubIcon />
       </Link>
-      <Link key="linkedin" isExternal href={links.linkedin}>
+      <Link key="linkedin" isExternal href={linkedinUrl}>
         <LinkedInIcon />
       </Link>
     </Stack>

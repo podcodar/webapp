@@ -21,7 +21,6 @@ interface Props {
 export default function MemberCard({ member }: Props) {
   const bgColorBody = useColorModeValue('white', 'gray.700');
   const colorTextLighter = useColorModeValue('gray.400', 'gray.500');
-  const colorTextDarker = useColorModeValue('gray.500', 'gray.400');
   const { t } = useI18n('team-page');
 
   return (
@@ -55,10 +54,10 @@ export default function MemberCard({ member }: Props) {
         <Text fontSize="md" color={colorTextLighter}>
           {t(`role.${member.communityRole}`)}
         </Text>
-        <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
-          {member.bio}
-        </Text>
-        <SocialIconLinks />
+        <SocialIconLinks
+          githubUrl={member.social.github}
+          linkedinUrl={member.social.linkedin}
+        />
       </Grid>
     </Center>
   );
