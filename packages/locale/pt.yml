@@ -74,9 +74,13 @@ social-links:
 team-page:
   title: Pessoas da <span>comunidade</span>
   no-items: Nenhum item encontrado :(
+  add-member-title: Adicione um novo membro
   role.engineer: Engenheiro de Software
   role.mentor: Mestre Jedi
   role.mentored: Padawan
+  label.github: Usuário do Github
+  label.linkedin: Usuário do LinkedIn
+  label.role: Papel na comunidade
 
 ask-us-page:
   head: Nos pergunte
