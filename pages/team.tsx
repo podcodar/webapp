@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { Heading, Text, Grid, Center } from '@chakra-ui/react';
+import { Heading, Text, Grid, Center, Button } from '@chakra-ui/react';
 import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
@@ -8,6 +8,7 @@ import MemberCard from '@packages/components/MemberCard';
 import { Member } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
 import SkeletonMemberCard from '@packages/components/SkeletonMemberCard';
+import Link from '@packages/components/Link';
 
 interface Props {
   members: Member[] | null;
@@ -29,6 +30,16 @@ export default function Team({ members, error }: Props) {
             i18nKey={t(`title`)}
             components={{
               span: <Text as="span" color="purple.400" />,
+              btn: (
+                <Button
+                  _hover={{ textDecor: 'none' }}
+                  as={Link}
+                  mx="1rem"
+                  size="2xl"
+                  href="/app/add-member"
+                  variant="link"
+                />
+              ),
             }}
           />
         </Heading>
