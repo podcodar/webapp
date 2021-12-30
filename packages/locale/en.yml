@@ -70,6 +70,7 @@ social-links:
 
 team-page:
   title: Community <span>People</span>
+  no-items: No item found :(
 
 ask-us-page:
   head: Ask us Anything

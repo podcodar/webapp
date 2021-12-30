@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { Heading, Text, Grid } from '@chakra-ui/react';
+import { Heading, Text, Grid, Center } from '@chakra-ui/react';
 import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
@@ -37,6 +37,8 @@ export default function Team({ members, error }: Props) {
           error.message
         ) : members == null ? (
           <SkeletonMemberCard />
+        ) : members.length === 0 ? (
+          <Center>{t('no-items')}</Center>
         ) : (
           <Grid
             templateColumns={{
