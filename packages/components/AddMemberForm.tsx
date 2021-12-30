@@ -6,8 +6,9 @@ import {
   Heading,
   Input,
   Select,
+  useToast,
 } from '@chakra-ui/react';
-import { ChangeEvent, FormEvent } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 
 import {
   useAddMemberFormView,
@@ -15,15 +16,33 @@ import {
 } from '@packages/features/add-member-form-context';
 import { useI18n } from '@packages/features/i18n-context';
 import { Role } from '@packages/entities/members';
+import { membersApi } from '@packages/hooks/api';
 
 export default function AddMemberForm() {
   const { t } = useI18n('team-page');
   const view = useAddMemberFormView();
+  const toast = useToast();
+  // TODO: move to actions
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: send data
-    console.log({ view });
+    setLoading(true);
+    try {
+      await membersApi.create({
+        github: view.github,
+        linkedin: view.linkedin,
+        role: view.role.selectedValue,
+      });
+
+      const description = `We've added ${view.github} as a new member.`;
+      toast({ description, status: 'success', isClosable: true });
+    } catch (e) {
+      const description = (e as Error).message;
+      toast({ description, status: 'error', isClosable: true });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,7 +55,7 @@ export default function AddMemberForm() {
 
         <SelectRole />
 
-        <Button type="submit" gridColumn="span 2">
+        <Button type="submit" gridColumn="span 2" isLoading={loading}>
           Submit
         </Button>
       </Grid>
