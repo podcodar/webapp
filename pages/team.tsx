@@ -66,7 +66,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   let error: Error | null = null;
 
   try {
-    members = await membersService.list();
+    members = processMembers(await membersService.list());
   } catch (e) {
     error = e as Error;
   }
@@ -77,3 +77,11 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
     props: { members, error },
   };
 };
+
+const processMembers = (members: Member[]): Member[] =>
+  members.map((member) => ({
+    ...member,
+    name: shortName(member.name),
+  }));
+
+const shortName = (name: string) => name.split(' ').slice(0, 2).join(' ');
