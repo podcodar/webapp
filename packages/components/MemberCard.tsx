@@ -1,11 +1,11 @@
 import {
   Heading,
   Avatar,
-  Box,
   Center,
   Image,
   Flex,
   Text,
+  Grid,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { t } from 'i18next';
@@ -23,42 +23,40 @@ export default function MemberCard({ member }: Props) {
   const colorTextLighter = useColorModeValue('gray.400', 'gray.500');
   const colorTextDarker = useColorModeValue('gray.500', 'gray.400');
   return (
-    <Center>
-      <Box
+    <Center
+      w="full"
+      bg={bgColorBody}
+      boxShadow="xl"
+      rounded="md"
+      textAlign="center"
+    >
+      <Image
+        h="7rem"
         w="full"
-        bg={bgColorBody}
-        boxShadow="xl"
-        rounded="md"
-        textAlign="center"
-      >
-        <Image
-          h="7rem"
-          w="full"
-          src={member.images.cover}
-          objectFit="cover"
-          alt="member cover"
+        src={member.images.cover}
+        objectFit="cover"
+        alt="member cover"
+      />
+      <Flex justify="center" mt="-12">
+        <Avatar
+          size="xl"
+          src={member.images.profile}
+          alt="Author"
+          border="2px solid white"
         />
-        <Flex justify="center" mt="-12">
-          <Avatar
-            size="xl"
-            src={member.images.profile}
-            alt="Author"
-            border="2px solid white"
-          />
-        </Flex>
-        <Box p={3}>
-          <Heading fontSize="2xl" fontWeight={500}>
-            {member.name}
-          </Heading>
-          <Text fontSize="md" color={colorTextLighter}>
-            {t(member.communityRole)}
-          </Text>
-          <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
-            {member.bio}
-          </Text>
-          <SocialIconLinks />
-        </Box>
-      </Box>
+      </Flex>
+      <Grid gap="1rem" p="1rem">
+        <Heading fontSize="2xl" fontWeight={500}>
+          {member.name}
+        </Heading>
+        <Text fontSize="md" color={colorTextLighter}>
+          {t(member.communityRole)}
+        </Text>
+        <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
+          {member.bio}
+        </Text>
+        <SocialIconLinks />
+      </Grid>
     </Center>
   );
 }

@@ -7,7 +7,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-export default function SkeletonCard() {
+export default function SkeletonMemberCard() {
   const colorMode = useColorModeValue('white', 'gray.800');
   return (
     <Box w="full" bg={colorMode} boxShadow="xl" rounded="md" pb="2rem">
