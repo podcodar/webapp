@@ -16,8 +16,6 @@ export function makeRequestHandler(httpVerbHandlers: RequestHandlerMap) {
   return async (req: NextApiRequest, res: NextApiResponse) => {
     const httpMethod = req.method ?? '';
     try {
-      if (req.body) req.body = JSON.parse(req.body);
-
       const requestHandler = httpVerbHandlers[httpMethod] ?? defaultHandler;
       return await requestHandler(req, res);
     } catch (error) {
