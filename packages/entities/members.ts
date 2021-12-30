@@ -18,5 +18,8 @@ export interface MemberReq {
   linkedin: string;
   role: Role;
 }
+export interface MemberCreatedResp {
+  id: string;
+}
 
 export type Role = 'engineer' | 'mentor' | 'mentored';

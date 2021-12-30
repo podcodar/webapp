@@ -15,9 +15,14 @@ const httpVerbHandlers = {
     return res.status(200).json(resp);
   },
   POST: async (req: NextApiRequest, res: NextApiResponse) => {
-    // TODO: validate if user already exists
     const member = await makeMemberFromRequest(req);
-    const resp = await membersDao.add(member);
+    const savedMember = await membersDao.findByGithubUser(member.social.github);
+
+    // [upsert] if user exists, update it
+    const resp = await (savedMember != null
+      ? membersDao.update(savedMember.id!, member)
+      : membersDao.add(member));
+
     return res.status(200).json(resp);
   },
   PUT: async (req: NextApiRequest, res: NextApiResponse) => {

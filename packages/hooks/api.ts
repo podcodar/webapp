@@ -1,6 +1,6 @@
 import { Question } from '@packages/entities/questions';
 import { apiAuthToken } from '@packages/config/api';
-import { MemberReq } from '@packages/entities/members';
+import { MemberCreatedResp, MemberReq } from '@packages/entities/members';
 
 // Define a service using a base URL and expected endpoints
 const QUESTION_URL = '/api/questions';
@@ -20,23 +20,28 @@ export const questionsApi = {
 
 const MEMBERS_URL = '/api/members';
 export const membersApi = {
-  create: (req: MemberReq): Promise<Response> =>
-    fetchWithToken(MEMBERS_URL, {
+  create: (req: MemberReq) =>
+    fetchWithToken<MemberCreatedResp>(MEMBERS_URL, {
       body: JSON.stringify(req),
       method: 'POST',
     }),
 };
 
-const fetchWithToken = async (
+async function fetchWithToken<T>(
   input: RequestInfo,
   init?: RequestInit | undefined,
-) => {
-  return fetch(input, {
+): Promise<T> {
+  const res = await fetch(input, {
     ...init,
     headers: {
       ...(init?.headers ?? {}),
       'Content-type': 'application/json',
       Authorization: `Basic ${apiAuthToken}`,
     },
-  }).then((r) => r.json());
-};
+  });
+
+  // validate response
+  if (!res.ok) throw Error(`${res.status}: ${res.statusText}`);
+
+  return await res.json();
+}
