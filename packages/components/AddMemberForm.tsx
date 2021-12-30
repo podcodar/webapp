@@ -21,8 +21,8 @@ import { membersApi } from '@packages/hooks/api';
 export default function AddMemberForm() {
   const { t } = useI18n('team-page');
   const view = useAddMemberFormView();
-  const toast = useToast();
   // TODO: move to actions
+  const toast = useToast();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -35,7 +35,7 @@ export default function AddMemberForm() {
         role: view.role.selectedValue,
       });
 
-      const description = `We've added ${view.github} as a new member.`;
+      const description = t('toast.success', { username: view.github });
       toast({ description, status: 'success', isClosable: true });
     } catch (e) {
       const description = (e as Error).message;

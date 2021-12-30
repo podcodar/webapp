@@ -78,6 +78,7 @@ team-page:
   label.github: Github username
   label.linkedin: LinkedIn username
   label.role: Community Role
+  toast.success: We've added {{username}} as a PodCodar member!
 
 ask-us-page:
   head: Ask us Anything
