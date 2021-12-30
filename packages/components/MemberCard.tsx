@@ -8,9 +8,9 @@ import {
   Grid,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { t } from 'i18next';
 
 import { Member } from '@packages/entities/members';
+import { useI18n } from '@packages/features/i18n-context';
 
 import SocialIconLinks from './SocialIconLinks';
 
@@ -22,6 +22,8 @@ export default function MemberCard({ member }: Props) {
   const bgColorBody = useColorModeValue('white', 'gray.700');
   const colorTextLighter = useColorModeValue('gray.400', 'gray.500');
   const colorTextDarker = useColorModeValue('gray.500', 'gray.400');
+  const { t } = useI18n('team-page');
+
   return (
     <Center
       w="full"
@@ -29,6 +31,7 @@ export default function MemberCard({ member }: Props) {
       boxShadow="xl"
       rounded="md"
       textAlign="center"
+      flexDirection="column"
     >
       <Image
         h="7rem"
@@ -45,12 +48,12 @@ export default function MemberCard({ member }: Props) {
           border="2px solid white"
         />
       </Flex>
-      <Grid gap="1rem" p="1rem">
+      <Grid gap=".5rem" p="1rem">
         <Heading fontSize="2xl" fontWeight={500}>
           {member.name}
         </Heading>
         <Text fontSize="md" color={colorTextLighter}>
-          {t(member.communityRole)}
+          {t(`role.${member.communityRole}`)}
         </Text>
         <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
           {member.bio}

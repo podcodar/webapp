@@ -74,6 +74,9 @@ social-links:
 team-page:
   title: Pessoas da <span>comunidade</span>
   no-items: Nenhum item encontrado :(
+  role.engineer: Engenheiro de Software
+  role.mentor: Mestre Jedi
+  role.mentored: Padawan
 
 ask-us-page:
   head: Nos pergunte
