@@ -5,14 +5,14 @@ import { MemberCreatedResp, MemberReq } from '@packages/entities/members';
 // Define a service using a base URL and expected endpoints
 const QUESTION_URL = '/api/questions';
 export const questionsApi = {
-  list: () => fetchWithToken(QUESTION_URL),
+  list: () => fetchWithToken<Question[]>(QUESTION_URL),
   create: (question: Question) =>
     fetchWithToken(QUESTION_URL, {
       body: JSON.stringify(question),
       method: 'POST',
     }),
   update: (question: Partial<Question>) =>
-    fetchWithToken(QUESTION_URL, {
+    fetchWithToken<Question>(QUESTION_URL, {
       body: JSON.stringify(question),
       method: 'PUT',
     }),
