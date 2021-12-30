@@ -1,5 +1,5 @@
 export interface Member {
-  id: string;
+  id?: string;
   name: string;
   bio: string;
   communityRole: Role;
@@ -11,6 +11,12 @@ export interface Member {
     github: string; // github user
     linkedin: string; // linkedin user
   };
+}
+
+export interface MemberReq {
+  github: string;
+  linkedin: string;
+  role: Role;
 }
 
 export type Role = 'engineer' | 'mentor' | 'mentored';
