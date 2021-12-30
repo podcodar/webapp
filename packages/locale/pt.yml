@@ -82,6 +82,7 @@ team-page:
   label.linkedin: Usuário do LinkedIn
   label.role: Papel na comunidade
   toast.success: Nós adicionamos {{username}} como membro da PodCodar!
+  submit: Enviar
 
 ask-us-page:
   head: Nos pergunte

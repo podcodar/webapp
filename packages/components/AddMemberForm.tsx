@@ -56,7 +56,7 @@ export default function AddMemberForm() {
         <SelectRole />
 
         <Button type="submit" gridColumn="span 2" isLoading={loading}>
-          Submit
+          {t('submit')}
         </Button>
       </Grid>
     </form>
