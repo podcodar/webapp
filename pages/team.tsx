@@ -7,7 +7,7 @@ import Section from '@packages/components/Section';
 import MemberCard from '@packages/components/MemberCard';
 import { Member } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
-import data from '@packages/utils/mocApi.json';
+import SkeletonMemberCard from '@packages/components/SkeletonMemberCard';
 
 interface Props {
   members: Member[] | null;
@@ -15,9 +15,7 @@ interface Props {
 }
 
 export default function Team({ members, error }: Props) {
-  const { dataMembers } = data;
   const { t } = useI18n('team-page');
-  console.log(members, error);
   return (
     <Section py="10rem">
       <Grid gap={10}>
@@ -35,40 +33,26 @@ export default function Team({ members, error }: Props) {
           />
         </Heading>
 
-        <Grid
-          templateColumns={{
-            base: '1fr',
-            sm: '1fr 1fr',
-            md: 'repeat(3, 1fr)',
-            lg: 'repeat(4, 1fr)',
-          }}
-          gap={{ base: 4, lg: 6 }}
-        >
-          {dataMembers.map((member, id) => {
-            return (
-              <MemberCard
-                coverImage={member.coverImage}
-                profileImage={member.profileImage}
-                name={member.name}
-                communityRole={member.communityRole}
-                description={member.description}
-                key={id}
-              />
-            );
-          })}
-        </Grid>
+        {error != null ? (
+          error.message
+        ) : members == null ? (
+          <SkeletonMemberCard />
+        ) : (
+          <Grid
+            templateColumns={{
+              base: '1fr',
+              sm: '1fr 1fr',
+              md: 'repeat(3, 1fr)',
+              lg: 'repeat(4, 1fr)',
+            }}
+            gap={{ base: 4, lg: 6 }}
+          >
+            {members.map((member) => {
+              return <MemberCard member={member} key={member.id} />;
+            })}
+          </Grid>
+        )}
       </Grid>
-
-      {/* TODO: add member cards here */}
-      {/* <div>
-        {error != null
-          ? error.message
-          : members?.map((m) => (
-              <p key={m.id}>
-                {m.id} {m.name} {m.role}
-              </p>
-            ))}
-      </div> */}
     </Section>
   );
 }
