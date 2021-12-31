@@ -9,6 +9,7 @@ import { Member } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
 import SkeletonMemberCard from '@packages/components/SkeletonMemberCard';
 import Link from '@packages/components/Link';
+import useEditingMode from '@packages/hooks/useEditingMode';
 
 interface Props {
   members: Member[] | null;
@@ -17,6 +18,9 @@ interface Props {
 
 export default function Team({ members, error }: Props) {
   const { t } = useI18n('team-page');
+  const { isEditing } = useEditingMode();
+  const displayAddButton = isEditing ? 'block' : 'none';
+
   return (
     <Section py="10rem">
       <Grid gap={10}>
@@ -38,6 +42,7 @@ export default function Team({ members, error }: Props) {
                   size="2xl"
                   href="/app/add-member"
                   variant="link"
+                  display={displayAddButton}
                 />
               ),
             }}

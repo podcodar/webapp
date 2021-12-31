@@ -11,22 +11,20 @@ import {
   Checkbox,
 } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
-import { useRouter } from 'next/router';
 
 import {
   useQuestionView,
   useQuestionActions,
 } from '@packages/features/questions-context';
 import { useI18n } from '@packages/features/i18n-context';
+import useEditingMode from '@packages/hooks/useEditingMode';
 
 export default function ListQuestions() {
   const [showAnswered, setShowAnswered] = useState(false);
   const { questions, error, loading } = useQuestionView();
   const { upVote, check } = useQuestionActions();
-  const { query } = useRouter();
+  const { isEditing } = useEditingMode();
   const { t } = useI18n('ask-us-page');
-
-  const isEditing = Object.keys(query).includes('edit');
 
   const selectedQuestions = showAnswered
     ? questions ?? []
