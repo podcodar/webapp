@@ -75,9 +75,9 @@ team-page:
   title: Pessoas da <span>comunidade</span> <btn>+</btn>
   no-items: Nenhum item encontrado :(
   add-member-title: Adicione um novo membro
-  role.engineer: Cavaleiro Jedi
-  role.mentor: Mestre Jedi
-  role.mentored: Padawan
+  role.engineer: Engenheiro de Software
+  role.mentor: Mentor
+  role.mentored: Mentorado
   label.github: Usuário do Github
   label.linkedin: Usuário do LinkedIn
   label.role: Papel na comunidade

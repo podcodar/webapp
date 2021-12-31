@@ -72,9 +72,9 @@ team-page:
   title: Community <span>People</span> <btn>+</btn>
   no-items: No item found :(
   add-member-title: Add a new member
-  role.engineer: Jedi Knight
-  role.mentor: Master Jedi
-  role.mentored: Padawan
+  role.engineer: Software Engineer
+  role.mentor: Mentor
+  role.mentored: Mentee
   label.github: Github username
   label.linkedin: LinkedIn username
   label.role: Community Role
