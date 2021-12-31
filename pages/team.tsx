@@ -44,9 +44,9 @@ export default function Team({ members, error }: Props) {
           />
         </Heading>
 
-        {error != null ? (
+        {error !== null ? (
           error.message
-        ) : members == null ? (
+        ) : members === null ? (
           <SkeletonMemberCard />
         ) : members.length === 0 ? (
           <Center>{t('no-items')}</Center>

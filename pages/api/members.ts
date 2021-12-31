@@ -45,7 +45,6 @@ export async function makeMemberFromRequest(
   ).then((r) => r.json());
 
   return {
-    bio: githubResp.bio,
     communityRole: memberReq.role,
     images: {
       profile: githubResp.avatar_url,

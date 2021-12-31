@@ -1,7 +1,6 @@
 export interface Member {
   id?: string;
   name: string;
-  bio: string;
   communityRole: Role;
   images: {
     cover: string;
