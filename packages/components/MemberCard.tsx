@@ -1,71 +1,64 @@
 import {
   Heading,
   Avatar,
-  Box,
   Center,
   Image,
   Flex,
   Text,
+  Grid,
   useColorModeValue,
 } from '@chakra-ui/react';
+
+import { Member } from '@packages/entities/members';
+import { useI18n } from '@packages/features/i18n-context';
 
 import SocialIconLinks from './SocialIconLinks';
 
 interface Props {
-  coverImage: string;
-  profileImage: string;
-  name: string;
-  communityRole: string;
-  description: string;
+  member: Member;
 }
 
-export default function MemberCard({
-  coverImage,
-  profileImage,
-  name,
-  communityRole,
-  description,
-}: Props) {
+export default function MemberCard({ member }: Props) {
   const bgColorBody = useColorModeValue('white', 'gray.700');
   const colorTextLighter = useColorModeValue('gray.400', 'gray.500');
-  const colorTextDarker = useColorModeValue('gray.500', 'gray.400');
+  const { t } = useI18n('team-page');
+
   return (
-    <Center>
-      <Box
+    <Center
+      w="full"
+      bg={bgColorBody}
+      boxShadow="xl"
+      rounded="md"
+      textAlign="center"
+      flexDirection="column"
+    >
+      <Image
+        h="7rem"
         w="full"
-        bg={bgColorBody}
-        boxShadow="xl"
-        rounded="md"
-        textAlign="center"
-      >
-        <Image
-          h="7rem"
-          w="full"
-          src={coverImage}
-          objectFit="cover"
-          alt="member cover"
+        src={member.images.cover}
+        objectFit="cover"
+        alt="member cover"
+      />
+      <Flex justify="center" mt="-12">
+        <Avatar
+          size="xl"
+          src={member.images.profile}
+          alt="Author"
+          border="2px solid white"
         />
-        <Flex justify="center" mt="-12">
-          <Avatar
-            size="xl"
-            src={profileImage}
-            alt="Author"
-            border="2px solid white"
-          />
-        </Flex>
-        <Box p={3}>
-          <Heading fontSize="2xl" fontWeight={500}>
-            {name}
-          </Heading>
-          <Text fontSize="md" color={colorTextLighter}>
-            {communityRole}
-          </Text>
-          <Text color={colorTextDarker} fontSize="sm" lineHeight="115%">
-            {description}
-          </Text>
-          <SocialIconLinks />
-        </Box>
-      </Box>
+      </Flex>
+      <Grid gap=".5rem" p="1rem">
+        <Heading fontSize="2xl" fontWeight={500}>
+          {member.name}
+        </Heading>
+        <Text fontSize="md" color={colorTextLighter}>
+          {t(`role.${member.communityRole}`)}
+        </Text>
+        <SocialIconLinks
+          githubUrl={member.social.github}
+          linkedinUrl={member.social.linkedin}
+        />
+      </Grid>
     </Center>
   );
 }

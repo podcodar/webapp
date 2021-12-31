@@ -7,6 +7,8 @@ import {
   addDoc,
   DocumentData,
   QueryDocumentSnapshot,
+  where,
+  query,
 } from 'firebase/firestore';
 
 import { app } from '@packages/repositories/firebase';
@@ -24,6 +26,7 @@ export interface FirestoreDAO<T> {
   add: (item: T) => Promise<FirestoreResponse>;
   update: (id: string, item: Object) => Promise<FirestoreResponse>;
   list: () => Promise<T[]>;
+  findByGithubUser: (id: string) => Promise<T | null>;
 }
 
 /**
@@ -48,6 +51,15 @@ export function makeFirestoreDAO<T>({
     list: async () => {
       const querySnapshot = await getDocs(dbCollection);
       return querySnapshot.docs.map(processItem);
+    },
+    findByGithubUser: async (username: string) => {
+      const queryByGithub = query(
+        dbCollection,
+        where('social.github', '==', username),
+      );
+      const querySnapshot = await getDocs(queryByGithub);
+      const item = querySnapshot.docs[0];
+      return item != null ? processItem(item) : null;
     },
   };
 }

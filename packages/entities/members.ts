@@ -1,26 +1,24 @@
 export interface Member {
-  id: string;
+  id?: string;
   name: string;
-  email: string;
-  role: Role;
-  techs: Techs[];
+  communityRole: Role;
+  images: {
+    cover: string;
+    profile: string;
+  };
+  social: {
+    github: string; // github user
+    linkedin: string; // linkedin user
+  };
 }
 
-export type Techs =
-  | 'git'
-  | 'html'
-  | 'css'
-  | 'bootstrap'
-  | 'javascript'
-  | 'nodejs'
-  | 'express'
-  | 'typescript'
-  | 'react'
-  | 'chakra-ui'
-  | 'nextjs'
-  | 'firebase'
-  | 'mysql'
-  | 'python'
-  | 'linux';
+export interface MemberReq {
+  github: string;
+  linkedin: string;
+  role: Role;
+}
+export interface MemberCreatedResp {
+  id: string;
+}
 
 export type Role = 'engineer' | 'mentor' | 'mentored';

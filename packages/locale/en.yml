@@ -69,7 +69,17 @@ social-links:
   linkedin: LinkedIn
 
 team-page:
-  title: Community <span>People</span>
+  title: Community <span>People</span> <btn>+</btn>
+  no-items: No item found :(
+  add-member-title: Add a new member
+  role.engineer: Software Engineer
+  role.mentor: Mentor
+  role.mentored: Mentee
+  label.github: Github username
+  label.linkedin: LinkedIn username
+  label.role: Community Role
+  toast.success: We've added {{username}} as a PodCodar member!
+  submit: Submit
 
 ask-us-page:
   head: Ask us Anything

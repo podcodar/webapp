@@ -42,4 +42,4 @@ yarn-error.log*
 .gitignore
 
 # images
-docs/images
+images
