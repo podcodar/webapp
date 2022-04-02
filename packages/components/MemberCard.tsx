@@ -43,7 +43,6 @@ export default function MemberCard({ member }: Props) {
         <Avatar
           size="xl"
           src={member.images.profile}
-          alt="Author"
           border="2px solid white"
         />
       </Flex>
