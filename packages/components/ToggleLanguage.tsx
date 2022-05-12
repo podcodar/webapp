@@ -6,12 +6,7 @@ import { USFlagIcon, BRFlagIcon } from '@packages/components/icons';
 export default function ToggleLanguage() {
   const { locale } = useI18nStates();
   const { setLocale } = useI18nActions();
-  const text =
-    locale === 'en' ? (
-      <BRFlagIcon style={{ width: '20px' }} />
-    ) : (
-      <USFlagIcon style={{ width: '20px' }} />
-    );
+  const text = locale === 'en' ? <BRFlagIcon /> : <USFlagIcon />;
   const handleToggle = () => setLocale(locale === 'en' ? 'pt' : 'en');
 
   return (
