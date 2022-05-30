@@ -24,27 +24,24 @@ why-it-works:
     the learning process is shaped according to their needs.
   teamwork.title: Teamwork
   teamwork.description: >
-    Participate in personalized individual mentoring and group projects. It is
-    you who chooses how to contribute to the community.
+    Participate in trail mentorships and group projects. You choose how to contribute to the community.
 
 mentoring:
   title: Our methodology
   description: >
     It is structured by mentorships that are guided by paths according
     to the needs and time of each person, focusing on access to the job market.
-  personalized-mentoring.title: Personalized mentoring
+  personalized-mentoring.title: Trail mentoring
   personalized-mentoring.description: >
-    Personalized mentoring aims at individual monitoring of the mentee, focused
-    on introductory trails and specialized exercises.
-  pair-mentoring.title: Pair mentoring
+    Track mentoring aims to guide the mentee in their studies, focused on introductory tracks and specialized exercises.
+  pair-mentoring.title: Project mentoring
   pair-mentoring.description: >
-    Pair mentoring aims to exchange experience between more than one mentee, pair
-    programming and collaboration in the development of exercises and projects.
-  project-mentoring.title: Project mentoring
-  project-mentoring.description: >
     It is focused on developing internal or external projects. The mentee experiences teamwork,
     pair programmings and code reviews, all are 100% of the time simulating the developer's
     daily life.
+  project-mentoring.title: Market Mentorship
+  project-mentoring.description: >
+    Market mentoring aims to help the mentee in the professional allocation and provide support to the mentee when he is employed.
 
 roadmap:
   title: Check our roadmaps
