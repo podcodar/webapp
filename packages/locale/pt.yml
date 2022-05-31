@@ -34,16 +34,16 @@ mentoring:
     É estruturada por mentorias que são direcionadas por trilhas
     conforme a necessidade e o tempo de cada pessoa, focando no acesso
     ao mercado de trabalho.
-  personalized-mentoring.title: Mentoria de trilha
-  personalized-mentoring.description: >
-    A mentoria de trilha tem como objetivo guiar o mentorando nos seus estudos, focado em trilhas introdutórias e exercícios especializados.
-  pair-mentoring.title: Mentoria de projetos
-  pair-mentoring.description: >
-    É focada em desenvolver projetos internos ou externos. O mentorando vivencia trabalho
-    em equipe, pair programmings e code reviews, todos estão 100% do tempo simulando o dia
-    a dia do desenvolvedor.
-  project-mentoring.title: Mentoria de mercado
+  trail-mentoring.title: Mentoria de trilha
+  trail-mentoring.description: >
+    A mentoria de trilha tem como objetivo guiar o mentorando nos seus estudos inicias através de trilhas introdutórias e exercícios especializados.
+  project-mentoring.title: Mentoria de projetos
   project-mentoring.description: >
+    É focada em desenvolver projetos internos ou externos. O mentorando vivencia trabalho
+    em equipe, pair programmings e code reviews, com o objetivo principal de simular o dia
+    a dia do desenvolvedor.
+  market-mentoring.title: Mentoria de mercado
+  market-mentoring.description: >
     A mentoria de mercado tem como objetivo ajudar o mentorando na alocação profissional e prover suporte ao mesmo quando estiver empregado.
 
 roadmap:

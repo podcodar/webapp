@@ -31,17 +31,17 @@ mentoring:
   description: >
     It is structured by mentorships that are guided by paths according
     to the needs and time of each person, focusing on access to the job market.
-  personalized-mentoring.title: Trail mentoring
-  personalized-mentoring.description: >
-    Track mentoring aims to guide the mentee in their studies, focused on introductory tracks and specialized exercises.
-  pair-mentoring.title: Project mentoring
-  pair-mentoring.description: >
-    It is focused on developing internal or external projects. The mentee experiences teamwork,
-    pair programmings and code reviews, all are 100% of the time simulating the developer's
-    daily life.
-  project-mentoring.title: Market Mentorship
+  trail-mentoring.title: Trail mentoring
+  trail-mentoring.description: >
+    Trail mentoring aims to guide the mentee in their beginning studies with introductory trails and specialized exercises.
+  project-mentoring.title: Project mentoring
   project-mentoring.description: >
-    Market mentoring aims to help the mentee in the professional allocation and provide support to the mentee when he is employed.
+    It is focused on developing internal or external projects. The mentee experiences teamwork,
+    pair programmings and code reviews, with the main objective of simulating the day
+    the developer's day.
+  market-mentoring.title: Market mentoring
+  market-mentoring.description: >
+    Market mentoring aims to help the mentee in the professional allocation and provide support to the mentee after employment.
 
 roadmap:
   title: Check our roadmaps

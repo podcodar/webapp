@@ -57,7 +57,7 @@ function CardItem({ title, description }: CardItemProps) {
 }
 
 const mentoringList = [
-  'personalized-mentoring',
-  'pair-mentoring',
+  'trail-mentoring',
   'project-mentoring',
+  'market-mentoring',
 ];
