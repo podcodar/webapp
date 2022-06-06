@@ -83,4 +83,5 @@ export type TranslationNS =
   | 'social-links'
   | 'footer'
   | 'team-page'
-  | 'ask-us-page';
+  | 'ask-us-page'
+  | 'testimonials';

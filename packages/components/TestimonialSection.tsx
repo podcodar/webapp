@@ -1,9 +1,12 @@
 import { useColorModeValue, Heading } from '@chakra-ui/react';
 
+import { useI18n } from '@packages/features/i18n-context';
+
 import Section from './Section';
 
 export default function TestimonialSection() {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
+  const { t } = useI18n('testimonials');
 
   return (
     <Section bg={bgColor}>
@@ -14,7 +17,7 @@ export default function TestimonialSection() {
         textAlign="center"
         py="2rem"
       >
-        Testimonials
+        {t(`title`)}
       </Heading>
     </Section>
   );
