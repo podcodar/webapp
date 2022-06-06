@@ -21,3 +21,5 @@ export * from './NextIcon';
 export * from './JavaScriptIcon';
 export * from './CssIcon';
 export * from './HtmlIcon';
+export * from './USFlagIcon';
+export * from './BRFlagIcon';
