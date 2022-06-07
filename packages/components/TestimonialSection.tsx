@@ -77,12 +77,12 @@ function TestimonialCard({
         </Heading>
         <Image
           src={img}
-          alt="img"
+          alt={`img${name}`}
           maxW={{ base: '60px', sm: '70px' }}
           fit="cover"
           rounded="full"
           borderStyle="solid"
-          borderWidth="4px"
+          borderWidth="3px"
           borderColor={borderColor}
         />
       </Flex>
