@@ -57,7 +57,7 @@ function CardItem({ title, description }: CardItemProps) {
 }
 
 const mentoringList = [
-  'trail-mentoring',
+  'self-guided-mentorships',
   'project-mentoring',
   'market-mentoring',
 ];
