@@ -1,4 +1,12 @@
-import { useColorModeValue, Heading, Grid, Box, Text } from '@chakra-ui/react';
+import {
+  useColorModeValue,
+  Heading,
+  Box,
+  Flex,
+  Image,
+  Text,
+  Grid,
+} from '@chakra-ui/react';
 
 import { Testimonial } from '@packages/entities/testimonials';
 import { useI18n } from '@packages/features/i18n-context';
@@ -34,13 +42,61 @@ export default function TestimonialSection({ testimonials }: Props) {
         my="2rem"
         justifyItems="center"
       >
-        {testimonials.map((t) => (
-          <Box key={t.id!}>
-            <Text as="h2">{t.name}</Text>
-            <Text>{t.text}</Text>
-          </Box>
+        {testimonials.map((testimonial) => (
+          <TestimonialCard
+            key={testimonial.name}
+            name={testimonial.name}
+            testimonial={testimonial.text}
+            img={testimonial.avatarUrl}
+            borderColor="#17A9BC"
+          />
         ))}
       </Grid>
     </Section>
+  );
+}
+
+interface TestimonialCardProps {
+  name: string;
+  testimonial: string;
+  img: string;
+  borderColor: string;
+}
+
+function TestimonialCard({
+  name,
+  testimonial,
+  img,
+  borderColor,
+}: TestimonialCardProps) {
+  return (
+    <Box maxW="400px" maxH="400" rounded="lg" shadow="lg" p={2}>
+      <Flex justifyContent="space-between" mb="1">
+        <Heading alignSelf="center" size="sm">
+          {name}
+        </Heading>
+        <Image
+          src={img}
+          alt="img"
+          maxW={{ base: '60px', sm: '70px' }}
+          fit="cover"
+          rounded="full"
+          borderStyle="solid"
+          borderWidth="4px"
+          borderColor={borderColor}
+        />
+      </Flex>
+      <Text
+        maxH="300px"
+        overflow="auto"
+        css={{
+          '&::-webkit-scrollbar': {
+            width: '0px',
+          },
+        }}
+      >
+        {testimonial}
+      </Text>
+    </Box>
   );
 }
