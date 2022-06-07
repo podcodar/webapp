@@ -1,4 +1,4 @@
-import { useColorModeValue, Heading } from '@chakra-ui/react';
+import { useColorModeValue, Heading, Grid } from '@chakra-ui/react';
 
 import { useI18n } from '@packages/features/i18n-context';
 
@@ -19,6 +19,20 @@ export default function TestimonialSection() {
       >
         {t(`title`)}
       </Heading>
+      <Grid
+        templateColumns={{
+          base: '1fr',
+          md: 'repeat(3, 1fr)',
+          lg: 'repeat(4, 1fr)',
+        }}
+        gap="2rem"
+        my="2rem"
+      >
+        <div>Place Holder</div>
+        <div>Place Holder</div>
+        <div>Place Holder</div>
+        <div>Place Holder</div>
+      </Grid>
     </Section>
   );
 }
