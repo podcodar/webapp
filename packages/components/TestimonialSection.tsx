@@ -27,6 +27,7 @@ export default function TestimonialSection() {
         }}
         gap="2rem"
         my="2rem"
+        justifyItems="center"
       >
         <div>Place Holder</div>
         <div>Place Holder</div>
