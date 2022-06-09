@@ -31,8 +31,8 @@ mentoring:
   description: >
     It is structured by mentorships that are guided by paths according
     to the needs and time of each person, focusing on access to the job market.
-  stury-mentorships.title: Study mentorships
-  stury-mentorships.description: >
+  study-mentorships.title: Study mentorships
+  study-mentorships.description: >
     Our study mentorship aims to help new learners at the beginning of their journey as a software developer. By following predefined knowledge paths with the help of a mentor
   project-mentoring.title: Project mentoring
   project-mentoring.description: >
