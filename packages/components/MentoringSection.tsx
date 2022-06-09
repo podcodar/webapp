@@ -57,7 +57,7 @@ function CardItem({ title, description }: CardItemProps) {
 }
 
 const mentoringList = [
-  'self-guided-mentorships',
+  'study-mentorships',
   'project-mentoring',
   'market-mentoring',
 ];
