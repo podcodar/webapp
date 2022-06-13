@@ -8,6 +8,7 @@ import Footer from '@packages/components/Footer';
 import TestimonialSection from '@packages/components/TestimonialSection';
 import TechSection from '@packages/components/TechSection';
 import { Testimonial } from '@packages/entities/testimonials';
+import { getTestimonialInstance } from '@packages/services/testimonials';
 
 interface Props {
   testimonials: Testimonial[] | null;
@@ -29,8 +30,16 @@ export default function Home(props: Props) {
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
+  const testimonialsService = getTestimonialInstance();
+
   let testimonials: Testimonial[] | null = null;
   let error: Error | null = null;
+
+  try {
+    testimonials = await testimonialsService.list();
+  } catch (e) {
+    error = e as Error;
+  }
 
   return {
     revalidate: 100, // In Seconds
