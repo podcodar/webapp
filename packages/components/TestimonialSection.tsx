@@ -1,10 +1,15 @@
-import { useColorModeValue, Heading, Grid } from '@chakra-ui/react';
+import { useColorModeValue, Heading, Grid, Box, Text } from '@chakra-ui/react';
 
+import { Testimonial } from '@packages/entities/testimonials';
 import { useI18n } from '@packages/features/i18n-context';
 
 import Section from './Section';
 
-export default function TestimonialSection() {
+interface Props {
+  testimonials: Testimonial[];
+}
+
+export default function TestimonialSection({ testimonials }: Props) {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
   const { t } = useI18n('testimonials');
 
@@ -29,10 +34,12 @@ export default function TestimonialSection() {
         my="2rem"
         justifyItems="center"
       >
-        <div>Place Holder</div>
-        <div>Place Holder</div>
-        <div>Place Holder</div>
-        <div>Place Holder</div>
+        {testimonials.map((t) => (
+          <Box key={t.id!}>
+            <Text as="h2">{t.name}</Text>
+            <Text>{t.text}</Text>
+          </Box>
+        ))}
       </Grid>
     </Section>
   );
