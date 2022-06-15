@@ -19,6 +19,7 @@ import {
   HtmlIcon,
   CssIcon,
 } from './icons';
+import Section from './Section';
 
 const iconList = [
   GitIcon,
@@ -42,7 +43,7 @@ function TechSection() {
   const { t } = useI18n('roadmap');
 
   return (
-    <>
+    <Section>
       <Heading my="4rem" size="md" fontWeight={600} textAlign="left">
         {t(`tech-title`)}
       </Heading>
@@ -57,7 +58,7 @@ function TechSection() {
           <Icon p="0.3rem" key={Icon.name} />
         ))}
       </HStack>
-    </>
+    </Section>
   );
 }
 
