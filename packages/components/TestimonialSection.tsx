@@ -70,7 +70,7 @@ function TestimonialCard({
   borderColor,
 }: TestimonialCardProps) {
   return (
-    <Box maxW="400px" maxH="400" rounded="lg" shadow="lg" p={2}>
+    <Box maxW="400px" h="400" rounded="lg" shadow="lg" p={2}>
       <Flex justifyContent="space-between" mb="1">
         <Heading alignSelf="center" size="sm">
           {name}
