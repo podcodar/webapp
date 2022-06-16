@@ -70,15 +70,15 @@ function TestimonialCard({
   borderColor,
 }: TestimonialCardProps) {
   return (
-    <Box maxW="400px" h="400" rounded="lg" shadow="lg" p={2}>
+    <Box h="400" rounded="lg" shadow="lg" p={2}>
       <Flex justifyContent="space-between" mb="1">
         <Heading alignSelf="center" size="sm">
           {name}
         </Heading>
         <Image
           src={img}
-          alt={`img${name}`}
-          maxW={{ base: '60px', sm: '70px' }}
+          alt={name}
+          maxW={{ base: '4rem', sm: '4.5rem' }}
           fit="cover"
           rounded="full"
           borderStyle="solid"
@@ -86,17 +86,7 @@ function TestimonialCard({
           borderColor={borderColor}
         />
       </Flex>
-      <Text
-        maxH="300px"
-        overflow="auto"
-        css={{
-          '&::-webkit-scrollbar': {
-            width: '0px',
-          },
-        }}
-      >
-        {testimonial}
-      </Text>
+      <Text>{testimonial}</Text>
     </Box>
   );
 }
