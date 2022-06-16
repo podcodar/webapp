@@ -48,7 +48,6 @@ export default function TestimonialSection({ testimonials }: Props) {
             name={testimonial.name}
             testimonial={testimonial.text}
             img={testimonial.avatarUrl}
-            borderColor="#17A9BC"
           />
         ))}
       </Grid>
@@ -60,15 +59,9 @@ interface TestimonialCardProps {
   name: string;
   testimonial: string;
   img: string;
-  borderColor: string;
 }
 
-function TestimonialCard({
-  name,
-  testimonial,
-  img,
-  borderColor,
-}: TestimonialCardProps) {
+function TestimonialCard({ name, testimonial, img }: TestimonialCardProps) {
   return (
     <Box h="400" rounded="lg" shadow="lg" p={2}>
       <Flex justifyContent="space-between" mb="1">
@@ -83,7 +76,7 @@ function TestimonialCard({
           rounded="full"
           borderStyle="solid"
           borderWidth="3px"
-          borderColor={borderColor}
+          borderColor="#17A9BC"
         />
       </Flex>
       <Text>{testimonial}</Text>
