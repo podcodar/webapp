@@ -42,12 +42,12 @@ export default function TestimonialSection({ testimonials }: Props) {
         my="2rem"
         justifyItems="center"
       >
-        {testimonials.map((testimonial) => (
+        {testimonials.map(({ name, text, avatarUrl }) => (
           <TestimonialCard
-            key={testimonial.name}
-            name={testimonial.name}
-            testimonial={testimonial.text}
-            img={testimonial.avatarUrl}
+            key={name}
+            name={name}
+            testimonial={text}
+            img={avatarUrl}
           />
         ))}
       </Grid>
