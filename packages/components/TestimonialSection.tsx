@@ -1,4 +1,12 @@
-import { useColorModeValue, Heading, Grid, Box, Text } from '@chakra-ui/react';
+import {
+  useColorModeValue,
+  Heading,
+  Box,
+  Flex,
+  Image,
+  Text,
+  Grid,
+} from '@chakra-ui/react';
 
 import { Testimonial } from '@packages/entities/testimonials';
 import { useI18n } from '@packages/features/i18n-context';
@@ -34,13 +42,44 @@ export default function TestimonialSection({ testimonials }: Props) {
         my="2rem"
         justifyItems="center"
       >
-        {testimonials.map((t) => (
-          <Box key={t.id!}>
-            <Text as="h2">{t.name}</Text>
-            <Text>{t.text}</Text>
-          </Box>
+        {testimonials.map(({ name, text, avatarUrl }) => (
+          <TestimonialCard
+            key={name}
+            name={name}
+            testimonial={text}
+            img={avatarUrl}
+          />
         ))}
       </Grid>
     </Section>
+  );
+}
+
+interface TestimonialCardProps {
+  name: string;
+  testimonial: string;
+  img: string;
+}
+
+function TestimonialCard({ name, testimonial, img }: TestimonialCardProps) {
+  return (
+    <Box h="400" rounded="lg" shadow="lg" p={2}>
+      <Flex justifyContent="space-between" mb="1">
+        <Heading alignSelf="center" size="sm">
+          {name}
+        </Heading>
+        <Image
+          src={img}
+          alt={name}
+          maxW={{ base: '4rem', sm: '4.5rem' }}
+          fit="cover"
+          rounded="full"
+          borderStyle="solid"
+          borderWidth="3px"
+          borderColor="#17A9BC"
+        />
+      </Flex>
+      <Text>{testimonial}</Text>
+    </Box>
   );
 }
