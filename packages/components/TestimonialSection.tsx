@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import {
   useColorModeValue,
   Heading,
@@ -5,7 +6,8 @@ import {
   Flex,
   Image,
   Text,
-  Grid,
+  Stack,
+  Button,
 } from '@chakra-ui/react';
 
 import { Testimonial } from '@packages/entities/testimonials';
@@ -20,7 +22,14 @@ interface Props {
 export default function TestimonialSection({ testimonials }: Props) {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
   const { t } = useI18n('testimonials');
-
+  const sliderRef = useRef(null);
+  const doubleArray = [...testimonials, ...testimonials]; // temp
+  function handleSliderScroll() {
+    if (sliderRef.current === null) {
+      return;
+    }
+    sliderRef.current.scrollLeft += 300;
+  }
   return (
     <Section bg={bgColor}>
       <Heading
@@ -32,25 +41,19 @@ export default function TestimonialSection({ testimonials }: Props) {
       >
         {t(`title`)}
       </Heading>
-      <Grid
-        templateColumns={{
-          base: '1fr',
-          md: 'repeat(3, 1fr)',
-          lg: 'repeat(4, 1fr)',
-        }}
-        gap="2rem"
-        my="2rem"
-        justifyItems="center"
-      >
-        {testimonials.map(({ name, text, avatarUrl }) => (
-          <TestimonialCard
-            key={name}
-            name={name}
-            testimonial={text}
-            img={avatarUrl}
-          />
-        ))}
-      </Grid>
+      <Button onClick={() => handleSliderScroll()}>{'>'}</Button>
+      <Box h="320" overflow="hidden" ref={sliderRef}>
+        <Stack direction="row">
+          {doubleArray.map(({ name, text, avatarUrl }) => (
+            <TestimonialCard
+              key={name}
+              name={name}
+              testimonial={text}
+              img={avatarUrl}
+            />
+          ))}
+        </Stack>
+      </Box>
     </Section>
   );
 }
@@ -63,8 +66,8 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ name, testimonial, img }: TestimonialCardProps) {
   return (
-    <Box h="400" rounded="lg" shadow="lg" p={2}>
-      <Flex justifyContent="space-between" mb="1">
+    <Box h="300" rounded="lg" shadow="lg" p={2}>
+      <Flex justifyContent="space-between" mb="1" w="300px">
         <Heading alignSelf="center" size="sm">
           {name}
         </Heading>
