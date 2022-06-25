@@ -28,7 +28,7 @@ export default function TestimonialSection({ testimonials }: Props) {
     if (sliderRef.current === null) {
       return;
     }
-    sliderRef.current.scrollLeft += 300;
+    // sliderRef.current.scrollLeft += 300;
   }
   return (
     <Section bg={bgColor}>
