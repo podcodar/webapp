@@ -23,6 +23,7 @@ export default function TestimonialSection({ testimonials }: Props) {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
   const { t } = useI18n('testimonials');
   const sliderRef = useRef<HTMLInputElement>(null);
+
   function handleSliderScroll(direction: string) {
     if (sliderRef.current === null) return;
     let operation = direction === 'left' ? '-' : '+';
@@ -32,6 +33,7 @@ export default function TestimonialSection({ testimonials }: Props) {
         ${316}`,
     );
   }
+
   return (
     <Section bg={bgColor}>
       <Heading
@@ -71,7 +73,7 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ name, testimonial, img }: TestimonialCardProps) {
   return (
-    <Box h="300" rounded="lg" shadow="lg" p={2}>
+    <Box h="300px" rounded="lg" shadow="lg" p={2}>
       <Flex justifyContent="space-between" mb="1" w="300px">
         <Heading alignSelf="center" size="sm">
           {name}
