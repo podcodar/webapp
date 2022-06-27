@@ -22,13 +22,15 @@ interface Props {
 export default function TestimonialSection({ testimonials }: Props) {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
   const { t } = useI18n('testimonials');
-  const sliderRef = useRef(null);
-  const doubleArray = [...testimonials, ...testimonials]; // temp
-  function handleSliderScroll() {
-    if (sliderRef.current === null) {
-      return;
-    }
-    // sliderRef.current.scrollLeft += 300;
+  const sliderRef = useRef<HTMLInputElement>(null);
+  function handleSliderScroll(direction: string) {
+    if (sliderRef.current === null) return;
+    let operation = direction === 'left' ? '-' : '+';
+    sliderRef.current.scrollLeft = eval(
+      `${sliderRef.current.scrollLeft}
+        ${operation}
+        ${316}`,
+    );
   }
   return (
     <Section bg={bgColor}>
@@ -41,10 +43,13 @@ export default function TestimonialSection({ testimonials }: Props) {
       >
         {t(`title`)}
       </Heading>
-      <Button onClick={() => handleSliderScroll()}>{'>'}</Button>
-      <Box h="320" overflow="hidden" ref={sliderRef}>
+      <Flex justify="space-between" mb="0.5rem">
+        <Button onClick={() => handleSliderScroll('left')}>{'<'}</Button>
+        <Button onClick={() => handleSliderScroll('right')}>{'>'}</Button>
+      </Flex>
+      <Box h="320px" overflow="hidden" scrollBehavior="smooth" ref={sliderRef}>
         <Stack direction="row">
-          {doubleArray.map(({ name, text, avatarUrl }) => (
+          {testimonials.map(({ name, text, avatarUrl }) => (
             <TestimonialCard
               key={name}
               name={name}
