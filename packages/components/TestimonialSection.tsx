@@ -24,14 +24,11 @@ export default function TestimonialSection({ testimonials }: Props) {
   const { t } = useI18n('testimonials');
   const sliderRef = useRef<HTMLInputElement>(null);
 
-  function handleSliderScroll(direction: string) {
+  function handleSliderScroll(direction: 'left' | 'right') {
     if (sliderRef.current === null) return;
-    let operation = direction === 'left' ? '-' : '+';
-    sliderRef.current.scrollLeft = eval(
-      `${sliderRef.current.scrollLeft}
-        ${operation}
-        ${316}`,
-    );
+    const multiplier = direction === 'left' ? -1 : 1;
+    const cardWidth = 300;
+    sliderRef.current.scrollLeft += cardWidth * multiplier;
   }
 
   return (
@@ -73,8 +70,8 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ name, testimonial, img }: TestimonialCardProps) {
   return (
-    <Box h="300px" rounded="lg" shadow="lg" p={2}>
-      <Flex justifyContent="space-between" mb="1" w="300px">
+    <Box rounded="lg" shadow="lg" p={2} w="300px" flex="none">
+      <Flex justifyContent="space-between" mb="1">
         <Heading alignSelf="center" size="sm">
           {name}
         </Heading>
