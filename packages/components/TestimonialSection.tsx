@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import {
   useColorModeValue,
   Heading,
@@ -5,7 +6,8 @@ import {
   Flex,
   Image,
   Text,
-  Grid,
+  Stack,
+  Button,
 } from '@chakra-ui/react';
 
 import { Testimonial } from '@packages/entities/testimonials';
@@ -20,6 +22,14 @@ interface Props {
 export default function TestimonialSection({ testimonials }: Props) {
   const bgColor = useColorModeValue('gray.50', 'gray.900');
   const { t } = useI18n('testimonials');
+  const sliderRef = useRef<HTMLInputElement>(null);
+
+  function handleSliderScroll(direction: 'left' | 'right') {
+    if (sliderRef.current === null) return;
+    const multiplier = direction === 'left' ? -1 : 1;
+    const cardWidth = 300;
+    sliderRef.current.scrollLeft += cardWidth * multiplier;
+  }
 
   return (
     <Section bg={bgColor}>
@@ -32,25 +42,22 @@ export default function TestimonialSection({ testimonials }: Props) {
       >
         {t(`title`)}
       </Heading>
-      <Grid
-        templateColumns={{
-          base: '1fr',
-          md: 'repeat(3, 1fr)',
-          lg: 'repeat(4, 1fr)',
-        }}
-        gap="2rem"
-        my="2rem"
-        justifyItems="center"
-      >
-        {testimonials.map(({ name, text, avatarUrl }) => (
-          <TestimonialCard
-            key={name}
-            name={name}
-            testimonial={text}
-            img={avatarUrl}
-          />
-        ))}
-      </Grid>
+      <Flex justify="space-between" mb="0.5rem">
+        <Button onClick={() => handleSliderScroll('left')}>{'<'}</Button>
+        <Button onClick={() => handleSliderScroll('right')}>{'>'}</Button>
+      </Flex>
+      <Box h="320px" overflow="hidden" scrollBehavior="smooth" ref={sliderRef}>
+        <Stack direction="row">
+          {testimonials.map(({ name, text, avatarUrl }) => (
+            <TestimonialCard
+              key={name}
+              name={name}
+              testimonial={text}
+              img={avatarUrl}
+            />
+          ))}
+        </Stack>
+      </Box>
     </Section>
   );
 }
@@ -63,7 +70,7 @@ interface TestimonialCardProps {
 
 function TestimonialCard({ name, testimonial, img }: TestimonialCardProps) {
   return (
-    <Box h="400" rounded="lg" shadow="lg" p={2}>
+    <Box rounded="lg" shadow="lg" p={2} w="300px" flex="none">
       <Flex justifyContent="space-between" mb="1">
         <Heading alignSelf="center" size="sm">
           {name}
