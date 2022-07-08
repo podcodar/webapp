@@ -13,7 +13,7 @@ import useEditingMode from '@packages/hooks/useEditingMode';
 
 interface Props {
   members: Member[] | null;
-  error: string | undefined;
+  error: string | null;
 }
 
 export default function Team({ members, error }: Props) {
@@ -49,7 +49,7 @@ export default function Team({ members, error }: Props) {
           />
         </Heading>
 
-        {error ? (
+        {error != null ? (
           error
         ) : members === null ? (
           <SkeletonMemberCard />
@@ -90,7 +90,7 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     revalidate: 100, // In Seconds
     // will be passed to the page component as props
-    props: { members, error: error?.message },
+    props: { members, error: error?.message || null },
   };
 };
 

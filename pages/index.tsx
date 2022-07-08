@@ -12,7 +12,7 @@ import { getTestimonialInstance } from '@packages/services/testimonials';
 
 interface Props {
   testimonials: Testimonial[] | null;
-  error: Error | null;
+  error: string | null;
 }
 
 export default function Home(props: Props) {
@@ -44,6 +44,6 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
     revalidate: 100, // In Seconds
     // will be passed to the page component as props
-    props: { testimonials, error },
+    props: { testimonials, error: error?.message || null },
   };
 };
