@@ -22,16 +22,29 @@ export default function AddTestimonialPage() {
   const [name, setName] = useState<string>('');
   const [gitUsername, setGitUsername] = useState('');
 
+  function validateInput(e: string) {
+    if (e.length > 300) {
+      alert('Desculpe mas esse campo é limitado a 300 caracteres');
+      return false;
+    } else return true;
+  }
+
+  function validateSubmit() {
+    if (name.length < 5 || testimonial.length < 20) {
+      alert('Por favor preencha os campos');
+      return false;
+    } else return true;
+  }
+
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (testimonial.length < 10 || testimonial.length > 300) {
-      return;
+    if (validateSubmit()) {
+      addTestimonial({
+        name,
+        testimonial,
+        gitUsername,
+      });
     }
-    addTestimonial({
-      name,
-      testimonial,
-      gitUsername,
-    });
   }
 
   async function addTestimonial({
@@ -53,7 +66,8 @@ export default function AddTestimonialPage() {
         avatarUrl: member.avatar_url,
       });
     } catch (e) {
-      alert(`invalid input ${e}`);
+      alert(`invalid github user`);
+      return;
     }
 
     setTestimonial('');
@@ -70,7 +84,7 @@ export default function AddTestimonialPage() {
           <Input
             type="text"
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setName(e.target.value)
+              validateInput(e.target.value) && setName(e.target.value)
             }
             value={name}
           />
@@ -79,7 +93,7 @@ export default function AddTestimonialPage() {
         <Input
           type="text"
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setGitUsername(e.target.value)
+            validateInput(e.target.value) && setGitUsername(e.target.value)
           }
           value={gitUsername}
         />
@@ -87,7 +101,7 @@ export default function AddTestimonialPage() {
           <FormLabel>Testimonial</FormLabel>
           <Textarea
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setTestimonial(e.target.value)
+              validateInput(e.target.value) && setTestimonial(e.target.value)
             }
             value={testimonial}
           />
