@@ -24,6 +24,9 @@ export default function AddTestimonialPage() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (testimonial.length < 10 || testimonial.length > 300) {
+      return;
+    }
     addTestimonial({
       name,
       testimonial,
