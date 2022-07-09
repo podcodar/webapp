@@ -64,6 +64,7 @@ export default function AddTestimonialPage() {
         text: testimonial,
         profileUrl: member.html_url,
         avatarUrl: member.avatar_url,
+        approved: false,
       });
     } catch (e) {
       alert(`invalid github user`);
