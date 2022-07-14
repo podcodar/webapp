@@ -44,6 +44,11 @@ mentoring:
 
 testimonials:
   title: Testimonials
+  add-testimonial-title: Add Testimonial
+  label.name: Name
+  label.github: Github username
+  label.testimonial: Testimonial
+  submit: Submit
 
 roadmap:
   title: Check our roadmaps

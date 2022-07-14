@@ -11,6 +11,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 import Section from '@packages/components/Section';
 import { getTestimonialInstance } from '@packages/services/testimonials';
+import { useI18n } from '@packages/features/i18n-context';
 
 interface testimonialProps {
   name: string;
@@ -19,6 +20,7 @@ interface testimonialProps {
 }
 
 export default function AddTestimonialPage() {
+  const { t } = useI18n('testimonials');
   const [testimonial, setTestimonial] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [gitUsername, setGitUsername] = useState('');
@@ -83,10 +85,10 @@ export default function AddTestimonialPage() {
 
   return (
     <Section py="5rem">
-      <Heading>Add Testimonial</Heading>
+      <Heading>{t('add-testimonial-title')}</Heading>
       <form onSubmit={handleSubmit}>
         <FormControl>
-          <FormLabel>Name</FormLabel>
+          <FormLabel>{t('label.name')}</FormLabel>
           <Input
             type="text"
             maxLength={maxInputLength}
@@ -96,7 +98,7 @@ export default function AddTestimonialPage() {
             value={name}
           />
         </FormControl>
-        <FormLabel>Github username</FormLabel>
+        <FormLabel>{t('label.github')}</FormLabel>
         <Input
           type="text"
           maxLength={maxInputLength}
@@ -106,7 +108,7 @@ export default function AddTestimonialPage() {
           value={gitUsername}
         />
         <FormControl>
-          <FormLabel>Testimonial</FormLabel>
+          <FormLabel>{t('label.testimonial')}</FormLabel>
           <Textarea
             maxLength={maxInputLength}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
@@ -117,7 +119,7 @@ export default function AddTestimonialPage() {
         </FormControl>
 
         <Button mt="1rem" type="submit">
-          Submit
+          {t('submit')}
         </Button>
       </form>
     </Section>

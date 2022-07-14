@@ -57,6 +57,11 @@ roadmap:
 
 testimonials:
   title: Testemunhos
+  add-testimonial-title: Adicione um Testemunho
+  label.name: Nome
+  label.github: Usuário do Github
+  label.testimonial: Testemunho
+  submit: Enviar
 
 footer:
   contribution: Contribua Conosco
