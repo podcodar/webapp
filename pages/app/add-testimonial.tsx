@@ -93,7 +93,7 @@ export default function AddTestimonialPage() {
 
   return (
     <Section py="5rem">
-      <Heading>{t('add-testimonial-title')}</Heading>
+      <Heading py="1rem">{t('add-testimonial-title')}</Heading>
       <form onSubmit={handleSubmit}>
         <FormControl>
           <FormLabel>{t('label.name')}</FormLabel>
