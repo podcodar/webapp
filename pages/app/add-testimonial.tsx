@@ -24,6 +24,7 @@ export default function AddTestimonialPage() {
   const [testimonial, setTestimonial] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [gitUsername, setGitUsername] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const maxInputLength: number = 300;
   const toast = useToast();
 
@@ -54,6 +55,7 @@ export default function AddTestimonialPage() {
     testimonial,
     gitUsername,
   }: testimonialProps) {
+    setIsLoading(true);
     const testimonialsService = getTestimonialInstance();
 
     const member = await fetch(
@@ -74,9 +76,11 @@ export default function AddTestimonialPage() {
         status: 'error',
         isClosable: true,
       });
+      setIsLoading(false);
       return;
     }
 
+    setIsLoading(false);
     toast({ description: 'success', status: 'success', isClosable: true });
     setTestimonial('');
     setName('');
@@ -118,7 +122,7 @@ export default function AddTestimonialPage() {
           />
         </FormControl>
 
-        <Button mt="1rem" type="submit">
+        <Button mt="1rem" type="submit" isLoading={isLoading}>
           {t('submit')}
         </Button>
       </form>
