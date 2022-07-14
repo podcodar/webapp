@@ -5,6 +5,7 @@ import {
   Heading,
   FormControl,
   FormLabel,
+  useToast,
 } from '@chakra-ui/react';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
@@ -21,17 +22,16 @@ export default function AddTestimonialPage() {
   const [testimonial, setTestimonial] = useState<string>('');
   const [name, setName] = useState<string>('');
   const [gitUsername, setGitUsername] = useState('');
-
-  function validateInput(e: string) {
-    if (e.length > 300) {
-      alert('Desculpe mas esse campo é limitado a 300 caracteres');
-      return false;
-    } else return true;
-  }
+  const maxInputLength: number = 300;
+  const toast = useToast();
 
   function validateSubmit() {
     if (name.length < 5 || testimonial.length < 20) {
-      alert('Por favor preencha os campos');
+      toast({
+        description: 'Por favor preencha os campos',
+        status: 'error',
+        isClosable: true,
+      });
       return false;
     } else return true;
   }
@@ -67,10 +67,15 @@ export default function AddTestimonialPage() {
         approved: false,
       });
     } catch (e) {
-      alert(`invalid github user`);
+      toast({
+        description: `invalid github user`,
+        status: 'error',
+        isClosable: true,
+      });
       return;
     }
 
+    toast({ description: 'success', status: 'success', isClosable: true });
     setTestimonial('');
     setName('');
     setGitUsername('');
@@ -84,8 +89,9 @@ export default function AddTestimonialPage() {
           <FormLabel>Name</FormLabel>
           <Input
             type="text"
+            maxLength={maxInputLength}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              validateInput(e.target.value) && setName(e.target.value)
+              setName(e.target.value)
             }
             value={name}
           />
@@ -93,16 +99,18 @@ export default function AddTestimonialPage() {
         <FormLabel>Github username</FormLabel>
         <Input
           type="text"
+          maxLength={maxInputLength}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            validateInput(e.target.value) && setGitUsername(e.target.value)
+            setGitUsername(e.target.value)
           }
           value={gitUsername}
         />
         <FormControl>
           <FormLabel>Testimonial</FormLabel>
           <Textarea
+            maxLength={maxInputLength}
             onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              validateInput(e.target.value) && setTestimonial(e.target.value)
+              setTestimonial(e.target.value)
             }
             value={testimonial}
           />
