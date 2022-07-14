@@ -48,6 +48,9 @@ testimonials:
   label.name: Name
   label.github: Github username
   label.testimonial: Testimonial
+  toast.inputError: Please fill the form
+  toast.invalidUserError: Invalid github user
+  toast.success: Success
   submit: Submit
 
 roadmap:

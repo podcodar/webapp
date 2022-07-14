@@ -31,7 +31,7 @@ export default function AddTestimonialPage() {
   function validateSubmit() {
     if (name.length < 5 || testimonial.length < 20) {
       toast({
-        description: 'Por favor preencha os campos',
+        description: t('toast.inputError'),
         status: 'error',
         isClosable: true,
       });
@@ -72,7 +72,7 @@ export default function AddTestimonialPage() {
       });
     } catch (e) {
       toast({
-        description: `invalid github user`,
+        description: t('toast.invalidUserError'),
         status: 'error',
         isClosable: true,
       });
@@ -81,7 +81,11 @@ export default function AddTestimonialPage() {
     }
 
     setIsLoading(false);
-    toast({ description: 'success', status: 'success', isClosable: true });
+    toast({
+      description: t('toast.success'),
+      status: 'success',
+      isClosable: true,
+    });
     setTestimonial('');
     setName('');
     setGitUsername('');

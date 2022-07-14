@@ -61,6 +61,9 @@ testimonials:
   label.name: Nome
   label.github: Usuário do Github
   label.testimonial: Testemunho
+  toast.inputError: Por favor preencha os campos
+  toast.invalidUserError: Usuário do github invalido
+  toast.success: Sucesso
   submit: Enviar
 
 footer:
