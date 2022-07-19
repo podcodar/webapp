@@ -10,84 +10,65 @@ import {
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 import Section from '@packages/components/Section';
-import { getTestimonialInstance } from '@packages/services/testimonials';
 import { useI18n } from '@packages/features/i18n-context';
-
-interface testimonialProps {
-  name: string;
-  testimonial: string;
-  gitUsername: string;
-}
+import { addTestimonial } from '@packages/services/testimonials';
 
 export default function AddTestimonialPage() {
   const { t } = useI18n('testimonials');
-  const [testimonial, setTestimonial] = useState<string>('');
-  const [name, setName] = useState<string>('');
-  const [gitUsername, setGitUsername] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [formState, setFormState] = useState({
+    name: '',
+    gitUsername: '',
+    testimonial: '',
+  });
+  const { name, gitUsername, testimonial } = formState;
   const maxInputLength: number = 300;
   const toast = useToast();
 
-  function validateSubmit() {
-    if (!(name.length < 5) || !(testimonial.length < 20)) return true;
-
-    toast({
-      description: t('toast.inputError'),
-      status: 'error',
-      isClosable: true,
-    });
+  function onChange(
+    event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) {
+    setFormState({ ...formState, [event.target.name]: event.target.value });
   }
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  function clearForm() {
+    setFormState({ name: '', gitUsername: '', testimonial: '' });
+  }
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (validateSubmit()) {
-      addTestimonial({
+    const isSubmitInvalid = name.length < 5 || testimonial.length < 20;
+
+    if (isSubmitInvalid)
+      toast({
+        description: t('toast.inputError'),
+        status: 'error',
+        isClosable: true,
+      });
+    else {
+      setIsLoading(true);
+      const error = await addTestimonial({
         name,
         testimonial,
         gitUsername,
       });
-    }
-  }
-
-  async function addTestimonial({
-    name,
-    testimonial,
-    gitUsername,
-  }: testimonialProps) {
-    setIsLoading(true);
-    const testimonialsService = getTestimonialInstance();
-
-    const member = await fetch(
-      `https://api.github.com/users/${gitUsername}`,
-    ).then((r) => r.json());
-
-    try {
-      await testimonialsService.add({
-        name: name,
-        text: testimonial,
-        profileUrl: member.html_url,
-        avatarUrl: member.avatar_url,
-        approved: false,
-      });
-    } catch (e) {
-      toast({
-        description: t('toast.invalidUserError'),
-        status: 'error',
-        isClosable: true,
-      });
       setIsLoading(false);
-      return;
-    }
 
-    setIsLoading(false);
-    toast({
-      description: t('toast.success'),
-      status: 'success',
-      isClosable: true,
-    });
-    setTestimonial('');
-    setName('');
-    setGitUsername('');
+      if (error) {
+        toast({
+          description: t('toast.invalidUserError'),
+          status: 'error',
+          isClosable: true,
+        });
+      } else {
+        toast({
+          description: t('toast.success'),
+          status: 'success',
+          isClosable: true,
+        });
+        clearForm();
+      }
+    }
   }
 
   return (
@@ -97,30 +78,27 @@ export default function AddTestimonialPage() {
         <FormControl>
           <FormLabel>{t('label.name')}</FormLabel>
           <Input
+            name="name"
             type="text"
             maxLength={maxInputLength}
-            onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setName(e.target.value)
-            }
+            onChange={onChange}
             value={name}
           />
         </FormControl>
         <FormLabel>{t('label.github')}</FormLabel>
         <Input
+          name="gitUsername"
           type="text"
           maxLength={maxInputLength}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setGitUsername(e.target.value)
-          }
+          onChange={onChange}
           value={gitUsername}
         />
         <FormControl>
           <FormLabel>{t('label.testimonial')}</FormLabel>
           <Textarea
+            name="testimonial"
             maxLength={maxInputLength}
-            onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-              setTestimonial(e.target.value)
-            }
+            onChange={onChange}
             value={testimonial}
           />
         </FormControl>
