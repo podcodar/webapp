@@ -29,14 +29,13 @@ export default function AddTestimonialPage() {
   const toast = useToast();
 
   function validateSubmit() {
-    if (name.length < 5 || testimonial.length < 20) {
-      toast({
-        description: t('toast.inputError'),
-        status: 'error',
-        isClosable: true,
-      });
-      return false;
-    } else return true;
+    if (!(name.length < 5) || !(testimonial.length < 20)) return true;
+
+    toast({
+      description: t('toast.inputError'),
+      status: 'error',
+      isClosable: true,
+    });
   }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
