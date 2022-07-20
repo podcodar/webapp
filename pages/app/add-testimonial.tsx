@@ -5,15 +5,16 @@ import {
   Heading,
   FormControl,
   FormLabel,
-  useToast,
 } from '@chakra-ui/react';
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 import Section from '@packages/components/Section';
 import { useI18n } from '@packages/features/i18n-context';
 import { addTestimonial } from '@packages/services/testimonials';
+import useCustomToast from '@packages/hooks/useCustomToast';
 
 export default function AddTestimonialPage() {
+  const { errorToast, invalidUserToast, successToast } = useCustomToast();
   const { t } = useI18n('testimonials');
   const [isLoading, setIsLoading] = useState(false);
   const [formState, setFormState] = useState({
@@ -23,7 +24,6 @@ export default function AddTestimonialPage() {
   });
   const { name, gitUsername, testimonial } = formState;
   const maxInputLength: number = 300;
-  const toast = useToast();
 
   function onChange(
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -39,36 +39,20 @@ export default function AddTestimonialPage() {
     e.preventDefault();
     const isSubmitInvalid = name.length < 5 || testimonial.length < 20;
 
-    if (isSubmitInvalid)
-      toast({
-        description: t('toast.inputError'),
-        status: 'error',
-        isClosable: true,
-      });
-    else {
-      setIsLoading(true);
-      const error = await addTestimonial({
-        name,
-        testimonial,
-        gitUsername,
-      });
-      setIsLoading(false);
+    if (isSubmitInvalid) return errorToast();
 
-      if (error) {
-        toast({
-          description: t('toast.invalidUserError'),
-          status: 'error',
-          isClosable: true,
-        });
-      } else {
-        toast({
-          description: t('toast.success'),
-          status: 'success',
-          isClosable: true,
-        });
-        clearForm();
-      }
-    }
+    setIsLoading(true);
+    const error = await addTestimonial({
+      name,
+      testimonial,
+      gitUsername,
+    });
+    setIsLoading(false);
+
+    if (error) return invalidUserToast();
+
+    successToast();
+    clearForm();
   }
 
   return (
