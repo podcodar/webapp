@@ -35,9 +35,11 @@ export default function AddTestimonialPage() {
     setFormState({ name: '', gitUsername: '', testimonial: '' });
   }
 
+  const isNameInvalid = name.length < 5;
+  const isTestimonialInvalid = testimonial.length < 20;
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const isSubmitInvalid = name.length < 5 || testimonial.length < 20;
+    const isSubmitInvalid = isNameInvalid || isTestimonialInvalid;
 
     if (isSubmitInvalid) return errorToast();
 
@@ -59,7 +61,7 @@ export default function AddTestimonialPage() {
     <Section py="5rem">
       <Heading py="1rem">{t('add-testimonial-title')}</Heading>
       <form onSubmit={handleSubmit}>
-        <FormControl>
+        <FormControl isInvalid={isNameInvalid}>
           <FormLabel>{t('label.name')}</FormLabel>
           <Input
             name="name"
@@ -77,7 +79,7 @@ export default function AddTestimonialPage() {
           onChange={onChange}
           value={gitUsername}
         />
-        <FormControl>
+        <FormControl isInvalid={isTestimonialInvalid}>
           <FormLabel>{t('label.testimonial')}</FormLabel>
           <Textarea
             name="testimonial"
