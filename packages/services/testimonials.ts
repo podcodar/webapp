@@ -36,11 +36,14 @@ export async function addTestimonial({
   gitUsername,
 }: testimonialProps) {
   const testimonialsService = getTestimonialInstance();
-  try {
-    const member = await fetch(
-      `https://api.github.com/users/${gitUsername}`,
-    ).then((r) => r.json());
+  const member = await fetch(
+    `https://api.github.com/users/${gitUsername}`,
+  ).then((r) => r.json());
 
+  if (member.message === 'Not Found') {
+    return 1;
+  }
+  try {
     await testimonialsService.add({
       name: name,
       text: testimonial,
@@ -49,7 +52,7 @@ export async function addTestimonial({
       approved: false,
     });
   } catch (e) {
-    return e;
+    return 2;
   }
   return 0;
 }
