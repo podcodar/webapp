@@ -54,5 +54,5 @@ export async function addTestimonial({
   } catch (e) {
     return 'toast.serverError';
   }
-  return 0;
+  return;
 }
