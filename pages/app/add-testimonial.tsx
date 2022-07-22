@@ -61,8 +61,8 @@ export default function AddTestimonialPage() {
     <Section py="5rem">
       <Heading py="1rem">{t('add-testimonial-title')}</Heading>
       <form onSubmit={handleSubmit}>
-        <FormControl isInvalid={isNameInvalid}>
-          <FormLabel>{t('label.name')}</FormLabel>
+        <FormControl isInvalid={isNameInvalid} pt="1rem">
+          <FormLabel pb="0.5rem">{t('label.name')}</FormLabel>
           <Input
             name="name"
             type="text"
@@ -71,16 +71,18 @@ export default function AddTestimonialPage() {
             value={name}
           />
         </FormControl>
-        <FormLabel>{t('label.github')}</FormLabel>
-        <Input
-          name="gitUsername"
-          type="text"
-          maxLength={maxInputLength}
-          onChange={onChange}
-          value={gitUsername}
-        />
-        <FormControl isInvalid={isTestimonialInvalid}>
-          <FormLabel>{t('label.testimonial')}</FormLabel>
+        <FormControl pt="2rem">
+          <FormLabel pb="0.5rem">{t('label.github')}</FormLabel>
+          <Input
+            name="gitUsername"
+            type="text"
+            maxLength={maxInputLength}
+            onChange={onChange}
+            value={gitUsername}
+          />
+        </FormControl>
+        <FormControl isInvalid={isTestimonialInvalid} py="2rem">
+          <FormLabel pb="0.5rem">{t('label.testimonial')}</FormLabel>
           <Textarea
             name="testimonial"
             maxLength={maxInputLength}
@@ -89,7 +91,7 @@ export default function AddTestimonialPage() {
           />
         </FormControl>
 
-        <Button mt="1rem" type="submit" isLoading={isLoading}>
+        <Button type="submit" isLoading={isLoading}>
           {t('submit')}
         </Button>
       </form>
