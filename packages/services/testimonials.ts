@@ -49,7 +49,7 @@ export async function addTestimonial({
       approved: false,
     });
   } catch (e) {
-    return 1;
+    return e;
   }
   return 0;
 }
