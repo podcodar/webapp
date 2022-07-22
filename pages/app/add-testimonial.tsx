@@ -62,7 +62,8 @@ export default function AddTestimonialPage() {
     });
     setIsLoading(false);
 
-    if (error) return errorToast('toast.invalidUserError');
+    if (error === 1) return errorToast('toast.invalidUserError');
+    if (error === 2) return errorToast('toast.serverError');
 
     successToast('toast.success');
     clearForm();
