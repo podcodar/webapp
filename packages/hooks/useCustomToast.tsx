@@ -1,31 +1,24 @@
 import { useToast } from '@chakra-ui/react';
 
-import { useI18n } from '@packages/features/i18n-context';
+import { TranslationNS, useI18n } from '@packages/features/i18n-context';
 
-export default function useCustomToast() {
-  const { t } = useI18n('testimonials');
+export default function useCustomToast(source: string) {
+  const { t } = useI18n(source as TranslationNS);
   const toast = useToast();
 
-  const errorToast = () =>
+  const errorToast = (key: string) =>
     toast({
-      description: t('toast.inputError'),
+      description: t(key),
       status: 'error',
       isClosable: true,
     });
 
-  const invalidUserToast = () =>
+  const successToast = (key: string) =>
     toast({
-      description: t('toast.invalidUserError'),
-      status: 'error',
-      isClosable: true,
-    });
-
-  const successToast = () =>
-    toast({
-      description: t('toast.success'),
+      description: t(key),
       status: 'success',
       isClosable: true,
     });
 
-  return { errorToast, invalidUserToast, successToast };
+  return { errorToast, successToast };
 }
