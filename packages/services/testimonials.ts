@@ -41,7 +41,7 @@ export async function addTestimonial({
   ).then((r) => r.json());
 
   if (member.message === 'Not Found') {
-    return 1;
+    return 'toast.invalidUserError';
   }
   try {
     await testimonialsService.add({
@@ -52,7 +52,7 @@ export async function addTestimonial({
       approved: false,
     });
   } catch (e) {
-    return 2;
+    return 'toast.serverError';
   }
   return 0;
 }
