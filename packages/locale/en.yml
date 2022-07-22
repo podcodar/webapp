@@ -48,8 +48,10 @@ testimonials:
   label.name: Name
   label.github: Github username
   label.testimonial: Testimonial
+  label.error: '{{label}} must be between {{min}} and {{max}} characters'
   toast.inputError: Please fill the form
   toast.invalidUserError: Invalid github user
+  toast.serverError: Internal Server Error
   toast.success: Success
   submit: Submit
 

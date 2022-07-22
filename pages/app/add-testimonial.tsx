@@ -100,7 +100,11 @@ export default function AddTestimonialPage() {
           />
           {name.error && (
             <FormErrorMessage>
-              name must be between 5 and 40 characters
+              {t('label.error', {
+                label: t('label.name'),
+                min: '5',
+                max: '40',
+              })}
             </FormErrorMessage>
           )}
         </FormControl>
@@ -115,7 +119,11 @@ export default function AddTestimonialPage() {
           />
           {gitUsername.error && (
             <FormErrorMessage>
-              username must be between 4 and 20 characters
+              {t('label.error', {
+                label: t('label.github'),
+                min: '4',
+                max: '20',
+              })}
             </FormErrorMessage>
           )}
         </FormControl>
@@ -129,7 +137,11 @@ export default function AddTestimonialPage() {
           />
           {name.error && (
             <FormErrorMessage>
-              testimonial must be between 20 and 300 characters
+              {t('label.error', {
+                label: t('label.testimonial'),
+                min: '20',
+                max: '300',
+              })}
             </FormErrorMessage>
           )}
         </FormControl>
