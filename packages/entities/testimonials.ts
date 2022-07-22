@@ -4,4 +4,5 @@ export interface Testimonial {
   profileUrl: string;
   avatarUrl: string;
   text: string;
+  approved: boolean;
 }

@@ -36,7 +36,9 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   let error: Error | null = null;
 
   try {
-    testimonials = await testimonialsService.list();
+    testimonials = await (
+      await testimonialsService.list()
+    ).filter((t) => t.approved === true);
   } catch (e) {
     error = e as Error;
   }
