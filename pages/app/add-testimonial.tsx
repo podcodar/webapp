@@ -37,7 +37,7 @@ export default function AddTestimonialPage() {
   ) {
     setFormState({
       ...formState,
-      [event.target.name]: { ...event.target, name: event.target.value },
+      [event.target.name]: { value: event.target.value, error: false },
     });
   }
 
