@@ -19,7 +19,7 @@ export default function NotFound() {
         <Text color="gray.500" maxW="3xl">
           Mas encontramos esse abacate!
         </Text>
-        <Lottie animation="avocado" />
+        <Lottie animation="alt" />
       </Stack>
     </Section>
   );
