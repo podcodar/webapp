@@ -30,8 +30,8 @@ export const roadMapsLinks = {
     'https://www.notion.so/podcodar/Programa-o-Web-0a244ea5a20f4b73b2c706141f7a4919',
   uxDesign:
     'https://www.notion.so/podcodar/UX-Design-f159ae7615d94d99b7a90675f608788a',
-  gettingHired:
-    'https://www.notion.so/podcodar/Entrar-no-mercado-6132c9e0873948d9943c174f66df7ee3',
-  computerScience:
-    'https://www.notion.so/podcodar/Computa-o-e7674e02bb924ea495f21575f890a831',
+  react:
+    'https://www.notion.so/Em-Constru-o-Programa-o-Web-React-15026eb75eae4dfc8bcb796eb5ef7c7f',
+  introToData:
+    'https://www.notion.so/Introdu-o-Dados-ddc04fddf7ee495a8b697263e75e9477',
 };
