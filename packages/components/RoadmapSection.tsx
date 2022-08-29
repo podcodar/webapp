@@ -84,13 +84,13 @@ const cardList: CardItemProps[] = [
     color: '#F99223',
   },
   {
-    title: 'market',
-    link: roadMapsLinks.gettingHired,
+    title: 'react',
+    link: roadMapsLinks.react,
     color: '#FF4CFF',
   },
   {
-    title: 'computing',
-    link: roadMapsLinks.computerScience,
+    title: 'data',
+    link: roadMapsLinks.introToData,
     color: '#b794f4',
   },
 ];
