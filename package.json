@@ -46,5 +46,8 @@
   "lint-staged": {
     "*": "prettier --write .",
     "**/*.{tsx,ts,js,jsx}": "next lint --fix ."
+  },
+  "engines": {
+    "node": ">=18"
   }
 }
