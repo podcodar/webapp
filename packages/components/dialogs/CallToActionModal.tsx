@@ -1,3 +1,6 @@
+// (Frattezi) FEATURE TEMPORARILY PAUSED: This functionality is currently on hold.
+// If you need to restore its usage, please check PR https://github.com/podcodar/webapp/pull/149/.
+
 import {
   Modal,
   ModalBody,
