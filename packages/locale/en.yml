@@ -1,5 +1,6 @@
 navbar:
   join: Join
+  join.tooltip: Registrations paused. More information coming soon!
   forum: Forum
   wiki: Wiki
   team: Team

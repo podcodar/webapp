@@ -10,12 +10,12 @@ import {
   useDisclosure,
   HStack,
   useColorModeValue,
+  Tooltip,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import { useMemo } from 'react';
 
 import { Logo } from '@packages/components/icons';
-import { useModalActions } from '@packages/features/modal-context';
 import { useI18n } from '@packages/features/i18n-context';
 import { links } from '@packages/config/site';
 import Link from '@packages/components/Link';
@@ -32,7 +32,6 @@ const actionButtons = [
 
 function NavBar() {
   const { t } = useI18n('navbar');
-  const { open } = useModalActions();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navbarBgColor = useColorModeValue('gray.50', 'gray.900');
 
@@ -97,16 +96,26 @@ function NavBar() {
           </HStack>
         </Flex>
 
-        <Button
-          key="cta"
-          minW="5rem"
-          colorScheme="purple"
+        <Tooltip
+          hasArrow
+          shouldWrapChildren
+          w={40}
           bg="purple.400"
-          _hover={{ bg: 'purple.500' }}
-          onClick={open}
+          fontWeight="bold"
+          textAlign="center"
+          label={t(`join.tooltip`)}
         >
-          {t(`join`)}
-        </Button>
+          <Button
+            isDisabled
+            key="cta"
+            minW="5rem"
+            bg="purple.400"
+            colorScheme="purple"
+            _hover={{ bg: 'purple.500' }}
+          >
+            {t(`join`)}
+          </Button>
+        </Tooltip>
       </Container>
 
       {isOpen ? (

@@ -1,5 +1,6 @@
 navbar:
   join: Entrar
+  join.tooltip: Incrições pausadas. Em breve, mais informações!
   forum: Fórum
   wiki: Wiki
   team: Equipe
