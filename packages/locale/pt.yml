@@ -1,5 +1,6 @@
 navbar:
   join: Entrar
+  join.tooltip: Incrições pausadas. Em breve, mais informações!
   forum: Fórum
   wiki: Wiki
   team: Equipe
@@ -11,7 +12,6 @@ call-to-action:
     com foco na formação de profissionais. Existimos para democratizar o
     conhecimento e o acesso às oportunidades de trabalho na área de
     tecnologia
-  main-button: Faça parte!
   secondary-button: Saiba mais
 
 why-it-works:

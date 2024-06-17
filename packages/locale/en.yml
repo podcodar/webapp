@@ -1,5 +1,6 @@
 navbar:
   join: Join
+  join.tooltip: Registrations paused. More information coming soon!
   forum: Forum
   wiki: Wiki
   team: Team
@@ -10,7 +11,6 @@ call-to-action:
     We are a technology and work community that teaches programming with a focus
     on training professionals. We exist to democratize knowledge and access to job
     opportunities in the technology area
-  main-button: Join us!
   secondary-button: Learn more
 
 why-it-works:
