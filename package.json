@@ -9,6 +9,8 @@
     "build:static": "next build && next export",
     "start": "next start",
     "deploy": "firebase deploy",
+    "encrypt": "gpg -c .env",
+    "decrypt": "gpg -d .env.gpg > .env",
     "lint": "next lint",
     "fmt": "prettier --write . && next lint --fix --dir packages",
     "prepare": "husky install"
