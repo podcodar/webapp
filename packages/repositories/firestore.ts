@@ -9,6 +9,7 @@ import {
   QueryDocumentSnapshot,
   where,
   query,
+  WithFieldValue,
 } from 'firebase/firestore';
 
 import { app } from '@packages/repositories/firebase';
@@ -40,7 +41,10 @@ export function makeFirestoreDAO<T>({
   const dbCollection = collection(db, collectionName);
   return {
     add: async (item: T) => {
-      const docRef = await addDoc(dbCollection, item);
+      const docRef = await addDoc(
+        dbCollection,
+        item as WithFieldValue<DocumentData>,
+      );
       return { id: docRef.id };
     },
     update: async (id: string, item: Object) => {

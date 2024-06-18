@@ -1,8 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(req: NextRequest) {
-  const basicAuth = req.headers.get('authorization');
+  if (!req.nextUrl.pathname.startsWith('/api')) {
+    // This logic is only applied to /about
+    return NextResponse.json({ message: 'Unauthorized' }, { status: 403 });
+  }
 
+  const basicAuth = req.headers.get('authorization');
   if (basicAuth) {
     const auth = basicAuth.split(' ')[1];
     const [user, pwd] = atob(auth).split(':');
@@ -12,8 +16,5 @@ export function middleware(req: NextRequest) {
     }
   }
 
-  return new Response('Auth required', {
-    status: 401,
-    headers: { 'WWW-Authenticate': 'Basic realm="Secure Area"' },
-  });
+  return NextResponse.json({ message: 'Auth required' }, { status: 401 });
 }
