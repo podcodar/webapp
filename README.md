@@ -20,17 +20,8 @@ It's nice to have you here! This project is the web app created by the PodCodar 
 ### Start Project
 
 - Install dependencies using library yarn whit command `yarn`.
-- Create a file `.env.local` in the root folder fill in the following fields
 
-```shell
-FIREBASE_APP_ID="***"
-FIREBASE_API_KEY="***"
-FIREBASE_PROJECT_ID="***"
-FIREBASE_MESSAGING_ID="***"
-FIREBASE_MEASUREMENT_ID="***"
-```
-
-- After creating it, ask a team member for the real credentials.
+- run `yarn decrypt` to decrypt the `.env.gpg` file. (ask the password for the current teammembers)
 
 - now enter a command `yarn dev` your project will be running.
 
