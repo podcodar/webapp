@@ -1,3 +1,5 @@
+'use client';
+
 import { Heading, Text, Stack } from '@chakra-ui/layout';
 
 import Lottie from '@packages/components/Lottie';

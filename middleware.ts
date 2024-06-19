@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 export function middleware(req: NextRequest) {
   if (!req.nextUrl.pathname.startsWith('/api')) {
     // This logic is only applied to /about
-    return NextResponse.json({ message: 'Unauthorized' }, { status: 403 });
+    return NextResponse.next();
   }
 
   const basicAuth = req.headers.get('authorization');
