@@ -12,6 +12,7 @@
     "encrypt": "gpg -c .env",
     "decrypt": "gpg -d .env.gpg > .env",
     "lint": "next lint",
+    "e2e": "playwright test",
     "fmt": "prettier --write . && next lint --fix --dir packages",
     "prepare": "husky install"
   },
