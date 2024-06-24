@@ -111,6 +111,7 @@ function NavBar() {
             minW="5rem"
             bg="purple.400"
             colorScheme="purple"
+            data-testid="join-button"
             _hover={{ bg: 'purple.500' }}
           >
             {t(`join`)}

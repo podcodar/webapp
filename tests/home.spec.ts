@@ -1,0 +1,47 @@
+import { test, expect } from '@playwright/test';
+
+const PAGE_MAP: Record<string, string> = {
+  development: 'http://localhost:3000',
+  production: 'https://podcodar.org',
+};
+
+const HOMEPAGE =
+  PAGE_MAP[process.env.NODE_ENV as string] || PAGE_MAP.development;
+
+test('has title', async ({ page }) => {
+  await page.goto(HOMEPAGE);
+
+  // Expect a title "to contain" a substring.
+  await expect(page).toHaveTitle(/PodCodar/);
+});
+
+test('Join button is disabled', async ({ page }) => {
+  await page.goto(HOMEPAGE);
+
+  // Get join button
+  const joinBtn = page.getByTestId('join-button');
+  expect(joinBtn).not.toBeNull();
+
+  // Expect join button to be disabled
+  expect(await joinBtn.isEnabled()).toBeFalsy();
+});
+
+test('Toggle theme is working', async ({ page }) => {
+  await page.goto(HOMEPAGE);
+
+  // Get join button
+  const toggleBtn = page.getByTestId('toggle-theme');
+  expect(toggleBtn).not.toBeNull();
+
+  // check initial theme value
+  const initialTheme = await page.getAttribute('html', 'data-theme');
+  expect(initialTheme).toBe('light');
+
+  // Click the toggle theme
+  await toggleBtn.click();
+  expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
+
+  // Click the toggle theme
+  await toggleBtn.click();
+  expect(await page.getAttribute('html', 'data-theme')).toBe('light');
+});
