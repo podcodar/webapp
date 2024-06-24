@@ -12,6 +12,7 @@ export default function ToggleLanguage() {
   return (
     <Button
       rounded="md"
+      data-testid="toggle-language"
       aria-label="Toggle language button"
       onClick={handleToggle}
     >

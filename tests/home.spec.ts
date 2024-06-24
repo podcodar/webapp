@@ -45,3 +45,22 @@ test('Toggle theme is working', async ({ page }) => {
   await toggleBtn.click();
   expect(await page.getAttribute('html', 'data-theme')).toBe('light');
 });
+
+test('Toggle language is working', async ({ page }) => {
+  await page.goto(HOMEPAGE);
+
+  // Get join button
+  const toggleBtn = page.getByTestId('toggle-language');
+  expect(toggleBtn).not.toBeNull();
+
+  // check initial theme value
+  expect(await page.getByTestId('join-button').textContent()).toBe('Entrar');
+
+  // Click the toggle language
+  await toggleBtn.click();
+  expect(await page.getByTestId('join-button').textContent()).toBe('Join');
+
+  // Click the toggle language
+  await toggleBtn.click();
+  expect(await page.getByTestId('join-button').textContent()).toBe('Entrar');
+});
