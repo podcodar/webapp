@@ -1,5 +1,7 @@
 import { test, expect } from '@playwright/test';
 
+import { links } from '@packages/config/site';
+
 const PAGE_MAP: Record<string, string> = {
   development: 'http://localhost:3000',
   production: 'https://podcodar.org',
@@ -15,6 +17,14 @@ test('has title', async ({ page }) => {
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/PodCodar/);
+});
+
+test('has navigation links', async ({ page }) => {
+  await page.goto(HOMEPAGE);
+
+  for (const link of Object.values(links)) {
+    expect(await page.$(`a[href="${link}"]`)).not.toBeNull();
+  }
 });
 
 test('Join button is disabled', async ({ page }) => {
