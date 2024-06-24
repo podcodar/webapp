@@ -6,7 +6,9 @@ const PAGE_MAP: Record<string, string> = {
 };
 
 const HOMEPAGE =
-  PAGE_MAP[process.env.NODE_ENV as string] || PAGE_MAP.development;
+  process.env.TEST_URL ||
+  PAGE_MAP[process.env.NODE_ENV as string] ||
+  PAGE_MAP.development;
 
 test('has title', async ({ page }) => {
   await page.goto(HOMEPAGE);
