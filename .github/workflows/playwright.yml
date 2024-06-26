@@ -1,0 +1,44 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  integration-tests:
+    timeout-minutes: 300
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+
+      - name: Waiting for 200 from the Vercel Preview
+        uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
+        id: waitFor200
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          max_timeout: 300
+
+      # access preview url
+      - name: Inject testing URL
+        run: echo "TEST_URL=${{steps.waitFor200.outputs.url}}" >> $GITHUB_ENV
+
+      - name: Install dependencies
+        run: npm install -g yarn && yarn
+
+      - name: Install Playwright Browsers
+        run: yarn playwright install --with-deps
+
+      - name: Run Playwright tests
+        run: yarn playwright test
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 2 

@@ -8,6 +8,7 @@ export default function ToggleThemeButton() {
   return (
     <IconButton
       rounded="md"
+      data-testid="toggle-theme"
       aria-label="Toggle theme button"
       icon={<Icon />}
       onClick={toggleColorMode}
