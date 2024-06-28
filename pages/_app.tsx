@@ -8,19 +8,27 @@ import { FirebaseProvider } from "@packages/features/firebase-context";
 import { withProviders } from "@packages/utils/react";
 
 import type { AppProps } from "next/app";
+import { Suspense } from "react";
+import { useIsClient } from "@packages/hooks/useIsClient";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  if (typeof window === "undefined") {
+  const isClient = useIsClient();
+
+  if (!isClient) {
     return null;
   }
 
-  return withProviders(
-    <Layout>
-      <CSSReset />
-      <Metadata />
-      <Component {...pageProps} />
-    </Layout>,
-    providers,
+  return (
+    <Suspense fallback={<p>Loading</p>}>
+      {withProviders(
+        <Layout>
+          <CSSReset />
+          <Metadata />
+          <Component {...pageProps} />
+        </Layout>,
+        providers,
+      )}
+    </Suspense>
   );
 }
 
