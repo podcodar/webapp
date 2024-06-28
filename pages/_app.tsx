@@ -12,24 +12,24 @@ import { Suspense } from "react";
 import { useIsClient } from "@packages/hooks/useIsClient";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const isClient = useIsClient();
+	const isClient = useIsClient();
 
-  if (!isClient) {
-    return null;
-  }
+	if (!isClient) {
+		return null;
+	}
 
-  return (
-    <Suspense fallback={<p>Loading</p>}>
-      {withProviders(
-        <Layout>
-          <CSSReset />
-          <Metadata />
-          <Component {...pageProps} />
-        </Layout>,
-        providers,
-      )}
-    </Suspense>
-  );
+	return (
+		<Suspense fallback={<p>Loading</p>}>
+			{withProviders(
+				<Layout>
+					<CSSReset />
+					<Metadata />
+					<Component {...pageProps} />
+				</Layout>,
+				providers,
+			)}
+		</Suspense>
+	);
 }
 
 const providers = [ModalProvider, FirebaseProvider, ChakraProvider, I18nProvider];
