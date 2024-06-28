@@ -1,4 +1,4 @@
-import { Icon, IconProps, useColorModeValue } from '@chakra-ui/react';
+import { Icon, type IconProps, useColorModeValue } from '@chakra-ui/react';
 
 export function PracticalLearningIcon(props: IconProps) {
   const lineColor = useColorModeValue('black', 'whitesmoke');

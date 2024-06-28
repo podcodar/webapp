@@ -19,7 +19,7 @@ export default function CallToActionSection() {
           lineHeight="110%"
         >
           <Trans
-            i18nKey={t(`title`)}
+            i18nKey={t('title')}
             components={{
               span: <Text as="span" color="purple.400" />,
             }}
@@ -27,7 +27,7 @@ export default function CallToActionSection() {
         </Heading>
 
         <Text color="gray.500" maxW="3xl">
-          {t(`description`)}
+          {t('description')}
         </Text>
 
         <Stack
@@ -36,7 +36,7 @@ export default function CallToActionSection() {
           direction={{ base: 'column', sm: 'row' }}
         >
           <Button as="a" href={links.secondaryButton} rounded="full" px={6}>
-            {t(`secondary-button`)}
+            {t('secondary-button')}
           </Button>
         </Stack>
         <Flex w="full">

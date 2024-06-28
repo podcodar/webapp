@@ -45,7 +45,7 @@ function TechSection() {
   return (
     <Section>
       <Heading my="4rem" size="md" fontWeight={600} textAlign="left">
-        {t(`tech-title`)}
+        {t('tech-title')}
       </Heading>
       <HStack
         spacing="1rem"

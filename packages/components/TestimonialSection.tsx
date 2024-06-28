@@ -10,10 +10,11 @@ import {
   Button,
 } from '@chakra-ui/react';
 
-import { Testimonial } from '@packages/entities/testimonials';
 import { useI18n } from '@packages/features/i18n-context';
 
 import Section from './Section';
+
+import type { Testimonial } from '@packages/entities/testimonials';
 
 interface Props {
   testimonials: Testimonial[];
@@ -40,7 +41,7 @@ export default function TestimonialSection({ testimonials }: Props) {
         textAlign="center"
         py="2rem"
       >
-        {t(`title`)}
+        {t('title')}
       </Heading>
       <Flex justify="space-between" mb="0.5rem">
         <Button onClick={() => handleSliderScroll('left')}>{'<'}</Button>

@@ -55,7 +55,7 @@ function Copyrights() {
 
       <SocialIconLinks />
 
-      <Text fontSize="sm">{t(`legal`, { currentYear })}</Text>
+      <Text fontSize="sm">{t('legal', { currentYear })}</Text>
     </Stack>
   );
 }

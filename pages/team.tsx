@@ -1,15 +1,16 @@
-import { GetStaticProps } from 'next';
 import { Heading, Text, Grid, Center, Button } from '@chakra-ui/react';
 import { Trans } from 'react-i18next';
 
 import { useI18n } from '@packages/features/i18n-context';
 import Section from '@packages/components/Section';
 import MemberCard from '@packages/components/MemberCard';
-import { Member } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
 import SkeletonMemberCard from '@packages/components/SkeletonMemberCard';
 import Link from '@packages/components/Link';
 import useEditingMode from '@packages/hooks/useEditingMode';
+
+import type { Member } from '@packages/entities/members';
+import type { GetStaticProps } from 'next';
 
 interface Props {
   members: Member[] | null;
@@ -31,7 +32,7 @@ export default function Team({ members, error }: Props) {
           textAlign="center"
         >
           <Trans
-            i18nKey={t(`title`)}
+            i18nKey={t('title')}
             components={{
               span: <Text as="span" color="purple.400" />,
               btn: (

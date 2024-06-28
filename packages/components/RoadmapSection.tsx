@@ -13,11 +13,11 @@ export default function RoadmapSection() {
     <Section bg={bgColor}>
       <Flex justifyContent="space-between" py="1rem">
         <Heading size="md" fontWeight={600} textAlign="left">
-          {t(`title`)}
+          {t('title')}
         </Heading>
         <Text textAlign="right">
           <Link href={roadMapsLinks.all} isExternal>
-            {t(`see-all`)}
+            {t('see-all')}
           </Link>
         </Text>
       </Flex>

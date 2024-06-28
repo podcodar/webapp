@@ -4,8 +4,8 @@ import {
   Text,
   Heading,
   Icon,
-  ComponentWithAs,
-  IconProps,
+  type ComponentWithAs,
+  type IconProps,
   Stack,
 } from '@chakra-ui/react';
 
@@ -31,7 +31,7 @@ export default function WhyItWorksSection() {
         textAlign="center"
         py="2rem"
       >
-        {t(`title`)}
+        {t('title')}
       </Heading>
       <Stack
         direction={{ base: 'column', md: 'row' }}

@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react';
+import { type FormEvent, useState } from 'react';
 import { Button } from '@chakra-ui/button';
 import { Input } from '@chakra-ui/input';
 import { Grid } from '@chakra-ui/layout';
@@ -15,7 +15,7 @@ export default function AddQuestionForm() {
     e.preventDefault();
 
     // Check if text has at lease one word
-    if (text.split('').length == 0) return;
+    if (text.split('').length === 0) return;
 
     actions.addQuestion({
       text,

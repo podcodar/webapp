@@ -1,10 +1,10 @@
-import { DocumentData, QueryDocumentSnapshot } from '@firebase/firestore';
-
 import {
   makeFirestoreDAO,
-  FirestoreDAO,
+  type FirestoreDAO,
 } from '@packages/repositories/firestore';
-import { Member } from '@packages/entities/members';
+
+import type { DocumentData, QueryDocumentSnapshot } from '@firebase/firestore';
+import type { Member } from '@packages/entities/members';
 
 let members: undefined | FirestoreDAO<Member>;
 export function getMemberInstance() {

@@ -11,9 +11,9 @@
     "deploy": "firebase deploy",
     "encrypt": "gpg -c .env",
     "decrypt": "gpg -d .env.gpg > .env",
-    "lint": "next lint",
+    "lint": "biome lint",
     "e2e": "playwright test",
-    "fmt": "prettier --write . && next lint --fix --dir packages",
+    "fmt": "biome format --write && biome lint --write --unsafe",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -26,7 +26,6 @@
     "framer-motion": "^4",
     "i18next": "^21.4.2",
     "lodash": "^4.17.21",
-    "lottie-react": "^2.1.0",
     "next": "12",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -59,5 +58,6 @@
   "volta": {
     "node": "18.20.3",
     "yarn": "4.3.0"
-  }
+  },
+  "packageManager": "yarn@4.3.1"
 }

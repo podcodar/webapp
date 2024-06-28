@@ -43,10 +43,9 @@ export default function CallToActionModal() {
 
   function handleLoad() {
     setIsLoading(!isLoading);
-    if (!isIframeOpen) {
-      setIsIframeOpen(true);
-    } else handleClose(); // TODO: show a success modal
-  }
+    if (isIframeOpen) handleClose(); // TODO: show a success modal else {
+    setIsIframeOpen(true);
+  } // TODO: show a success modal
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size={responsiveModalSize}>
@@ -90,6 +89,7 @@ function GoogleForm({ isIframeOpen = false, handleLoad = () => {} }) {
   return (
     <SlideFade in={isIframeOpen} offsetY="1rem">
       <iframe
+        title="registration-form"
         src={IFRAME_FORM_URL}
         width={width}
         height={height}

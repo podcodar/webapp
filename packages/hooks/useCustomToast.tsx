@@ -1,6 +1,6 @@
 import { useToast } from '@chakra-ui/react';
 
-import { TranslationNS, useI18n } from '@packages/features/i18n-context';
+import { type TranslationNS, useI18n } from '@packages/features/i18n-context';
 
 export default function useCustomToast(source: string) {
   const { t } = useI18n(source as TranslationNS);

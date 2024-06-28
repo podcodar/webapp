@@ -7,7 +7,7 @@ import {
   FormLabel,
   FormErrorMessage,
 } from '@chakra-ui/react';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { type ChangeEvent, type FormEvent, useState } from 'react';
 
 import Section from '@packages/components/Section';
 import { useI18n } from '@packages/features/i18n-context';

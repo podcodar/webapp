@@ -4,31 +4,21 @@
     "enabled": true
   },
   "formatter": {
+    "include": ["**/*.ts", "**/*.tsx"],
     "enabled": true,
     "formatWithErrors": true,
     "indentStyle": "tab",
-    "indentSize": 2,
+    "indentWidth": 2,
     "lineWidth": 120
   },
   "linter": {
     "enabled": true,
-    "ignore": ["node_modules", ".next"],
-    "rules": {
-      "all": true,
-      "complexity": {
-        "noUselessFragments": "off"
-      },
-      "style": {
-        "useSingleVarDeclarator": "off",
-        "noParameterAssign": "off",
-        "noNonNullAssertion": "off"
-      },
-      "suspicious": {
-        "noExplicitAny": "off"
-      },
-      "nursery": {
-        "all": false
-      }
-    }
+    "ignore": [
+      "node_modules",
+      ".next",
+      "packages/components/icons",
+      "**/*.(svg,js)",
+      "**/*/firestore.ts"
+    ]
   }
 }

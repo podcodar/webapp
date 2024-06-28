@@ -26,7 +26,7 @@ export default function AskUsPage() {
           textAlign="center"
         >
           <Trans
-            i18nKey={t(`title`)}
+            i18nKey={t('title')}
             components={{
               span: <Text as="span" color="purple.400" />,
             }}

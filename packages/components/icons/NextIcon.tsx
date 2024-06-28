@@ -1,6 +1,6 @@
-import { IconProps } from '@chakra-ui/react';
-
 import { TechIcon } from './TechIcon';
+
+import type { IconProps } from '@chakra-ui/react';
 
 export const NextIcon = (props: IconProps) => {
   return (

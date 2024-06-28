@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { type Dispatch, type SetStateAction, useState } from 'react';
 
-import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
+import { type ChildrenProps, useEffectOnce } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
-import { Question } from '@packages/entities/questions';
 import { questionsApi } from '@packages/hooks/api';
+
+import type { Question } from '@packages/entities/questions';
 
 export function QuestionsProvider({ children }: ChildrenProps) {
   const [questions, setQuestions] = useState<Question[] | null>(null);
@@ -77,7 +78,7 @@ const createView = (
 ) => ({
   questions: questions
     ?.sort(sortByVotes)
-    .map((q) => ({ ...q, canVote: localVotes.canVote(q.id!) })),
+    .map((q) => ({ ...q, canVote: localVotes.canVote(q.id) })),
   error,
   loading,
 });
@@ -92,7 +93,8 @@ const localVotes = {
     const votes = JSON.parse(localStorage.getItem(STORE_VOTES) ?? '[]');
     localStorage.setItem(STORE_VOTES, JSON.stringify([...votes, id]));
   },
-  canVote: (id: string) => {
+  canVote: (id?: string) => {
+    if (!id) return false;
     const votes = localStorage.getItem(STORE_VOTES) ?? '';
     return !votes.includes(id);
   },

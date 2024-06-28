@@ -1,17 +1,18 @@
-import { Dispatch, useReducer } from 'react';
-import { AnyAction } from '@reduxjs/toolkit';
+import { type Dispatch, useReducer } from 'react';
 
-import { ChildrenProps } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
-import { Role } from '@packages/entities/members';
 
 import addMemberReducer, {
-  AddMemberFormState,
+  type AddMemberFormState,
   changeGithub,
   changeLinkedin,
   changeRole,
   initialState,
 } from './add-member-form-reducer';
+
+import type { AnyAction } from '@reduxjs/toolkit';
+import type { ChildrenProps } from '@packages/utils/react';
+import type { Role } from '@packages/entities/members';
 
 export function AddMemberFormProvider({ children }: ChildrenProps) {
   const [state, dispatch] = useReducer(addMemberReducer, initialState);

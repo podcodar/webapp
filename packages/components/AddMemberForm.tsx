@@ -8,15 +8,16 @@ import {
   Select,
   useToast,
 } from '@chakra-ui/react';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { type ChangeEvent, type FormEvent, useState } from 'react';
 
 import {
   useAddMemberFormView,
   useAddMemberFormActions,
 } from '@packages/features/add-member-form-context';
 import { useI18n } from '@packages/features/i18n-context';
-import { Role } from '@packages/entities/members';
 import { membersApi } from '@packages/hooks/api';
+
+import type { Role } from '@packages/entities/members';
 
 export default function AddMemberForm() {
   const { t } = useI18n('team-page');

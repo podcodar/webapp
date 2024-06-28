@@ -38,13 +38,13 @@ function NavBar() {
   const communityLinks = useMemo(
     () => [
       <Link key="team" href={links.team}>
-        {t(`team`)}
+        {t('team')}
       </Link>,
       <Link key="wiki" target="_blank" href={links.wiki}>
-        {t(`wiki`)}
+        {t('wiki')}
       </Link>,
       <Link key="forum" target="_blank" href={links.forum}>
-        {t(`forum`)}
+        {t('forum')}
       </Link>,
     ],
     [t],
@@ -103,7 +103,7 @@ function NavBar() {
           bg="purple.400"
           fontWeight="bold"
           textAlign="center"
-          label={t(`join.tooltip`)}
+          label={t('join.tooltip')}
         >
           <Button
             isDisabled
@@ -114,7 +114,7 @@ function NavBar() {
             data-testid="join-button"
             _hover={{ bg: 'purple.500' }}
           >
-            {t(`join`)}
+            {t('join')}
           </Button>
         </Tooltip>
       </Container>

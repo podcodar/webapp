@@ -1,4 +1,4 @@
-import { Context, createContext, useContext, Provider } from 'react';
+import { type Context, createContext, useContext, type Provider } from 'react';
 
 export type SafeContextResult<T> = [
   () => T,

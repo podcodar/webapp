@@ -1,6 +1,7 @@
-import { Question } from '@packages/entities/questions';
 import { apiAuthToken } from '@packages/config/api';
-import { MemberCreatedResp, MemberReq } from '@packages/entities/members';
+
+import type { Question } from '@packages/entities/questions';
+import type { MemberCreatedResp, MemberReq } from '@packages/entities/members';
 
 // Define a service using a base URL and expected endpoints
 const QUESTION_URL = '/api/questions';

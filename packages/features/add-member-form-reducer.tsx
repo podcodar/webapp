@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
-import { Role } from '@packages/entities/members';
+import type { Role } from '@packages/entities/members';
 
 export interface AddMemberFormState {
   github: string;

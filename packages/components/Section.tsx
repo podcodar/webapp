@@ -1,5 +1,6 @@
-import { ChakraProps, Container, Box } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import { type ChakraProps, Container, Box } from '@chakra-ui/react';
+
+import type { ReactNode } from 'react';
 
 interface Props extends ChakraProps {
   children: ReactNode;

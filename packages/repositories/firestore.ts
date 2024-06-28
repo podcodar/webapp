@@ -5,11 +5,11 @@ import {
   doc,
   updateDoc,
   addDoc,
-  DocumentData,
-  QueryDocumentSnapshot,
+  type DocumentData,
+  type QueryDocumentSnapshot,
   where,
   query,
-  WithFieldValue,
+  type WithFieldValue,
 } from 'firebase/firestore';
 
 import { app } from '@packages/repositories/firebase';

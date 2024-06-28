@@ -1,5 +1,3 @@
-import { GetStaticProps } from 'next';
-
 import CallToActionSection from '@packages/components/CallToActionSection';
 import WhyItWorksSection from '@packages/components/WhyItWorksSection';
 import MentoringSection from '@packages/components/MentoringSection';
@@ -7,8 +5,10 @@ import RoadmapSection from '@packages/components/RoadmapSection';
 import Footer from '@packages/components/Footer';
 import TestimonialSection from '@packages/components/TestimonialSection';
 import TechSection from '@packages/components/TechSection';
-import { Testimonial } from '@packages/entities/testimonials';
 import { getTestimonialInstance } from '@packages/services/testimonials';
+
+import type { Testimonial } from '@packages/entities/testimonials';
+import type { GetStaticProps } from 'next';
 
 interface Props {
   testimonials: Testimonial[] | null;

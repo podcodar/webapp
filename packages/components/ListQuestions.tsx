@@ -48,7 +48,7 @@ export default function ListQuestions() {
       {selectedQuestions.map((question) => (
         <Grid
           gap="1rem"
-          key={question.id!}
+          key={question.id ?? ''}
           gridTemplateColumns={isEditing ? 'auto 3rem' : '1fr'}
         >
           <Box
@@ -69,7 +69,9 @@ export default function ListQuestions() {
               <Button
                 disabled={!question.canVote}
                 // make API to vote
-                onClick={() => upVote(question.id!, question.votes + 1)}
+                onClick={() =>
+                  question.id && upVote(question.id, question.votes + 1)
+                }
                 variant="link"
               >
                 +1
@@ -82,7 +84,7 @@ export default function ListQuestions() {
               colorScheme="green"
               aria-label={t('checkbox-label')}
               icon={<CheckIcon />}
-              onClick={() => check(question.id!)}
+              onClick={() => check(question.id ?? '')}
             />
           )}
         </Grid>

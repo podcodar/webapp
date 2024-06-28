@@ -1,10 +1,10 @@
-import { DocumentData, QueryDocumentSnapshot } from '@firebase/firestore';
-
 import {
   makeFirestoreDAO,
-  FirestoreDAO,
+  type FirestoreDAO,
 } from '@packages/repositories/firestore';
-import { Question } from '@packages/entities/questions';
+
+import type { DocumentData, QueryDocumentSnapshot } from '@firebase/firestore';
+import type { Question } from '@packages/entities/questions';
 
 let questions: undefined | FirestoreDAO<Question>;
 export function getQuestionInstance() {

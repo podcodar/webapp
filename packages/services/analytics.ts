@@ -1,4 +1,4 @@
-import { Analytics, getAnalytics } from '@firebase/analytics';
+import { type Analytics, getAnalytics } from '@firebase/analytics';
 
 import { app } from '@packages/repositories/firebase';
 

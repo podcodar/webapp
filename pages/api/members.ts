@@ -1,10 +1,10 @@
 import sample from 'lodash/sample';
 
-import { GithubResponse } from '@packages/entities/github';
-import { Member, MemberReq } from '@packages/entities/members';
 import { getMemberInstance } from '@packages/services/members';
 import { makeRequestHandler } from '@packages/utils/api';
 
+import type { GithubResponse } from '@packages/entities/github';
+import type { Member, MemberReq } from '@packages/entities/members';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const membersDao = getMemberInstance();
@@ -19,8 +19,8 @@ const httpVerbHandlers = {
     const savedMember = await membersDao.findByGithubUser(member.social.github);
 
     // [upsert] if user exists, update it
-    const resp = await (savedMember != null
-      ? membersDao.update(savedMember.id!, member)
+    const resp = await (savedMember?.id != null
+      ? membersDao.update(savedMember.id, member)
       : membersDao.add(member));
 
     return res.status(200).json(resp);
@@ -64,4 +64,4 @@ const PODCODAR_COVERS = [
   '/images/covers/lines.png',
 ];
 
-const getRandomCover = () => sample(PODCODAR_COVERS)!;
+const getRandomCover = () => sample(PODCODAR_COVERS);

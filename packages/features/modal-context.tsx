@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react';
 
-import { ChildrenProps } from '@packages/utils/react';
 import createCtx from '@packages/utils/createCtx';
+
+import type { ChildrenProps } from '@packages/utils/react';
 
 interface ModalActions {
   readonly open: () => void;

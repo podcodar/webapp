@@ -9,10 +9,11 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-import { Member } from '@packages/entities/members';
 import { useI18n } from '@packages/features/i18n-context';
 
 import SocialIconLinks from './SocialIconLinks';
+
+import type { Member } from '@packages/entities/members';
 
 interface Props {
   member: Member;

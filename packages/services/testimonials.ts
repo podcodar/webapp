@@ -1,12 +1,12 @@
-import { DocumentData, QueryDocumentSnapshot } from '@firebase/firestore';
-
 import {
   makeFirestoreDAO,
-  FirestoreDAO,
+  type FirestoreDAO,
 } from '@packages/repositories/firestore';
-import { Testimonial } from '@packages/entities/testimonials';
 
-interface testimonialProps {
+import type { DocumentData, QueryDocumentSnapshot } from '@firebase/firestore';
+import type { Testimonial } from '@packages/entities/testimonials';
+
+interface TestimonialProps {
   name: string;
   testimonial: string;
   gitUsername: string;
@@ -34,7 +34,7 @@ export async function addTestimonial({
   name,
   testimonial,
   gitUsername,
-}: testimonialProps) {
+}: TestimonialProps) {
   const testimonialsService = getTestimonialInstance();
   const member = await fetch(
     `https://api.github.com/users/${gitUsername}`,
