@@ -53,7 +53,7 @@ export default function CallToActionModal() {
 					Faça Parte
 				</ModalHeader>
 				<ModalCloseButton />
-				<ModalBody d="flex" justifyContent="center" overflow="hidden">
+				<ModalBody display="flex" justifyContent="center" overflow="hidden">
 					<Stack>
 						{isLoading && (
 							<Flex alignItems="center" justifyContent="center" p="10rem 0">

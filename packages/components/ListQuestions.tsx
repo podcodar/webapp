@@ -17,7 +17,9 @@ export default function ListQuestions() {
 
 	return error ? (
 		<Alert status="error">
-			<><AlertIcon /> {error}</>
+			<>
+				<AlertIcon /> {error}
+			</>
 		</Alert>
 	) : loading ? (
 		<Spinner size="xl" m="1rem auto" />
