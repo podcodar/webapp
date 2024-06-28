@@ -10,6 +10,10 @@ import { withProviders } from "@packages/utils/react";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
   return withProviders(
     <Layout>
       <CSSReset />
