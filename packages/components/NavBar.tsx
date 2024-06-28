@@ -79,7 +79,7 @@ function NavBar() {
 					justifyContent="space-between"
 					alignItems="center"
 					p=" 0 1rem"
-					d={{ base: "none", md: "flex" }}
+					display={{ base: "none", md: "flex" }}
 				>
 					<Box>
 						<HStack spacing="1rem">{communityLinks}</HStack>
