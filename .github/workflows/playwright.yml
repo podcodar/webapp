@@ -2,6 +2,9 @@ name: Playwright Tests
 
 on:
   pull_request:
+    # all branches
+    branches:
+      - '*'
   push:
     branches: [main]
 
