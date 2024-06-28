@@ -1,11 +1,11 @@
-import sample from 'lodash/sample';
+import sample from "lodash/sample";
 
-import { getMemberInstance } from '@packages/services/members';
-import { makeRequestHandler } from '@packages/utils/api';
+import { getMemberInstance } from "@packages/services/members";
+import { makeRequestHandler } from "@packages/utils/api";
 
-import type { GithubResponse } from '@packages/entities/github';
-import type { Member, MemberReq } from '@packages/entities/members';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { GithubResponse } from "@packages/entities/github";
+import type { Member, MemberReq } from "@packages/entities/members";
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const membersDao = getMemberInstance();
 
@@ -19,9 +19,7 @@ const httpVerbHandlers = {
     const savedMember = await membersDao.findByGithubUser(member.social.github);
 
     // [upsert] if user exists, update it
-    const resp = await (savedMember?.id != null
-      ? membersDao.update(savedMember.id, member)
-      : membersDao.add(member));
+    const resp = await (savedMember?.id != null ? membersDao.update(savedMember.id, member) : membersDao.add(member));
 
     return res.status(200).json(resp);
   },
@@ -33,16 +31,12 @@ const httpVerbHandlers = {
 
 export default makeRequestHandler(httpVerbHandlers);
 
-const GITHUB_API = 'https://api.github.com/users';
-const LINKEDIN_BASE_URL = 'https://www.linkedin.com/in';
+const GITHUB_API = "https://api.github.com/users";
+const LINKEDIN_BASE_URL = "https://www.linkedin.com/in";
 
-export async function makeMemberFromRequest(
-  req: NextApiRequest,
-): Promise<Member> {
+export async function makeMemberFromRequest(req: NextApiRequest): Promise<Member> {
   const memberReq = req.body as MemberReq;
-  const githubResp: GithubResponse = await fetch(
-    `${GITHUB_API}/${memberReq.github}`,
-  ).then((r) => r.json());
+  const githubResp: GithubResponse = await fetch(`${GITHUB_API}/${memberReq.github}`).then((r) => r.json());
 
   return {
     communityRole: memberReq.role,
@@ -58,10 +52,6 @@ export async function makeMemberFromRequest(
   };
 }
 
-const PODCODAR_COVERS = [
-  '/images/covers/main.png',
-  '/images/covers/party.png',
-  '/images/covers/lines.png',
-];
+const PODCODAR_COVERS = ["/images/covers/main.png", "/images/covers/party.png", "/images/covers/lines.png"];
 
-const getRandomCover = () => sample(PODCODAR_COVERS);
+const getRandomCover = () => sample(PODCODAR_COVERS) ?? "";
