@@ -1,8 +1,9 @@
 const withYaml = require('next-plugin-yaml');
 
 module.exports = withYaml({
-  reactStrictMode: true,
+  output: 'export',
   swcMinify: true,
+  reactStrictMode: true,
   env: {
     // NOTE: this environment variables should be added with real values to .env.local
     FIREBASE_APP_ID: process.env.FIREBASE_APP_ID,
