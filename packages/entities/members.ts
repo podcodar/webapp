@@ -21,4 +21,4 @@ export interface MemberCreatedResp {
   id: string;
 }
 
-export type Role = 'engineer' | 'mentor' | 'mentored';
+export type Role = "engineer" | "mentor" | "mentored";

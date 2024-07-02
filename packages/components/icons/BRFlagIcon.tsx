@@ -1,13 +1,9 @@
-import { Icon } from '@chakra-ui/react';
+import { Icon } from "@chakra-ui/react";
 
 export const BRFlagIcon = () => {
   return (
     <Icon>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        xmlSpace="preserve"
-        viewBox="0 0 512 512"
-      >
+      <svg xmlns="http://www.w3.org/2000/svg" xmlSpace="preserve" viewBox="0 0 512 512">
         <path
           fill="#73af00"
           d="M474 88H38c-21 0-38 17-38 39v258c0 22 17 39 38 39h436c21 0 38-17 38-39V127c0-22-17-39-38-39z"

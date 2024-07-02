@@ -1,8 +1,8 @@
-import { createIcon } from '@chakra-ui/react';
+import { createIcon } from "@chakra-ui/react";
 
 export const GithubIcon = createIcon({
-  displayName: 'GithubIcon',
-  viewBox: '0 0 20 20',
+  displayName: "GithubIcon",
+  viewBox: "0 0 20 20",
   path: (
     <path
       fill="currentColor"

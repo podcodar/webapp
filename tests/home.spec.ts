@@ -1,25 +1,22 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-import { links } from '@packages/config/site';
+import { links } from "@packages/config/site";
 
 const PAGE_MAP: Record<string, string> = {
-  development: 'http://localhost:3000',
-  production: 'https://podcodar.org',
+  development: "http://localhost:3000",
+  production: "https://podcodar.org",
 };
 
-const HOMEPAGE =
-  process.env.TEST_URL ||
-  PAGE_MAP[process.env.NODE_ENV as string] ||
-  PAGE_MAP.development;
+const HOMEPAGE = process.env.TEST_URL || PAGE_MAP[process.env.NODE_ENV as string] || PAGE_MAP.development;
 
-test('has title', async ({ page }) => {
+test("has title", async ({ page }) => {
   await page.goto(HOMEPAGE);
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/PodCodar/);
 });
 
-test('has navigation links', async ({ page }) => {
+test("has navigation links", async ({ page }) => {
   await page.goto(HOMEPAGE);
 
   for (const link of Object.values(links)) {
@@ -27,52 +24,52 @@ test('has navigation links', async ({ page }) => {
   }
 });
 
-test('Join button is disabled', async ({ page }) => {
+test("Join button is disabled", async ({ page }) => {
   await page.goto(HOMEPAGE);
 
   // Get join button
-  const joinBtn = page.getByTestId('join-button');
+  const joinBtn = page.getByTestId("join-button");
   expect(joinBtn).not.toBeNull();
 
   // Expect join button to be disabled
   expect(await joinBtn.isEnabled()).toBeFalsy();
 });
 
-test('Toggle theme is working', async ({ page }) => {
+test("Toggle theme is working", async ({ page }) => {
   await page.goto(HOMEPAGE);
 
   // Get join button
-  const toggleBtn = page.getByTestId('toggle-theme');
+  const toggleBtn = page.getByTestId("toggle-theme");
   expect(toggleBtn).not.toBeNull();
 
   // check initial theme value
-  const initialTheme = await page.getAttribute('html', 'data-theme');
-  expect(initialTheme).toBe('light');
+  const initialTheme = await page.getAttribute("html", "data-theme");
+  expect(initialTheme).toBe("light");
 
   // Click the toggle theme
   await toggleBtn.click();
-  expect(await page.getAttribute('html', 'data-theme')).toBe('dark');
+  expect(await page.getAttribute("html", "data-theme")).toBe("dark");
 
   // Click the toggle theme
   await toggleBtn.click();
-  expect(await page.getAttribute('html', 'data-theme')).toBe('light');
+  expect(await page.getAttribute("html", "data-theme")).toBe("light");
 });
 
-test('Toggle language is working', async ({ page }) => {
+test("Toggle language is working", async ({ page }) => {
   await page.goto(HOMEPAGE);
 
   // Get join button
-  const toggleBtn = page.getByTestId('toggle-language');
+  const toggleBtn = page.getByTestId("toggle-language");
   expect(toggleBtn).not.toBeNull();
 
   // check initial theme value
-  expect(await page.getByTestId('join-button').textContent()).toBe('Entrar');
+  expect(await page.getByTestId("join-button").textContent()).toBe("Entrar");
 
   // Click the toggle language
   await toggleBtn.click();
-  expect(await page.getByTestId('join-button').textContent()).toBe('Join');
+  expect(await page.getByTestId("join-button").textContent()).toBe("Join");
 
   // Click the toggle language
   await toggleBtn.click();
-  expect(await page.getByTestId('join-button').textContent()).toBe('Entrar');
+  expect(await page.getByTestId("join-button").textContent()).toBe("Entrar");
 });

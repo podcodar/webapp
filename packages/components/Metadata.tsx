@@ -1,6 +1,6 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-import { images, description, pageURL, title } from '@packages/config/site';
+import { images, description, pageURL, title } from "@packages/config/site";
 
 function Metadata() {
   return (

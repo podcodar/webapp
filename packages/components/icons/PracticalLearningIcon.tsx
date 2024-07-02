@@ -1,7 +1,7 @@
-import { Icon, IconProps, useColorModeValue } from '@chakra-ui/react';
+import { Icon, type IconProps, useColorModeValue } from "@chakra-ui/react";
 
 export function PracticalLearningIcon(props: IconProps) {
-  const lineColor = useColorModeValue('black', 'whitesmoke');
+  const lineColor = useColorModeValue("black", "whitesmoke");
   return (
     <Icon fill="none" viewBox="0 0 180 180" {...props}>
       <path
@@ -18,22 +18,9 @@ export function PracticalLearningIcon(props: IconProps) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <rect
-        x="53.5"
-        y="164.5"
-        width="89.8424"
-        height="10.8859"
-        rx="4.5"
-        stroke={lineColor}
-      />
+      <rect x="53.5" y="164.5" width="89.8424" height="10.8859" rx="4.5" stroke={lineColor} />
       <circle cx="98.0585" cy="128.509" r="10.3784" fill="#2A2B2F" />
-      <circle
-        cx="98.2238"
-        cy="44.8365"
-        r="24.8109"
-        transform="rotate(-2.05874 98.2238 44.8365)"
-        stroke={lineColor}
-      />
+      <circle cx="98.2238" cy="44.8365" r="24.8109" transform="rotate(-2.05874 98.2238 44.8365)" stroke={lineColor} />
       <path
         d="M75.8212 55.5C73.1816 50.8737 67.1995 44.4182 71.2161 31.7945C66.9126 28.3517 73.7982 20.6054 82.6922 24.0482C81.474 15.8993 106.792 10.8507 107.68 19.6651C114.538 16.5887 129.053 23.309 126.301 30.6469C125.441 32.9422 121.711 37.5326 128.31 38.6802C120.85 49.0086 109.409 26.7575 109.409 35.7203C109.409 44.4182 92.0627 27.7779 89.7802 34.1234C85.5612 45.8527 78.9625 44.4182 77.5629 47.2872C75.3271 51.8705 73.1816 50.2999 75.8212 55.5Z"
         fill="black"
@@ -51,10 +38,7 @@ export function PracticalLearningIcon(props: IconProps) {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-      <path
-        d="M96.131 46.5736C97.7094 45.9999 99.2878 45.9999 100.551 46.5736"
-        stroke={lineColor}
-      />
+      <path d="M96.131 46.5736C97.7094 45.9999 99.2878 45.9999 100.551 46.5736" stroke={lineColor} />
     </Icon>
   );
 }

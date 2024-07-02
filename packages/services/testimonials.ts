@@ -1,12 +1,9 @@
-import { DocumentData, QueryDocumentSnapshot } from '@firebase/firestore';
+import { makeFirestoreDAO, type FirestoreDAO } from "@packages/repositories/firestore";
 
-import {
-  makeFirestoreDAO,
-  FirestoreDAO,
-} from '@packages/repositories/firestore';
-import { Testimonial } from '@packages/entities/testimonials';
+import type { DocumentData, QueryDocumentSnapshot } from "@firebase/firestore";
+import type { Testimonial } from "@packages/entities/testimonials";
 
-interface testimonialProps {
+interface TestimonialProps {
   name: string;
   testimonial: string;
   gitUsername: string;
@@ -17,7 +14,7 @@ export function getTestimonialInstance() {
   if (testimonials != null) return testimonials;
 
   testimonials = makeFirestoreDAO<Testimonial>({
-    collectionName: 'testimonials',
+    collectionName: "testimonials",
     processItem: processQuestionSnapshot,
   });
   return testimonials;
@@ -30,18 +27,12 @@ function processQuestionSnapshot(doc: QueryDocumentSnapshot<DocumentData>) {
   } as Testimonial;
 }
 
-export async function addTestimonial({
-  name,
-  testimonial,
-  gitUsername,
-}: testimonialProps) {
+export async function addTestimonial({ name, testimonial, gitUsername }: TestimonialProps) {
   const testimonialsService = getTestimonialInstance();
-  const member = await fetch(
-    `https://api.github.com/users/${gitUsername}`,
-  ).then((r) => r.json());
+  const member = await fetch(`https://api.github.com/users/${gitUsername}`).then((r) => r.json());
 
-  if (member.message === 'Not Found') {
-    return 'toast.invalidUserError';
+  if (member.message === "Not Found") {
+    return "toast.invalidUserError";
   }
   try {
     await testimonialsService.add({
@@ -52,7 +43,7 @@ export async function addTestimonial({
       approved: false,
     });
   } catch (e) {
-    return 'toast.serverError';
+    return "toast.serverError";
   }
   return;
 }

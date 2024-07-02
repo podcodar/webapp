@@ -1,6 +1,6 @@
-import { IconProps } from '@chakra-ui/react';
+import { TechIcon } from "./TechIcon";
 
-import { TechIcon } from './TechIcon';
+import type { IconProps } from "@chakra-ui/react";
 
 export const DockerIcon = (props: IconProps) => {
   return (
@@ -85,10 +85,7 @@ export const DockerIcon = (props: IconProps) => {
         fill="#BFDBE0"
         d="M56 97.8c-6.7-3.2-10.3-7.5-12.4-12.2-2.5.7-5.5 1.2-8.9 1.4-1.3.1-2.7.1-4.1.1-1.7 0-3.4 0-5.2-.1 6 6 13.6 10.7 27.5 10.8H56z"
       />
-      <path
-        fill="#D4EEF1"
-        d="M46.1 89.9c-.9-1.3-1.8-2.8-2.5-4.3-2.5.7-5.5 1.2-8.9 1.4 2.3 1.2 5.7 2.4 11.4 2.9z"
-      />
+      <path fill="#D4EEF1" d="M46.1 89.9c-.9-1.3-1.8-2.8-2.5-4.3-2.5.7-5.5 1.2-8.9 1.4 2.3 1.2 5.7 2.4 11.4 2.9z" />
     </TechIcon>
   );
 };

@@ -5,14 +5,14 @@ import {
   doc,
   updateDoc,
   addDoc,
-  DocumentData,
-  QueryDocumentSnapshot,
+  type DocumentData,
+  type QueryDocumentSnapshot,
   where,
   query,
-  WithFieldValue,
-} from 'firebase/firestore';
+  type WithFieldValue,
+} from "firebase/firestore";
 
-import { app } from '@packages/repositories/firebase';
+import { app } from "@packages/repositories/firebase";
 
 export interface FirestoreArgs<T> {
   collectionName: string;
@@ -33,18 +33,12 @@ export interface FirestoreDAO<T> {
 /**
  * This function creates an Firestore Data Access Object (DAO) for a given entity
  */
-export function makeFirestoreDAO<T>({
-  collectionName,
-  processItem,
-}: FirestoreArgs<T>): FirestoreDAO<T> {
+export function makeFirestoreDAO<T>({ collectionName, processItem }: FirestoreArgs<T>): FirestoreDAO<T> {
   const db = getFirestore(app);
   const dbCollection = collection(db, collectionName);
   return {
     add: async (item: T) => {
-      const docRef = await addDoc(
-        dbCollection,
-        item as WithFieldValue<DocumentData>,
-      );
+      const docRef = await addDoc(dbCollection, item as WithFieldValue<DocumentData>);
       return { id: docRef.id };
     },
     update: async (id: string, item: Object) => {
@@ -57,10 +51,7 @@ export function makeFirestoreDAO<T>({
       return querySnapshot.docs.map(processItem);
     },
     findByGithubUser: async (username: string) => {
-      const queryByGithub = query(
-        dbCollection,
-        where('social.github', '==', username),
-      );
+      const queryByGithub = query(dbCollection, where("social.github", "==", username));
       const querySnapshot = await getDocs(queryByGithub);
       const item = querySnapshot.docs[0];
       return item != null ? processItem(item) : null;

@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
-import { Role } from '@packages/entities/members';
+import type { Role } from "@packages/entities/members";
 
 export interface AddMemberFormState {
   github: string;
@@ -9,13 +9,13 @@ export interface AddMemberFormState {
 }
 
 export const initialState: AddMemberFormState = {
-  github: '',
-  linkedin: '',
-  role: 'mentored',
+  github: "",
+  linkedin: "",
+  role: "mentored",
 };
 
 const addMemberSlice = createSlice({
-  name: 'addMember',
+  name: "addMember",
   initialState,
   reducers: {
     changeGithub(state, { payload }: PayloadAction<string>) {
@@ -30,6 +30,5 @@ const addMemberSlice = createSlice({
   },
 });
 
-export const { changeGithub, changeLinkedin, changeRole } =
-  addMemberSlice.actions;
+export const { changeGithub, changeLinkedin, changeRole } = addMemberSlice.actions;
 export default addMemberSlice.reducer;

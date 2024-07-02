@@ -1,7 +1,7 @@
-import { getQuestionInstance } from '@packages/services/questions';
-import { makeRequestHandler } from '@packages/utils/api';
+import { getQuestionInstance } from "@packages/services/questions";
+import { makeRequestHandler } from "@packages/utils/api";
 
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from "next";
 
 const questionDao = getQuestionInstance();
 

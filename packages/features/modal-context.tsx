@@ -1,7 +1,8 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState } from "react";
 
-import { ChildrenProps } from '@packages/utils/react';
-import createCtx from '@packages/utils/createCtx';
+import createCtx from "@packages/utils/createCtx";
+
+import type { ChildrenProps } from "@packages/utils/react";
 
 interface ModalActions {
   readonly open: () => void;
@@ -12,10 +13,8 @@ interface ModalStates {
   readonly isOpen: boolean;
 }
 
-const [useModalActions, ModalActionsProvider] =
-  createCtx<ModalActions>('ModalActionsCtx');
-const [useModalStates, ModalStatesProvider] =
-  createCtx<ModalStates>('ModalStatesCtx');
+const [useModalActions, ModalActionsProvider] = createCtx<ModalActions>("ModalActionsCtx");
+const [useModalStates, ModalStatesProvider] = createCtx<ModalStates>("ModalStatesCtx");
 
 function ModalProvider({ children }: ChildrenProps) {
   const [isOpen, setIsOpen] = useState(false);

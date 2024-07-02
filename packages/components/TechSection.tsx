@@ -1,6 +1,6 @@
-import { HStack, Heading } from '@chakra-ui/react';
+import { HStack, Heading } from "@chakra-ui/react";
 
-import { useI18n } from '@packages/features/i18n-context';
+import { useI18n } from "@packages/features/i18n-context";
 
 import {
   DockerIcon,
@@ -18,8 +18,8 @@ import {
   WebPackIcon,
   HtmlIcon,
   CssIcon,
-} from './icons';
-import Section from './Section';
+} from "./icons";
+import Section from "./Section";
 
 const iconList = [
   GitIcon,
@@ -40,20 +40,14 @@ const iconList = [
 ];
 
 function TechSection() {
-  const { t } = useI18n('roadmap');
+  const { t } = useI18n("roadmap");
 
   return (
     <Section>
       <Heading my="4rem" size="md" fontWeight={600} textAlign="left">
-        {t(`tech-title`)}
+        {t("tech-title")}
       </Heading>
-      <HStack
-        spacing="1rem"
-        flexWrap="wrap"
-        justifyContent="center"
-        alignItems="center"
-        lineHeight="200%"
-      >
+      <HStack spacing="1rem" flexWrap="wrap" justifyContent="center" alignItems="center" lineHeight="200%">
         {iconList.map((Icon) => (
           <Icon p="0.3rem" key={Icon.name} />
         ))}

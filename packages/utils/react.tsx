@@ -1,4 +1,4 @@
-import { EffectCallback, FC, ReactNode, useEffect } from 'react';
+import { type EffectCallback, type FC, type ReactNode, useEffect } from "react";
 
 export interface ChildrenProps {
   readonly children: ReactNode;
@@ -9,12 +9,9 @@ export function useEffectOnce(effect: EffectCallback) {
   useEffect(effect, []);
 }
 
-export function withProviders(
-  initialElement: ReactNode,
-  providers: FC<ChildrenProps>[],
-) {
+export function withProviders(initialElement: ReactNode, providers: FC<ChildrenProps>[]) {
   return providers.reduce(
-    (children, Provider) => <Provider>{children}</Provider>,
+    (children, Provider) => <Provider key={Provider.displayName ?? ""}>{children}</Provider>,
     initialElement,
   );
 }

@@ -1,6 +1,6 @@
-import { Analytics, getAnalytics } from '@firebase/analytics';
+import { type Analytics, getAnalytics } from "@firebase/analytics";
 
-import { app } from '@packages/repositories/firebase';
+import { app } from "@packages/repositories/firebase";
 
 // Analytics
 let analytics: Analytics | undefined;

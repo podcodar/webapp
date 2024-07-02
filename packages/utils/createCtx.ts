@@ -1,10 +1,6 @@
-import { Context, createContext, useContext, Provider } from 'react';
+import { type Context, createContext, useContext, type Provider } from "react";
 
-export type SafeContextResult<T> = [
-  () => T,
-  Provider<T | null>,
-  Context<T | null>,
-];
+export type SafeContextResult<T> = [() => T, Provider<T | null>, Context<T | null>];
 
 /**
  * A helper that creates a Context Consumer and Provider without having to declare a
@@ -22,10 +18,7 @@ function createCtx<T>(displayName: Readonly<string>): SafeContextResult<T> {
 
   function useCtx() {
     const value = useContext(Ctx);
-    if (value === null)
-      throw new Error(
-        `Missing ${displayName} context provider upwards on this tree`,
-      );
+    if (value === null) throw new Error(`Missing ${displayName} context provider upwards on this tree`);
 
     return value;
   }

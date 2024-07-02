@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
-import createCtx from '@packages/utils/createCtx';
-import { getAnalyticsInstance, Analytics } from '@packages/services/analytics';
+import { type ChildrenProps, useEffectOnce } from "@packages/utils/react";
+import createCtx from "@packages/utils/createCtx";
+import { getAnalyticsInstance, type Analytics } from "@packages/services/analytics";
 
 const [useFirebaseServices, FirebaseServicesProvider] = createCtx<{
   analytics: Analytics | null;
-}>('firebase-context');
+}>("firebase-context");
 
 export function FirebaseProvider({ children }: ChildrenProps) {
   const [analytics, setAnalytics] = useState<Analytics | null>(null);
@@ -16,11 +16,7 @@ export function FirebaseProvider({ children }: ChildrenProps) {
     setAnalytics(getAnalyticsInstance());
   });
 
-  return (
-    <FirebaseServicesProvider value={{ analytics }}>
-      {children}
-    </FirebaseServicesProvider>
-  );
+  return <FirebaseServicesProvider value={{ analytics }}>{children}</FirebaseServicesProvider>;
 }
 
 export { useFirebaseServices };

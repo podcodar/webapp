@@ -1,9 +1,11 @@
 name: Playwright Tests
 
 on:
-  push:
-    branches: [main]
   pull_request:
+    # all branches
+    branches:
+      - '*'
+  push:
     branches: [main]
 
 jobs:
@@ -41,4 +43,4 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
-          retention-days: 2 
+          retention-days: 2

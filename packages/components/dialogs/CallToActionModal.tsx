@@ -13,16 +13,13 @@ import {
   Flex,
   SlideFade,
   useBreakpointValue,
-} from '@chakra-ui/react';
-import { useState } from 'react';
+} from "@chakra-ui/react";
+import { useState } from "react";
 
-import {
-  useModalActions,
-  useModalStates,
-} from '@packages/features/modal-context';
-import { IFRAME_FORM_URL } from '@packages/config/site';
+import { useModalActions, useModalStates } from "@packages/features/modal-context";
+import { IFRAME_FORM_URL } from "@packages/config/site";
 
-type ModalVariants = 'md' | 'full' | 'lg' | 'xl';
+type ModalVariants = "md" | "full" | "lg" | "xl";
 
 export default function CallToActionModal() {
   const { isOpen } = useModalStates();
@@ -30,9 +27,9 @@ export default function CallToActionModal() {
   const [isIframeOpen, setIsIframeOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const responsiveModalSize = useBreakpointValue<ModalVariants>({
-    base: 'full',
-    md: 'md',
-    lg: 'xl',
+    base: "full",
+    md: "md",
+    lg: "xl",
   });
 
   function handleClose() {
@@ -43,21 +40,20 @@ export default function CallToActionModal() {
 
   function handleLoad() {
     setIsLoading(!isLoading);
-    if (!isIframeOpen) {
-      setIsIframeOpen(true);
-    } else handleClose(); // TODO: show a success modal
-  }
+    if (isIframeOpen) handleClose(); // TODO: show a success modal else {
+    setIsIframeOpen(true);
+  } // TODO: show a success modal
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose} size={responsiveModalSize}>
       <ModalOverlay />
 
-      <ModalContent m={useBreakpointValue({ base: '0', md: '3xl' })}>
+      <ModalContent m={useBreakpointValue({ base: "0", md: "3xl" })}>
         <ModalHeader borderBottom="1px solid" borderColor="whitesmoke">
           Faça Parte
         </ModalHeader>
         <ModalCloseButton />
-        <ModalBody d="flex" justifyContent="center" overflow="hidden">
+        <ModalBody display="flex" justifyContent="center" overflow="hidden">
           <Stack>
             {isLoading && (
               <Flex alignItems="center" justifyContent="center" p="10rem 0">
@@ -90,6 +86,7 @@ function GoogleForm({ isIframeOpen = false, handleLoad = () => {} }) {
   return (
     <SlideFade in={isIframeOpen} offsetY="1rem">
       <iframe
+        title="registration-form"
         src={IFRAME_FORM_URL}
         width={width}
         height={height}

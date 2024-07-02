@@ -1,43 +1,38 @@
-import { useColorModeValue, Grid, Heading, Flex, Text } from '@chakra-ui/react';
+import { useColorModeValue, Grid, Heading, Flex, Text } from "@chakra-ui/react";
 
-import Link from '@packages/components/Link';
-import { roadMapsLinks } from '@packages/config/site';
-import { useI18n } from '@packages/features/i18n-context';
+import Link from "@packages/components/Link";
+import { roadMapsLinks } from "@packages/config/site";
+import { useI18n } from "@packages/features/i18n-context";
 
-import Section from './Section';
+import Section from "./Section";
 
 export default function RoadmapSection() {
-  const { t } = useI18n('roadmap');
-  const bgColor = useColorModeValue('gray.50', 'gray.900');
+  const { t } = useI18n("roadmap");
+  const bgColor = useColorModeValue("gray.50", "gray.900");
   return (
     <Section bg={bgColor}>
       <Flex justifyContent="space-between" py="1rem">
         <Heading size="md" fontWeight={600} textAlign="left">
-          {t(`title`)}
+          {t("title")}
         </Heading>
         <Text textAlign="right">
           <Link href={roadMapsLinks.all} isExternal>
-            {t(`see-all`)}
+            {t("see-all")}
           </Link>
         </Text>
       </Flex>
 
       <Grid
         gridTemplateColumns={{
-          base: '1fr',
-          sm: 'repeat(2, 1fr)',
-          lg: 'repeat(4, 1fr)',
+          base: "1fr",
+          sm: "repeat(2, 1fr)",
+          lg: "repeat(4, 1fr)",
         }}
         gap="2rem"
         my="2rem"
       >
         {cardList.map((cardProps) => (
-          <CardItem
-            key={cardProps.title}
-            color={cardProps.color}
-            link={cardProps.link}
-            title={t(cardProps.title)}
-          />
+          <CardItem key={cardProps.title} color={cardProps.color} link={cardProps.link} title={t(cardProps.title)} />
         ))}
       </Grid>
     </Section>
@@ -52,7 +47,7 @@ interface CardItemProps {
 
 function CardItem({ title, link, color }: CardItemProps) {
   return (
-    <Link href={link} isExternal _hover={{ textDecoration: 'none' }}>
+    <Link href={link} isExternal _hover={{ textDecoration: "none" }}>
       <Flex
         py="2rem"
         transition="box-shadow 300ms ease-in-out"
@@ -74,23 +69,23 @@ function CardItem({ title, link, color }: CardItemProps) {
 
 const cardList: CardItemProps[] = [
   {
-    title: 'web-programming',
+    title: "web-programming",
     link: roadMapsLinks.webProgramming,
-    color: '#17A9BC',
+    color: "#17A9BC",
   },
   {
-    title: 'ux-design',
+    title: "ux-design",
     link: roadMapsLinks.uxDesign,
-    color: '#F99223',
+    color: "#F99223",
   },
   {
-    title: 'react',
+    title: "react",
     link: roadMapsLinks.react,
-    color: '#FF4CFF',
+    color: "#FF4CFF",
   },
   {
-    title: 'data',
+    title: "data",
     link: roadMapsLinks.introToData,
-    color: '#b794f4',
+    color: "#b794f4",
   },
 ];

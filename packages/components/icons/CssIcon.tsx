@@ -1,18 +1,12 @@
-import { IconProps } from '@chakra-ui/react';
+import { TechIcon } from "./TechIcon";
 
-import { TechIcon } from './TechIcon';
+import type { IconProps } from "@chakra-ui/react";
 
 export const CssIcon = (props: IconProps) => {
   return (
     <TechIcon {...props}>
-      <path
-        fill="#1572B6"
-        d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z"
-      />
-      <path
-        fill="#33A9DC"
-        d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z"
-      />
+      <path fill="#1572B6" d="M18.814 114.123L8.76 1.352h110.48l-10.064 112.754-45.243 12.543-45.119-12.526z" />
+      <path fill="#33A9DC" d="M64.001 117.062l36.559-10.136 8.601-96.354h-45.16v106.49z" />
       <path
         fill="#fff"
         d="M64.001 51.429h18.302l1.264-14.163H64.001V23.435h34.682l-.332 3.711-3.4 38.114h-30.95V51.429z"

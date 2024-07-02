@@ -1,7 +1,7 @@
 interface LogoProps {
   size?: SizeVariant;
 }
-type SizeVariant = 'default' | 'small' | 'large';
+type SizeVariant = "default" | "small" | "large";
 type SizeMap = Record<SizeVariant, number>;
 
 const sizeMap: SizeMap = {
@@ -9,24 +9,13 @@ const sizeMap: SizeMap = {
   default: 64,
   large: 80,
 };
-export function Logo({ size = 'default' }: LogoProps) {
+export function Logo({ size = "default" }: LogoProps) {
   const width = sizeMap[size];
   return (
-    <svg
-      width={width}
-      height={width}
-      viewBox="0 0 2000 2000"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width={width} height={width} viewBox="0 0 2000 2000" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="2000" height="2000" fill="url(#pattern0)" />
       <defs>
-        <pattern
-          id="pattern0"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
+        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
           <use xlinkHref="#image0" transform="scale(0.001)" />
         </pattern>
         <image

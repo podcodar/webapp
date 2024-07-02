@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { type Dispatch, type SetStateAction, useState } from "react";
 
-import { ChildrenProps, useEffectOnce } from '@packages/utils/react';
-import createCtx from '@packages/utils/createCtx';
-import { Question } from '@packages/entities/questions';
-import { questionsApi } from '@packages/hooks/api';
+import { type ChildrenProps, useEffectOnce } from "@packages/utils/react";
+import createCtx from "@packages/utils/createCtx";
+import { questionsApi } from "@packages/hooks/api";
+
+import type { Question } from "@packages/entities/questions";
 
 export function QuestionsProvider({ children }: ChildrenProps) {
   const [questions, setQuestions] = useState<Question[] | null>(null);
@@ -23,17 +24,14 @@ export function QuestionsProvider({ children }: ChildrenProps) {
 
   return (
     <QuestionViewProvider value={view}>
-      <QuestionActionsProvider value={actions}>
-        {children}
-      </QuestionActionsProvider>
+      <QuestionActionsProvider value={actions}>{children}</QuestionActionsProvider>
     </QuestionViewProvider>
   );
 }
 
-export const [useQuestionView, QuestionViewProvider] =
-  createCtx<ReturnType<typeof createView>>('questions-view');
+export const [useQuestionView, QuestionViewProvider] = createCtx<ReturnType<typeof createView>>("questions-view");
 export const [useQuestionActions, QuestionActionsProvider] =
-  createCtx<ReturnType<typeof createActions>>('questions-actions');
+  createCtx<ReturnType<typeof createActions>>("questions-actions");
 
 const createActions = (
   setQuestions: Dispatch<SetStateAction<Question[] | null>>,
@@ -60,24 +58,14 @@ const createActions = (
       .catch(setError);
   };
   const check = (id: string) => {
-    questionsApi
-      .update({ id, answered: true })
-      .then(questionsApi.list)
-      .then(setQuestions)
-      .catch(setError);
+    questionsApi.update({ id, answered: true }).then(questionsApi.list).then(setQuestions).catch(setError);
   };
 
   return { addQuestion, upVote, check };
 };
 
-const createView = (
-  questions: Question[] | null,
-  error: Error | null,
-  loading: boolean,
-) => ({
-  questions: questions
-    ?.sort(sortByVotes)
-    .map((q) => ({ ...q, canVote: localVotes.canVote(q.id!) })),
+const createView = (questions: Question[] | null, error: Error | null, loading: boolean) => ({
+  questions: questions?.sort(sortByVotes).map((q) => ({ ...q, canVote: localVotes.canVote(q.id) })),
   error,
   loading,
 });
@@ -86,14 +74,15 @@ function sortByVotes(q1: Question, q2: Question) {
   return q2.votes - q1.votes;
 }
 
-const STORE_VOTES = 'podcodar:ama:vote-ids';
+const STORE_VOTES = "podcodar:ama:vote-ids";
 const localVotes = {
   vote: (id: string) => {
-    const votes = JSON.parse(localStorage.getItem(STORE_VOTES) ?? '[]');
+    const votes = JSON.parse(localStorage.getItem(STORE_VOTES) ?? "[]");
     localStorage.setItem(STORE_VOTES, JSON.stringify([...votes, id]));
   },
-  canVote: (id: string) => {
-    const votes = localStorage.getItem(STORE_VOTES) ?? '';
+  canVote: (id?: string) => {
+    if (!id) return false;
+    const votes = localStorage.getItem(STORE_VOTES) ?? "";
     return !votes.includes(id);
   },
 };

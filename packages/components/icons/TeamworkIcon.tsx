@@ -1,7 +1,7 @@
-import { Icon, IconProps, useColorModeValue } from '@chakra-ui/react';
+import { Icon, type IconProps, useColorModeValue } from "@chakra-ui/react";
 
 export function TeamworkIcon(props: IconProps) {
-  const lineColor = useColorModeValue('black', 'whitesmoke');
+  const lineColor = useColorModeValue("black", "whitesmoke");
   return (
     <Icon fill="none" viewBox="0 0 180 180" {...props}>
       <path

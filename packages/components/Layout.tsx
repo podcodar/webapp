@@ -1,7 +1,8 @@
-import { Box } from '@chakra-ui/layout';
-import { ReactNode } from 'react';
+import { Box } from "@chakra-ui/layout";
 
-import NavBar from './NavBar';
+import NavBar from "./NavBar";
+
+import type { ReactNode } from "react";
 
 interface Props {
   children: ReactNode;

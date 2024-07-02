@@ -1,25 +1,14 @@
-import {
-  Button,
-  FormControl,
-  FormLabel,
-  Grid,
-  Heading,
-  Input,
-  Select,
-  useToast,
-} from '@chakra-ui/react';
-import { ChangeEvent, FormEvent, useState } from 'react';
+import { Button, FormControl, FormLabel, Grid, Heading, Input, Select, useToast } from "@chakra-ui/react";
+import { type ChangeEvent, type FormEvent, useState } from "react";
 
-import {
-  useAddMemberFormView,
-  useAddMemberFormActions,
-} from '@packages/features/add-member-form-context';
-import { useI18n } from '@packages/features/i18n-context';
-import { Role } from '@packages/entities/members';
-import { membersApi } from '@packages/hooks/api';
+import { useAddMemberFormView, useAddMemberFormActions } from "@packages/features/add-member-form-context";
+import { useI18n } from "@packages/features/i18n-context";
+import { membersApi } from "@packages/hooks/api";
+
+import type { Role } from "@packages/entities/members";
 
 export default function AddMemberForm() {
-  const { t } = useI18n('team-page');
+  const { t } = useI18n("team-page");
   const view = useAddMemberFormView();
   // TODO: move to actions
   const toast = useToast();
@@ -35,11 +24,11 @@ export default function AddMemberForm() {
         role: view.role.selectedValue,
       });
 
-      const description = t('toast.success', { username: view.github });
-      toast({ description, status: 'success', isClosable: true });
+      const description = t("toast.success", { username: view.github });
+      toast({ description, status: "success", isClosable: true });
     } catch (e) {
       const description = (e as Error).message;
-      toast({ description, status: 'error', isClosable: true });
+      toast({ description, status: "error", isClosable: true });
     } finally {
       setLoading(false);
     }
@@ -47,7 +36,7 @@ export default function AddMemberForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Heading py="1rem">{t('add-member-title')}</Heading>
+      <Heading py="1rem">{t("add-member-title")}</Heading>
 
       <Grid templateColumns="1fr 1fr" gap="1rem">
         <GithubInput />
@@ -56,7 +45,7 @@ export default function AddMemberForm() {
         <SelectRole />
 
         <Button type="submit" gridColumn="span 2" isLoading={loading}>
-          {t('submit')}
+          {t("submit")}
         </Button>
       </Grid>
     </form>
@@ -64,7 +53,7 @@ export default function AddMemberForm() {
 }
 
 function GithubInput() {
-  const { t } = useI18n('team-page');
+  const { t } = useI18n("team-page");
   const { github } = useAddMemberFormView();
   const { changeGithub } = useAddMemberFormActions();
 
@@ -74,19 +63,14 @@ function GithubInput() {
 
   return (
     <FormControl>
-      <FormLabel htmlFor="gh-username">{t('label.github')}</FormLabel>
-      <Input
-        id="gh-username"
-        type="text"
-        value={github}
-        onChange={handleChange}
-      />
+      <FormLabel htmlFor="gh-username">{t("label.github")}</FormLabel>
+      <Input id="gh-username" type="text" value={github} onChange={handleChange} />
     </FormControl>
   );
 }
 
 function LinkedinInput() {
-  const { t } = useI18n('team-page');
+  const { t } = useI18n("team-page");
   const { linkedin } = useAddMemberFormView();
   const { changeLinkedin } = useAddMemberFormActions();
 
@@ -96,19 +80,14 @@ function LinkedinInput() {
 
   return (
     <FormControl>
-      <FormLabel htmlFor="linkedin-username">{t('label.linkedin')}</FormLabel>
-      <Input
-        id="linkedin-username"
-        type="text"
-        value={linkedin}
-        onChange={handleChange}
-      />
+      <FormLabel htmlFor="linkedin-username">{t("label.linkedin")}</FormLabel>
+      <Input id="linkedin-username" type="text" value={linkedin} onChange={handleChange} />
     </FormControl>
   );
 }
 
 function SelectRole() {
-  const { t } = useI18n('team-page');
+  const { t } = useI18n("team-page");
   const { role } = useAddMemberFormView();
   const { changeRole } = useAddMemberFormActions();
 
@@ -118,7 +97,7 @@ function SelectRole() {
 
   return (
     <FormControl gridColumn="span 2">
-      <FormLabel htmlFor="role">{t('label.role')}</FormLabel>
+      <FormLabel htmlFor="role">{t("label.role")}</FormLabel>
       <Select id="role" onChange={handleChange} value={role.selectedValue}>
         {role.options.map((option) => (
           <option key={option.value} value={option.value}>

@@ -1,6 +1,6 @@
-import { useToast } from '@chakra-ui/react';
+import { useToast } from "@chakra-ui/react";
 
-import { TranslationNS, useI18n } from '@packages/features/i18n-context';
+import { type TranslationNS, useI18n } from "@packages/features/i18n-context";
 
 export default function useCustomToast(source: string) {
   const { t } = useI18n(source as TranslationNS);
@@ -9,14 +9,14 @@ export default function useCustomToast(source: string) {
   const errorToast = (key: string) =>
     toast({
       description: t(key),
-      status: 'error',
+      status: "error",
       isClosable: true,
     });
 
   const successToast = (key: string) =>
     toast({
       description: t(key),
-      status: 'success',
+      status: "success",
       isClosable: true,
     });
 
