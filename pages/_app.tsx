@@ -10,14 +10,14 @@ import { withProviders } from "@packages/utils/react";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
-	return withProviders(
-		<Layout>
-			<CSSReset />
-			<Metadata />
-			<Component {...pageProps} />
-		</Layout>,
-		providers,
-	);
+  return withProviders(
+    <Layout>
+      <CSSReset />
+      <Metadata />
+      <Component {...pageProps} />
+    </Layout>,
+    providers,
+  );
 }
 
 const providers = [ModalProvider, FirebaseProvider, ChakraProvider, I18nProvider];

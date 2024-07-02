@@ -10,29 +10,29 @@ import AddQuestionForm from "@packages/components/AddQuestionForm";
 import ListQuestions from "@packages/components/ListQuestions";
 
 export default function AskUsPage() {
-	const { t } = useI18n("ask-us-page");
-	return (
-		<Section py="10rem">
-			<Head>
-				<title>
-					{t("head")} - {title}
-				</title>
-			</Head>
-			<Grid gap="2rem">
-				<Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center">
-					<Trans
-						i18nKey={t("title")}
-						components={{
-							span: <Text as="span" color="purple.400" />,
-						}}
-					/>
-				</Heading>
+  const { t } = useI18n("ask-us-page");
+  return (
+    <Section py="10rem">
+      <Head>
+        <title>
+          {t("head")} - {title}
+        </title>
+      </Head>
+      <Grid gap="2rem">
+        <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center">
+          <Trans
+            i18nKey={t("title")}
+            components={{
+              span: <Text as="span" color="purple.400" />,
+            }}
+          />
+        </Heading>
 
-				<QuestionsProvider>
-					<AddQuestionForm />
-					<ListQuestions />
-				</QuestionsProvider>
-			</Grid>
-		</Section>
-	);
+        <QuestionsProvider>
+          <AddQuestionForm />
+          <ListQuestions />
+        </QuestionsProvider>
+      </Grid>
+    </Section>
+  );
 }

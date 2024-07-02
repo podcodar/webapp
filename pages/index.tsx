@@ -11,39 +11,39 @@ import type { Testimonial } from "@packages/entities/testimonials";
 import type { GetStaticProps } from "next";
 
 interface Props {
-	testimonials: Testimonial[] | null;
-	error: string | null;
+  testimonials: Testimonial[] | null;
+  error: string | null;
 }
 
 export default function Home(props: Props) {
-	return (
-		<>
-			<CallToActionSection />
-			<WhyItWorksSection />
-			<MentoringSection />
-			<RoadmapSection />
-			<TechSection />
-			<TestimonialSection testimonials={props.testimonials ?? []} />
-			<Footer />
-		</>
-	);
+  return (
+    <>
+      <CallToActionSection />
+      <WhyItWorksSection />
+      <MentoringSection />
+      <RoadmapSection />
+      <TechSection />
+      <TestimonialSection testimonials={props.testimonials ?? []} />
+      <Footer />
+    </>
+  );
 }
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
-	const testimonialsService = getTestimonialInstance();
+  const testimonialsService = getTestimonialInstance();
 
-	let testimonials: Testimonial[] | null = null;
-	let error: Error | null = null;
+  let testimonials: Testimonial[] | null = null;
+  let error: Error | null = null;
 
-	try {
-		testimonials = await (await testimonialsService.list()).filter((t) => t.approved === true);
-	} catch (e) {
-		error = e as Error;
-	}
+  try {
+    testimonials = await (await testimonialsService.list()).filter((t) => t.approved === true);
+  } catch (e) {
+    error = e as Error;
+  }
 
-	return {
-		revalidate: 100, // In Seconds
-		// will be passed to the page component as props
-		props: { testimonials, error: error?.message || null },
-	};
+  return {
+    revalidate: 100, // In Seconds
+    // will be passed to the page component as props
+    props: { testimonials, error: error?.message || null },
+  };
 };
