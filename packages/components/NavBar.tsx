@@ -61,7 +61,14 @@ function NavBar() {
           onClick={isOpen ? onClose : onOpen}
         />
 
-        <Link href="/" display="flex" alignItems="center" justifyContent="center" w={{ base: "100%", md: "auto" }}>
+        <Link
+          href="/"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          w={{ base: "100%", md: "auto" }}
+          p={1}
+        >
           <Logo size="small" />
           <Text m="0 0.5rem" fontWeight="bold">
             PodCodar
