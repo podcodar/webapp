@@ -46,7 +46,7 @@
 		"typescript": "^5.5.2"
 	},
 	"lint-staged": {
-		"*.{md,svg}": "biomeat --write",
+		"*.{md,svg}": "npx prettier --write",
 		"**/*.{tsx,ts,js,jsx}": "biome lint --fix"
 	},
 	"engines": {

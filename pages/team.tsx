@@ -6,8 +6,6 @@ import Section from "@packages/components/Section";
 import MemberCard from "@packages/components/MemberCard";
 import { getMemberInstance } from "@packages/services/members";
 import SkeletonMemberCard from "@packages/components/SkeletonMemberCard";
-import Link from "@packages/components/Link";
-import useEditingMode from "@packages/hooks/useEditingMode";
 
 import type { Member } from "@packages/entities/members";
 import type { GetStaticProps } from "next";
@@ -19,8 +17,6 @@ interface Props {
 
 export default function Team({ members, error }: Props) {
   const { t } = useI18n("team-page");
-  const { isEditing } = useEditingMode();
-  const displayAddButton = isEditing ? "block" : "none";
 
   return (
     <Section py="10rem">
@@ -30,17 +26,6 @@ export default function Team({ members, error }: Props) {
             i18nKey={t("title")}
             components={{
               span: <Text as="span" color="purple.400" />,
-              btn: (
-                <Button
-                  _hover={{ textDecor: "none" }}
-                  as={Link}
-                  mx="1rem"
-                  size="2xl"
-                  href="/app/add-member"
-                  variant="link"
-                  display={displayAddButton}
-                />
-              ),
             }}
           />
         </Heading>
