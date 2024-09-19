@@ -5,9 +5,12 @@ interface Props extends Omit<ChakraLinkProps, "href"> {
   href: LinkProps["href"];
 }
 export default function Link({ children, href = "", ...props }: Props) {
+  if (!href) return children;
   return (
     <NextLink href={href} passHref>
-      <ChakraLink {...props}>{children}</ChakraLink>
+      <ChakraLink href={href.toString()} {...props}>
+        {children}
+      </ChakraLink>
     </NextLink>
   );
 }

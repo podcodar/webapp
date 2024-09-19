@@ -1,8 +1,7 @@
 import { useState } from "react";
 
-import { type ChildrenProps, useEffectOnce } from "@packages/utils/react";
-import createCtx from "@packages/utils/createCtx";
-import { getAnalyticsInstance, type Analytics } from "@packages/services/analytics";
+import { type Analytics, getAnalyticsInstance } from "@packages/services/analytics";
+import { type ChildrenProps, createCtx, useEffectOnce } from "@packages/utils/react";
 
 const [useFirebaseServices, FirebaseServicesProvider] = createCtx<{
   analytics: Analytics | null;

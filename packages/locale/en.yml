@@ -78,7 +78,7 @@ social-links:
   linkedin: LinkedIn
 
 team-page:
-  title: Community <span>People</span> <btn>+</btn>
+  title: Community <span>People</span>
   no-items: No item found :(
   add-member-title: Add a new member
   role.engineer: Software Engineer

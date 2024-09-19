@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 
-import createCtx from "@packages/utils/createCtx";
+import { createCtx } from "@packages/utils/react";
 
 import type { ChildrenProps } from "@packages/utils/react";
 

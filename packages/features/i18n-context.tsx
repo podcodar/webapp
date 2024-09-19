@@ -3,7 +3,7 @@ import i18next, { type TOptions } from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";
 
 import { type ChildrenProps, useEffectOnce } from "@packages/utils/react";
-import createCtx from "@packages/utils/createCtx";
+import { createCtx } from "@packages/utils/react";
 import * as en from "@packages/locale/en.yml";
 import * as pt from "@packages/locale/pt.yml";
 

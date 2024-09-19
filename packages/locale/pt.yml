@@ -82,7 +82,7 @@ social-links:
   linkedin: LinkedIn
 
 team-page:
-  title: Pessoas da <span>comunidade</span> <btn>+</btn>
+  title: Pessoas da <span>comunidade</span>
   no-items: Nenhum item encontrado :(
   add-member-title: Adicione um novo membro
   role.engineer: Engenheiro de Software
