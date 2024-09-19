@@ -1,3 +1,5 @@
+"use client";
+
 import { HStack, Heading } from "@chakra-ui/react";
 
 import { useI18n } from "@packages/features/i18n-context";

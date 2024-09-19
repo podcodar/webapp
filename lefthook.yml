@@ -1,0 +1,19 @@
+# EXAMPLE USAGE:
+#
+#   Refer for explanation to following link:
+#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
+#
+pre-push:
+  commands:
+    build:
+      tags: build
+      run: yarn build
+    lint:
+      tags: lint
+      run: yarn lint
+
+pre-commit:
+  commands:
+    lint:
+      tags: lint
+      run: yarn lint-staged

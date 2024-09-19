@@ -1,3 +1,5 @@
+"use client";
+
 import { useColorModeValue, Grid, Heading, Flex, Text } from "@chakra-ui/react";
 
 import Link from "@packages/components/Link";

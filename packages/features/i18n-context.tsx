@@ -1,3 +1,5 @@
+"use client";
+
 import { useMemo, useState } from "react";
 import i18next, { type TOptions } from "i18next";
 import { initReactI18next, useTranslation } from "react-i18next";

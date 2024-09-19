@@ -1,11 +1,9 @@
-import Head from "next/head";
-
 import { images, description, pageURL, title } from "@packages/config/site";
 
 function Metadata() {
   return (
     <div>
-      <Head>
+      <header>
         <title>{title}</title>
         <meta name="description" content={description} />
         <link rel="icon" type="image/svg+xml" href={images.icon} />
@@ -27,7 +25,7 @@ function Metadata() {
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={images.logo} />
-      </Head>
+      </header>
     </div>
   );
 }

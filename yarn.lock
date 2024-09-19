@@ -1468,6 +1468,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@emotion/is-prop-valid@npm:^1.3.0":
+  version: 1.3.0
+  resolution: "@emotion/is-prop-valid@npm:1.3.0"
+  dependencies:
+    "@emotion/memoize": "npm:^0.9.0"
+  checksum: 10c0/4620b62aaca4b3b610202513652872756d7f4a8b84b2cea6b798dd6e8ccdfe43944b956c6a6a8cb5da0b0fe61bef6caca273d198ba32b5c658df22a6c7371b1b
+  languageName: node
+  linkType: hard
+
 "@emotion/memoize@npm:^0.9.0":
   version: 0.9.0
   resolution: "@emotion/memoize@npm:0.9.0"
@@ -1496,7 +1505,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/serialize@npm:^1.2.0, @emotion/serialize@npm:^1.3.1":
+"@emotion/serialize@npm:^1.2.0, @emotion/serialize@npm:^1.3.0, @emotion/serialize@npm:^1.3.1":
   version: 1.3.1
   resolution: "@emotion/serialize@npm:1.3.1"
   dependencies:
@@ -1513,6 +1522,26 @@ __metadata:
   version: 1.4.0
   resolution: "@emotion/sheet@npm:1.4.0"
   checksum: 10c0/3ca72d1650a07d2fbb7e382761b130b4a887dcd04e6574b2d51ce578791240150d7072a9bcb4161933abbcd1e38b243a6fb4464a7fe991d700c17aa66bb5acc7
+  languageName: node
+  linkType: hard
+
+"@emotion/styled@npm:^11.13.0":
+  version: 11.13.0
+  resolution: "@emotion/styled@npm:11.13.0"
+  dependencies:
+    "@babel/runtime": "npm:^7.18.3"
+    "@emotion/babel-plugin": "npm:^11.12.0"
+    "@emotion/is-prop-valid": "npm:^1.3.0"
+    "@emotion/serialize": "npm:^1.3.0"
+    "@emotion/use-insertion-effect-with-fallbacks": "npm:^1.1.0"
+    "@emotion/utils": "npm:^1.4.0"
+  peerDependencies:
+    "@emotion/react": ^11.0.0-rc.0
+    react: ">=16.8.0"
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/5e2cc85c8a2f6e7bd012731cf0b6da3aef5906225e87e8d4a5c19da50572e24d9aaf92615aa36aa863f0fe6b62a121033356e1cad62617c48bfdaa2c3cf0d8a4
   languageName: node
   linkType: hard
 
@@ -4238,15 +4267,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:^9.1.6":
-  version: 9.1.6
-  resolution: "husky@npm:9.1.6"
-  bin:
-    husky: bin.js
-  checksum: 10c0/705673db4a247c1febd9c5df5f6a3519106cf0335845027bb50a15fba9b1f542cb2610932ede96fd08008f6d9f49db0f15560509861808b0031cdc0e7c798bac
-  languageName: node
-  linkType: hard
-
 "i18next@npm:^23.15.1":
   version: 23.15.1
   resolution: "i18next@npm:23.15.1"
@@ -4760,6 +4780,117 @@ __metadata:
   dependencies:
     language-subtag-registry: "npm:^0.3.20"
   checksum: 10c0/9ab911213c4bd8bd583c850201c17794e52cb0660d1ab6e32558aadc8324abebf6844e46f92b80a5d600d0fbba7eface2c207bfaf270a1c7fd539e4c3a880bff
+  languageName: node
+  linkType: hard
+
+"lefthook-darwin-arm64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-darwin-arm64@npm:1.7.15"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"lefthook-darwin-x64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-darwin-x64@npm:1.7.15"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"lefthook-freebsd-arm64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-freebsd-arm64@npm:1.7.15"
+  conditions: os=freebsd & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"lefthook-freebsd-x64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-freebsd-x64@npm:1.7.15"
+  conditions: os=freebsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"lefthook-linux-arm64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-linux-arm64@npm:1.7.15"
+  conditions: os=linux & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"lefthook-linux-x64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-linux-x64@npm:1.7.15"
+  conditions: os=linux & cpu=x64
+  languageName: node
+  linkType: hard
+
+"lefthook-openbsd-arm64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-openbsd-arm64@npm:1.7.15"
+  conditions: os=openbsd & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"lefthook-openbsd-x64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-openbsd-x64@npm:1.7.15"
+  conditions: os=openbsd & cpu=x64
+  languageName: node
+  linkType: hard
+
+"lefthook-windows-arm64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-windows-arm64@npm:1.7.15"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"lefthook-windows-x64@npm:1.7.15":
+  version: 1.7.15
+  resolution: "lefthook-windows-x64@npm:1.7.15"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
+"lefthook@npm:^1.7.15":
+  version: 1.7.15
+  resolution: "lefthook@npm:1.7.15"
+  dependencies:
+    lefthook-darwin-arm64: "npm:1.7.15"
+    lefthook-darwin-x64: "npm:1.7.15"
+    lefthook-freebsd-arm64: "npm:1.7.15"
+    lefthook-freebsd-x64: "npm:1.7.15"
+    lefthook-linux-arm64: "npm:1.7.15"
+    lefthook-linux-x64: "npm:1.7.15"
+    lefthook-openbsd-arm64: "npm:1.7.15"
+    lefthook-openbsd-x64: "npm:1.7.15"
+    lefthook-windows-arm64: "npm:1.7.15"
+    lefthook-windows-x64: "npm:1.7.15"
+  dependenciesMeta:
+    lefthook-darwin-arm64:
+      optional: true
+    lefthook-darwin-x64:
+      optional: true
+    lefthook-freebsd-arm64:
+      optional: true
+    lefthook-freebsd-x64:
+      optional: true
+    lefthook-linux-arm64:
+      optional: true
+    lefthook-linux-x64:
+      optional: true
+    lefthook-openbsd-arm64:
+      optional: true
+    lefthook-openbsd-x64:
+      optional: true
+    lefthook-windows-arm64:
+      optional: true
+    lefthook-windows-x64:
+      optional: true
+  bin:
+    lefthook: bin/index.js
+  checksum: 10c0/fe1c1597af56127cef361bc339944d4edbbb91931e40ed2d0a066cccde1c9cf0e25e5de1ad8dd9d39debc62dbb38a01143201ea5b97e4f7874f7aa56376465b0
   languageName: node
   linkType: hard
 
@@ -6445,6 +6576,7 @@ __metadata:
     "@chakra-ui/next-js": "npm:^2.2.0"
     "@chakra-ui/react": "npm:^2.8.2"
     "@emotion/react": "npm:^11.13.3"
+    "@emotion/styled": "npm:^11.13.0"
     "@playwright/test": "npm:^1.47.1"
     "@types/lodash": "npm:^4.17.7"
     "@types/node": "npm:^22.5.5"
@@ -6453,8 +6585,8 @@ __metadata:
     eslint-config-next: "npm:^14.2.12"
     firebase: "npm:^10.13.2"
     framer-motion: "npm:^11.5.5"
-    husky: "npm:^9.1.6"
     i18next: "npm:^23.15.1"
+    lefthook: "npm:^1.7.15"
     lint-staged: "npm:^15.2.10"
     lodash: "npm:^4.17.21"
     next: "npm:^14.2.12"
