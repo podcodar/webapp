@@ -1,4 +1,4 @@
-import { Heading, Text, Grid, Center, Button } from "@chakra-ui/react";
+import { Heading, Text, Grid, Center } from "@chakra-ui/react";
 import { Trans } from "react-i18next";
 
 import { useI18n } from "@packages/features/i18n-context";
