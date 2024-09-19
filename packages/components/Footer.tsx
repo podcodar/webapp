@@ -1,3 +1,5 @@
+"use client";
+
 import { Stack, Text, Image, Grid } from "@chakra-ui/react";
 import { css } from "@emotion/react";
 

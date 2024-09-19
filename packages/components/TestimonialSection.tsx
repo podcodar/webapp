@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef } from "react";
 import { useColorModeValue, Heading, Box, Flex, Image, Text, Stack, Button } from "@chakra-ui/react";
 

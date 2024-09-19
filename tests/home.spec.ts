@@ -1,6 +1,5 @@
 import { test, expect } from "@playwright/test";
-
-import { links } from "@packages/config/site";
+import { links } from "../packages/config/site";
 
 const PAGE_MAP: Record<string, string> = {
   development: "http://localhost:3000",
@@ -9,8 +8,12 @@ const PAGE_MAP: Record<string, string> = {
 
 const HOMEPAGE = process.env.TEST_URL || PAGE_MAP[process.env.NODE_ENV as string] || PAGE_MAP.development;
 
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 test("has title", async ({ page }) => {
   await page.goto(HOMEPAGE);
+
+  await sleep(1000);
 
   // Expect a title "to contain" a substring.
   await expect(page).toHaveTitle(/PodCodar/);
@@ -19,6 +22,8 @@ test("has title", async ({ page }) => {
 test("has navigation links", async ({ page }) => {
   await page.goto(HOMEPAGE);
 
+  await sleep(1000);
+
   for (const link of Object.values(links)) {
     expect(await page.$(`a[href="${link}"]`)).not.toBeNull();
   }
@@ -26,6 +31,8 @@ test("has navigation links", async ({ page }) => {
 
 test("Join button is disabled", async ({ page }) => {
   await page.goto(HOMEPAGE);
+
+  await sleep(1000);
 
   // Get join button
   const joinBtn = page.getByTestId("join-button");
@@ -37,6 +44,8 @@ test("Join button is disabled", async ({ page }) => {
 
 test("Toggle theme is working", async ({ page }) => {
   await page.goto(HOMEPAGE);
+
+  await sleep(1000);
 
   // Get join button
   const toggleBtn = page.getByTestId("toggle-theme");
@@ -57,6 +66,8 @@ test("Toggle theme is working", async ({ page }) => {
 
 test("Toggle language is working", async ({ page }) => {
   await page.goto(HOMEPAGE);
+
+  await sleep(1000);
 
   // Get join button
   const toggleBtn = page.getByTestId("toggle-language");

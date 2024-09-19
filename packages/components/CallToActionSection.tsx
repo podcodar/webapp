@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
 import { Trans } from "react-i18next";
 

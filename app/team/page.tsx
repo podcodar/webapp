@@ -1,4 +1,5 @@
-import { Heading, Text, Grid, Center, Button } from "@chakra-ui/react";
+"use client";
+import { Heading, Text, Grid, Center } from "@chakra-ui/react";
 import { Trans } from "react-i18next";
 
 import { useI18n } from "@packages/features/i18n-context";
@@ -8,15 +9,12 @@ import { getMemberInstance } from "@packages/services/members";
 import SkeletonMemberCard from "@packages/components/SkeletonMemberCard";
 
 import type { Member } from "@packages/entities/members";
-import type { GetStaticProps } from "next";
 
-interface Props {
-  members: Member[] | null;
-  error: string | null;
-}
+const membersService = getMemberInstance();
 
-export default function Team({ members, error }: Props) {
+export default async function Team() {
   const { t } = useI18n("team-page");
+  const members = processMembers(await membersService.list());
 
   return (
     <Section py="10rem">
@@ -30,9 +28,7 @@ export default function Team({ members, error }: Props) {
           />
         </Heading>
 
-        {error != null ? (
-          error
-        ) : members === null ? (
+        {members === null ? (
           <SkeletonMemberCard />
         ) : members.length === 0 ? (
           <Center>{t("no-items")}</Center>
@@ -55,25 +51,6 @@ export default function Team({ members, error }: Props) {
     </Section>
   );
 }
-
-export const getStaticProps: GetStaticProps<Props> = async () => {
-  const membersService = getMemberInstance();
-
-  let members: Member[] | null = null;
-  let error: Error | null = null;
-
-  try {
-    members = processMembers(await membersService.list());
-  } catch (e) {
-    error = e as Error;
-  }
-
-  return {
-    revalidate: 100, // In Seconds
-    // will be passed to the page component as props
-    props: { members, error: error?.message || null },
-  };
-};
 
 const processMembers = (members: Member[]): Member[] =>
   members.map((member) => ({

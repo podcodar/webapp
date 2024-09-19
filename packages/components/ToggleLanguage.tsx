@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@chakra-ui/react";
 
 import { useI18nActions, useI18nStates } from "@packages/features/i18n-context";

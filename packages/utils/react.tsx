@@ -1,3 +1,5 @@
+"use client";
+
 import react from "react";
 
 export interface ChildrenProps {
@@ -7,13 +9,6 @@ export interface ChildrenProps {
 export function useEffectOnce(effect: react.EffectCallback) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   react.useEffect(effect, []);
-}
-
-export function withProviders(initialElement: react.ReactNode, providers: react.FC<ChildrenProps>[]) {
-  return providers.reduce(
-    (children, Provider) => <Provider key={Provider.displayName ?? ""}>{children}</Provider>,
-    initialElement,
-  );
 }
 
 export type SafeContextResult<T> = [() => T, react.Provider<T | null>, react.Context<T | null>];
