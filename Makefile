@@ -1,4 +1,6 @@
-include .env
+ifneq ("$(wildcard .env)","")
+    include .env
+endif
 
 # If ENV_RUNNER is not set or is empty, we will use 'yarn' as default
 RUNNER ?= $(ENV_RUNNER)
