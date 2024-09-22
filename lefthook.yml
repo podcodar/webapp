@@ -6,14 +6,62 @@
 pre-push:
   commands:
     build:
-      tags: build
-      run: make build
+      tags:
+        - build
+      run: |
+        if command -v make > /dev/null && command -v docker > /dev/null; then
+        echo "Building using docker environment ..."
+          make build
+        elif command -v bun > /dev/null; then
+          echo "Building using local environment with bun ..."
+          bun run build
+        elif command -v yarn > /dev/null; then
+          echo "Building using local environment with yarn ..."
+          yarn run build
+        elif command -v npm > /dev/null; then
+          echo "Building using local environment with npm ..."
+          npm run build
+        else
+          echo "Build environment not found. Skipping build ..."
+        fi
     lint:
-      tags: lint
-      run: yarn lint
+      tags:
+        - lint
+      run: |
+        if command -v make > /dev/null && command -v docker > /dev/null; then
+          echo "Linting using docker environment ..."
+          make lint
+        elif command -v bun > /dev/null; then
+          echo "Linting using local environment with bun ..."
+          bun run lint
+        elif command -v yarn > /dev/null; then
+          echo "Linting using local environment with yarn ..."
+          yarn run lint
+        elif command -v npm > /dev/null; then
+          echo "Linting using local environment with npm ..."
+          npm run lint
+        else
+          echo "Linting environment not found. Skipping linting ..."
+        fi
 
 pre-commit:
   commands:
     lint:
-      tags: lint
-      run: yarn lint-staged
+      tags:
+        - lint
+      run: |
+        if command -v make > /dev/null && command -v docker > /dev/null; then
+          echo "Linting using docker environment ..."
+          make lint-staged
+        elif command -v bun > /dev/null; then
+          echo "Linting using local environment with bun ..."
+          bun run lint-staged
+        elif command -v yarn > /dev/null; then
+          echo "Linting using local environment with yarn ..."
+          yarn run lint-staged
+        elif command -v npm > /dev/null; then
+          echo "Linting using local environment with npm ..."
+          npm run lint-staged
+        else
+          echo "Linting environment not found. Skipping linting ..."
+        fi
