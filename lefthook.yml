@@ -22,7 +22,7 @@ pre-push:
           echo "Building using local environment with npm ..."
           npm run build
         else
-          echo "Build environment not found. Skipping build ..."
+          echo "ERROR: Environment not found for execute build command ..."; exit 1
         fi
     lint:
       tags:
@@ -41,7 +41,7 @@ pre-push:
           echo "Linting using local environment with npm ..."
           npm run lint
         else
-          echo "Linting environment not found. Skipping linting ..."
+          echo "ERROR: Environment not found for execute lint command ..."; exit 1
         fi
 
 pre-commit:
@@ -61,7 +61,7 @@ pre-commit:
           yarn run lint-staged
         elif command -v npm > /dev/null; then
           echo "Linting using local environment with npm ..."
-          npm run lint-staged
+          npm run lint
         else
-          echo "Linting environment not found. Skipping linting ..."
+          echo "ERROR: Environment not found for execute lint command ..."; exit 1
         fi
