@@ -4,10 +4,10 @@ networks:
 
 services:
   web:
-    image: podcodar-web:dev
+    image: podcodar-web:yarn-dev
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-yarn
     platform: linux/amd64
     container_name: podcodar-web
     ports:

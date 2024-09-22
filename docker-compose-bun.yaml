@@ -1,0 +1,19 @@
+networks:
+  podcodar-web:
+    name: podcodar-web
+
+services:
+  web:
+    image: podcodar-web:bun-dev
+    build:
+      context: .
+      dockerfile: Dockerfile-bun
+    platform: linux/amd64
+    container_name: podcodar-web
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    networks:
+      - podcodar-web
+    command: bun run dev
