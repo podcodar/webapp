@@ -16,26 +16,18 @@ export default function CallToActionSection() {
   return (
     <Section py="10rem">
       <Stack textAlign="center" align="center" spacing={{ base: 8, md: 10 }}>
-        <Heading
-          fontWeight={600}
-          fontSize={{ base: "3xl", sm: "4xl" }}
-          lineHeight="110%"
-        >
+        <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%">
           <Trans
             i18nKey={t("title")}
             components={{
-              span: <Text as="span" style="text-purple-x-400" />,
+              span: <Text as="span" style="text-purple-400" />,
             }}
           />
         </Heading>
 
-        <Text style="text-gray-x-500 max-w-3xl">{t("description")}</Text>
+        <Text style="text-gray-500 max-w-3xl">{t("description")}</Text>
 
-        <Stack
-          spacing={6}
-          w={{ base: "100%", sm: "auto" }}
-          direction={{ base: "column", sm: "row" }}
-        >
+        <Stack spacing={6} w={{ base: "100%", sm: "auto" }} direction={{ base: "column", sm: "row" }}>
           <Button as="a" href={links.secondaryButton} rounded="full" px={6}>
             {t("secondary-button")}
           </Button>
