@@ -1,15 +1,13 @@
 import type { ReactNode } from "react";
 
-interface TextProps {
+type SupportedTags = "p" | "span";
+
+interface Props {
   children?: ReactNode;
-  as?: "p" | "span";
+  as?: SupportedTags;
   style?: string;
 }
 
-export function Text({
-  children,
-  as: Tag = "p",
-  style = "",
-}: Readonly<TextProps>) {
+export function Text({ children, as: Tag = "p", style = "" }: Readonly<Props>) {
   return <Tag className={style}>{children}</Tag>;
 }
