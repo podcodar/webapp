@@ -1,10 +1,8 @@
 import type { ReactNode } from "react";
 
-type SupportedTags = "p" | "span";
-
-interface Props {
+type Props = {
   children?: ReactNode;
-  as?: SupportedTags;
+  as?: "p" | "span";
   className?: string;
 }
 
