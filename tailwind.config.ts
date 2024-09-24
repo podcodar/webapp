@@ -5,7 +5,14 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./packages/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {},
+  theme: {
+    extend: {
+      colors: {
+        "gray-x-500": "#718096",
+        "purple-x-500": "#9f7aea",
+      },
+    },
+  },
   plugins: [],
   darkMode: "selector",
 };
