@@ -1,5 +1,7 @@
 import Providers from "@packages/components/Providers";
 
+import "./globals.css";
+
 type Props = {
   children: React.ReactNode;
 };

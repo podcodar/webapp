@@ -1,11 +1,11 @@
 "use client";
 
-import { Button, Flex, Heading, Stack, Text } from "@chakra-ui/react";
+import { Button, Flex, Heading, Stack } from "@chakra-ui/react";
 import { Trans } from "react-i18next";
 
 import { Illustration } from "@packages/components/icons";
-import { useI18n } from "@packages/features/i18n-context";
 import { links } from "@packages/config/site";
+import { useI18n } from "@packages/features/i18n-context";
 
 import Section from "./Section";
 
@@ -19,14 +19,12 @@ export default function CallToActionSection() {
           <Trans
             i18nKey={t("title")}
             components={{
-              span: <Text as="span" color="purple.400" />,
+              span: <span className="text-purple-400" />,
             }}
           />
         </Heading>
 
-        <Text color="gray.500" maxW="3xl">
-          {t("description")}
-        </Text>
+        <p className="text-gray-500 max-w-3xl">{t("description")}</p>
 
         <Stack spacing={6} w={{ base: "100%", sm: "auto" }} direction={{ base: "column", sm: "row" }}>
           <Button as="a" href={links.secondaryButton} rounded="full" px={6}>
