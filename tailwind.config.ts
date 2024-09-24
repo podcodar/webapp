@@ -9,7 +9,7 @@ const config: Config = {
     extend: {
       colors: {
         "gray-x-500": "#718096",
-        "purple-x-500": "#9f7aea",
+        "purple-x-400": "#9f7aea",
       },
     },
   },

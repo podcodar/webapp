@@ -24,7 +24,7 @@ export default function CallToActionSection() {
           <Trans
             i18nKey={t("title")}
             components={{
-              span: <Text as="span" style="text-purple-x-500" />,
+              span: <Text as="span" style="text-purple-x-400" />,
             }}
           />
         </Heading>
