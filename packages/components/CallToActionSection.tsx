@@ -20,12 +20,12 @@ export default function CallToActionSection() {
           <Trans
             i18nKey={t("title")}
             components={{
-              span: <Text as="span" style="text-purple-400" />,
+              span: <Text as="span" className="text-purple-400" />,
             }}
           />
         </Heading>
 
-        <Text style="text-gray-500 max-w-3xl">{t("description")}</Text>
+        <Text className="text-gray-500 max-w-3xl">{t("description")}</Text>
 
         <Stack spacing={6} w={{ base: "100%", sm: "auto" }} direction={{ base: "column", sm: "row" }}>
           <Button as="a" href={links.secondaryButton} rounded="full" px={6}>

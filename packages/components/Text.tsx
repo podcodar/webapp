@@ -5,9 +5,9 @@ type SupportedTags = "p" | "span";
 interface Props {
   children?: ReactNode;
   as?: SupportedTags;
-  style?: string;
+  className?: string;
 }
 
-export function Text({ children, as: Tag = "p", style = "" }: Readonly<Props>) {
-  return <Tag className={style}>{children}</Tag>;
+export function Text({ children, as: Tag = "p", className = "" }: Readonly<Props>) {
+  return <Tag className={className}>{children}</Tag>;
 }
