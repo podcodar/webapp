@@ -35,7 +35,7 @@ const actionButtons = [
 function NavBar() {
   const { t } = useI18n("navbar");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const navbarBgColor = useColorModeValue("gray.50", "gray.900");
+  const navbarBgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
 
   const communityLinks = useMemo(
     () => [
@@ -53,7 +53,7 @@ function NavBar() {
   );
 
   return (
-    <Box position="fixed" w="100%" top={0} shadow="base" zIndex={1} bg={navbarBgColor}>
+    <div className={`navbar fixed p-0 shadow-md ${navbarBgColor}`}>
       <Container p="1rem" display="flex" justifyContent="space-between" maxW="5xl">
         <IconButton
           size="md"
@@ -126,7 +126,7 @@ function NavBar() {
           </HStack>
         </Box>
       ) : null}
-    </Box>
+    </div>
   );
 }
 
