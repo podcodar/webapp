@@ -1,31 +1,31 @@
 "use client";
 
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Container,
-  IconButton,
-  Flex,
   Divider,
+  Flex,
+  HStack,
+  IconButton,
   Stack,
   Text,
-  useDisclosure,
-  HStack,
-  useColorModeValue,
   Tooltip,
+  useColorModeValue,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useMemo } from "react";
 
 import { Logo } from "@packages/components/icons";
-import { useI18n } from "@packages/features/i18n-context";
 import { links } from "@packages/config/site";
-import Link from "@packages/components/Link";
-
-import ToggleThemeButton from "./ToggleThemeButton";
-import ToggleLanguage from "./ToggleLanguage";
-import SocialIconLinks from "./SocialIconLinks";
+import { useI18n } from "@packages/features/i18n-context";
 import { classes } from "@packages/utils/classes";
+
+import Link from "@packages/components/Link";
+import SocialIconLinks from "./SocialIconLinks";
+import ToggleLanguage from "./ToggleLanguage";
+import ToggleThemeButton from "./ToggleThemeButton";
 
 const actionButtons = [
   <SocialIconLinks key="social-buttons" />,

@@ -3,12 +3,12 @@
 import { Button, Flex, Heading, Stack } from "@chakra-ui/react";
 import { Trans } from "react-i18next";
 
+import { classes } from "@packages/utils/classes";
 import { Illustration } from "@packages/components/icons";
 import { links } from "@packages/config/site";
 import { useI18n } from "@packages/features/i18n-context";
 
 import Section from "./Section";
-import { classes } from "@packages/utils/classes";
 
 export default function CallToActionSection() {
   const { t } = useI18n("call-to-action");
