@@ -8,6 +8,7 @@ import { links } from "@packages/config/site";
 import { useI18n } from "@packages/features/i18n-context";
 
 import Section from "./Section";
+import { classes } from "@packages/utils/classes";
 
 export default function CallToActionSection() {
   const { t } = useI18n("call-to-action");
@@ -19,12 +20,12 @@ export default function CallToActionSection() {
           <Trans
             i18nKey={t("title")}
             components={{
-              span: <span className="text-purple-400" />,
+              span: <span className={classes("text-purple-400")} />,
             }}
           />
         </Heading>
 
-        <p className="text-gray-500 max-w-3xl">{t("description")}</p>
+        <p className={classes("text-gray-500", "max-w-3xl")}>{t("description")}</p>
 
         <Stack spacing={6} w={{ base: "100%", sm: "auto" }} direction={{ base: "column", sm: "row" }}>
           <Button as="a" href={links.secondaryButton} rounded="full" px={6}>
