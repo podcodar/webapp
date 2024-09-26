@@ -25,6 +25,7 @@ import Link from "@packages/components/Link";
 import ToggleThemeButton from "./ToggleThemeButton";
 import ToggleLanguage from "./ToggleLanguage";
 import SocialIconLinks from "./SocialIconLinks";
+import { classes } from "@packages/utils/classes";
 
 const actionButtons = [
   <SocialIconLinks key="social-buttons" />,
@@ -53,7 +54,7 @@ function NavBar() {
   );
 
   return (
-    <div className={`navbar fixed p-0 shadow-md ${navbarBgColor}`}>
+    <div className={classes("navbar", "fixed", "p-0", "shadow-md", navbarBgColor)}>
       <Container p="1rem" display="flex" justifyContent="space-between" maxW="5xl">
         <IconButton
           size="md"
