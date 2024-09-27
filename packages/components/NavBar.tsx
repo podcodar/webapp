@@ -54,7 +54,7 @@ function NavBar() {
   );
 
   return (
-    <div className={classes("navbar", "fixed", "p-0", "shadow-md", navbarBgColor)}>
+    <div className={classes("navbar fixed p-0 shadow-md", navbarBgColor)}>
       <Container p="1rem" display="flex" justifyContent="space-between" maxW="5xl">
         <IconButton
           size="md"
