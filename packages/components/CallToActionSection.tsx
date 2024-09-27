@@ -3,7 +3,6 @@
 import { Button, Flex, Heading, Stack } from "@chakra-ui/react";
 import { Trans } from "react-i18next";
 
-import { classes } from "@packages/utils/classes";
 import { Illustration } from "@packages/components/icons";
 import { links } from "@packages/config/site";
 import { useI18n } from "@packages/features/i18n-context";
@@ -25,7 +24,7 @@ export default function CallToActionSection() {
           />
         </Heading>
 
-        <p className={classes("text-gray-500", "max-w-3xl")}>{t("description")}</p>
+        <p className="text-gray-500 max-w-3xl">{t("description")}</p>
 
         <Stack spacing={6} w={{ base: "100%", sm: "auto" }} direction={{ base: "column", sm: "row" }}>
           <Button as="a" href={links.secondaryButton} rounded="full" px={6}>
