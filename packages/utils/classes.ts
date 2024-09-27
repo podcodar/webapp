@@ -5,21 +5,18 @@
  * Ensures that the output contains only valid, non-empty class names,
  * and removes any duplicates.
  *
- * @example
- * classes("bg-red-500", "text-white");
- * >>> "bg-red-500 text-white"
- *
- * @example
- * classes("bg-red-500", "bg-red-500");
- * >>> "bg-red-500"
- *
- * @example
- * classes("bg-red-500", "", null, undefined, "text-white", 42);
- * >>> "bg-red-500 text-white"
- *
- * @param {...string} classList - A variable number of CSS class names.
+ * @param {...string[]} classList - A variable number of CSS class names.
  *
  * @return {string} A string of unique, valid CSS classes, separated by spaces.
+ *
+ * @example classes("bg-red-500", "text-white");
+ * >>> "bg-red-500 text-white"
+ *
+ * @example classes("bg-red-500", "bg-red-500");
+ * >>> "bg-red-500"
+ *
+ * @example classes("bg-red-500", "", null, undefined, "text-white", 42);
+ * >>> "bg-red-500 text-white"
  */
 export function classes(...classList: string[]): string {
   const validClasses: string[] = classList.filter(
