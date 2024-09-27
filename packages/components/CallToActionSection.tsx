@@ -20,7 +20,7 @@ export default function CallToActionSection() {
           <Trans
             i18nKey={t("title")}
             components={{
-              span: <span className={classes("text-purple-400")} />,
+              span: <span className="text-purple-400" />,
             }}
           />
         </Heading>
