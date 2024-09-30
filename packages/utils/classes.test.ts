@@ -40,7 +40,7 @@ test("test_with_non_string_argument", () => {
 
   const expected = "bg-red-500";
 
-  expect(classes(...(input as string[]))).toBe(expected);
+  expect(classes(...input)).toBe(expected);
 });
 
 test("test_with_null_and_undefined_arguments", () => {
@@ -48,7 +48,7 @@ test("test_with_null_and_undefined_arguments", () => {
 
   const expected = "bg-red-500";
 
-  expect(classes(...(input as string[]))).toBe(expected);
+  expect(classes(...input)).toBe(expected);
 });
 
 test("test_with_empty_string_argument", () => {
@@ -64,7 +64,7 @@ test("test_with_mixed_arguments", () => {
 
   const expected = "bg-red-500 text-white";
 
-  expect(classes(...(input as string[]))).toBe(expected);
+  expect(classes(...input)).toBe(expected);
 });
 
 test("test_with_only_invalid_arguments", () => {
@@ -72,13 +72,21 @@ test("test_with_only_invalid_arguments", () => {
 
   const expected = "";
 
-  expect(classes(...(input as string[]))).toBe(expected);
+  expect(classes(...input)).toBe(expected);
 });
 
 test("test_with_duplicate_arguments", () => {
   const input: string[] = ["bg-red-500", "bg-red-500"];
 
   const expected = "bg-red-500";
+
+  expect(classes(...input)).toBe(expected);
+});
+
+test("test_with_duplicated_classes_in_combined_strings", () => {
+  const input: string[] = ["bg-red-500 w-4", "bg-red-500 px-3"];
+
+  const expected = "bg-red-500 w-4 px-3";
 
   expect(classes(...input)).toBe(expected);
 });

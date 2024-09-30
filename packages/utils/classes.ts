@@ -17,15 +17,18 @@
  *
  * @example classes("bg-red-500", "", null, undefined, "text-white", 42);
  * >>> "bg-red-500 text-white"
+ *
+ *  @example classes("bg-red-500 w-4", "bg-red-500 px-3");
+ * >>> "bg-red-500 w-4 px-3"
  */
 export function classes(...classList: string[]): string {
-  const validClasses: string[] = classList.filter(
-    (className: string): boolean => typeof className === "string" && className.trim().length > 0,
-  );
+  const validClasses: string[] = classList
+    .filter((className: string): boolean => typeof className === "string" && className.trim().length > 0)
+    .flatMap((className: string): string[] => className.split(" "));
 
   if (validClasses.length === 0) return "";
 
   const uniqueClasses = new Set(validClasses);
 
-  return Array.from(uniqueClasses).join(" ").trim();
+  return Array.from(uniqueClasses).join(" ");
 }
