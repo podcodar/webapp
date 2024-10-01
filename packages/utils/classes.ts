@@ -1,4 +1,4 @@
-import type { OptionalString } from "./types";
+import type { Optional } from "./types";
 
 /**
  * Generates a string of unique CSS classes from the provided list,
@@ -23,14 +23,20 @@ import type { OptionalString } from "./types";
  *  @example classes("bg-red-500 w-4", "bg-red-500 px-3");
  * >>> "bg-red-500 w-4 px-3"
  */
-export function classes(...classList: OptionalString[]): string {
-  const validClasses: string[] = classList
-    .filter((className: OptionalString): boolean => typeof className === "string" && className.trim().length > 0)
-    .flatMap((className: OptionalString): string[] => (className as string).split(" "));
+export function classes(...classList: Optional<string | false>[]): string {
+  const tokenMap = new Map<string, string>();
 
+  for (const className of classList) {
+    if (!className || className.trim().length === 0) continue;
+
+    for (const token of className.split(" ")) {
+      const tokenKey = token.replaceAll(/\d*/g, "");
+      tokenMap.set(tokenKey, token);
+    }
+  }
+
+  const validClasses = Array.from(tokenMap.values());
   if (validClasses.length === 0) return "";
 
-  const uniqueClasses = new Set(validClasses);
-
-  return Array.from(uniqueClasses).join(" ");
+  return validClasses.join(" ");
 }

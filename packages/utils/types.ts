@@ -1,1 +1,1 @@
-export type OptionalString = string | boolean | number | undefined | null;
+export type Optional<T> = T | false | undefined | null;
