@@ -12,7 +12,7 @@ export default function RoadmapSection() {
   const { t } = useI18n("roadmap");
   const bgColor = useColorModeValue("gray.50", "gray.900");
   return (
-    <Section bg={bgColor}>
+    <Section className={bgColor}>
       <Flex justifyContent="space-between" py="1rem">
         <Heading size="md" fontWeight={600} textAlign="left">
           {t("title")}
