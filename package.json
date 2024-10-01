@@ -22,6 +22,7 @@
 	},
 	"dependencies": {
 		"@chakra-ui/icons": "^2.1.1",
+		"@chakra-ui/layout": "^2.3.1",
 		"@chakra-ui/next-js": "^2.2.0",
 		"@chakra-ui/react": "^2.8.2",
 		"@emotion/react": "^11.13.3",
@@ -63,6 +64,7 @@
 	},
 	"volta": {
 		"node": "20.17.0",
-		"yarn": "4.3.1"
-	}
+    "bun": "1.1.28"
+	},
+  "packageManager": "bun@1"
 }
