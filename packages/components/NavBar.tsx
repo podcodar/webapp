@@ -1,30 +1,31 @@
 "use client";
 
+import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
   Container,
-  IconButton,
-  Flex,
   Divider,
+  Flex,
+  HStack,
+  IconButton,
   Stack,
   Text,
-  useDisclosure,
-  HStack,
-  useColorModeValue,
   Tooltip,
+  useColorModeValue,
+  useDisclosure,
 } from "@chakra-ui/react";
-import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { useMemo } from "react";
 
 import { Logo } from "@packages/components/icons";
-import { useI18n } from "@packages/features/i18n-context";
 import { links } from "@packages/config/site";
-import Link from "@packages/components/Link";
+import { useI18n } from "@packages/features/i18n-context";
+import { classes } from "@packages/utils/classes";
 
-import ToggleThemeButton from "./ToggleThemeButton";
-import ToggleLanguage from "./ToggleLanguage";
+import Link from "@packages/components/Link";
 import SocialIconLinks from "./SocialIconLinks";
+import ToggleLanguage from "./ToggleLanguage";
+import ToggleThemeButton from "./ToggleThemeButton";
 
 const actionButtons = [
   <SocialIconLinks key="social-buttons" />,
@@ -35,7 +36,7 @@ const actionButtons = [
 function NavBar() {
   const { t } = useI18n("navbar");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const navbarBgColor = useColorModeValue("gray.50", "gray.900");
+  const navbarBgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
 
   const communityLinks = useMemo(
     () => [
@@ -53,7 +54,7 @@ function NavBar() {
   );
 
   return (
-    <Box position="fixed" w="100%" top={0} shadow="base" zIndex={1} bg={navbarBgColor}>
+    <div className={classes("navbar fixed p-0 shadow-md", navbarBgColor)}>
       <Container p="1rem" display="flex" justifyContent="space-between" maxW="5xl">
         <IconButton
           size="md"
@@ -126,7 +127,7 @@ function NavBar() {
           </HStack>
         </Box>
       ) : null}
-    </Box>
+    </div>
   );
 }
 

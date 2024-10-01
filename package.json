@@ -12,8 +12,9 @@
 		"encrypt": "gpg -c .env",
 		"decrypt": "gpg -d .env.gpg > .env",
 		"lint": "biome lint",
-		"e2e": "playwright test",
 		"fmt": "biome format --write && biome lint --write --unsafe",
+		"e2e": "playwright test",
+		"test": "bun test packages",
 		"prepare": "lefthook install"
 	},
 	"dependencies": {
@@ -36,11 +37,13 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.2",
 		"@playwright/test": "^1.47.1",
+		"@types/bun": "^1.1.10",
 		"@types/lodash": "^4.17.7",
 		"@types/node": "^22.5.5",
 		"@types/react": "^18.3.8",
 		"@types/react-dom": "^18.3.0",
 		"autoprefixer": "^10.4.20",
+		"daisyui": "^4.12.10",
 		"lint-staged": "^15.2.10",
 		"next-plugin-yaml": "^1.0.1",
 		"postcss": "^8.4.47",
