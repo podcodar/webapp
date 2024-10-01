@@ -1,4 +1,4 @@
-name: Playwright Tests
+name: Run Tests
 
 on:
   pull_request:
@@ -9,14 +9,28 @@ on:
     branches: [main]
 
 jobs:
-  integration-tests:
-    timeout-minutes: 300
-    runs-on: ubuntu-latest
+  unit-tests:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
+      - name: Run unit-tests
+        run: |
+          bun install --frozen-lockfile && bun run test
+
+  integration-tests:
+    timeout-minutes: 300
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Run unit-tests
+        run: bun install --frozen-lockfile && bun run test
 
       - name: Waiting for 200 from the Vercel Preview
         uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
@@ -30,7 +44,7 @@ jobs:
         run: echo "TEST_URL=${{steps.waitFor200.outputs.url}}" >> $GITHUB_ENV
 
       - name: Install Playwright Browsers
-        run: bun install --frozen-lockfile && bun run playwright install --with-deps
+        run: bun run playwright install --with-deps
 
       - name: Run Playwright tests
         run: bun run e2e
