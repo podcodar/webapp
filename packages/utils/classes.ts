@@ -21,7 +21,7 @@
  *  @example classes("bg-red-500 w-4", "bg-red-500 px-3");
  * >>> "bg-red-500 w-4 px-3"
  */
-export function classes(...classList: Array<string | boolean>[]): string {
+export function classes(...classList: Array<string | boolean>): string {
   const validClasses: string[] = classList
     .filter((className: string): boolean => typeof className === "string" && className.trim().length > 0)
     .flatMap((className: string): string[] => className.split(" "));
