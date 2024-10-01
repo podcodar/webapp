@@ -1,0 +1,40 @@
+# workflow based on: https://vitepress.dev/guide/deploy#github-pages
+name: Deploy docs to GitHub Pages
+
+on:
+  push:
+    paths:
+      - 'docs/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: setup bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: build vitepress docs (bun)
+        run: 'bun ci && bun run docs:build'
+        env:
+          NODE_ENV: production
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs/.vitepress/dist
+
+    deploy:
+      name: Deploy
+      needs: build
+      runs-on: ubuntu-latest
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+      steps:
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4
