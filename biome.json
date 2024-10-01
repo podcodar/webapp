@@ -4,7 +4,15 @@
     "enabled": true
   },
   "formatter": {
-    "include": ["**/*.ts", "**/*.tsx"],
+    "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
+    "ignore": [
+      "docs/.vitepress",
+      "node_modules",
+      ".next",
+      "packages/components/icons",
+      "**/*.(svg,js)",
+      "**/*/firestore.ts"
+    ],
     "enabled": true,
     "formatWithErrors": true,
     "indentStyle": "space",
@@ -13,6 +21,13 @@
   },
   "linter": {
     "enabled": true,
-    "ignore": ["node_modules", ".next", "packages/components/icons", "**/*.(svg,js)", "**/*/firestore.ts"]
+    "ignore": [
+      "docs/.vitepress",
+      "node_modules",
+      ".next",
+      "packages/components/icons",
+      "**/*.(svg,js)",
+      "**/*/firestore.ts"
+    ]
   }
 }

@@ -1,64 +1,70 @@
 {
-	"name": "webapp",
-	"homepage": "https://podcodar-webapp.web.app/",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"build:static": "next build",
-		"start": "next start",
-		"deploy": "firebase deploy",
-		"encrypt": "gpg -c .env",
-		"decrypt": "gpg -d .env.gpg > .env",
-		"lint": "biome lint",
-		"fmt": "biome format --write && biome lint --write --unsafe",
-		"e2e": "playwright test",
-		"test": "bun test packages",
-		"prepare": "lefthook install"
-	},
-	"dependencies": {
-		"@chakra-ui/icons": "^2.1.1",
-		"@chakra-ui/next-js": "^2.2.0",
-		"@chakra-ui/react": "^2.8.2",
-		"@emotion/react": "^11.13.3",
-		"@emotion/styled": "^11.13.0",
-		"eslint-config-next": "^14.2.12",
-		"firebase": "^10.13.2",
-		"framer-motion": "^11.5.5",
-		"i18next": "^23.15.1",
-		"lefthook": "^1.7.15",
-		"lodash": "^4.17.21",
-		"next": "^14.2.12",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1",
-		"react-i18next": "^15.0.2"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "^1.9.2",
-		"@playwright/test": "^1.47.1",
-		"@types/bun": "^1.1.10",
-		"@types/lodash": "^4.17.7",
-		"@types/node": "^22.5.5",
-		"@types/react": "^18.3.8",
-		"@types/react-dom": "^18.3.0",
-		"autoprefixer": "^10.4.20",
-		"daisyui": "^4.12.10",
-		"lint-staged": "^15.2.10",
-		"next-plugin-yaml": "^1.0.1",
-		"postcss": "^8.4.47",
-		"tailwindcss": "^3.4.13",
-		"typescript": "^5.6.2"
-	},
-	"lint-staged": {
-		"*.{md,svg}": "npx prettier --write",
-		"**/*.{tsx,ts,js,jsx}": "biome lint --fix"
-	},
-	"engines": {
-		"node": ">=18"
-	},
-	"volta": {
-		"node": "20.17.0",
-		"yarn": "4.3.1"
-	}
+  "name": "webapp",
+  "homepage": "https://podcodar-webapp.web.app/",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:static": "next build",
+    "start": "next start",
+    "deploy": "firebase deploy",
+    "encrypt": "gpg -c .env",
+    "decrypt": "gpg -d .env.gpg > .env",
+    "lint": "biome lint",
+    "fmt": "biome format --write && biome lint --write --unsafe",
+    "e2e": "playwright test",
+    "test": "bun test packages",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "prepare": "lefthook install"
+  },
+  "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/layout": "^2.3.1",
+    "@chakra-ui/next-js": "^2.2.0",
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "eslint-config-next": "^14.2.12",
+    "firebase": "^10.13.2",
+    "framer-motion": "^11.5.5",
+    "i18next": "^23.15.1",
+    "lefthook": "^1.7.15",
+    "lodash": "^4.17.21",
+    "next": "^14.2.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^15.0.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.2",
+    "@playwright/test": "^1.47.1",
+    "@types/bun": "^1.1.10",
+    "@types/lodash": "^4.17.7",
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.8",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "daisyui": "^4.12.10",
+    "lint-staged": "^15.2.10",
+    "next-plugin-yaml": "^1.0.1",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2",
+    "vitepress": "^1.3.4"
+  },
+  "lint-staged": {
+    "*.{md,svg}": "npx prettier --write",
+    "**/*.{tsx,ts,js,jsx}": "biome lint --fix"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "volta": {
+    "node": "20.17.0",
+    "bun": "1.1.28"
+  },
+  "packageManager": "bun@1"
 }

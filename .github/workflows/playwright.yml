@@ -14,9 +14,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: oven-sh/setup-bun@v2
         with:
-          node-version: lts/*
+          bun-version: latest
 
       - name: Waiting for 200 from the Vercel Preview
         uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
@@ -29,14 +29,11 @@ jobs:
       - name: Inject testing URL
         run: echo "TEST_URL=${{steps.waitFor200.outputs.url}}" >> $GITHUB_ENV
 
-      - name: Install dependencies
-        run: npm install -g yarn && yarn
-
       - name: Install Playwright Browsers
-        run: yarn playwright install --with-deps
+        run: bun install --frozen-lockfile && bun run playwright install --with-deps
 
       - name: Run Playwright tests
-        run: yarn playwright test
+        run: bun run e2e
 
       - uses: actions/upload-artifact@v4
         if: always()

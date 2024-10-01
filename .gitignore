@@ -43,3 +43,7 @@ yarn-error.log*
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# vitepress
+docs/.vitepress/dist
+docs/.vitepress/cache

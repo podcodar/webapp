@@ -7,13 +7,16 @@ pre-push:
   commands:
     build:
       tags: build
-      run: yarn build
+      run: bun run build
     lint:
       tags: lint
-      run: yarn lint
+      run: bun run lint
+    unit-test:
+      tags: tests
+      run: bun run test
 
 pre-commit:
   commands:
     lint:
       tags: lint
-      run: yarn lint-staged
+      run: bun lint-staged

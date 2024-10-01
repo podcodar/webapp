@@ -7,12 +7,13 @@ jobs:
     environment: Firebase
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - name: setup bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: '18.x'
-      - run: yarn install
-      - run: yarn lint
-      - run: yarn build:static
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bun lint
+      - run: bun build:static
         env:
           FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
           FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
