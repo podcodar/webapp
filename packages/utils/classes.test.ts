@@ -36,7 +36,7 @@ test("test_with_dynamic_argument", () => {
 
 test("test_with_non_string_argument", () => {
   const nonStringArgument = true;
-  const input = ["bg-red-500", nonStringArgument] as string[];
+  const input = ["bg-red-500", nonStringArgument];
 
   const expected = "bg-red-500";
 
@@ -44,7 +44,7 @@ test("test_with_non_string_argument", () => {
 });
 
 test("test_with_null_and_undefined_arguments", () => {
-  const input = ["bg-red-500", null, undefined] as string[];
+  const input = ["bg-red-500", null, undefined];
 
   const expected = "bg-red-500";
 
@@ -60,7 +60,7 @@ test("test_with_empty_string_argument", () => {
 });
 
 test("test_with_mixed_arguments", () => {
-  const input = ["bg-red-500", "", null, undefined, "text-white", 42] as string[];
+  const input = ["bg-red-500", "", null, undefined, "text-white", 42];
 
   const expected = "bg-red-500 text-white";
 
@@ -68,7 +68,7 @@ test("test_with_mixed_arguments", () => {
 });
 
 test("test_with_only_invalid_arguments", () => {
-  const input = [null, undefined, true, false, 42] as string[];
+  const input = [null, undefined, true, false, 42];
 
   const expected = "";
 
