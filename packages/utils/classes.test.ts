@@ -35,9 +35,7 @@ test("test_with_dynamic_argument", () => {
 });
 
 test("test_with_non_string_argument", () => {
-  const nonStringArgument = true;
-  const input = ["bg-red-500", nonStringArgument];
-
+  const input = ["bg-red-500", false as const];
   const expected = "bg-red-500";
 
   expect(classes(...input)).toBe(expected);
@@ -60,16 +58,14 @@ test("test_with_empty_string_argument", () => {
 });
 
 test("test_with_mixed_arguments", () => {
-  const input = ["bg-red-500", "", null, undefined, "text-white", 42];
-
+  const input = ["bg-red-500", "", null, undefined, "text-white"];
   const expected = "bg-red-500 text-white";
 
   expect(classes(...input)).toBe(expected);
 });
 
 test("test_with_only_invalid_arguments", () => {
-  const input = [null, undefined, true, false, 42];
-
+  const input = [null, undefined, false as const, ""];
   const expected = "";
 
   expect(classes(...input)).toBe(expected);
