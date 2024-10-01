@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/webapp/",
   title: "PodCodar Documentation",
   description: "Engineering documentation for PodCodar Developers",
   themeConfig: {
