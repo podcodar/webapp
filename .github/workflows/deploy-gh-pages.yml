@@ -18,7 +18,7 @@ jobs:
           bun-version: latest
 
       - name: build vitepress docs (bun)
-        run: 'bun ci && bun run docs:build'
+        run: 'bun install --frozen-lockfile && bun run docs:build'
         env:
           NODE_ENV: production
 

@@ -30,7 +30,7 @@ jobs:
         run: echo "TEST_URL=${{steps.waitFor200.outputs.url}}" >> $GITHUB_ENV
 
       - name: Install Playwright Browsers
-        run: bun ci && bun run playwright install --with-deps
+        run: bun install --frozen-lockfile && bun run playwright install --with-deps
 
       - name: Run Playwright tests
         run: bun run e2e
