@@ -86,3 +86,11 @@ test("test_with_duplicated_classes_in_combined_strings", () => {
 
   expect(classes(...input)).toBe(expected);
 });
+
+test("test_with_conflicting_tokens", () => {
+  const input: string[] = ["bg-red-900 px-4", "bg-red-500 px-3"];
+
+  const expected = "bg-red-500 px-3";
+
+  expect(classes(...input)).toBe(expected);
+});
