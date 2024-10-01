@@ -1,17 +1,16 @@
-import { type ChakraProps, Container, Box } from "@chakra-ui/react";
-
 import type { ReactNode } from "react";
+import { classes } from "@packages/utils/classes";
 
-interface Props extends ChakraProps {
+interface Props {
   children: ReactNode;
-  id?: string;
+  className?: string;
 }
 
-function Section({ children, ...props }: Props) {
+function Section({ children, className }: Props) {
   return (
-    <Box py="4rem" {...props}>
-      <Container maxW="5xl">{children}</Container>
-    </Box>
+    <div className={classes("py-16", className)}>
+      <div className="max-w-5xl mx-auto">{children}</div>
+    </div>
   );
 }
 
