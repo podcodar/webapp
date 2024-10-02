@@ -5,12 +5,14 @@ import { Grid, GridItem, Text, Heading, useColorModeValue } from "@chakra-ui/rea
 import { useI18n } from "@packages/features/i18n-context";
 
 import Section from "./Section";
+import { classes } from "@packages/utils/classes";
 
 export default function MentoringSection() {
   const { t } = useI18n("mentoring");
-  const bgColor = useColorModeValue("#f7f5f4", "gray.700");
+  const bgColor = useColorModeValue("#f7f5f4", "gray.900");
+
   return (
-    <Section bg={bgColor} py="5rem">
+    <Section className={classes(bgColor, "py-20")}>
       <Grid templateColumns="repeat(5, 1fr)" gap={{ basE: 0, md: 4 }}>
         <GridItem rowSpan={{ base: 1, md: 3 }} colSpan={{ base: 5, md: 2 }}>
           <Heading size="md" my="2rem" fontWeight={400} textAlign="center">
