@@ -9,11 +9,12 @@ import { Logo } from "@packages/components/icons";
 
 import Section from "./Section";
 import SocialIconLinks from "./SocialIconLinks";
+import { classes } from "@packages/utils/classes";
 
 export default function Footer() {
-  const bgColor = "#0a1523";
+  const bgColor = "bg-neutral-950";
   return (
-    <Section p="1.5rem" bg={bgColor} alignItems="center">
+    <Section className={classes(bgColor, 'px-6 py-6 items-center')}>
       <Grid gridTemplateColumns={{ base: "1fr", sm: "repeat(3, 1fr)" }} color="gray.50" css={centerGridCells}>
         <PodCodarLogo />
         <Copyrights />
