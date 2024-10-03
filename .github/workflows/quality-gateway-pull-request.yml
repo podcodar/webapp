@@ -1,10 +1,10 @@
 name: Running quality gateway on PR
-'on': pull_request
+on: [pull_request]
+
 jobs:
   quality_gateway:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
-    environment: Firebase
     steps:
       - uses: actions/checkout@v2
       - name: setup bun
@@ -14,9 +14,15 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun lint
       - run: bun build:static
-        env:
-          FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
-          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-          FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
-          FIREBASE_MESSAGING_ID: ${{ secrets.FIREBASE_MESSAGING_ID }}
-          FIREBASE_MEASUREMENT_ID: ${{ secrets.FIREBASE_MEASUREMENT_ID }}
+
+  biome:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mongolyy/reviewdog-action-biome@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
