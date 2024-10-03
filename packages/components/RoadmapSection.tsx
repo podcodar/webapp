@@ -10,7 +10,7 @@ import Section from "./Section";
 
 export default function RoadmapSection() {
   const { t } = useI18n("roadmap");
-  const bgColor = useColorModeValue("gray.50", "gray.900");
+  const bgColor = useColorModeValue("bg-gray-100", "bg-gray-900");
   return (
     <Section className={bgColor}>
       <Flex justifyContent="space-between" py="1rem">

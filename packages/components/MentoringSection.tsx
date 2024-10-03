@@ -9,7 +9,7 @@ import { classes } from "@packages/utils/classes";
 
 export default function MentoringSection() {
   const { t } = useI18n("mentoring");
-  const bgColor = useColorModeValue("#f7f5f4", "gray.900");
+  const bgColor = useColorModeValue("bg-slate-50", "bg-slate-950");
 
   return (
     <Section className={classes(bgColor, "py-20")}>
