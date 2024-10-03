@@ -1,6 +1,6 @@
 "use client";
 
-import Image from 'next/image'
+import Image from "next/image";
 
 import { Logo } from "@packages/components/icons";
 import { PIX_KEY, images } from "@packages/config/site";
