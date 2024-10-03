@@ -4,7 +4,7 @@ import Section from "@packages/components/Section";
 
 export default function PageNotFound() {
   return (
-    <Section className="p-0 pt-32">
+    <Section className="px-0 pt-32">
       <Stack textAlign="center" align="center" spacing={{ base: 2, md: 4 }}>
         <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%">
           Não encontramos sua página
