@@ -8,6 +8,7 @@ import { useI18n } from "@packages/features/i18n-context";
 import Section from "./Section";
 
 import type { Testimonial } from "@packages/entities/testimonials";
+import { classes } from "@packages/utils/classes";
 
 interface Props {
   testimonials: Testimonial[];
@@ -26,7 +27,7 @@ export default function TestimonialSection({ testimonials }: Props) {
   }
 
   return (
-    <Section bg={bgColor}>
+    <Section className={classes(bgColor)}>
       <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
         {t("title")}
       </Heading>
