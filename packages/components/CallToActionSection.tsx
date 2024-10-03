@@ -13,7 +13,7 @@ export default function CallToActionSection() {
   const { t } = useI18n("call-to-action");
 
   return (
-    <Section py="10rem">
+    <Section className="py-40">
       <Stack textAlign="center" align="center" spacing={{ base: 8, md: 10 }}>
         <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%">
           <Trans

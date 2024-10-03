@@ -13,15 +13,14 @@ import {
 
 import { PersonalizedLearningIcon, PracticalLearningIcon, TeamworkIcon } from "@packages/components/icons";
 import { useI18n } from "@packages/features/i18n-context";
-
 import Section from "./Section";
 
 export default function WhyItWorksSection() {
   const { t } = useI18n("why-it-works");
-  const bgColor = useColorModeValue("gray.50", "gray.900");
+  const bgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
 
   return (
-    <Section bg={bgColor} id="why-it-works">
+    <Section className={bgColor} id="why-it-works">
       <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
         {t("title")}
       </Heading>

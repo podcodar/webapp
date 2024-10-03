@@ -14,7 +14,7 @@ interface Props {
 }
 
 export default function TestimonialSection({ testimonials }: Props) {
-  const bgColor = useColorModeValue("gray.50", "gray.900");
+  const bgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
   const { t } = useI18n("testimonials");
   const sliderRef = useRef<HTMLInputElement>(null);
 
@@ -26,7 +26,7 @@ export default function TestimonialSection({ testimonials }: Props) {
   }
 
   return (
-    <Section bg={bgColor}>
+    <Section className={bgColor}>
       <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
         {t("title")}
       </Heading>

@@ -11,9 +11,8 @@ import Section from "./Section";
 import SocialIconLinks from "./SocialIconLinks";
 
 export default function Footer() {
-  const bgColor = "#0a1523";
   return (
-    <Section p="1.5rem" bg={bgColor} alignItems="center">
+    <Section className="bg-neutral-950 px-6 py-6 items-center">
       <Grid gridTemplateColumns={{ base: "1fr", sm: "repeat(3, 1fr)" }} color="gray.50" css={centerGridCells}>
         <PodCodarLogo />
         <Copyrights />
