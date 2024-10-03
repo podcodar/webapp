@@ -17,7 +17,7 @@ export default async function Team() {
   const members = processMembers(await membersService.list());
 
   return (
-    <Section className = "py-40">
+    <Section className="py-40">
       <Grid gap={10}>
         <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center">
           <Trans
