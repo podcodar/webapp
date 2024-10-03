@@ -12,7 +12,7 @@ export default function MentoringSection() {
   const bgColor = useColorModeValue("bg-white", "bg-gray-950");
 
   return (
-    <Section className={classes(bgColor, "py-20")}>
+    <Section className={classes("py-20", bgColor)}>
       <Grid templateColumns="repeat(5, 1fr)" gap={{ basE: 0, md: 4 }}>
         <GridItem rowSpan={{ base: 1, md: 3 }} colSpan={{ base: 5, md: 2 }}>
           <Heading size="md" my="2rem" fontWeight={400} textAlign="center">

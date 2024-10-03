@@ -27,7 +27,7 @@ export default function TestimonialSection({ testimonials }: Props) {
   }
 
   return (
-    <Section className={classes(bgColor)}>
+    <Section className={bgColor}>
       <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
         {t("title")}
       </Heading>

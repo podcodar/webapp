@@ -21,7 +21,7 @@ export default function WhyItWorksSection() {
   const bgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
 
   return (
-    <Section className={classes(bgColor)} id="why-it-works">
+    <Section className={bgColor} id="why-it-works">
       <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
         {t("title")}
       </Heading>
