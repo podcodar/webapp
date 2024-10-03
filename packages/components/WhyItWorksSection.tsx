@@ -18,7 +18,7 @@ import { classes } from "@packages/utils/classes";
 
 export default function WhyItWorksSection() {
   const { t } = useI18n("why-it-works");
-  const bgColor = useColorModeValue("gray.50", "gray.900");
+  const bgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
 
   return (
     <Section className={classes(bgColor)} id="why-it-works">

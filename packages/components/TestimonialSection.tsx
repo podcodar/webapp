@@ -15,7 +15,7 @@ interface Props {
 }
 
 export default function TestimonialSection({ testimonials }: Props) {
-  const bgColor = useColorModeValue("gray.50", "gray.900");
+  const bgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
   const { t } = useI18n("testimonials");
   const sliderRef = useRef<HTMLInputElement>(null);
 
