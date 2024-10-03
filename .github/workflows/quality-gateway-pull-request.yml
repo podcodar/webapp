@@ -1,10 +1,10 @@
 name: Running quality gateway on PR
-'on': pull_request
+on: [pull_request]
+
 jobs:
   quality_gateway:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
-    environment: Firebase
     steps:
       - uses: actions/checkout@v2
       - name: setup bun
@@ -16,7 +16,6 @@ jobs:
       - run: bun build:static
 
   biome:
-    name: Biome + reviewdog
     runs-on: ubuntu-latest
     permissions:
       contents: read
