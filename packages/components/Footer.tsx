@@ -1,5 +1,7 @@
 "use client";
 
+import Image from 'next/image'
+
 import { Logo } from "@packages/components/icons";
 import { PIX_KEY, images } from "@packages/config/site";
 import { useI18n } from "@packages/features/i18n-context";
@@ -33,7 +35,7 @@ function Pix() {
     <div className="flex flex-col items-center gap-2">
       <p>{t("contribution")}</p>
       <p className="text-sm text-zinc-500">{PIX_KEY}</p>
-      <img src={images.pixQRCode} width="40%" alt={t("contribution")} />
+      <Image src={images.pixQRCode} width={125} height={125} alt={t("contribution")} />
     </div>
   );
 }
