@@ -8,7 +8,6 @@ import { useI18n } from "@packages/features/i18n-context";
 import Section from "./Section";
 
 import type { Testimonial } from "@packages/entities/testimonials";
-import { classes } from "@packages/utils/classes";
 
 interface Props {
   testimonials: Testimonial[];

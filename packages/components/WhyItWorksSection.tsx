@@ -14,7 +14,6 @@ import {
 import { PersonalizedLearningIcon, PracticalLearningIcon, TeamworkIcon } from "@packages/components/icons";
 import { useI18n } from "@packages/features/i18n-context";
 import Section from "./Section";
-import { classes } from "@packages/utils/classes";
 
 export default function WhyItWorksSection() {
   const { t } = useI18n("why-it-works");
