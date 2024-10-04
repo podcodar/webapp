@@ -20,6 +20,7 @@
     "docs:preview": "vitepress preview docs",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:studio": "drizzle-kit studio",
     "prepare": "lefthook install"
   },
   "dependencies": {
