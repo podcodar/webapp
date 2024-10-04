@@ -6,6 +6,7 @@
   "formatter": {
     "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
     "ignore": [
+      "migrations/**",
       "docs/.vitepress",
       "node_modules",
       ".next",
@@ -22,6 +23,7 @@
   "linter": {
     "enabled": true,
     "ignore": [
+      "migrations/**",
       "docs/.vitepress",
       "node_modules",
       ".next",
