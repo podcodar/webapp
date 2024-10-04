@@ -18,6 +18,8 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
     "prepare": "lefthook install"
   },
   "dependencies": {
@@ -27,6 +29,9 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
+    "@libsql/client": "^0.14.0",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.33.0",
     "eslint-config-next": "^14.2.12",
     "firebase": "^10.13.2",
     "framer-motion": "^11.5.5",
@@ -48,6 +53,7 @@
     "@types/react-dom": "^18.3.0",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.10",
+    "drizzle-kit": "^0.24.2",
     "lint-staged": "^15.2.10",
     "next-plugin-yaml": "^1.0.1",
     "postcss": "^8.4.47",
