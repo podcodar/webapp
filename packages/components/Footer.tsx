@@ -1,11 +1,10 @@
 "use client";
 
-import { Stack, Text, Image, Grid } from "@chakra-ui/react";
-import { css } from "@emotion/react";
+import Image from "next/image";
 
-import { useI18n } from "@packages/features/i18n-context";
-import { PIX_KEY, images } from "@packages/config/site";
 import { Logo } from "@packages/components/icons";
+import { PIX_KEY, images } from "@packages/config/site";
+import { useI18n } from "@packages/features/i18n-context";
 
 import Section from "./Section";
 import SocialIconLinks from "./SocialIconLinks";
@@ -13,33 +12,31 @@ import SocialIconLinks from "./SocialIconLinks";
 export default function Footer() {
   return (
     <Section className="bg-neutral-950 px-6 py-6 items-center">
-      <Grid gridTemplateColumns={{ base: "1fr", sm: "repeat(3, 1fr)" }} color="gray.50" css={centerGridCells}>
+      <div className="grid grid-cols-1 sm:grid-cols-3 text-gray-50">
         <PodCodarLogo />
         <Copyrights />
         <Pix />
-      </Grid>
+      </div>
     </Section>
   );
 }
 
 function PodCodarLogo() {
   return (
-    <Stack>
+    <div className="flex flex-col items-center gap-2">
       <Logo size="large" />
-    </Stack>
+    </div>
   );
 }
 
 function Pix() {
   const { t } = useI18n("footer");
   return (
-    <Stack>
-      <Text>{t("contribution")}</Text>
-      <Text fontSize="sm" color="#718096">
-        {PIX_KEY}
-      </Text>
-      <Image src={images.pixQRCode} width="40%" alt={t("contribution")} />
-    </Stack>
+    <div className="flex flex-col items-center gap-2">
+      <p>{t("contribution")}</p>
+      <p className="text-sm text-zinc-500">{PIX_KEY}</p>
+      <Image src={images.pixQRCode} width={125} height={125} alt={t("contribution")} />
+    </div>
   );
 }
 
@@ -47,18 +44,10 @@ function Copyrights() {
   const { t } = useI18n("footer");
   const currentYear = new Date().getFullYear();
   return (
-    <Stack>
-      <Text>{t("podcodar")}</Text>
-
+    <div className="flex flex-col items-center gap-2">
+      <p>{t("podcodar")}</p>
       <SocialIconLinks />
-
-      <Text fontSize="sm">{t("legal", { currentYear })}</Text>
-    </Stack>
+      <p className="text-sm">{t("legal", { currentYear })}</p>
+    </div>
   );
 }
-
-const centerGridCells = css`
-  & > * {
-    align-items: center;
-  }
-`;
