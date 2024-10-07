@@ -18,11 +18,7 @@ async function execute() {
         linkedin: member.social.linkedin,
       };
 
-      console.log({
-        member,
-        newMember,
-      });
-
+      console.log({ member, newMember });
       return db.insert(membersTable).values(newMember);
     }),
   );

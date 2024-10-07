@@ -8,18 +8,19 @@ const firebaseTestimonials = getTestimonialInstance();
 async function execute() {
   const testimonialsList = await firebaseTestimonials.list();
 
-  for (const testimonial of testimonialsList) {
-    const newTestimonial: InsertTestimonial = {
-      name: testimonial.name,
-      avatarUrl: testimonial.avatarUrl,
-      profileUrl: testimonial.profileUrl,
-      description: testimonial.text,
-    };
-    const res = await db.insert(testimonialsTable).values(newTestimonial);
-    console.log({
-      res,
-    });
-  }
+  await Promise.allSettled(
+    testimonialsList.map(async (testimonial) => {
+      const newTestimonial: InsertTestimonial = {
+        name: testimonial.name,
+        avatarUrl: testimonial.avatarUrl,
+        profileUrl: testimonial.profileUrl,
+        description: testimonial.text,
+      };
+
+      console.log({ testimonial, newTestimonial });
+      return db.insert(testimonialsTable).values(newTestimonial);
+    }),
+  );
 }
 
 execute().catch((e) => {
