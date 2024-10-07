@@ -10,3 +10,16 @@ export const testimonialsTable = sqliteTable("testimonials", {
 
 export type InsertTestimonial = typeof testimonialsTable.$inferInsert;
 export type SelectTestimonial = typeof testimonialsTable.$inferSelect;
+
+export const membersTable = sqliteTable("members", {
+  id: integer("id").primaryKey(),
+  name: text("name").notNull(),
+  role: text("role").notNull(),
+  avatar: text("avatar").notNull(),
+  cover: text("cover").notNull(),
+  github: text("github").notNull(),
+  linkedin: text("linkedin").notNull(),
+});
+
+export type InsertMember = typeof membersTable.$inferInsert;
+export type SelectMember = typeof membersTable.$inferSelect;
