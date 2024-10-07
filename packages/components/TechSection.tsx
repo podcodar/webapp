@@ -1,6 +1,6 @@
 "use client";
 
-import { HStack, Heading } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
 
 import { useI18n } from "@packages/features/i18n-context";
 
@@ -46,9 +46,8 @@ function TechSection() {
 
   return (
     <Section>
-      <Heading my="4rem" size="md" fontWeight={600} textAlign="left">
-        {t("tech-title")}
-      </Heading>
+      <h2 className="my-16 text-xl leading-tight font-semibold text-left">{t("tech-title")}</h2>
+
       <HStack spacing="1rem" flexWrap="wrap" justifyContent="center" alignItems="center" lineHeight="200%">
         {iconList.map((Icon) => (
           <Icon p="0.3rem" key={Icon.name} />
