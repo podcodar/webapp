@@ -1,5 +1,5 @@
 import { db } from "@packages/repositories/db";
-import { membersTable, type InsertMember } from "@packages/repositories/db/schema";
+import { type InsertMember, membersTable } from "@packages/repositories/db/schema";
 import { getMemberInstance } from "@packages/services/members";
 
 const firebaseMembers = getMemberInstance();
