@@ -1,6 +1,10 @@
 name: Running quality gateway on PR
 on: [pull_request]
 
+env:
+  TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
+  TURSO_CONNECTION_URL: ${{ secrets.TURSO_CONNECTION_URL }}
+
 jobs:
   quality_gateway:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
