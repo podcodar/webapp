@@ -11,8 +11,7 @@
       "node_modules",
       ".next",
       "packages/components/icons",
-      "**/*.(svg,js)",
-      "**/*/firestore.ts"
+      "**/*.(svg,js)"
     ],
     "enabled": true,
     "formatWithErrors": true,
@@ -28,8 +27,7 @@
       "node_modules",
       ".next",
       "packages/components/icons",
-      "**/*.(svg,js)",
-      "**/*/firestore.ts"
+      "**/*.(svg,js)"
     ]
   }
 }
