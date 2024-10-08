@@ -49,9 +49,9 @@ function TechSection() {
 
       <div className="flex flex-wrap mx-4 items-center justify-center">
         {iconList.map((Icon, index) => {
-          const iconSpacing = classes(index > 0 && "ml-4");
+          const iconSpacing = classes("p-1", index > 0 && "ml-4");
 
-          return <Icon className={iconSpacing} style={{ padding: "0.3rem" }} key={Icon.name} />;
+          return <Icon className={iconSpacing} key={Icon.name} />;
         })}
       </div>
     </Section>
