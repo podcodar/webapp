@@ -1,13 +1,12 @@
-import { Heading, Avatar, Center, Image, Flex, Text, Grid, useColorModeValue } from "@chakra-ui/react";
+import { Avatar, Center, Flex, Grid, Heading, Image, Text, useColorModeValue } from "@chakra-ui/react";
 
 import { useI18n } from "@packages/features/i18n-context";
 
+import type { SelectMember } from "@packages/repositories/db/schema";
 import SocialIconLinks from "./SocialIconLinks";
 
-import type { Member } from "@packages/entities/members";
-
 interface Props {
-  member: Member;
+  member: SelectMember;
 }
 
 export default function MemberCard({ member }: Props) {
@@ -17,18 +16,18 @@ export default function MemberCard({ member }: Props) {
 
   return (
     <Center w="full" bg={bgColorBody} boxShadow="xl" rounded="md" textAlign="center" flexDirection="column">
-      <Image h="7rem" w="full" src={member.images.cover} objectFit="cover" alt="member cover" />
+      <Image h="7rem" w="full" src={member.cover} objectFit="cover" alt="member cover" />
       <Flex justify="center" mt="-12">
-        <Avatar size="xl" src={member.images.profile} border="2px solid white" />
+        <Avatar size="xl" src={member.avatar} border="2px solid white" />
       </Flex>
       <Grid gap=".5rem" p="1rem">
         <Heading fontSize="2xl" fontWeight={500}>
           {member.name}
         </Heading>
         <Text fontSize="md" color={colorTextLighter}>
-          {t(`role.${member.communityRole}`)}
+          {t(`role.${member.role}`)}
         </Text>
-        <SocialIconLinks githubUrl={member.social.github} linkedinUrl={member.social.linkedin} />
+        <SocialIconLinks githubUrl={member.github} linkedinUrl={member.linkedin} />
       </Grid>
     </Center>
   );
