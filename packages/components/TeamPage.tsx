@@ -1,11 +1,11 @@
 "use client";
-import { Heading, Text, Grid, Center } from "@chakra-ui/react";
+import { Center, Grid, Heading, Text } from "@chakra-ui/react";
 import { Trans } from "react-i18next";
 
-import { useI18n } from "@packages/features/i18n-context";
-import Section from "@packages/components/Section";
 import MemberCard from "@packages/components/MemberCard";
+import Section from "@packages/components/Section";
 import SkeletonMemberCard from "@packages/components/SkeletonMemberCard";
+import { useI18n } from "@packages/features/i18n-context";
 import type { SelectMember } from "@packages/repositories/db/schema";
 
 type Props = {

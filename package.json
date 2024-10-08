@@ -12,7 +12,7 @@
     "encrypt": "gpg -c .env",
     "decrypt": "gpg -d .env.gpg > .env",
     "lint": "biome lint",
-    "fmt": "biome format --write && biome lint --write --unsafe",
+    "fmt": "biome check --write ",
     "e2e": "playwright test",
     "test": "bun test packages",
     "docs:dev": "vitepress dev docs",
@@ -64,7 +64,7 @@
   },
   "lint-staged": {
     "*.{md,svg}": "npx prettier --write",
-    "**/*.{tsx,ts,js,jsx}": "biome lint --fix"
+    "**/*.{tsx,ts,js,jsx}": "biome check --write"
   },
   "engines": {
     "node": ">=18"
