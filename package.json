@@ -31,7 +31,7 @@
     "@emotion/styled": "^11.13.0",
     "@libsql/client": "^0.14.0",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.33.0",
+    "drizzle-orm": "^0.34.1",
     "eslint-config-next": "^14.2.12",
     "framer-motion": "^11.5.5",
     "i18next": "^23.15.1",

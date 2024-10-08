@@ -4,7 +4,8 @@ module.exports = withYaml({
   swcMinify: true,
   reactStrictMode: true,
   env: {
-    API_AUTH_TOKEN: process.env.API_AUTH_TOKEN,
+    TURSO_CONNECTION_URL: process.env.TURSO_CONNECTION_URL,
+    TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
   },
   eslint: {
     dirs: ['app', 'packages'], // Only run ESLint on the 'pages' and 'packages'
