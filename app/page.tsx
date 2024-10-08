@@ -5,11 +5,11 @@ import RoadmapSection from "@packages/components/RoadmapSection";
 import TechSection from "@packages/components/TechSection";
 import TestimonialSection from "@packages/components/TestimonialSection";
 import WhyItWorksSection from "@packages/components/WhyItWorksSection";
-import { getTestimonialInstance } from "@packages/services/testimonials";
+import { db } from "@packages/repositories/db";
+import { testimonialsTable } from "@packages/repositories/db/schema";
 
 export default async function Home() {
-  const testimonials = await getTestimonialInstance().list();
-  const activeTestimonials = testimonials.filter((testimonial) => testimonial.approved) ?? [];
+  const testimonials = await fetchTestimonials();
 
   return (
     <>
@@ -18,8 +18,14 @@ export default async function Home() {
       <MentoringSection />
       <RoadmapSection />
       <TechSection />
-      <TestimonialSection testimonials={activeTestimonials} />
+      <TestimonialSection testimonials={testimonials} />
       <Footer />
     </>
   );
+}
+
+async function fetchTestimonials() {
+  "use server";
+  const testimonials = await db.select().from(testimonialsTable);
+  return testimonials;
 }

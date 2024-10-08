@@ -1,13 +1,13 @@
 "use client";
 
-import { useMemo, useState } from "react";
 import i18next, { type TOptions } from "i18next";
+import { useMemo, useState } from "react";
 import { initReactI18next, useTranslation } from "react-i18next";
 
-import { type ChildrenProps, useEffectOnce } from "@packages/utils/react";
-import { createCtx } from "@packages/utils/react";
 import * as en from "@packages/locale/en.yml";
 import * as pt from "@packages/locale/pt.yml";
+import { type ChildrenProps, useEffectOnce } from "@packages/utils/react";
+import { createCtx } from "@packages/utils/react";
 
 const DEFAULT_LOCALE: Locale = "pt";
 const LOCAL_STORAGE_KEY = "podcodar:locale";

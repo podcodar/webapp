@@ -1,11 +1,11 @@
 "use client";
 
-import { Grid, GridItem, Text, Heading, useColorModeValue } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
 import { useI18n } from "@packages/features/i18n-context";
 
-import Section from "./Section";
 import { classes } from "@packages/utils/classes";
+import Section from "./Section";
 
 export default function MentoringSection() {
   const { t } = useI18n("mentoring");

@@ -1,6 +1,6 @@
 "use client";
 
-import { useColorModeValue, Grid, Heading, Flex, Text } from "@chakra-ui/react";
+import { Flex, Grid, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
 import Link from "@packages/components/Link";
 import { roadMapsLinks } from "@packages/config/site";

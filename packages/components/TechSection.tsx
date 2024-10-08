@@ -1,8 +1,9 @@
 "use client";
 
-import { classes } from "@packages/utils/classes";
 import { useI18n } from "@packages/features/i18n-context";
+import { classes } from "@packages/utils/classes";
 
+import Section from "./Section";
 import {
   CssIcon,
   DockerIcon,
@@ -20,8 +21,6 @@ import {
   TypeScriptIcon,
   WebPackIcon,
 } from "./icons";
-
-import Section from "./Section";
 
 const iconList = [
   GitIcon,
@@ -50,9 +49,9 @@ function TechSection() {
 
       <div className="flex flex-wrap mx-4 items-center justify-center">
         {iconList.map((Icon, index) => {
-          const iconSpacing = classes(index > 0 && "ml-4");
+          const iconSpacing = classes("p-1", index > 0 && "ml-4");
 
-          return <Icon className={iconSpacing} style={{ padding: "0.3rem" }} key={Icon.name} />;
+          return <Icon className={iconSpacing} key={Icon.name} />;
         })}
       </div>
     </Section>

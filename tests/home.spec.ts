@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 import { links } from "../packages/config/site";
 
 const PAGE_MAP: Record<string, string> = {

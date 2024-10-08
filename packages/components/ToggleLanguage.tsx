@@ -2,8 +2,8 @@
 
 import { Button } from "@chakra-ui/react";
 
+import { BRFlagIcon, USFlagIcon } from "@packages/components/icons";
 import { useI18nActions, useI18nStates } from "@packages/features/i18n-context";
-import { USFlagIcon, BRFlagIcon } from "@packages/components/icons";
 
 export default function ToggleLanguage() {
   const { locale } = useI18nStates();

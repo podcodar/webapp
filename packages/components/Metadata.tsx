@@ -1,4 +1,4 @@
-import { images, description, pageURL, title } from "@packages/config/site";
+import { description, images, pageURL, title } from "@packages/config/site";
 
 function Metadata() {
   return (

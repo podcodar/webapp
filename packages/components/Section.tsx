@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import { classes } from "@packages/utils/classes";
+import type { ReactNode } from "react";
 
 interface Props {
   children: ReactNode;

@@ -1,4 +1,4 @@
-import { Heading, Text, Stack } from "@chakra-ui/layout";
+import { Heading, Stack, Text } from "@chakra-ui/layout";
 
 import Section from "@packages/components/Section";
 

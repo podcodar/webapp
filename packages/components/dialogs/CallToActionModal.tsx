@@ -2,22 +2,22 @@
 // If you need to restore its usage, please check PR https://github.com/podcodar/webapp/pull/149/.
 
 import {
+  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  SlideFade,
   Spinner,
   Stack,
-  Flex,
-  SlideFade,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { useState } from "react";
 
-import { useModalActions, useModalStates } from "@packages/features/modal-context";
 import { IFRAME_FORM_URL } from "@packages/config/site";
+import { useModalActions, useModalStates } from "@packages/features/modal-context";
 
 type ModalVariants = "md" | "full" | "lg" | "xl";
 
