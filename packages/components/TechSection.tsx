@@ -4,10 +4,14 @@ import { HStack, Heading } from "@chakra-ui/react";
 
 import { useI18n } from "@packages/features/i18n-context";
 
+import Section from "./Section";
 import {
+  CssIcon,
   DockerIcon,
   GitIcon,
+  HtmlIcon,
   JavaScriptIcon,
+  LinuxIcon,
   NextIcon,
   NodeIcon,
   PythonIcon,
@@ -16,12 +20,8 @@ import {
   ShellIcon,
   SqlIcon,
   TypeScriptIcon,
-  LinuxIcon,
   WebPackIcon,
-  HtmlIcon,
-  CssIcon,
 } from "./icons";
-import Section from "./Section";
 
 const iconList = [
   GitIcon,

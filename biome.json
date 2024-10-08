@@ -6,12 +6,12 @@
   "formatter": {
     "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
     "ignore": [
+      "migrations/**",
       "docs/.vitepress",
       "node_modules",
       ".next",
       "packages/components/icons",
-      "**/*.(svg,js)",
-      "**/*/firestore.ts"
+      "**/*.(svg,js)"
     ],
     "enabled": true,
     "formatWithErrors": true,
@@ -22,12 +22,12 @@
   "linter": {
     "enabled": true,
     "ignore": [
+      "migrations/**",
       "docs/.vitepress",
       "node_modules",
       ".next",
       "packages/components/icons",
-      "**/*.(svg,js)",
-      "**/*/firestore.ts"
+      "**/*.(svg,js)"
     ]
   }
 }
