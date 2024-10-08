@@ -1,4 +1,4 @@
-import { Flex, SkeletonCircle, Box, Skeleton, Grid, useColorModeValue } from "@chakra-ui/react";
+import { Box, Flex, Grid, Skeleton, SkeletonCircle, useColorModeValue } from "@chakra-ui/react";
 
 export default function SkeletonMemberCard() {
   const colorMode = useColorModeValue("white", "gray.800");

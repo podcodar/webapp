@@ -2,13 +2,13 @@
 
 import {
   Box,
-  useColorModeValue,
-  Text,
+  type ComponentWithAs,
   Heading,
   Icon,
-  type ComponentWithAs,
   type IconProps,
   Stack,
+  Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 import { PersonalizedLearningIcon, PracticalLearningIcon, TeamworkIcon } from "@packages/components/icons";

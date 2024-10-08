@@ -1,8 +1,8 @@
 import { Stack } from "@chakra-ui/react";
 
 import Link from "@packages/components/Link";
-import { links } from "@packages/config/site";
 import { GithubIcon, LinkedInIcon } from "@packages/components/icons";
+import { links } from "@packages/config/site";
 
 interface Props {
   githubUrl?: string;

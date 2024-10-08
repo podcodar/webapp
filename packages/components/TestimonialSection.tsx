@@ -1,12 +1,12 @@
 "use client";
 
+import { Box, Button, Flex, Heading, Image, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { useRef } from "react";
-import { useColorModeValue, Heading, Box, Flex, Image, Text, Stack, Button } from "@chakra-ui/react";
 
 import { useI18n } from "@packages/features/i18n-context";
 
-import Section from "./Section";
 import type { SelectTestimonial } from "@packages/repositories/db/schema";
+import Section from "./Section";
 
 interface Props {
   testimonials: SelectTestimonial[];
