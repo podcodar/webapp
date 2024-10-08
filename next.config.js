@@ -8,6 +8,6 @@ module.exports = withYaml({
     TURSO_AUTH_TOKEN: process.env.TURSO_AUTH_TOKEN,
   },
   eslint: {
-    dirs: ['app', 'packages'], // Only run ESLint on the 'pages' and 'packages'
+    dirs: ['app', 'packages'],
   },
 });
