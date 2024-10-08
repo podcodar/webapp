@@ -6,11 +6,10 @@ import { useColorModeValue, Heading, Box, Flex, Image, Text, Stack, Button } fro
 import { useI18n } from "@packages/features/i18n-context";
 
 import Section from "./Section";
-
-import type { Testimonial } from "@packages/entities/testimonials";
+import type { SelectTestimonial } from "@packages/repositories/db/schema";
 
 interface Props {
-  testimonials: Testimonial[];
+  testimonials: SelectTestimonial[];
 }
 
 export default function TestimonialSection({ testimonials }: Props) {
@@ -36,8 +35,8 @@ export default function TestimonialSection({ testimonials }: Props) {
       </Flex>
       <Box h="320px" overflow="hidden" scrollBehavior="smooth" ref={sliderRef}>
         <Stack direction="row">
-          {testimonials.map(({ name, text, avatarUrl }) => (
-            <TestimonialCard key={name} name={name} testimonial={text} img={avatarUrl} />
+          {testimonials.map(({ id, name, description, avatarUrl }) => (
+            <TestimonialCard key={id} name={name} testimonial={description} img={avatarUrl} />
           ))}
         </Stack>
       </Box>
