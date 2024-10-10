@@ -2,28 +2,39 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  base: "/webapp/",
-  title: "PodCodar Documentation",
+  title: "PodCodar Engineering Wiki",
   description: "Engineering documentation for PodCodar Developers",
+
+  srcDir: "src",
+  base: "/webapp/",
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: "Home", link: "/" },
+      { text: "VitePress", link: "/vitepress" },
     ],
+
+    search: {
+      provider: "local",
+    },
 
     sidebar: [
       {
-        text: 'Examples',
+        text: "Vitepress Examples",
+        link: "/vitepress/",
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
-        ]
-      }
+          { text: "Markdown Examples", link: "/vitepress/markdown-examples" },
+          { text: "Runtime API Examples", link: "/vitepress/api-examples" },
+        ],
+      },
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/podcodar/webapp' }
-    ]
-  }
+      {
+        icon: "github",
+        link: "https://github.com/podcodar/webapp/",
+      },
+    ],
+  },
 })
