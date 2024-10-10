@@ -1,7 +1,10 @@
-import { defineConfig } from 'vitepress'
+import { defineConfigWithTheme } from 'vitepress'
+import type { ThemeConfig } from "vitepress-carbon"
+import { carbonConfig } from './theme/config'
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default defineConfigWithTheme<ThemeConfig>({
+  extends: carbonConfig,
   title: "PodCodar Engineering Wiki",
   description: "Engineering documentation for PodCodar Developers",
 
