@@ -15,7 +15,7 @@ export default defineConfigWithTheme<ThemeConfig>({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: "Home", link: "/" },
-      { text: "VitePress", link: "/vitepress" },
+      { text: "Team Guidelines", link: "/guidelines" },
     ],
 
     search: {
@@ -31,6 +31,16 @@ export default defineConfigWithTheme<ThemeConfig>({
           { text: "Runtime API Examples", link: "/vitepress/api-examples" },
         ],
       },
+      {
+        text: "Guidelines",
+        link: "/guidelines/",
+        items: [
+          { text: "Code Standards", link: "/guidelines/code-standards" },
+          { text: "Git Workflow", link: "/guidelines/git-workflow" },
+          { text: "Pull Request Guidelines", link: "/guidelines/pull-request-guidelines" },
+          { text: "Code Review Guidelines", link: "/guidelines/code-review-guidelines" },
+        ],
+      }
     ],
 
     socialLinks: [
