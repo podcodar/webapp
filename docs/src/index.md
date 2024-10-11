@@ -12,11 +12,16 @@ hero:
       link: /guidelines/
 
 features:
-  - title: Team Guidelines
+  - title: ✊ Team Guidelines
     details: Outlines the technical guidelines for the team.
     link: /guidelines/
 
-  - title: VitePress Examples
+  - title: 📃 VitePress Examples
     details: VitePress usage examples for PodCodar Developers
     link: /vitepress/
+
+  - title: 💪 BanBan Board
+    details: BanBan Board is a simple Kanban board for managing tasks.
+    link: https://github.com/orgs/podcodar/projects/13
+    target: _blank
 ---
