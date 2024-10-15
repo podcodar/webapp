@@ -4,13 +4,14 @@ import type { ReactNode } from "react";
 interface Props {
   children: ReactNode;
   className?: string;
+  innerClassName?: string;
   id?: string;
 }
 
-function Section({ children, className, id }: Props) {
+function Section({ children, className, innerClassName, id }: Props) {
   return (
     <div className={classes("py-16", className)} id={id}>
-      <div className="max-w-5xl mx-auto">{children}</div>
+      <div className={classes("max-w-5xl mx-auto", innerClassName)}>{children}</div>
     </div>
   );
 }
