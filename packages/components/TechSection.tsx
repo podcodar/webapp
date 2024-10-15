@@ -44,10 +44,10 @@ function TechSection() {
   const { t } = useI18n("roadmap");
 
   return (
-    <Section>
-      <h2 className="mx-4 my-16 font-semibold text-left text-xl leading-tight">{t("tech-title")}</h2>
+    <Section className="py-2">
+      <h2 className="font-semibold text-center text-xl leading-tight p-4 mx-4">{t("tech-title")}</h2>
 
-      <div className="flex flex-wrap mx-4 items-center justify-center">
+      <div className="flex flex-wrap items-center justify-center p-4 mx-4">
         {iconList.map((Icon, index) => {
           const iconSpacing = classes("p-1", index > 0 && "ml-4");
 
