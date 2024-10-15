@@ -1,7 +1,5 @@
 "use client";
 
-import { HStack, Heading } from "@chakra-ui/react";
-
 import { useI18n } from "@packages/features/i18n-context";
 
 import Section from "./Section";
@@ -45,15 +43,14 @@ function TechSection() {
   const { t } = useI18n("roadmap");
 
   return (
-    <Section>
-      <Heading my="4rem" size="md" fontWeight={600} textAlign="left">
-        {t("tech-title")}
-      </Heading>
-      <HStack spacing="1rem" flexWrap="wrap" justifyContent="center" alignItems="center" lineHeight="200%">
+    <Section innerClassName="grid gap-8">
+      <h2 className="font-semibold text-center text-xl leading-tight">{t("tech-title")}</h2>
+
+      <div className="flex flex-wrap gap-6 items-center justify-center">
         {iconList.map((Icon) => (
-          <Icon p="0.3rem" key={Icon.name} />
+          <Icon key={Icon.name} />
         ))}
-      </HStack>
+      </div>
     </Section>
   );
 }

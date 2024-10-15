@@ -1,26 +1,9 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.2/schema.json",
   "organizeImports": {
     "enabled": true
   },
-  "formatter": {
-    "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
-    "ignore": [
-      "migrations/**",
-      "docs/.vitepress",
-      "node_modules",
-      ".next",
-      "packages/components/icons",
-      "**/*.(svg,js)"
-    ],
-    "enabled": true,
-    "formatWithErrors": true,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineWidth": 120
-  },
-  "linter": {
-    "enabled": true,
+  "files": {
     "ignore": [
       "migrations/**",
       "docs/.vitepress",
@@ -29,5 +12,16 @@
       "packages/components/icons",
       "**/*.(svg,js)"
     ]
+  },
+  "formatter": {
+    "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
+    "enabled": true,
+    "formatWithErrors": true,
+    "indentStyle": "space",
+    "indentWidth": 2,
+    "lineWidth": 120
+  },
+  "linter": {
+    "enabled": true
   }
 }
