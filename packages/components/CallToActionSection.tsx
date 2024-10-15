@@ -29,7 +29,8 @@ export default function CallToActionSection() {
         <div className="w-full sm:w-auto flex flex-col sm:flex-row">
           <a
             href={links.secondaryButton}
-            className="rounded-full px-6 py-2 font-semibold bg-gray-100 text-black hover:bg-gray-200">
+            className="rounded-full px-6 py-2 font-semibold bg-gray-100 text-black hover:bg-gray-200"
+          >
             {t("secondary-button")}
           </a>
         </div>
