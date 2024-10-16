@@ -62,14 +62,6 @@ export default function I18nProvider({ children }: ChildrenProps) {
   );
 }
 
-interface I18nResult {
-  t: (key: string, options?: TOptions) => string;
-}
-
-export function useI18n(namespace: TranslationNS): I18nResult {
-  return useTranslation(namespace);
-}
-
 type Locale = "en" | "pt";
 
 export type TranslationNS =
@@ -84,3 +76,13 @@ export type TranslationNS =
   | "team-page"
   | "ask-us-page"
   | "testimonials";
+
+export type I18nTextProps = {
+  translation: `${TranslationNS}.${string}`;
+};
+
+export function LocalizedText({ translation }: I18nTextProps) {
+  const [ns, token] = translation.split(".");
+  const { t } = useTranslation(ns);
+  return <>{t(token)}</>;
+}
