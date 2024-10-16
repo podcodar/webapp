@@ -1,8 +1,6 @@
-import { Icon, type IconProps } from "@chakra-ui/react";
-
-export const Illustration = (props: IconProps) => {
+export const Illustration = () => {
   return (
-    <Icon width="100%" height="549" viewBox="0 0 913 549" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <svg width="100%" height="549" viewBox="0 0 913 549" fill="none" xmlns="http://www.w3.org/2000/svg" >
       <circle
         cx="726.5"
         cy="82.5"
@@ -293,6 +291,6 @@ export const Illustration = (props: IconProps) => {
           <stop offset="1" stopColor="white" stopOpacity="0" />
         </linearGradient>
       </defs>
-    </Icon>
+    </svg>
   );
 };

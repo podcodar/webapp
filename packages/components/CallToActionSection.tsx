@@ -1,6 +1,5 @@
 "use client";
 
-import { Button, Flex, Heading, Stack } from "@chakra-ui/react";
 import { Trans } from "react-i18next";
 
 import { Illustration } from "@packages/components/icons";
@@ -13,28 +12,28 @@ export default function CallToActionSection() {
   const { t } = useI18n("call-to-action");
 
   return (
-    <Section className="py-40">
-      <Stack textAlign="center" align="center" spacing={{ base: 8, md: 10 }}>
-        <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%">
+    <Section className="py-40 px-8">
+      <div className="text-center flex flex-col items-center gap-6">
+        <h2 className="font-semibold leading-tight text-3xl sm:text-4xl">
           <Trans
             i18nKey={t("title")}
             components={{
               span: <span className="text-purple-400" />,
             }}
           />
-        </Heading>
+        </h2>
 
         <p className="text-gray-500 max-w-3xl">{t("description")}</p>
 
-        <Stack spacing={6} w={{ base: "100%", sm: "auto" }} direction={{ base: "column", sm: "row" }}>
-          <Button as="a" href={links.secondaryButton} rounded="full" px={6}>
+        <div className="w-full sm:w-auto flex flex-col sm:flex-row">
+          <a href={links.secondaryButton} className="btn btn-ghost hover:btn-active rounded-full bg-gray-200">
             {t("secondary-button")}
-          </Button>
-        </Stack>
-        <Flex w="full">
-          <Illustration height={{ sm: "24rem", lg: "28rem" }} />
-        </Flex>
-      </Stack>
+          </a>
+        </div>
+        <div className="flex w-full md:px-24 lg:px-36 base:px-12">
+          <Illustration />
+        </div>
+      </div>
     </Section>
   );
 }
