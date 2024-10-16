@@ -26,10 +26,7 @@ export default function CallToActionSection() {
         <p className="text-gray-500 max-w-3xl">{t("description")}</p>
 
         <div className="w-full sm:w-auto flex flex-col sm:flex-row">
-          <a
-            href={links.secondaryButton}
-            className="btn btn-ghost hover:btn-active rounded-full bg-gray-200"
-          >
+          <a href={links.secondaryButton} className="btn btn-ghost hover:btn-active rounded-full bg-gray-200">
             {t("secondary-button")}
           </a>
         </div>
