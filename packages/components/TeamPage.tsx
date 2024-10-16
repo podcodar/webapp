@@ -1,11 +1,9 @@
-"use client";
 import { Center, Grid, Heading, Text } from "@chakra-ui/react";
-import { Trans } from "react-i18next";
 
 import MemberCard from "@packages/components/MemberCard";
 import Section from "@packages/components/Section";
 import SkeletonMemberCard from "@packages/components/SkeletonMemberCard";
-import { useI18n } from "@packages/features/i18n-context";
+import { LocalizedText } from "@packages/features/i18n-context";
 import type { SelectMember } from "@packages/repositories/db/schema";
 
 type Props = {
@@ -13,14 +11,12 @@ type Props = {
 };
 
 export default function TeamPage({ members }: Props) {
-  const { t } = useI18n("team-page");
-
   return (
     <Section className="py-40">
       <Grid gap={10}>
         <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center">
-          <Trans
-            i18nKey={t("title")}
+          <LocalizedText
+            translation={"team-page.title"}
             components={{
               span: <Text as="span" color="purple.400" />,
             }}
@@ -30,7 +26,9 @@ export default function TeamPage({ members }: Props) {
         {members === null ? (
           <SkeletonMemberCard />
         ) : members.length === 0 ? (
-          <Center>{t("no-items")}</Center>
+          <Center>
+            <LocalizedText translation="team-page.no-items" />
+          </Center>
         ) : (
           <Grid
             templateColumns={{

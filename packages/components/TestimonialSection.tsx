@@ -3,8 +3,7 @@
 import { Box, Button, Flex, Heading, Image, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 import { useRef } from "react";
 
-import { useI18n } from "@packages/features/i18n-context";
-
+import { LocalizedText } from "@packages/features/i18n-context";
 import type { SelectTestimonial } from "@packages/repositories/db/schema";
 import Section from "./Section";
 
@@ -14,7 +13,6 @@ interface Props {
 
 export default function TestimonialSection({ testimonials }: Props) {
   const bgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
-  const { t } = useI18n("testimonials");
   const sliderRef = useRef<HTMLInputElement>(null);
 
   function handleSliderScroll(direction: "left" | "right") {
@@ -27,7 +25,7 @@ export default function TestimonialSection({ testimonials }: Props) {
   return (
     <Section className={bgColor}>
       <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
-        {t("title")}
+        <LocalizedText translation="testimonials.title" />
       </Heading>
       <Flex justify="space-between" mb="0.5rem">
         <Button onClick={() => handleSliderScroll("left")}>{"<"}</Button>

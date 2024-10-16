@@ -1,11 +1,9 @@
-"use client";
-
 import Image from "next/image";
 
 import { Logo } from "@packages/components/icons";
 import { PIX_KEY, images } from "@packages/config/site";
-import { useI18n } from "@packages/features/i18n-context";
 
+import { LocalizedText } from "@packages/features/i18n-context";
 import Section from "./Section";
 import SocialIconLinks from "./SocialIconLinks";
 
@@ -30,24 +28,29 @@ function PodCodarLogo() {
 }
 
 function Pix() {
-  const { t } = useI18n("footer");
   return (
     <div className="flex flex-col items-center gap-2">
-      <p>{t("contribution")}</p>
+      <p>
+        <LocalizedText translation={"footer.contribution"} />
+      </p>
       <p className="text-sm text-zinc-500">{PIX_KEY}</p>
-      <Image src={images.pixQRCode} width={125} height={125} alt={t("contribution")} />
+      <Image src={images.pixQRCode} width={125} height={125} alt={"qr code"} />
     </div>
   );
 }
 
 function Copyrights() {
-  const { t } = useI18n("footer");
   const currentYear = new Date().getFullYear();
   return (
     <div className="flex flex-col items-center gap-2">
-      <p>{t("podcodar")}</p>
+      <p>
+        <LocalizedText translation={"footer.podcodar"} />
+      </p>
       <SocialIconLinks />
-      <p className="text-sm">{t("legal", { currentYear })}</p>
+      <p className="text-sm">
+        <LocalizedText translation="footer.legal" />
+        {currentYear}
+      </p>
     </div>
   );
 }

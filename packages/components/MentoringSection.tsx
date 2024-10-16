@@ -1,14 +1,11 @@
 "use client";
-
 import { Grid, GridItem, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
-import { useI18n } from "@packages/features/i18n-context";
-
+import { LocalizedText } from "@packages/features/i18n-context";
 import { classes } from "@packages/utils/classes";
 import Section from "./Section";
 
 export default function MentoringSection() {
-  const { t } = useI18n("mentoring");
   const bgColor = useColorModeValue("bg-white", "bg-gray-950");
 
   return (
@@ -16,15 +13,19 @@ export default function MentoringSection() {
       <Grid templateColumns="repeat(5, 1fr)" gap={{ basE: 0, md: 4 }}>
         <GridItem rowSpan={{ base: 1, md: 3 }} colSpan={{ base: 5, md: 2 }}>
           <Heading size="md" my="2rem" fontWeight={400} textAlign="center">
-            {t("title")}
+            <LocalizedText translation="mentoring.title" />
           </Heading>
 
           <Text color="gray.500" fontSize="3xl" textAlign="center" px="3rem">
-            {t("description")}
+            <LocalizedText translation="mentoring.description" />
           </Text>
         </GridItem>
         {mentoringList.map((mentoring) => (
-          <CardItem key={mentoring} title={t(`${mentoring}.title`)} description={t(`${mentoring}.description`)} />
+          <CardItem
+            key={mentoring}
+            title={`mentoring.${mentoring}.title`}
+            description={`mentoring.${mentoring}.description`}
+          />
         ))}
       </Grid>
     </Section>

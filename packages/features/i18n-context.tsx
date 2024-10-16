@@ -1,8 +1,8 @@
 "use client";
 
-import i18next, { type TOptions } from "i18next";
+import i18next from "i18next";
 import { useMemo, useState } from "react";
-import { initReactI18next, useTranslation } from "react-i18next";
+import { Trans, initReactI18next, useTranslation } from "react-i18next";
 
 import * as en from "@packages/locale/en.yml";
 import * as pt from "@packages/locale/pt.yml";
@@ -79,10 +79,12 @@ export type TranslationNS =
 
 export type I18nTextProps = {
   translation: `${TranslationNS}.${string}`;
+  components?: { readonly [tagName: string]: React.ReactElement };
 };
 
-export function LocalizedText({ translation }: I18nTextProps) {
-  const [ns, token] = translation.split(".");
+export function LocalizedText({ translation, components = {} }: I18nTextProps) {
+  const [ns, ...tokens] = translation.split(".");
+  const token = tokens.join(".");
   const { t } = useTranslation(ns);
-  return <>{t(token)}</>;
+  return <Trans i18nKey={t(token)} components={components} />;
 }

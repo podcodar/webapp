@@ -15,17 +15,28 @@ import {
   useColorModeValue,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useMemo } from "react";
 
 import { Logo } from "@packages/components/icons";
 import { links } from "@packages/config/site";
-import { useI18n } from "@packages/features/i18n-context";
 import { classes } from "@packages/utils/classes";
 
 import Link from "@packages/components/Link";
+import { LocalizedText } from "@packages/features/i18n-context";
 import SocialIconLinks from "./SocialIconLinks";
 import ToggleLanguage from "./ToggleLanguage";
 import ToggleThemeButton from "./ToggleThemeButton";
+
+const communityLinks = [
+  <Link key="team" href={links.team}>
+    <LocalizedText translation={"navbar.team"} />
+  </Link>,
+  <Link key="wiki" target="_blank" href={links.wiki}>
+    <LocalizedText translation={"navbar.wiki"} />
+  </Link>,
+  <Link key="forum" target="_blank" href={links.forum}>
+    <LocalizedText translation={"navbar.forum"} />
+  </Link>,
+];
 
 const actionButtons = [
   <SocialIconLinks key="social-buttons" />,
@@ -34,24 +45,8 @@ const actionButtons = [
 ];
 
 function NavBar() {
-  const { t } = useI18n("navbar");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navbarBgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
-
-  const communityLinks = useMemo(
-    () => [
-      <Link key="team" href={links.team}>
-        {t("team")}
-      </Link>,
-      <Link key="wiki" target="_blank" href={links.wiki}>
-        {t("wiki")}
-      </Link>,
-      <Link key="forum" target="_blank" href={links.forum}>
-        {t("forum")}
-      </Link>,
-    ],
-    [t],
-  );
 
   return (
     <div className={classes("navbar fixed p-0 shadow-md", navbarBgColor)}>
@@ -100,7 +95,7 @@ function NavBar() {
           bg="purple.400"
           fontWeight="bold"
           textAlign="center"
-          label={t("join.tooltip")}
+          label={<LocalizedText translation="navbar.join-tooltip" />}
         >
           <Button
             isDisabled
@@ -111,7 +106,7 @@ function NavBar() {
             data-testid="join-button"
             _hover={{ bg: "purple.500" }}
           >
-            {t("join")}
+            <LocalizedText translation="navbar.join" />
           </Button>
         </Tooltip>
       </Container>
