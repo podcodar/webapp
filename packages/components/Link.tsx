@@ -1,12 +1,14 @@
-import { Link as ChakraLink, type LinkProps as ChakraLinkProps } from "@chakra-ui/react";
+import NextLink, { type LinkProps } from "next/link";
 
-interface Props extends Omit<ChakraLinkProps, "href"> {
-  href: ChakraLinkProps["href"];
-}
-export default function Link({ children, href = "", ...props }: Props) {
+type Props = LinkProps & {
+  children: React.ReactNode;
+  className?: string;
+};
+
+export default function Link({ children, className, href = "", ...props }: Props) {
   return (
-    <ChakraLink href={href.toString()} {...props}>
+    <NextLink href={href.toString()} className={className} {...props}>
       {children}
-    </ChakraLink>
+    </NextLink>
   );
 }
