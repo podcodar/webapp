@@ -1,8 +1,6 @@
-import { TechIcon } from "./TechIcon";
+import { TechIcon, type TechIconProps } from "./TechIcon";
 
-import type { IconProps } from "@chakra-ui/react";
-
-export const ReactIcon = (props: IconProps) => {
+export const ReactIcon = (props: TechIconProps) => {
   return (
     <TechIcon {...props}>
       <g fill="#61DAFB">
