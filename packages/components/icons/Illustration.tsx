@@ -1,6 +1,14 @@
 export const Illustration = () => {
   return (
-    <svg width="100%" height="549" viewBox="0 0 913 549" fill="none" xmlns="http://www.w3.org/2000/svg" >
+    <svg
+      width="100%"
+      height="549"
+      viewBox="0 0 913 549"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="Community Illustration"
+    >
       <circle
         cx="726.5"
         cy="82.5"

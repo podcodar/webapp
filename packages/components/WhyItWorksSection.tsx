@@ -1,18 +1,10 @@
 "use client";
 
-import {
-  Box,
-  type ComponentWithAs,
-  Heading,
-  Icon,
-  type IconProps,
-  Stack,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, Heading, Stack, Text, useColorModeValue } from "@chakra-ui/react";
 
 import { PersonalizedLearningIcon, PracticalLearningIcon, TeamworkIcon } from "@packages/components/icons";
 import { type I18nTextProps, LocalizedText } from "@packages/features/i18n-context";
+import type { ReactNode } from "react";
 import Section from "./Section";
 
 export default function WhyItWorksSection() {
@@ -38,7 +30,7 @@ export default function WhyItWorksSection() {
 }
 
 interface CardItemProps {
-  icon: ComponentWithAs<"svg", IconProps>;
+  icon: ReactNode;
   title: I18nTextProps["token"];
   description: I18nTextProps["token"];
 }
@@ -46,10 +38,12 @@ interface CardItemProps {
 function CardItem({ title, icon, description }: CardItemProps) {
   return (
     <Box w="100%">
-      <Icon as={icon} w="10rem" h="10rem" m="1rem" />
+      <div className="w-40 h-40 p-4 mx-auto">{icon}</div>
+
       <Heading size="md" fontWeight={400} my="2rem">
         <LocalizedText token={title} />
       </Heading>
+
       <Text color="gray.500">
         <LocalizedText token={description} />
       </Text>
@@ -58,21 +52,21 @@ function CardItem({ title, icon, description }: CardItemProps) {
 }
 
 type Card = {
-  icon: ComponentWithAs<"svg", IconProps>;
+  icon: ReactNode;
   translation: string;
 };
 
 const cardList: Card[] = [
   {
-    icon: PracticalLearningIcon,
+    icon: <PracticalLearningIcon />,
     translation: "practical-learn",
   },
   {
-    icon: PersonalizedLearningIcon,
+    icon: <PersonalizedLearningIcon />,
     translation: "personalized-learning",
   },
   {
-    icon: TeamworkIcon,
+    icon: <TeamworkIcon />,
     translation: "teamwork",
   },
 ];

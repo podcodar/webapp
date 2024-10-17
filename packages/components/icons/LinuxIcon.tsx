@@ -1,10 +1,8 @@
-import { TechIcon } from "./TechIcon";
+import { TechIcon, type TechIconProps } from "./TechIcon";
 
-import type { IconProps } from "@chakra-ui/react";
-
-export const LinuxIcon = (props: IconProps) => {
+export const LinuxIcon = (props: TechIconProps) => {
   return (
-    <TechIcon fill="none" {...props}>
+    <TechIcon {...props}>
       <path
         d="M117.641 111.137C117.641 119.499 104.084 126.277 87.361 126.277C70.639 126.277 57.082 119.499 57.082 111.137C57.082 102.775 70.638 95.997 87.36 95.997C104.083 95.998 117.641 102.776 117.641 111.137V111.137Z"
         fill="url(#paint0_radial)"

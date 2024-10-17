@@ -45,7 +45,7 @@ function TechSection() {
 
       <div className="flex flex-wrap gap-6 items-center justify-center">
         {iconList.map((Icon) => (
-          <Icon key={Icon.name} />
+          <Icon key={Icon.name} title={Icon.name} />
         ))}
       </div>
     </Section>

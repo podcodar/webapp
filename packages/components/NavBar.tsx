@@ -49,7 +49,7 @@ function NavBar() {
   const navbarBgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
 
   return (
-    <div className={classes("navbar fixed p-0 shadow-md", navbarBgColor)}>
+    <div className={classes("navbar fixed p-0 shadow-md flex flex-col", navbarBgColor)}>
       <Container p="1rem" display="flex" justifyContent="space-between" maxW="5xl">
         <IconButton
           size="md"
@@ -112,7 +112,7 @@ function NavBar() {
       </Container>
 
       {isOpen ? (
-        <Box px={2} display={{ md: "none" }} backgroundColor={navbarBgColor} paddingBottom="0.5rem">
+        <Stack px={2} display={{ md: "none" }} backgroundColor={navbarBgColor} paddingBottom="0.5rem">
           <Stack as="nav" spacing={4} m={4}>
             {communityLinks}
           </Stack>
@@ -120,7 +120,7 @@ function NavBar() {
           <HStack py={2} spacing="1rem" justifyContent="center" fontSize="1.3rem">
             {actionButtons}
           </HStack>
-        </Box>
+        </Stack>
       ) : null}
     </div>
   );

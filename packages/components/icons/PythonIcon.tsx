@@ -1,8 +1,6 @@
-import { TechIcon } from "./TechIcon";
+import { TechIcon, type TechIconProps } from "./TechIcon";
 
-import type { IconProps } from "@chakra-ui/react";
-
-export const PythonIcon = (props: IconProps) => {
+export const PythonIcon = (props: TechIconProps) => {
   return (
     <TechIcon {...props}>
       <linearGradient

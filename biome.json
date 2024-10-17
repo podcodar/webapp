@@ -4,14 +4,7 @@
     "enabled": true
   },
   "files": {
-    "ignore": [
-      "migrations/**",
-      "docs/.vitepress",
-      "node_modules",
-      ".next",
-      "packages/components/icons",
-      "**/*.(svg,js)"
-    ]
+    "ignore": ["migrations/**", "docs/.vitepress", "node_modules", ".next", "**/*.(svg,js)"]
   },
   "formatter": {
     "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
