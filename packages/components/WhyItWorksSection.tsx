@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Heading, Stack, Text, useColorModeValue } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 
 import { PersonalizedLearningIcon, PracticalLearningIcon, TeamworkIcon } from "@packages/components/icons";
 import { type I18nTextProps, LocalizedText } from "@packages/features/i18n-context";
@@ -12,10 +12,10 @@ export default function WhyItWorksSection() {
 
   return (
     <Section className={bgColor} id="why-it-works">
-      <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
+      <h2 className="font-semibold text-3xl sm:text-4xl leading-tight text-center py-8">
         <LocalizedText token="why-it-works.title" />
-      </Heading>
-      <Stack direction={{ base: "column", md: "row" }} textAlign="center" p="1rem" spacing="4rem">
+      </h2>
+      <div className="text-center flex flex-col md:flex-row gap-16 p-4">
         {cardList.map((card) => (
           <CardItem
             key={card.translation}
@@ -24,7 +24,7 @@ export default function WhyItWorksSection() {
             description={`why-it-works.${card.translation}.description`}
           />
         ))}
-      </Stack>
+      </div>
     </Section>
   );
 }
@@ -37,17 +37,15 @@ interface CardItemProps {
 
 function CardItem({ title, icon, description }: CardItemProps) {
   return (
-    <Box w="100%">
+    <div className="w-full">
       <div className="w-40 h-40 p-4 mx-auto">{icon}</div>
-
-      <Heading size="md" fontWeight={400} my="2rem">
+      <h2 className="text-md text-xl my-8">
         <LocalizedText token={title} />
-      </Heading>
-
-      <Text color="gray.500">
+      </h2>
+      <p className="text-gray-500">
         <LocalizedText token={description} />
-      </Text>
-    </Box>
+      </p>
+    </div>
   );
 }
 
