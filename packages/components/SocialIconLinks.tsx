@@ -1,4 +1,3 @@
-import Link from "@packages/components/Link";
 import { GithubIcon, LinkedInIcon } from "@packages/components/icons";
 import { links } from "@packages/config/site";
 
@@ -9,13 +8,13 @@ interface Props {
 
 export default function SocialIconLinks({ githubUrl = links.github, linkedinUrl = links.linkedin }: Props) {
   return (
-    <div className="flex flex-row text-lg justify-center gap-4">
-      <Link key="github" isExternal href={githubUrl} justifySelf="end">
+    <div className="flex flex-row text-lg justify-center">
+      <a key="linkedin" href={githubUrl} target="_blank" rel="noreferrer" className="btn btn-ghost">
         <GithubIcon />
-      </Link>
-      <Link key="linkedin" isExternal href={linkedinUrl}>
+      </a>
+      <a key="linkedin" href={linkedinUrl} target="_blank" rel="noreferrer" className="btn btn-ghost">
         <LinkedInIcon />
-      </Link>
+      </a>
     </div>
   );
 }
