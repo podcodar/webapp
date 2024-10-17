@@ -1,10 +1,11 @@
 "use client";
 
-import { Box, Button, Flex, Heading, Image, Stack, Text, useColorModeValue } from "@chakra-ui/react";
-import { useRef } from "react";
+import { useColorModeValue } from "@chakra-ui/react";
+import Image from "next/image";
 
 import { LocalizedText } from "@packages/features/i18n-context";
 import type { SelectTestimonial } from "@packages/repositories/db/schema";
+
 import Section from "./Section";
 
 interface Props {
@@ -13,31 +14,26 @@ interface Props {
 
 export default function TestimonialSection({ testimonials }: Props) {
   const bgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
-  const sliderRef = useRef<HTMLInputElement>(null);
-
-  function handleSliderScroll(direction: "left" | "right") {
-    if (sliderRef.current === null) return;
-    const multiplier = direction === "left" ? -1 : 1;
-    const cardWidth = 300;
-    sliderRef.current.scrollLeft += cardWidth * multiplier;
-  }
 
   return (
-    <Section className={bgColor}>
-      <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
+    <Section className={bgColor} innerClassName="grid gap-4">
+      <h2 className="text-center font-semibold text-3xl sm:text-4xl py-8">
         <LocalizedText token="testimonials.title" />
-      </Heading>
-      <Flex justify="space-between" mb="0.5rem">
-        <Button onClick={() => handleSliderScroll("left")}>{"<"}</Button>
-        <Button onClick={() => handleSliderScroll("right")}>{">"}</Button>
-      </Flex>
-      <Box h="320px" overflow="hidden" scrollBehavior="smooth" ref={sliderRef}>
-        <Stack direction="row">
-          {testimonials.map(({ id, name, description, avatarUrl }) => (
-            <TestimonialCard key={id} name={name} testimonial={description} img={avatarUrl} />
-          ))}
-        </Stack>
-      </Box>
+      </h2>
+
+      <div className="carousel w-full gap-4">
+        {testimonials.map(({ id, name, description, avatarUrl }, idx) => (
+          <TestimonialCard key={id} name={name} testimonial={description} img={avatarUrl} idx={idx} />
+        ))}
+      </div>
+
+      <div className="flex w-full justify-center gap-2 py-2">
+        {testimonials.map(({ id }, idx) => (
+          <a href={`#testimonial-${idx}`} className="btn btn-xs" key={id}>
+            {idx + 1}
+          </a>
+        ))}
+      </div>
     </Section>
   );
 }
@@ -46,27 +42,34 @@ interface TestimonialCardProps {
   name: string;
   testimonial: string;
   img: string;
+  idx: number;
 }
 
-function TestimonialCard({ name, testimonial, img }: TestimonialCardProps) {
+function TestimonialCard({ name, testimonial, img, idx }: TestimonialCardProps) {
   return (
-    <Box rounded="lg" shadow="lg" p={2} w="300px" flex="none">
-      <Flex justifyContent="space-between" mb="1">
-        <Heading alignSelf="center" size="sm">
-          {name}
-        </Heading>
+    <div className="carousel-item relative w-full border-red-100" id={`testimonial-${idx}`}>
+      <div className="card mx-40 min-w-400 border-10 border-blue-500 rounded-sm">
         <Image
           src={img}
           alt={name}
-          maxW={{ base: "4rem", sm: "4.5rem" }}
-          fit="cover"
-          rounded="full"
-          borderStyle="solid"
-          borderWidth="3px"
-          borderColor="#17A9BC"
+          width={100}
+          height={100}
+          className="rounded-full border-3 border-blue-500 max-w-4rem sm:max-w-4.5rem object-cover mx-auto"
         />
-      </Flex>
-      <Text>{testimonial}</Text>
-    </Box>
+        <div className="card-body">
+          <h2 className="card-title text-center">{name}</h2>
+          <p>{testimonial}</p>
+        </div>
+      </div>
+
+      <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+        <a href={`#testimonial-${idx - 1}`} className="btn btn-circle">
+          ❮
+        </a>
+        <a href={`#testimonial-${idx + 1}`} className="btn btn-circle">
+          ❯
+        </a>
+      </div>
+    </div>
   );
 }

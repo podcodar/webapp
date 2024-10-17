@@ -10,4 +10,12 @@ module.exports = withYaml({
   eslint: {
     dirs: ['app', 'packages'],
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',
+      },
+    ],
+  },
 });
