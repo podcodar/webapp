@@ -1,12 +1,12 @@
 "use client";
 
-import { Flex, Grid, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 
-import Link from "@packages/components/Link";
 import { roadMapsLinks } from "@packages/config/site";
 import { LocalizedText, type TranslationToken } from "@packages/locale/context";
 
 import { classes } from "@packages/utils/classes";
+
 import Section from "./Section";
 
 interface CardItemProps {
@@ -53,7 +53,9 @@ function CardItem({ title, link, border, shadow }: Readonly<CardItemProps>) {
           shadow,
         )}
       >
-        <h2 className="font-normal text-xl leading-tight">{title}</h2>
+        <h2 className="font-normal text-xl leading-tight">
+          <LocalizedText token={title} />
+        </h2>
       </div>
     </a>
   );
@@ -63,27 +65,17 @@ export default function RoadmapSection() {
   const bgColor = useColorModeValue("bg-gray-100", "bg-gray-900");
 
   return (
-    <Section className={bgColor}>
-      <Flex justifyContent="space-between" py="1rem">
-        <Heading size="md" fontWeight={600} textAlign="left">
+    <Section className={bgColor} innerClassName="grid gap-8">
+      <div className="flex justify-between items-center">
+        <h2 className="font-semibold text-xl leading-tight">
           <LocalizedText token="roadmap.title" />
-        </Heading>
-        <Text textAlign="right">
-          <Link href={roadMapsLinks.all} target="_blank">
-            <LocalizedText token="roadmap.see-all" />
-          </Link>
-        </Text>
-      </Flex>
+        </h2>
+        <a href={roadMapsLinks.all} target="_blank" rel="noreferrer noopener">
+          <LocalizedText token="roadmap.see-all" />
+        </a>
+      </div>
 
-      <Grid
-        gridTemplateColumns={{
-          base: "1fr",
-          sm: "repeat(2, 1fr)",
-          lg: "repeat(4, 1fr)",
-        }}
-        gap="2rem"
-        my="2rem"
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {cardList.map((cardProps) => (
           <CardItem
             key={cardProps.title}
@@ -93,7 +85,7 @@ export default function RoadmapSection() {
             title={cardProps.title}
           />
         ))}
-      </Grid>
+      </div>
     </Section>
   );
 }
