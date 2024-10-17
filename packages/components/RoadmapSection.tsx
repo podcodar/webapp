@@ -4,22 +4,21 @@ import { Flex, Grid, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
 import Link from "@packages/components/Link";
 import { roadMapsLinks } from "@packages/config/site";
-import { useI18n } from "@packages/features/i18n-context";
+import { LocalizedText, type TranslationToken } from "@packages/features/i18n-context";
 
 import Section from "./Section";
 
 export default function RoadmapSection() {
-  const { t } = useI18n("roadmap");
   const bgColor = useColorModeValue("bg-gray-100", "bg-gray-900");
   return (
     <Section className={bgColor}>
       <Flex justifyContent="space-between" py="1rem">
         <Heading size="md" fontWeight={600} textAlign="left">
-          {t("title")}
+          <LocalizedText token="roadmap.title" />
         </Heading>
         <Text textAlign="right">
           <Link href={roadMapsLinks.all} isExternal>
-            {t("see-all")}
+            <LocalizedText token="roadmap.see-all" />
           </Link>
         </Text>
       </Flex>
@@ -34,7 +33,7 @@ export default function RoadmapSection() {
         my="2rem"
       >
         {cardList.map((cardProps) => (
-          <CardItem key={cardProps.title} color={cardProps.color} link={cardProps.link} title={t(cardProps.title)} />
+          <CardItem key={cardProps.title} color={cardProps.color} link={cardProps.link} title={cardProps.title} />
         ))}
       </Grid>
     </Section>
@@ -42,7 +41,7 @@ export default function RoadmapSection() {
 }
 
 interface CardItemProps {
-  title: string;
+  title: TranslationToken;
   link: string;
   color: string;
 }
@@ -62,7 +61,7 @@ function CardItem({ title, link, color }: CardItemProps) {
         }}
       >
         <Heading size="md" fontWeight={400} textDecoration="none">
-          {title}
+          <LocalizedText token={title} />
         </Heading>
       </Flex>
     </Link>
@@ -71,22 +70,22 @@ function CardItem({ title, link, color }: CardItemProps) {
 
 const cardList: CardItemProps[] = [
   {
-    title: "web-programming",
+    title: "roadmap.web-programming",
     link: roadMapsLinks.webProgramming,
     color: "#17A9BC",
   },
   {
-    title: "ux-design",
+    title: "roadmap.ux-design",
     link: roadMapsLinks.uxDesign,
     color: "#F99223",
   },
   {
-    title: "react",
+    title: "roadmap.react",
     link: roadMapsLinks.react,
     color: "#FF4CFF",
   },
   {
-    title: "data",
+    title: "roadmap.data",
     link: roadMapsLinks.introToData,
     color: "#b794f4",
   },

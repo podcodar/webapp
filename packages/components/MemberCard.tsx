@@ -1,7 +1,8 @@
+"use client";
+
 import { Avatar, Center, Flex, Grid, Heading, Image, Text, useColorModeValue } from "@chakra-ui/react";
 
-import { useI18n } from "@packages/features/i18n-context";
-
+import { LocalizedText } from "@packages/features/i18n-context";
 import type { SelectMember } from "@packages/repositories/db/schema";
 import SocialIconLinks from "./SocialIconLinks";
 
@@ -12,7 +13,6 @@ interface Props {
 export default function MemberCard({ member }: Props) {
   const bgColorBody = useColorModeValue("white", "gray.700");
   const colorTextLighter = useColorModeValue("gray.400", "gray.500");
-  const { t } = useI18n("team-page");
 
   return (
     <Center w="full" bg={bgColorBody} boxShadow="xl" rounded="md" textAlign="center" flexDirection="column">
@@ -25,7 +25,7 @@ export default function MemberCard({ member }: Props) {
           {member.name}
         </Heading>
         <Text fontSize="md" color={colorTextLighter}>
-          {t(`role.${member.role}`)}
+          <LocalizedText token={`team-page.role.${member.role}`} />
         </Text>
         <SocialIconLinks githubUrl={member.github} linkedinUrl={member.linkedin} />
       </Grid>

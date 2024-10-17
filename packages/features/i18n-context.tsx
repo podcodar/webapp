@@ -2,7 +2,7 @@
 
 import i18next, { type TOptions } from "i18next";
 import { useMemo, useState } from "react";
-import { initReactI18next, useTranslation } from "react-i18next";
+import { Trans, initReactI18next, useTranslation } from "react-i18next";
 
 import * as en from "@packages/locale/en.yml";
 import * as pt from "@packages/locale/pt.yml";
@@ -62,14 +62,6 @@ export default function I18nProvider({ children }: ChildrenProps) {
   );
 }
 
-interface I18nResult {
-  t: (key: string, options?: TOptions) => string;
-}
-
-export function useI18n(namespace: TranslationNS): I18nResult {
-  return useTranslation(namespace);
-}
-
 type Locale = "en" | "pt";
 
 export type TranslationNS =
@@ -84,3 +76,18 @@ export type TranslationNS =
   | "team-page"
   | "ask-us-page"
   | "testimonials";
+
+export type TranslationToken = `${TranslationNS}.${string}`;
+
+export type I18nTextProps = {
+  token: TranslationToken;
+  params?: TOptions;
+  components?: { readonly [tagName: string]: React.ReactElement };
+};
+
+export function LocalizedText({ token, params = {}, components = {} }: I18nTextProps) {
+  const [ns, ...tokens] = token.split(".");
+  const localizedToken = tokens.join(".");
+  const { t } = useTranslation(ns);
+  return <Trans i18nKey={t(localizedToken, params)} components={components} />;
+}
