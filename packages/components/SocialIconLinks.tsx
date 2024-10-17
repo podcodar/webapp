@@ -1,5 +1,3 @@
-import { Stack } from "@chakra-ui/react";
-
 import Link from "@packages/components/Link";
 import { GithubIcon, LinkedInIcon } from "@packages/components/icons";
 import { links } from "@packages/config/site";
@@ -11,13 +9,13 @@ interface Props {
 
 export default function SocialIconLinks({ githubUrl = links.github, linkedinUrl = links.linkedin }: Props) {
   return (
-    <Stack spacing="1rem" justifyContent="center" direction="row" fontSize="1.3rem">
+    <div className="flex flex-row text-lg justify-center gap-4">
       <Link key="github" isExternal href={githubUrl} justifySelf="end">
         <GithubIcon />
       </Link>
       <Link key="linkedin" isExternal href={linkedinUrl}>
         <LinkedInIcon />
       </Link>
-    </Stack>
+    </div>
   );
 }
