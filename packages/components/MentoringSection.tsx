@@ -1,6 +1,6 @@
 "use client";
-import { Grid, GridItem, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
+import { useColorModeValue } from "@chakra-ui/react";
 import { LocalizedText, type TranslationToken } from "@packages/features/i18n-context";
 import { classes } from "@packages/utils/classes";
 import Section from "./Section";
@@ -10,16 +10,16 @@ export default function MentoringSection() {
 
   return (
     <Section className={classes("py-20", bgColor)}>
-      <Grid templateColumns="repeat(5, 1fr)" gap={{ basE: 0, md: 4 }}>
-        <GridItem rowSpan={{ base: 1, md: 3 }} colSpan={{ base: 5, md: 2 }}>
-          <Heading size="md" my="2rem" fontWeight={400} textAlign="center">
+      <div className="grid grid-cols-5 gap-0 md:gap-4">
+        <div className="row-span-1 md:row-span-3 col-span-5 md:col-span-2">
+          <h2 className="text-lg my-8 font-light text-center">
             <LocalizedText token="mentoring.title" />
-          </Heading>
+          </h2>
 
-          <Text color="gray.500" fontSize="3xl" textAlign="center" px="3rem">
+          <div className="text-gray-500 text-3xl text-center px-12">
             <LocalizedText token="mentoring.description" />
-          </Text>
-        </GridItem>
+          </div>
+        </div>
 
         {mentoringList.map((mentoring) => (
           <CardItem
@@ -28,7 +28,7 @@ export default function MentoringSection() {
             description={`mentoring.${mentoring}.description`}
           />
         ))}
-      </Grid>
+      </div>
     </Section>
   );
 }
@@ -40,14 +40,14 @@ interface CardItemProps {
 
 function CardItem({ title, description }: CardItemProps) {
   return (
-    <GridItem colSpan={{ base: 5, md: 3 }} textAlign={{ base: "center", md: "left" }}>
-      <Heading size="md" fontWeight={400} my="2rem">
+    <div className="col-span-5 md:col-span-3 text-center md:text-left">
+      <h3 className="text-md font-light my-8">
         <LocalizedText token={title} />
-      </Heading>
-      <Text color="gray.500">
+      </h3>
+      <span className="text-gray-500">
         <LocalizedText token={description} />
-      </Text>
-    </GridItem>
+      </span>
+    </div>
   );
 }
 
