@@ -6,6 +6,7 @@ import Link from "@packages/components/Link";
 import { roadMapsLinks } from "@packages/config/site";
 import { LocalizedText, type TranslationToken } from "@packages/locale/context";
 
+import { classes } from "@packages/utils/classes";
 import Section from "./Section";
 
 export default function RoadmapSection() {
@@ -48,23 +49,11 @@ interface CardItemProps {
 
 function CardItem({ title, link, color }: CardItemProps) {
   return (
-    <Link href={link} target="_blank">
-      <Flex
-        py="2rem"
-        transition="box-shadow 300ms ease-in-out"
-        border="2px solid"
-        borderColor={color}
-        borderRadius="10px"
-        justifyContent="center"
-        _hover={{
-          boxShadow: `-8px 8px 0 ${color}`,
-        }}
-      >
-        <Heading size="md" fontWeight={400} textDecoration="none">
-          <LocalizedText token={title} />
-        </Heading>
-      </Flex>
-    </Link>
+    <a href={link} target="_blank" rel="noreferrer">
+      <div className={classes("flex justify-center py-8 border-2 rounded-lg", color)}>
+        <h2 className="font-normal text-xl leading-tight">{title}</h2>
+      </div>
+    </a>
   );
 }
 
@@ -72,21 +61,21 @@ const cardList: CardItemProps[] = [
   {
     title: "roadmap.web-programming",
     link: roadMapsLinks.webProgramming,
-    color: "#17A9BC",
+    color: "border-cyan-500",
   },
   {
     title: "roadmap.ux-design",
     link: roadMapsLinks.uxDesign,
-    color: "#F99223",
+    color: "border-orange-500",
   },
   {
     title: "roadmap.react",
     link: roadMapsLinks.react,
-    color: "#FF4CFF",
+    color: "border-pink-500",
   },
   {
     title: "roadmap.data",
     link: roadMapsLinks.introToData,
-    color: "#b794f4",
+    color: "border-purple-500",
   },
 ];
