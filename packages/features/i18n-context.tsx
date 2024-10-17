@@ -1,6 +1,6 @@
 "use client";
 
-import i18next from "i18next";
+import i18next, { type TOptions } from "i18next";
 import { useMemo, useState } from "react";
 import { Trans, initReactI18next, useTranslation } from "react-i18next";
 
@@ -77,14 +77,17 @@ export type TranslationNS =
   | "ask-us-page"
   | "testimonials";
 
+export type TranslationToken = `${TranslationNS}.${string}`;
+
 export type I18nTextProps = {
-  translation: `${TranslationNS}.${string}`;
+  translation: TranslationToken;
   components?: { readonly [tagName: string]: React.ReactElement };
+  params?: TOptions;
 };
 
-export function LocalizedText({ translation, components = {} }: I18nTextProps) {
+export function LocalizedText({ translation, components = {}, params = {} }: I18nTextProps) {
   const [ns, ...tokens] = translation.split(".");
   const token = tokens.join(".");
   const { t } = useTranslation(ns);
-  return <Trans i18nKey={t(token)} components={components} />;
+  return <Trans i18nKey={t(token, params)} components={components} />;
 }

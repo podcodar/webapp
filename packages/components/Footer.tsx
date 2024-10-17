@@ -48,8 +48,7 @@ function Copyrights() {
       </p>
       <SocialIconLinks />
       <p className="text-sm">
-        <LocalizedText translation="footer.legal" />
-        {currentYear}
+        <LocalizedText translation="footer.legal" params={{ currentYear }} />
       </p>
     </div>
   );
