@@ -25,7 +25,7 @@ export default function TestimonialSection({ testimonials }: Props) {
   return (
     <Section className={bgColor}>
       <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
-        <LocalizedText translation="testimonials.title" />
+        <LocalizedText token="testimonials.title" />
       </Heading>
       <Flex justify="space-between" mb="0.5rem">
         <Button onClick={() => handleSliderScroll("left")}>{"<"}</Button>

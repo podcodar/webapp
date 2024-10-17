@@ -40,7 +40,7 @@ function TechSection() {
   return (
     <Section innerClassName="grid gap-8">
       <h2 className="font-semibold text-center text-xl leading-tight">
-        <LocalizedText translation="roadmap.tech-title" />
+        <LocalizedText token="roadmap.tech-title" />
       </h2>
 
       <div className="flex flex-wrap gap-6 items-center justify-center">

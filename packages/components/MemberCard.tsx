@@ -25,7 +25,7 @@ export default function MemberCard({ member }: Props) {
           {member.name}
         </Heading>
         <Text fontSize="md" color={colorTextLighter}>
-          <LocalizedText translation={`team-page.role.${member.role}`} />
+          <LocalizedText token={`team-page.role.${member.role}`} />
         </Text>
         <SocialIconLinks githubUrl={member.github} linkedinUrl={member.linkedin} />
       </Grid>

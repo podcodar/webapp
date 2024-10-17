@@ -14,11 +14,11 @@ export default function RoadmapSection() {
     <Section className={bgColor}>
       <Flex justifyContent="space-between" py="1rem">
         <Heading size="md" fontWeight={600} textAlign="left">
-          <LocalizedText translation="roadmap.title" />
+          <LocalizedText token="roadmap.title" />
         </Heading>
         <Text textAlign="right">
           <Link href={roadMapsLinks.all} isExternal>
-            <LocalizedText translation="roadmap.see-all" />
+            <LocalizedText token="roadmap.see-all" />
           </Link>
         </Text>
       </Flex>
@@ -61,7 +61,7 @@ function CardItem({ title, link, color }: CardItemProps) {
         }}
       >
         <Heading size="md" fontWeight={400} textDecoration="none">
-          <LocalizedText translation={title} />
+          <LocalizedText token={title} />
         </Heading>
       </Flex>
     </Link>

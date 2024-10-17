@@ -13,11 +13,11 @@ export default function MentoringSection() {
       <Grid templateColumns="repeat(5, 1fr)" gap={{ basE: 0, md: 4 }}>
         <GridItem rowSpan={{ base: 1, md: 3 }} colSpan={{ base: 5, md: 2 }}>
           <Heading size="md" my="2rem" fontWeight={400} textAlign="center">
-            <LocalizedText translation="mentoring.title" />
+            <LocalizedText token="mentoring.title" />
           </Heading>
 
           <Text color="gray.500" fontSize="3xl" textAlign="center" px="3rem">
-            <LocalizedText translation="mentoring.description" />
+            <LocalizedText token="mentoring.description" />
           </Text>
         </GridItem>
 
@@ -42,10 +42,10 @@ function CardItem({ title, description }: CardItemProps) {
   return (
     <GridItem colSpan={{ base: 5, md: 3 }} textAlign={{ base: "center", md: "left" }}>
       <Heading size="md" fontWeight={400} my="2rem">
-        <LocalizedText translation={title} />
+        <LocalizedText token={title} />
       </Heading>
       <Text color="gray.500">
-        <LocalizedText translation={description} />
+        <LocalizedText token={description} />
       </Text>
     </GridItem>
   );

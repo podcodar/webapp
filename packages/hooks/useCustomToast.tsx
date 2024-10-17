@@ -7,14 +7,14 @@ export default function useCustomToast(source: TranslationNS) {
 
   const errorToast = (key: string) =>
     toast({
-      description: <LocalizedText translation={`${source}.${key}`} />,
+      description: <LocalizedText token={`${source}.${key}`} />,
       status: "error",
       isClosable: true,
     });
 
   const successToast = (key: string) =>
     toast({
-      description: <LocalizedText translation={`${source}.${key}`} />,
+      description: <LocalizedText token={`${source}.${key}`} />,
       status: "success",
       isClosable: true,
     });

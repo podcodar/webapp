@@ -28,13 +28,13 @@ import ToggleThemeButton from "./ToggleThemeButton";
 
 const communityLinks = [
   <Link key="team" href={links.team}>
-    <LocalizedText translation={"navbar.team"} />
+    <LocalizedText token={"navbar.team"} />
   </Link>,
   <Link key="wiki" target="_blank" href={links.wiki}>
-    <LocalizedText translation={"navbar.wiki"} />
+    <LocalizedText token={"navbar.wiki"} />
   </Link>,
   <Link key="forum" target="_blank" href={links.forum}>
-    <LocalizedText translation={"navbar.forum"} />
+    <LocalizedText token={"navbar.forum"} />
   </Link>,
 ];
 
@@ -95,7 +95,7 @@ function NavBar() {
           bg="purple.400"
           fontWeight="bold"
           textAlign="center"
-          label={<LocalizedText translation="navbar.join-tooltip" />}
+          label={<LocalizedText token="navbar.join-tooltip" />}
         >
           <Button
             isDisabled
@@ -106,7 +106,7 @@ function NavBar() {
             data-testid="join-button"
             _hover={{ bg: "purple.500" }}
           >
-            <LocalizedText translation="navbar.join" />
+            <LocalizedText token="navbar.join" />
           </Button>
         </Tooltip>
       </Container>

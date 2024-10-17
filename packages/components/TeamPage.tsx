@@ -16,7 +16,7 @@ export default function TeamPage({ members }: Props) {
       <Grid gap={10}>
         <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center">
           <LocalizedText
-            translation={"team-page.title"}
+            token={"team-page.title"}
             components={{
               span: <Text as="span" color="purple.400" />,
             }}
@@ -27,7 +27,7 @@ export default function TeamPage({ members }: Props) {
           <SkeletonMemberCard />
         ) : members.length === 0 ? (
           <Center>
-            <LocalizedText translation="team-page.no-items" />
+            <LocalizedText token="team-page.no-items" />
           </Center>
         ) : (
           <Grid

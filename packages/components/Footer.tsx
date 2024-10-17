@@ -31,7 +31,7 @@ function Pix() {
   return (
     <div className="flex flex-col items-center gap-2">
       <p>
-        <LocalizedText translation={"footer.contribution"} />
+        <LocalizedText token={"footer.contribution"} />
       </p>
       <p className="text-sm text-zinc-500">{PIX_KEY}</p>
       <Image src={images.pixQRCode} width={125} height={125} alt={"qr code"} />
@@ -44,11 +44,11 @@ function Copyrights() {
   return (
     <div className="flex flex-col items-center gap-2">
       <p>
-        <LocalizedText translation={"footer.podcodar"} />
+        <LocalizedText token={"footer.podcodar"} />
       </p>
       <SocialIconLinks />
       <p className="text-sm">
-        <LocalizedText translation="footer.legal" params={{ currentYear }} />
+        <LocalizedText token="footer.legal" params={{ currentYear }} />
       </p>
     </div>
   );

@@ -21,7 +21,7 @@ export default function WhyItWorksSection() {
   return (
     <Section className={bgColor} id="why-it-works">
       <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center" py="2rem">
-        <LocalizedText translation="why-it-works.title" />
+        <LocalizedText token="why-it-works.title" />
       </Heading>
       <Stack direction={{ base: "column", md: "row" }} textAlign="center" p="1rem" spacing="4rem">
         {cardList.map((card) => (
@@ -39,8 +39,8 @@ export default function WhyItWorksSection() {
 
 interface CardItemProps {
   icon: ComponentWithAs<"svg", IconProps>;
-  title: I18nTextProps["translation"];
-  description: I18nTextProps["translation"];
+  title: I18nTextProps["token"];
+  description: I18nTextProps["token"];
 }
 
 function CardItem({ title, icon, description }: CardItemProps) {
@@ -48,10 +48,10 @@ function CardItem({ title, icon, description }: CardItemProps) {
     <Box w="100%">
       <Icon as={icon} w="10rem" h="10rem" m="1rem" />
       <Heading size="md" fontWeight={400} my="2rem">
-        <LocalizedText translation={title} />
+        <LocalizedText token={title} />
       </Heading>
       <Text color="gray.500">
-        <LocalizedText translation={description} />
+        <LocalizedText token={description} />
       </Text>
     </Box>
   );

@@ -80,14 +80,14 @@ export type TranslationNS =
 export type TranslationToken = `${TranslationNS}.${string}`;
 
 export type I18nTextProps = {
-  translation: TranslationToken;
-  components?: { readonly [tagName: string]: React.ReactElement };
+  token: TranslationToken;
   params?: TOptions;
+  components?: { readonly [tagName: string]: React.ReactElement };
 };
 
-export function LocalizedText({ translation, components = {}, params = {} }: I18nTextProps) {
-  const [ns, ...tokens] = translation.split(".");
-  const token = tokens.join(".");
+export function LocalizedText({ token, params = {}, components = {} }: I18nTextProps) {
+  const [ns, ...tokens] = token.split(".");
+  const localizedToken = tokens.join(".");
   const { t } = useTranslation(ns);
-  return <Trans i18nKey={t(token, params)} components={components} />;
+  return <Trans i18nKey={t(localizedToken, params)} components={components} />;
 }
