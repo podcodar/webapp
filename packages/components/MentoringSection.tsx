@@ -1,7 +1,7 @@
 "use client";
 import { Grid, GridItem, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText, type TranslationToken } from "@packages/features/i18n-context";
 import { classes } from "@packages/utils/classes";
 import Section from "./Section";
 
@@ -20,6 +20,7 @@ export default function MentoringSection() {
             <LocalizedText translation="mentoring.description" />
           </Text>
         </GridItem>
+
         {mentoringList.map((mentoring) => (
           <CardItem
             key={mentoring}
@@ -33,17 +34,19 @@ export default function MentoringSection() {
 }
 
 interface CardItemProps {
-  title: string;
-  description: string;
+  title: TranslationToken;
+  description: TranslationToken;
 }
 
 function CardItem({ title, description }: CardItemProps) {
   return (
     <GridItem colSpan={{ base: 5, md: 3 }} textAlign={{ base: "center", md: "left" }}>
       <Heading size="md" fontWeight={400} my="2rem">
-        {title}
+        <LocalizedText translation={title} />
       </Heading>
-      <Text color="gray.500">{description}</Text>
+      <Text color="gray.500">
+        <LocalizedText translation={description} />
+      </Text>
     </GridItem>
   );
 }
