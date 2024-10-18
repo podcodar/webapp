@@ -15,6 +15,16 @@
     "lineWidth": 120
   },
   "linter": {
-    "enabled": true
+    "enabled": true,
+    "rules": {
+      "nursery": {
+        "useSortedClasses": {
+          "options": {
+            "attributes": ["classList"],
+            "functions": ["clsx", "classes", "tw"]
+          }
+        }
+      }
+    }
   }
 }
