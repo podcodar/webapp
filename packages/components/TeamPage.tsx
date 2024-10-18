@@ -26,7 +26,7 @@ export default function TeamPage({ members }: Props) {
         ) : members.length === 0 ? (
           <LocalizedText token="team-page.no-items" />
         ) : (
-          <div className="grid p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="grid p-4 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
             {members.map((member) => {
               return <MemberCard member={member} key={member.id} />;
             })}
