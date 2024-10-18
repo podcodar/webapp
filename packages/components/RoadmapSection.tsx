@@ -17,7 +17,7 @@ export default function RoadmapSection() {
           <LocalizedText token="roadmap.title" />
         </Heading>
         <Text textAlign="right">
-          <Link href={roadMapsLinks.all} isExternal>
+          <Link href={roadMapsLinks.all} target="_blank">
             <LocalizedText token="roadmap.see-all" />
           </Link>
         </Text>
@@ -48,7 +48,7 @@ interface CardItemProps {
 
 function CardItem({ title, link, color }: CardItemProps) {
   return (
-    <Link href={link} isExternal _hover={{ textDecoration: "none" }}>
+    <Link href={link} target="_blank">
       <Flex
         py="2rem"
         transition="box-shadow 300ms ease-in-out"

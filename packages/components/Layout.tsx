@@ -1,5 +1,3 @@
-import { Box } from "@chakra-ui/layout";
-
 import NavBar from "./NavBar";
 
 import type { ReactNode } from "react";
@@ -10,10 +8,10 @@ interface Props {
 
 function Layout({ children }: Props) {
   return (
-    <Box>
+    <div>
       <NavBar />
       {children}
-    </Box>
+    </div>
   );
 }
 

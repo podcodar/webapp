@@ -1,27 +1,13 @@
 "use client";
 
 import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Flex,
-  HStack,
-  IconButton,
-  Stack,
-  Text,
-  Tooltip,
-  useColorModeValue,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { useState } from "react";
 
 import { Logo } from "@packages/components/icons";
 import { links } from "@packages/config/site";
-import { classes } from "@packages/utils/classes";
 
 import Link from "@packages/components/Link";
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText, WithLocalizedText } from "@packages/features/i18n-context";
 import SocialIconLinks from "./SocialIconLinks";
 import ToggleLanguage from "./ToggleLanguage";
 import ToggleThemeButton from "./ToggleThemeButton";
@@ -45,82 +31,53 @@ const actionButtons = [
 ];
 
 function NavBar() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const navbarBgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
+  const [isOpen, setIsOpen] = useState(false);
+  const onOpen = () => setIsOpen(true);
+  const onClose = () => setIsOpen(false);
 
   return (
-    <div className={classes("navbar fixed p-0 shadow-md flex flex-col", navbarBgColor)}>
-      <Container p="1rem" display="flex" justifyContent="space-between" maxW="5xl">
-        <IconButton
-          size="md"
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          aria-label="Open Menu"
-          display={{ md: "none" }}
-          onClick={isOpen ? onClose : onOpen}
-        />
+    <div className="navbar fixed p-0 shadow-md flex flex-col bg-base-100">
+      <div className="navbar max-w-5xl mx-auto bg-base-100 gap-4 z-10">
+        <button type="button" className="btn btn-ghost md:hidden" onClick={isOpen ? onClose : onOpen}>
+          {isOpen ? <CloseIcon /> : <HamburgerIcon />}
+        </button>
 
-        <Link
-          href="/"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          w={{ base: "100%", md: "auto" }}
-          p={1}
-        >
+        <Link href="/" className="flex items-center justify-center w-full md:w-auto gap-2">
           <Logo size="small" />
-          <Text m="0 0.5rem" fontWeight="bold">
-            PodCodar
-          </Text>
+          <p className="mx-1 text-lg font-bold">PodCodar</p>
         </Link>
 
-        <Flex
-          w="100%"
-          justifyContent="space-between"
-          alignItems="center"
-          p=" 0 1rem"
-          display={{ base: "none", md: "flex" }}
-        >
-          <Box>
-            <HStack spacing="1rem">{communityLinks}</HStack>
-          </Box>
-          <HStack spacing="1rem" fontSize="1.2rem">
-            {actionButtons}
-          </HStack>
-        </Flex>
+        <div className="w-full justify-between items-center hidden md:flex">
+          <div className="flex gap-2">{communityLinks}</div>
+          <div className="flex gap-2">{actionButtons}</div>
+        </div>
 
-        <Tooltip
-          hasArrow
-          shouldWrapChildren
-          w={40}
-          bg="purple.400"
-          fontWeight="bold"
-          textAlign="center"
-          label={<LocalizedText token="navbar.join-tooltip" />}
-        >
-          <Button
-            isDisabled
-            key="cta"
-            minW="5rem"
-            bg="purple.400"
-            colorScheme="purple"
-            data-testid="join-button"
-            _hover={{ bg: "purple.500" }}
-          >
-            <LocalizedText token="navbar.join" />
-          </Button>
-        </Tooltip>
-      </Container>
+        <WithLocalizedText token="navbar.join">
+          {({ text }) => (
+            <div className="tooltip tooltip-bottom" data-tip={text}>
+              <button
+                key="cta"
+                type="button"
+                aria-label="Join button"
+                data-testid="join-button"
+                className="btn min-w-5rem bg-purple-400 hover:bg-purple-500"
+                disabled
+              >
+                <LocalizedText token="navbar.join" />
+              </button>
+            </div>
+          )}
+        </WithLocalizedText>
+      </div>
 
       {isOpen ? (
-        <Stack px={2} display={{ md: "none" }} backgroundColor={navbarBgColor} paddingBottom="0.5rem">
-          <Stack as="nav" spacing={4} m={4}>
-            {communityLinks}
-          </Stack>
-          <Divider />
-          <HStack py={2} spacing="1rem" justifyContent="center" fontSize="1.3rem">
-            {actionButtons}
-          </HStack>
-        </Stack>
+        <div className="navbar grid gap-4 md:hidden w-full py-4 px-20 sm:px-30 bg-base-100 text-center">
+          <nav className="flex mx-auto gap-4">{communityLinks}</nav>
+
+          <div className="h-[1px] w-100 bg-gray-200" />
+
+          <div className="flex gap-4 justify-center text-md">{actionButtons}</div>
+        </div>
       ) : null}
     </div>
   );
