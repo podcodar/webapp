@@ -1,18 +1,17 @@
-import { Box, Flex, Grid, Skeleton, SkeletonCircle, useColorModeValue } from "@chakra-ui/react";
-
 export default function SkeletonMemberCard() {
-  const colorMode = useColorModeValue("white", "gray.800");
   return (
-    <Box w="full" bg={colorMode} boxShadow="xl" rounded="md" pb="2rem">
-      <Skeleton h="8rem" w="full" speed={5} />
-      <Flex justify="center" mt="-12" w="full">
-        <SkeletonCircle size="20" speed={5} />
-      </Flex>
-      <Grid gap="1rem" p="1rem">
-        <Skeleton h="1rem" speed={5} />
-        <Skeleton h="1rem" speed={5} />
-        <Skeleton h="1rem" speed={5} />
-      </Grid>
-    </Box>
+    <div className="bg-white shadow-xl rounded-md pb-8">
+      <div className="skeleton h-8 w-full" />
+
+      <div className="flex justify-center -mt-12 w-full">
+        <div className="skeleton h-4 w-4 rounded-full" />
+      </div>
+
+      <div className="grid gap-4 p-4">
+        <div className="skeleton h-4" />
+        <div className="skeleton h-4" />
+        <div className="skeleton h-4" />
+      </div>
+    </div>
   );
 }
