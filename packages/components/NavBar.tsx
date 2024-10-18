@@ -37,7 +37,7 @@ function NavBar() {
 
   return (
     <div className="navbar fixed p-0 shadow-md flex flex-col bg-base-100">
-      <div className="navbar container bg-base-100 gap-4">
+      <div className="navbar max-w-5xl mx-auto bg-base-100 gap-4 z-10">
         <button type="button" className="btn btn-ghost md:hidden" onClick={isOpen ? onClose : onOpen}>
           {isOpen ? <CloseIcon /> : <HamburgerIcon />}
         </button>

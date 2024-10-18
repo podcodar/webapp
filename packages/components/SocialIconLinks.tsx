@@ -9,10 +9,10 @@ interface Props {
 export default function SocialIconLinks({ githubUrl = links.github, linkedinUrl = links.linkedin }: Props) {
   return (
     <div className="flex flex-row text-lg justify-center">
-      <a key="linkedin" href={githubUrl} target="_blank" rel="noreferrer" className="btn btn-ghost">
+      <a href={githubUrl} target="_blank" rel="noreferrer" className="btn btn-ghost">
         <GithubIcon />
       </a>
-      <a key="linkedin" href={linkedinUrl} target="_blank" rel="noreferrer" className="btn btn-ghost">
+      <a href={linkedinUrl} target="_blank" rel="noreferrer" className="btn btn-ghost">
         <LinkedInIcon />
       </a>
     </div>
