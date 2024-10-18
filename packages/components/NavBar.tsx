@@ -60,7 +60,8 @@ function NavBar() {
                 type="button"
                 aria-label="Join button"
                 data-testid="join-button"
-                className="btn btn-disabled min-w-5rem bg-purple-400 hover:bg-purple-500"
+                className="btn min-w-5rem bg-purple-400 hover:bg-purple-500"
+                disabled
               >
                 <LocalizedText token="navbar.join" />
               </button>
