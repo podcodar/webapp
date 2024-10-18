@@ -1,5 +1,3 @@
-import { Center, Grid, Heading, Text } from "@chakra-ui/react";
-
 import MemberCard from "@packages/components/MemberCard";
 import Section from "@packages/components/Section";
 import SkeletonMemberCard from "@packages/components/SkeletonMemberCard";
@@ -13,38 +11,28 @@ type Props = {
 export default function TeamPage({ members }: Props) {
   return (
     <Section className="py-40">
-      <Grid gap={10}>
-        <Heading fontWeight={600} fontSize={{ base: "3xl", sm: "4xl" }} lineHeight="110%" textAlign="center">
+      <div className="grid gap-10">
+        <h2 className="font-semibold text-4xl sm:font-xl text-center leading-8">
           <LocalizedText
             token={"team-page.title"}
             components={{
-              span: <Text as="span" color="purple.400" />,
+              span: <span className="text-purple-400" />,
             }}
           />
-        </Heading>
+        </h2>
 
         {members === null ? (
           <SkeletonMemberCard />
         ) : members.length === 0 ? (
-          <Center>
-            <LocalizedText token="team-page.no-items" />
-          </Center>
+          <LocalizedText token="team-page.no-items" />
         ) : (
-          <Grid
-            templateColumns={{
-              base: "1fr",
-              sm: "1fr 1fr",
-              md: "repeat(3, 1fr)",
-              lg: "repeat(4, 1fr)",
-            }}
-            gap={{ base: 4, lg: 6 }}
-          >
+          <div className="grid p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
             {members.map((member) => {
               return <MemberCard member={member} key={member.id} />;
             })}
-          </Grid>
+          </div>
         )}
-      </Grid>
+      </div>
     </Section>
   );
 }
