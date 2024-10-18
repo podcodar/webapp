@@ -12,7 +12,7 @@ export default function TeamPage({ members }: Props) {
   return (
     <Section className="py-40">
       <div className="grid gap-10">
-        <h1 className="font-semibold text-4xl sm:font-xl text-center leading-8">
+        <h1 className="text-center font-semibold text-4xl leading-8 sm:font-xl">
           <LocalizedText
             token={"team-page.title"}
             components={{
@@ -26,7 +26,7 @@ export default function TeamPage({ members }: Props) {
         ) : members.length === 0 ? (
           <LocalizedText token="team-page.no-items" />
         ) : (
-          <div className="grid p-4 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
+          <div className="grid gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-6">
             {members.map((member) => {
               return <MemberCard member={member} key={member.id} />;
             })}

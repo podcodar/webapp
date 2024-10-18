@@ -1,9 +1,9 @@
 export default function SkeletonMemberCard() {
   return (
-    <div className="bg-white shadow-xl rounded-md pb-8">
+    <div className="rounded-md bg-white pb-8 shadow-xl">
       <div className="skeleton h-8 w-full" />
 
-      <div className="flex justify-center -mt-12 w-full">
+      <div className="-mt-12 flex w-full justify-center">
         <div className="skeleton h-4 w-4 rounded-full" />
       </div>
 

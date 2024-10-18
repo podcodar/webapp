@@ -8,7 +8,7 @@ interface Props {
 
 export default function SocialIconLinks({ githubUrl = links.github, linkedinUrl = links.linkedin }: Props) {
   return (
-    <div className="flex flex-row text-lg justify-center">
+    <div className="flex flex-row justify-center text-lg">
       <a href={githubUrl} target="_blank" rel="noreferrer" className="btn btn-ghost">
         <GithubIcon />
       </a>

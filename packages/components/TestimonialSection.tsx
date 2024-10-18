@@ -17,7 +17,7 @@ export default function TestimonialSection({ testimonials }: Props) {
 
   return (
     <Section className={bgColor} innerClassName="grid gap-4">
-      <h2 className="text-center font-semibold text-3xl sm:text-4xl py-8">
+      <h2 className="py-8 text-center font-semibold text-3xl sm:text-4xl">
         <LocalizedText token="testimonials.title" />
       </h2>
 
@@ -59,13 +59,13 @@ function TestimonialCard({ name, testimonial, img, idx, maxSize }: TestimonialCa
 
   return (
     <div className="carousel-item relative w-full border-red-100" id={`testimonial-${idx}`}>
-      <div className="card mx-40 min-w-400 border-10 border-blue-500 rounded-sm">
+      <div className="card mx-40 min-w-400 rounded-sm border-10 border-blue-500">
         <Image
           src={img}
           alt={name}
           width={100}
           height={100}
-          className="rounded-full border-3 border-blue-500 max-w-4rem sm:max-w-4.5rem object-cover mx-auto"
+          className="mx-auto max-w-4rem rounded-full border-3 border-blue-500 object-cover sm:max-w-4.5rem"
         />
         <div className="card-body">
           <h2 className="card-title mx-auto">{name}</h2>
@@ -73,7 +73,7 @@ function TestimonialCard({ name, testimonial, img, idx, maxSize }: TestimonialCa
         </div>
       </div>
 
-      <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
+      <div className="-translate-y-1/2 absolute top-1/2 right-5 left-5 flex transform justify-between">
         <a href={`#testimonial-${prevIdx}`} className="btn btn-circle">
           ❮
         </a>
