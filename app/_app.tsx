@@ -1,4 +1,4 @@
-import { useIsClient } from "@packages/hooks/useIsClient";
+import { useIsClient } from "@packages/utils/react";
 import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
