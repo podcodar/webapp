@@ -1,4 +1,4 @@
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText } from "@packages/locale/context";
 import Section from "./Section";
 import {
   CssIcon,
@@ -39,11 +39,11 @@ const iconList = [
 function TechSection() {
   return (
     <Section innerClassName="grid gap-8">
-      <h2 className="font-semibold text-center text-xl leading-tight">
+      <h2 className="text-center font-semibold text-xl leading-tight">
         <LocalizedText token="roadmap.tech-title" />
       </h2>
 
-      <div className="flex flex-wrap gap-6 items-center justify-center">
+      <div className="flex flex-wrap items-center justify-center gap-6">
         {iconList.map((Icon) => (
           <Icon key={Icon.name} title={Icon.name} />
         ))}

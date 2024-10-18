@@ -36,3 +36,13 @@ export function createCtx<T>(displayName: Readonly<string>): SafeContextResult<T
 
   return [useCtx, Ctx.Provider, Ctx];
 }
+
+export function useIsClient() {
+  const [isClient, setIsClient] = react.useState(false);
+
+  useEffectOnce(() => {
+    setIsClient(true);
+  });
+
+  return isClient && typeof window !== "undefined";
+}

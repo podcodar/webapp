@@ -11,7 +11,7 @@ interface Props {
 function Section({ children, className, innerClassName, id }: Props) {
   return (
     <div className={classes("py-16", className)} id={id}>
-      <div className={classes("max-w-5xl mx-auto", innerClassName)}>{children}</div>
+      <div className={classes("mx-auto max-w-5xl", innerClassName)}>{children}</div>
     </div>
   );
 }

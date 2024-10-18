@@ -4,7 +4,7 @@ import { Flex, Grid, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
 import Link from "@packages/components/Link";
 import { roadMapsLinks } from "@packages/config/site";
-import { LocalizedText, type TranslationToken } from "@packages/features/i18n-context";
+import { LocalizedText, type TranslationToken } from "@packages/locale/context";
 
 import Section from "./Section";
 

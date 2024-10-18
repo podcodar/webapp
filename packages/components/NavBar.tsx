@@ -7,7 +7,7 @@ import { Logo } from "@packages/components/icons";
 import { links } from "@packages/config/site";
 
 import Link from "@packages/components/Link";
-import { LocalizedText, WithLocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText, WithLocalizedText } from "@packages/locale/context";
 import SocialIconLinks from "./SocialIconLinks";
 import ToggleLanguage from "./ToggleLanguage";
 import ToggleThemeButton from "./ToggleThemeButton";
@@ -36,18 +36,18 @@ function NavBar() {
   const onClose = () => setIsOpen(false);
 
   return (
-    <div className="navbar fixed p-0 shadow-md flex flex-col bg-base-100">
-      <div className="navbar max-w-5xl mx-auto bg-base-100 gap-4 z-10">
+    <div className="navbar fixed flex flex-col bg-base-100 p-0 shadow-md">
+      <div className="navbar z-10 mx-auto max-w-5xl gap-4 bg-base-100">
         <button type="button" className="btn btn-ghost md:hidden" onClick={isOpen ? onClose : onOpen}>
           {isOpen ? <CloseIcon /> : <HamburgerIcon />}
         </button>
 
-        <Link href="/" className="flex items-center justify-center w-full md:w-auto gap-2">
+        <Link href="/" className="flex w-full items-center justify-center gap-2 md:w-auto">
           <Logo size="small" />
-          <p className="mx-1 text-lg font-bold">PodCodar</p>
+          <p className="mx-1 font-bold text-lg">PodCodar</p>
         </Link>
 
-        <div className="w-full justify-between items-center hidden md:flex">
+        <div className="hidden w-full items-center justify-between md:flex">
           <div className="flex gap-2">{communityLinks}</div>
           <div className="flex gap-2">{actionButtons}</div>
         </div>
@@ -71,12 +71,12 @@ function NavBar() {
       </div>
 
       {isOpen ? (
-        <div className="navbar grid gap-4 md:hidden w-full py-4 px-20 sm:px-30 bg-base-100 text-center">
-          <nav className="flex mx-auto gap-4">{communityLinks}</nav>
+        <div className="navbar grid w-full gap-4 bg-base-100 px-20 py-4 text-center sm:px-30 md:hidden">
+          <nav className="mx-auto flex gap-4">{communityLinks}</nav>
 
           <div className="h-[1px] w-100 bg-gray-200" />
 
-          <div className="flex gap-4 justify-center text-md">{actionButtons}</div>
+          <div className="flex justify-center gap-4 text-md">{actionButtons}</div>
         </div>
       ) : null}
     </div>

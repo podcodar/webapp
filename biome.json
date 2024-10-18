@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.2/schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
   "organizeImports": {
     "enabled": true
   },
@@ -15,6 +15,16 @@
     "lineWidth": 120
   },
   "linter": {
-    "enabled": true
+    "enabled": true,
+    "rules": {
+      "nursery": {
+        "useSortedClasses": {
+          "options": {
+            "attributes": ["classList"],
+            "functions": ["clsx", "classes", "tw"]
+          }
+        }
+      }
+    }
   }
 }

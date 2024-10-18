@@ -3,14 +3,14 @@ import Image from "next/image";
 import { Logo } from "@packages/components/icons";
 import { PIX_KEY, images } from "@packages/config/site";
 
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText } from "@packages/locale/context";
 import Section from "./Section";
 import SocialIconLinks from "./SocialIconLinks";
 
 export default function Footer() {
   return (
-    <Section className="bg-neutral-950 px-6 py-6 items-center">
-      <div className="grid grid-cols-1 sm:grid-cols-3 text-gray-50">
+    <Section className="items-center bg-neutral-950 px-6 py-6">
+      <div className="grid grid-cols-1 text-gray-50 sm:grid-cols-3">
         <PodCodarLogo />
         <Copyrights />
         <Pix />
