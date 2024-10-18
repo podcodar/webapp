@@ -1,4 +1,4 @@
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText } from "@packages/locale/context";
 import type { SelectMember } from "@packages/repositories/db/schema";
 import SocialIconLinks from "./SocialIconLinks";
 

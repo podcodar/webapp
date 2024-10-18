@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Logo } from "@packages/components/icons";
 import { PIX_KEY, images } from "@packages/config/site";
 
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText } from "@packages/locale/context";
 import Section from "./Section";
 import SocialIconLinks from "./SocialIconLinks";
 

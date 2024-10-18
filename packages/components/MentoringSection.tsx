@@ -1,7 +1,7 @@
 "use client";
 
 import { useColorModeValue } from "@chakra-ui/react";
-import { LocalizedText, type TranslationToken } from "@packages/features/i18n-context";
+import { LocalizedText, type TranslationToken } from "@packages/locale/context";
 import { classes } from "@packages/utils/classes";
 import Section from "./Section";
 

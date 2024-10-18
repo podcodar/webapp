@@ -1,7 +1,7 @@
 import { Illustration } from "@packages/components/icons";
 import { links } from "@packages/config/site";
 
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText } from "@packages/locale/context";
 import Section from "./Section";
 
 export default function CallToActionSection() {

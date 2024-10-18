@@ -1,4 +1,4 @@
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText } from "@packages/locale/context";
 import Section from "./Section";
 import {
   CssIcon,

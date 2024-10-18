@@ -1,7 +1,7 @@
 import MemberCard from "@packages/components/MemberCard";
 import Section from "@packages/components/Section";
 import SkeletonMemberCard from "@packages/components/SkeletonMemberCard";
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText } from "@packages/locale/context";
 import type { SelectMember } from "@packages/repositories/db/schema";
 
 type Props = {

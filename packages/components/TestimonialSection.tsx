@@ -3,7 +3,7 @@
 import { useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
 
-import { LocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText } from "@packages/locale/context";
 import type { SelectTestimonial } from "@packages/repositories/db/schema";
 
 import Section from "./Section";

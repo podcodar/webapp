@@ -3,7 +3,7 @@
 import { CSSReset, ChakraProvider } from "@chakra-ui/react";
 import Layout from "@packages/components/Layout";
 import Metadata from "@packages/components/Metadata";
-import I18nProvider from "@packages/features/i18n-context";
+import I18nProvider from "@packages/locale/context";
 import { useIsClient } from "@packages/utils/react";
 import { Suspense } from "react";
 

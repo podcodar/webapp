@@ -7,7 +7,7 @@ import { Logo } from "@packages/components/icons";
 import { links } from "@packages/config/site";
 
 import Link from "@packages/components/Link";
-import { LocalizedText, WithLocalizedText } from "@packages/features/i18n-context";
+import { LocalizedText, WithLocalizedText } from "@packages/locale/context";
 import SocialIconLinks from "./SocialIconLinks";
 import ToggleLanguage from "./ToggleLanguage";
 import ToggleThemeButton from "./ToggleThemeButton";

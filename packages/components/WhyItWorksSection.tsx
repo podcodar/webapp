@@ -3,7 +3,7 @@
 import { useColorModeValue } from "@chakra-ui/react";
 
 import { PersonalizedLearningIcon, PracticalLearningIcon, TeamworkIcon } from "@packages/components/icons";
-import { type I18nTextProps, LocalizedText } from "@packages/features/i18n-context";
+import { type I18nTextProps, LocalizedText } from "@packages/locale/context";
 import type { ReactNode } from "react";
 import Section from "./Section";
 
