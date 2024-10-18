@@ -12,14 +12,14 @@ export default function TeamPage({ members }: Props) {
   return (
     <Section className="py-40">
       <div className="grid gap-10">
-        <h2 className="font-semibold text-4xl sm:font-xl text-center leading-8">
+        <h1 className="font-semibold text-4xl sm:font-xl text-center leading-8">
           <LocalizedText
             token={"team-page.title"}
             components={{
               span: <span className="text-purple-400" />,
             }}
           />
-        </h2>
+        </h1>
 
         {members === null ? (
           <SkeletonMemberCard />
