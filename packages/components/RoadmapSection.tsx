@@ -39,6 +39,27 @@ interface CardItemProps {
   color: string;
 }
 
+function CardItem({ title, link, color }: Readonly<CardItemProps>) {
+  const innerStyle = {
+    "--color": color,
+  } as CSSProperties;
+
+  return (
+    <a href={link} target="_blank" rel="noreferrer">
+      <div
+        className={
+          "flex justify-center py-8 border-2 border-[var(--color)] rounded-lg transition-shadow duration-300 ease-in-out hover:shadow-[-8px_8px_0px_0px_var(--color)]"
+        }
+        style={innerStyle}
+      >
+        <h2 className="font-normal text-xl leading-tight">
+          <LocalizedText token={title} />
+        </h2>
+      </div>
+    </a>
+  );
+}
+
 const cardList: CardItemProps[] = [
   {
     title: "roadmap.web-programming",
@@ -61,24 +82,3 @@ const cardList: CardItemProps[] = [
     color: "#b794f4",
   },
 ];
-
-function CardItem({ title, link, color }: Readonly<CardItemProps>) {
-  const innerStyle = {
-    "--color": color,
-  } as CSSProperties;
-
-  return (
-    <a href={link} target="_blank" rel="noreferrer">
-      <div
-        className={
-          "flex justify-center py-8 border-2 border-[var(--color)] rounded-lg transition-shadow duration-300 ease-in-out hover:shadow-[-8px_8px_0px_0px_var(--color)]"
-        }
-        style={innerStyle}
-      >
-        <h2 className="font-normal text-xl leading-tight">
-          <LocalizedText token={title} />
-        </h2>
-      </div>
-    </a>
-  );
-}
