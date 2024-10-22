@@ -1,7 +1,6 @@
 "use client";
 
 import { useColorModeValue } from "@chakra-ui/react";
-import type { CSSProperties } from "react";
 
 import { roadMapsLinks } from "@packages/config/site";
 import { LocalizedText, type TranslationToken } from "@packages/locale/context";
@@ -9,6 +8,8 @@ import { LocalizedText, type TranslationToken } from "@packages/locale/context";
 import { classes } from "@packages/utils/classes";
 
 import Section from "./Section";
+
+import "./RoadmapSection.css";
 
 export default function RoadmapSection() {
   const bgColor = useColorModeValue("bg-gray-100", "bg-gray-900");
@@ -26,7 +27,12 @@ export default function RoadmapSection() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {cardList.map((cardProps) => (
-          <CardItem key={cardProps.title} color={cardProps.color} link={cardProps.link} title={cardProps.title} />
+          <CardItem
+            key={cardProps.title}
+            colorClass={cardProps.colorClass}
+            link={cardProps.link}
+            title={cardProps.title}
+          />
         ))}
       </div>
     </Section>
@@ -36,21 +42,17 @@ export default function RoadmapSection() {
 interface CardItemProps {
   title: TranslationToken;
   link: string;
-  color: string;
+  colorClass: string;
 }
 
-function CardItem({ title, link, color }: Readonly<CardItemProps>) {
-  const innerStyle = {
-    "--color": color,
-  } as CSSProperties;
-
+function CardItem({ title, link, colorClass }: Readonly<CardItemProps>) {
   return (
     <a href={link} target="_blank" rel="noreferrer">
       <div
-        className={
-          "flex justify-center py-8 border-2 border-[var(--color)] rounded-lg transition-shadow duration-300 ease-in-out hover:shadow-[-8px_8px_0px_0px_var(--color)]"
-        }
-        style={innerStyle}
+        className={classes(
+          "flex justify-center py-8 border-2 rounded-lg transition-shadow duration-300 ease-in-out",
+          colorClass,
+        )}
       >
         <h2 className="font-normal text-xl leading-tight">
           <LocalizedText token={title} />
@@ -64,21 +66,21 @@ const cardList: CardItemProps[] = [
   {
     title: "roadmap.web-programming",
     link: roadMapsLinks.webProgramming,
-    color: "#17A9BC",
+    colorClass: "roadmap-card-blue",
   },
   {
     title: "roadmap.ux-design",
     link: roadMapsLinks.uxDesign,
-    color: "#F99223",
+    colorClass: "roadmap-card-orange",
   },
   {
     title: "roadmap.react",
     link: roadMapsLinks.react,
-    color: "#FF4CFF",
+    colorClass: "roadmap-card-pink",
   },
   {
     title: "roadmap.data",
     link: roadMapsLinks.introToData,
-    color: "#b794f4",
+    colorClass: "roadmap-card-purple",
   },
 ];
