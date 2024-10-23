@@ -1,6 +1,5 @@
 "use client";
 
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
 import { useState } from "react";
 
 import { Logo } from "@packages/components/icons";
@@ -11,6 +10,8 @@ import { LocalizedText, WithLocalizedText } from "@packages/locale/context";
 import SocialIconLinks from "./SocialIconLinks";
 import ToggleLanguage from "./ToggleLanguage";
 import ToggleThemeButton from "./ToggleThemeButton";
+import { CloseIcon } from "./icons/CloseIcon";
+import { HamburgerIcon } from "./icons/HamburgerIcon";
 
 const communityLinks = [
   <Link key="team" href={links.team}>
