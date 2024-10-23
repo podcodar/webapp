@@ -6,7 +6,7 @@ export const HamburgerIcon = () => {
       viewBox="0 0 24 24"
       width="15"
       role="img"
-      aria-label="US Flag"
+      aria-label="Hamburger icon"
     >
       <path
         fill="currentColor"
