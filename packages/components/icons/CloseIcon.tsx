@@ -8,7 +8,7 @@ export const CloseIcon = () => {
       viewBox="0 0 24 24"
       width="15"
       role="img"
-      aria-label="US Flag"
+      aria-label="Close icon"
     >
       <path
         fill="currentColor"
