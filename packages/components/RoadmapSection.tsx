@@ -1,41 +1,41 @@
 "use client";
 
-import { Flex, Grid, Heading, Text, useColorModeValue } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 
-import Link from "@packages/components/Link";
 import { roadMapsLinks } from "@packages/config/site";
 import { LocalizedText, type TranslationToken } from "@packages/locale/context";
+import { classes } from "@packages/utils/classes";
 
 import Section from "./Section";
 
-export default function RoadmapSection() {
-  const bgColor = useColorModeValue("bg-gray-100", "bg-gray-900");
-  return (
-    <Section className={bgColor}>
-      <Flex justifyContent="space-between" py="1rem">
-        <Heading size="md" fontWeight={600} textAlign="left">
-          <LocalizedText token="roadmap.title" />
-        </Heading>
-        <Text textAlign="right">
-          <Link href={roadMapsLinks.all} target="_blank">
-            <LocalizedText token="roadmap.see-all" />
-          </Link>
-        </Text>
-      </Flex>
+import styles from "./roadmapSection.module.css";
 
-      <Grid
-        gridTemplateColumns={{
-          base: "1fr",
-          sm: "repeat(2, 1fr)",
-          lg: "repeat(4, 1fr)",
-        }}
-        gap="2rem"
-        my="2rem"
-      >
+export default function RoadmapSection() {
+  console.log(styles);
+
+  const bgColor = useColorModeValue("bg-gray-100", "bg-gray-900");
+
+  return (
+    <Section className={bgColor} innerClassName="grid gap-8">
+      <div className="flex items-center justify-between">
+        <h2 className="font-semibold text-xl leading-tight">
+          <LocalizedText token="roadmap.title" />
+        </h2>
+        <a href={roadMapsLinks.all} target="_blank" rel="noreferrer noopener">
+          <LocalizedText token="roadmap.see-all" />
+        </a>
+      </div>
+
+      <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {cardList.map((cardProps) => (
-          <CardItem key={cardProps.title} color={cardProps.color} link={cardProps.link} title={cardProps.title} />
+          <CardItem
+            key={cardProps.title}
+            colorClass={cardProps.colorClass}
+            link={cardProps.link}
+            title={cardProps.title}
+          />
         ))}
-      </Grid>
+      </div>
     </Section>
   );
 }
@@ -43,28 +43,24 @@ export default function RoadmapSection() {
 interface CardItemProps {
   title: TranslationToken;
   link: string;
-  color: string;
+  colorClass: string;
 }
 
-function CardItem({ title, link, color }: CardItemProps) {
+function CardItem({ title, link, colorClass }: Readonly<CardItemProps>) {
   return (
-    <Link href={link} target="_blank">
-      <Flex
-        py="2rem"
-        transition="box-shadow 300ms ease-in-out"
-        border="2px solid"
-        borderColor={color}
-        borderRadius="10px"
-        justifyContent="center"
-        _hover={{
-          boxShadow: `-8px 8px 0 ${color}`,
-        }}
+    <a href={link} target="_blank" rel="noreferrer">
+      <div
+        className={classes(
+          "flex justify-center rounded-lg border-2 py-8 transition-shadow duration-300 ease-in-out",
+          styles.card,
+          colorClass,
+        )}
       >
-        <Heading size="md" fontWeight={400} textDecoration="none">
+        <h2 className="font-normal text-xl leading-tight">
           <LocalizedText token={title} />
-        </Heading>
-      </Flex>
-    </Link>
+        </h2>
+      </div>
+    </a>
   );
 }
 
@@ -72,21 +68,21 @@ const cardList: CardItemProps[] = [
   {
     title: "roadmap.web-programming",
     link: roadMapsLinks.webProgramming,
-    color: "#17A9BC",
+    colorClass: styles.blue,
   },
   {
     title: "roadmap.ux-design",
     link: roadMapsLinks.uxDesign,
-    color: "#F99223",
+    colorClass: styles.orange,
   },
   {
     title: "roadmap.react",
     link: roadMapsLinks.react,
-    color: "#FF4CFF",
+    colorClass: styles.pink,
   },
   {
     title: "roadmap.data",
     link: roadMapsLinks.introToData,
-    color: "#b794f4",
+    colorClass: styles.purple,
   },
 ];
