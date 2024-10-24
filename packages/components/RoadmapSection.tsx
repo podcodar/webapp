@@ -8,9 +8,11 @@ import { classes } from "@packages/utils/classes";
 
 import Section from "./Section";
 
-import "./RoadmapSection.css";
+import styles from "./roadmapSection.module.css";
 
 export default function RoadmapSection() {
+  console.log(styles);
+
   const bgColor = useColorModeValue("bg-gray-100", "bg-gray-900");
 
   return (
@@ -50,6 +52,7 @@ function CardItem({ title, link, colorClass }: Readonly<CardItemProps>) {
       <div
         className={classes(
           "flex justify-center rounded-lg border-2 py-8 transition-shadow duration-300 ease-in-out",
+          styles.card,
           colorClass,
         )}
       >
@@ -65,21 +68,21 @@ const cardList: CardItemProps[] = [
   {
     title: "roadmap.web-programming",
     link: roadMapsLinks.webProgramming,
-    colorClass: "roadmap-card-blue",
+    colorClass: styles.blue,
   },
   {
     title: "roadmap.ux-design",
     link: roadMapsLinks.uxDesign,
-    colorClass: "roadmap-card-orange",
+    colorClass: styles.orange,
   },
   {
     title: "roadmap.react",
     link: roadMapsLinks.react,
-    colorClass: "roadmap-card-pink",
+    colorClass: styles.pink,
   },
   {
     title: "roadmap.data",
     link: roadMapsLinks.introToData,
-    colorClass: "roadmap-card-purple",
+    colorClass: styles.purple,
   },
 ];
