@@ -1,15 +1,9 @@
-"use client";
-
-import { useColorModeValue } from "@chakra-ui/react";
 import { LocalizedText, type TranslationToken } from "@packages/locale/context";
-import { classes } from "@packages/utils/classes";
 import Section from "./Section";
 
 export default function MentoringSection() {
-  const bgColor = useColorModeValue("bg-white", "bg-gray-950");
-
   return (
-    <Section className={classes("py-20", bgColor)}>
+    <Section className="bg-white py-20 dark:bg-gray-950">
       <div className="grid grid-cols-5 gap-0 md:gap-4">
         <div className="col-span-5 row-span-1 md:col-span-2 md:row-span-3">
           <h2 className="my-8 text-center font-medium text-lg">

@@ -1,17 +1,11 @@
-"use client";
-
-import { useColorModeValue } from "@chakra-ui/react";
-
 import { PersonalizedLearningIcon, PracticalLearningIcon, TeamworkIcon } from "@packages/components/icons";
 import { type I18nTextProps, LocalizedText } from "@packages/locale/context";
 import type { ReactNode } from "react";
 import Section from "./Section";
 
 export default function WhyItWorksSection() {
-  const bgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
-
   return (
-    <Section className={bgColor} id="why-it-works">
+    <Section className="bg-gray-50 dark:bg-gray-900" id="why-it-works">
       <h2 className="py-8 text-center font-semibold text-3xl leading-tight sm:text-4xl">
         <LocalizedText token="why-it-works.title" />
       </h2>

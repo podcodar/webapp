@@ -1,6 +1,3 @@
-"use client";
-
-import { useColorModeValue } from "@chakra-ui/react";
 import Image from "next/image";
 
 import { LocalizedText } from "@packages/locale/context";
@@ -13,10 +10,8 @@ interface Props {
 }
 
 export default function TestimonialSection({ testimonials }: Props) {
-  const bgColor = useColorModeValue("bg-gray-50", "bg-gray-900");
-
   return (
-    <Section className={bgColor} innerClassName="grid gap-4">
+    <Section className="bg-gray-50 dark:bg-gray-900" innerClassName="grid gap-4">
       <h2 className="py-8 text-center font-semibold text-3xl sm:text-4xl">
         <LocalizedText token="testimonials.title" />
       </h2>

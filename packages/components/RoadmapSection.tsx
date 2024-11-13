@@ -1,7 +1,3 @@
-"use client";
-
-import { useColorModeValue } from "@chakra-ui/react";
-
 import { roadMapsLinks } from "@packages/config/site";
 import { LocalizedText, type TranslationToken } from "@packages/locale/context";
 import { classes } from "@packages/utils/classes";
@@ -11,12 +7,8 @@ import Section from "./Section";
 import styles from "./roadmapSection.module.css";
 
 export default function RoadmapSection() {
-  console.log(styles);
-
-  const bgColor = useColorModeValue("bg-gray-100", "bg-gray-900");
-
   return (
-    <Section className={bgColor} innerClassName="grid gap-8">
+    <Section className="bg-gray-100 dark:bg-gray-900" innerClassName="grid gap-8">
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-xl leading-tight">
           <LocalizedText token="roadmap.title" />
