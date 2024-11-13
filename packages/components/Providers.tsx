@@ -1,6 +1,5 @@
 "use client";
 
-import { CSSReset, ChakraProvider } from "@chakra-ui/react";
 import Layout from "@packages/components/Layout";
 import Metadata from "@packages/components/Metadata";
 import I18nProvider from "@packages/locale/context";
@@ -20,15 +19,12 @@ export default function Providers({ children }: Props) {
 
   return (
     <Suspense fallback={<p>Loading</p>}>
-      <ChakraProvider>
-        <I18nProvider>
-          <Layout>
-            <CSSReset />
-            <Metadata />
-            {children}
-          </Layout>
-        </I18nProvider>
-      </ChakraProvider>
+      <I18nProvider>
+        <Layout>
+          <Metadata />
+          {children}
+        </Layout>
+      </I18nProvider>
     </Suspense>
   );
 }
