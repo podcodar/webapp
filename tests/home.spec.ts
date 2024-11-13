@@ -53,7 +53,7 @@ test("Toggle theme is working", async ({ page }) => {
 
   // check initial theme value
   const initialTheme = await page.getAttribute("html", "data-theme");
-  expect(initialTheme).toBe("light");
+  expect(initialTheme).toBe("system");
 
   // Click the toggle theme
   await toggleBtn.click();
