@@ -8,9 +8,8 @@ type Props = {
 };
 
 export default async function RootLayout({ children }: Props) {
-  const theme = "system";
   const cookieStore = cookies();
-  const selectedTheme = cookieStore.get("selected-theme")?.value ?? theme;
+  const selectedTheme = cookieStore.get("selected-theme")?.value ?? "system";
 
   return (
     <html lang="en" data-theme={selectedTheme}>

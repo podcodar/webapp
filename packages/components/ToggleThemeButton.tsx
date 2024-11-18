@@ -1,11 +1,10 @@
 "use client";
 
+import { type Theme, getSelectedTheme, strToTheme, toggleTheme } from "@packages/utils/theme";
 import { useState } from "react";
 
-type Theme = "light" | "dark" | "system";
-
 export default function ToggleThemeButton() {
-  const [colorMode, setColorMode] = useState(document.documentElement.dataset.theme ?? "system");
+  const [colorMode, setColorMode] = useState<Theme>(strToTheme(document.documentElement.dataset.theme ?? "system"));
 
   function setNewTheme(newColorMode: Theme) {
     document.documentElement.dataset.theme = newColorMode;
@@ -14,12 +13,8 @@ export default function ToggleThemeButton() {
   }
 
   function handleToggleTheme() {
-    let selectedTheme = document.documentElement.dataset.theme;
-    if (!selectedTheme || selectedTheme === "system") {
-      selectedTheme = window.matchMedia("(prefers-color-scheme: dark)")?.matches ? "dark" : "light";
-    }
-
-    const newColorMode = selectedTheme === "dark" ? "light" : "dark";
+    const selectedTheme = getSelectedTheme();
+    const newColorMode = toggleTheme(selectedTheme);
     setNewTheme(newColorMode);
   }
 
