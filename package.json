@@ -24,9 +24,6 @@
     "prepare": "lefthook install"
   },
   "dependencies": {
-    "@chakra-ui/layout": "^2.3.1",
-    "@chakra-ui/next-js": "^2.2.0",
-    "@chakra-ui/react": "^2.10.3",
     "@emotion/react": "^11.13.3",
     "@emotion/styled": "^11.13.0",
     "@libsql/client": "^0.14.0",
