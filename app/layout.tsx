@@ -12,7 +12,7 @@ export default async function RootLayout({ children }: Props) {
   const selectedTheme = cookieStore.get("selected-theme")?.value ?? "system";
 
   return (
-    <html lang="en" data-theme={selectedTheme}>
+    <html lang="en" data-theme={selectedTheme} className={selectedTheme}>
       <body>
         <Providers>{children}</Providers>
       </body>

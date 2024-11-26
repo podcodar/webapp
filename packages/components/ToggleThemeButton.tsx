@@ -8,6 +8,7 @@ export default function ToggleThemeButton() {
 
   function setNewTheme(newColorMode: Theme) {
     document.documentElement.dataset.theme = newColorMode;
+    document.documentElement.className = newColorMode;
     document.cookie = `selected-theme=${newColorMode}; path=/`;
     setColorMode(newColorMode);
   }
