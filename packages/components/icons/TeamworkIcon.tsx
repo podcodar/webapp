@@ -8,7 +8,7 @@ export function TeamworkIcon({ className, ...props }: HTMLAttributes<SVGElement>
       viewBox="0 0 180 180"
       role="img"
       aria-label="Teamwork icon"
-      className={classes("stroke-black darker:stroke-gray-50", className)}
+      className={classes("stroke-black dark:stroke-gray-50", className)}
       {...props}
     >
       <path

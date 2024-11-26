@@ -8,7 +8,7 @@ export function PersonalizedLearningIcon({ className, ...props }: HTMLAttributes
       viewBox="0 0 180 180"
       role="img"
       aria-label="Personalized Learning icon"
-      className={classes("stroke-black darker:stroke-gray-50", className)}
+      className={classes("stroke-black dark:stroke-gray-50", className)}
       {...props}
     >
       <g clipPath="url(#clip0)">

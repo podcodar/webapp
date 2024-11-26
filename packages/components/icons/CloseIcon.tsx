@@ -1,5 +1,3 @@
-import { TechIcon, type TechIconProps } from "./TechIcon";
-
 export const CloseIcon = () => {
   return (
     <svg

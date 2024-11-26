@@ -8,7 +8,7 @@ export function PracticalLearningIcon({ className, ...props }: HTMLAttributes<SV
       viewBox="0 0 180 180"
       role="img"
       aria-label="Pratical Learning icon"
-      className={classes("stroke-black darker:stroke-gray-50", className)}
+      className={classes("stroke-black dark:stroke-gray-50", className)}
       {...props}
     >
       <path
