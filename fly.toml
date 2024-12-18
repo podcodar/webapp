@@ -1,0 +1,30 @@
+# fly.toml app configuration file generated for marco on 2023-10-07T18:35:35-03:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "podcodar"
+primary_region = "gru"
+
+[build]
+  build-target = "release"
+
+[env]
+  HOST = "0.0.0.0"
+  PORT = "3000"
+  ENV = "production"
+  # from secrets
+  TURSO_CONNECTION_URL = ""
+  TURSO_AUTH_TOKEN = ""
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+# [mounts]
+#   source="marco_volume"
+#   destination="/data"

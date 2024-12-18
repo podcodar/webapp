@@ -1,0 +1,12 @@
+# Simple docker-compose file to run a Next.js application
+version: '3.7'
+
+services:
+  production:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: release
+
+    ports:
+      - 3000:3000
