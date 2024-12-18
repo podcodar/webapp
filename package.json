@@ -1,10 +1,11 @@
 {
-  "name": "webapp",
+  "name": "@podcodar/webapp",
   "homepage": "https://podcodar-webapp.web.app/",
   "version": "0.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dk:build": "docker build -t podcodar/webapp .",
     "prebuild": "bun run db:generate && bun run db:migrate",
     "build": "next build",
     "build:static": "next build",
@@ -21,7 +22,7 @@
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
-    "prepare": "lefthook install"
+    "prepare": "bunx lefthook install"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
