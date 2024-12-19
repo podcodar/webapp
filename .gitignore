@@ -38,7 +38,8 @@ yarn-error.log*
 .firebase
 
 # dotenv
-.env*
+.env
+.env.*
 /test-results/
 /playwright-report/
 /blob-report/
