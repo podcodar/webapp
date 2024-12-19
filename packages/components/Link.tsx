@@ -26,7 +26,7 @@ const externalLinkIcon = (
   <svg
     role="img"
     aria-label="external link icon"
-    className="w-4 h-4 ml-1 inline rotate-[-37deg]"
+    className="ml-1 inline h-4 w-4 rotate-[-37deg]"
     fill="none"
     stroke="currentColor"
     viewBox="0 0 24 24"
