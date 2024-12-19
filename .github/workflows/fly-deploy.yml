@@ -48,6 +48,6 @@ jobs:
         run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin && docker pull ${{ env.IMAGE_NAME }}
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --ha=false -i ${{ env.IMAGE_NAME }}
+      - run: flyctl deploy --ha=false --local-only -i ${{ env.IMAGE_NAME }}
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
