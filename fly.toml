@@ -25,4 +25,4 @@ primary_region = 'gru'
 
 [[vm]]
   size = "shared-cpu-1x"
-  memory = "2gb"
+  memory = "128mb"
