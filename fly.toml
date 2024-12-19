@@ -23,3 +23,6 @@ primary_region = 'gru'
   min_machines_running = 1
   processes = ["app"]
 
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
