@@ -12,7 +12,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/${{ github.repository_name }}:latest
+  IMAGE_NAME: ghcr.io/${{ github.repository }}:latest
 
 jobs:
 
