@@ -30,6 +30,7 @@ RUN bun run build
 # copy production dependencies and source code into final image
 FROM base AS release
 
+USER bun
 EXPOSE 3000/tcp
 
 COPY --from=install /temp/prod/node_modules node_modules
