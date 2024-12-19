@@ -16,11 +16,14 @@ env:
 
 jobs:
 
+
   build-docker:
     name: Build Docker image locally
     runs-on: ubuntu-latest
     environment: production
     steps:
+      - uses: actions/checkout@v2
+
       - name: login to GitHub Container Registry
         run: echo "${{ secrets.CR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
