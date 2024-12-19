@@ -6,6 +6,8 @@ WORKDIR /usr/src/app
 FROM base AS install
 RUN apk update && apk add --no-cache git && rm -rf /var/cache/apk/*
 
+# run the app
+
 # install dev version with devDependencies
 RUN mkdir -p /temp/dev
 COPY package.json bun.lockb lefthook.yml .husky /temp/dev/
@@ -27,13 +29,13 @@ RUN bun run build
 
 # copy production dependencies and source code into final image
 FROM base AS release
+
+USER bun
+EXPOSE 3000/tcp
+
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/.next .next
 COPY --from=prerelease /usr/src/app/next.config.js .
 COPY --from=prerelease /usr/src/app/package.json .
-
-# run the app
-USER bun
-EXPOSE 3000/tcp
 
 CMD ["bun", "start"]
