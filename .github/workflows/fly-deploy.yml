@@ -1,6 +1,11 @@
 # See https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
 
 name: Fly Deploy
+
+concurrency:
+  group: production    # optional: ensure only one action runs at a time
+  cancel-in-progress: true
+
 on:
   push:
     branches:
@@ -8,14 +13,13 @@ on:
 
 jobs:
   deploy:
-    name: Deploy app
+    name: Deploy fly.io app
     runs-on: ubuntu-latest
-    concurrency: deploy-group    # optional: ensure only one action runs at a time
     environment: production
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only --ha=false
+      - run: flyctl deploy --ha=false
         env:
           FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
           TURSO_AUTH_TOKEN: ${{ secrets.TURSO_AUTH_TOKEN }}
