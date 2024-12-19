@@ -23,9 +23,8 @@ jobs:
         env:
           NODE_ENV: production
         run: |
-          bun pm trust && \
           bun install --frozen-lockfile && \
-          bun run docs:build
+          bun docs:build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
