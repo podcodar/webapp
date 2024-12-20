@@ -1,7 +1,5 @@
 "use client";
 
-import Layout from "@packages/components/Layout";
-import Metadata from "@packages/components/Metadata";
 import I18nProvider from "@packages/locale/context";
 import { useIsClient } from "@packages/utils/react";
 import { Suspense } from "react";
@@ -11,20 +9,21 @@ type Props = {
 };
 
 export default function Providers({ children }: Props) {
+  // FIXME: handle i18n on the server side
   const isClient = useIsClient();
+  const fallback = (
+    <div className="flex h-screen w-full items-center justify-center">
+      <p>Loading...</p>
+    </div>
+  );
 
   if (!isClient) {
     return null;
   }
 
   return (
-    <Suspense fallback={<p>Loading</p>}>
-      <I18nProvider>
-        <Layout>
-          <Metadata />
-          {children}
-        </Layout>
-      </I18nProvider>
+    <Suspense fallback={fallback}>
+      <I18nProvider>{children}</I18nProvider>
     </Suspense>
   );
 }

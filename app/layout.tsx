@@ -1,6 +1,7 @@
 import Providers from "@packages/components/Providers";
 
 import "./globals.css";
+import Metadata from "@packages/components/Metadata";
 import { cookies } from "next/headers";
 
 type Props = {
@@ -13,6 +14,8 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang="en" data-theme={selectedTheme} className={selectedTheme}>
+      <Metadata />
+
       <body>
         <Providers>{children}</Providers>
       </body>
