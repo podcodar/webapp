@@ -8,7 +8,7 @@ type Props = {
 };
 
 export default async function RootLayout({ children }: Props) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const selectedTheme = cookieStore.get("selected-theme")?.value ?? "system";
 
   return (
