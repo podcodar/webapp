@@ -1,6 +1,3 @@
-# Simple docker-compose file to run a Next.js application
-version: '3.7'
-
 services:
   production:
     build:
@@ -10,3 +7,11 @@ services:
 
     ports:
       - 3000:3000
+
+    develop:
+      watch:
+        - action: rebuild
+          path: Dockerfile
+
+        - action: rebuild
+          path: docker-compose.yml
