@@ -34,16 +34,19 @@ jobs:
         run: |
           bun install --frozen-lockfile && bun run playwright install --with-deps
 
-      - name: Waiting for 200 from the Vercel Preview
-        uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
-        id: waitFor200
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          max_timeout: 300
+        # NOTE: using hard-coded URL
+      # - name: Waiting for 200 from the Vercel Preview
+      #   uses: patrickedqvist/wait-for-vercel-preview@v1.3.1
+      #   id: waitFor200
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      #     max_timeout: 300
 
       # access preview url
       - name: Inject testing URL
-        run: echo "TEST_URL=${{steps.waitFor200.outputs.url}}" >> $GITHUB_ENV
+        run: echo "TEST_URL=https://podcodar.fly.dev" >> $GITHUB_ENV
+        # NOTE: using hard-coded URL
+        # run: echo "TEST_URL=${{steps.waitFor200.outputs.url}}" >> $GITHUB_ENV
 
       - name: Run Playwright tests
         run: bun run e2e
