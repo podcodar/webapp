@@ -3,6 +3,7 @@
 import I18nProvider from "@packages/locale/context";
 import { useIsClient } from "@packages/utils/react";
 import { Suspense } from "react";
+import NavBar from "./NavBar";
 
 type Props = {
   children: React.ReactNode;
@@ -18,12 +19,16 @@ export default function Providers({ children }: Props) {
   );
 
   if (!isClient) {
-    return null;
+    return fallback;
   }
 
   return (
     <Suspense fallback={fallback}>
-      <I18nProvider>{children}</I18nProvider>
+      <I18nProvider>
+        <NavBar />
+
+        {children}
+      </I18nProvider>
     </Suspense>
   );
 }

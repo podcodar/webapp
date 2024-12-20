@@ -14,9 +14,9 @@ export default async function RootLayout({ children }: Props) {
 
   return (
     <html lang="en" data-theme={selectedTheme} className={selectedTheme}>
-      <Metadata />
-
       <body>
+        <Metadata />
+
         <Providers>{children}</Providers>
       </body>
     </html>

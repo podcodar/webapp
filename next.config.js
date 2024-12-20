@@ -1,7 +1,6 @@
 const withYaml = require('next-plugin-yaml');
 
 module.exports = withYaml({
-  swcMinify: true,
   reactStrictMode: true,
   env: {
     TURSO_CONNECTION_URL: process.env.TURSO_CONNECTION_URL,
