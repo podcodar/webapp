@@ -37,4 +37,4 @@ To work on this project, use `bun` as your package manager.
 
 [2]: https://www.notion.so/podcodar/PodCodar-WebApp-4c1b6a896ebf45b49fed62c28ac45bef
 [3]: https://www.notion.so/podcodar/Engineering-Wiki-597eb2a7a0534547b1e0f9a2e48d22d2
-[4]: https://github.com/orgs/podcodar/projects/4
+[4]:  https://github.com/orgs/podcodar/projects/13
