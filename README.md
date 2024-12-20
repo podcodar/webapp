@@ -1,6 +1,6 @@
-# Hello Visitor !! Welcome to the PodCodar WebApp
+# Welcome to the PodCodar WebApp!
 
-It's nice to have you here! This project is the web app created by the PodCodar community, it's main objective is to teach good practices of development for our mentees.
+We're glad you're here! This web app is a project created by the PodCodar community. Our main goal is to teach our mentees good development practices through hands-on experience.
 
 ### Technologies
 
@@ -13,19 +13,19 @@ It's nice to have you here! This project is the web app created by the PodCodar 
   <img src="./docs/images/linux.svg" height="30" />
 </div>
 
-### Start Project
+### Getting Started
 
-To work on this project you have use `yarn` or `bun` as package manager.
+To work on this project, use `bun` as your package manager.
 
-> Personal suggestion: use `bun` and be happy.
+- Install dependencies using Bun by running the command `bun install`.
 
-- Install dependencies using library bun whit command `bun`.
+- Run `bun decrypt` to decrypt the `.env.gpg` file. (It'll require a password. Ask current team members for it.)
 
-- run `bun decrypt` to decrypt the `.env.gpg` file. (ask the password for the current teammembers)
+> Note: We strongly recommend running the project on Linux. If you have Windows as your OS, or some other non-GNU/Linux compatible OS, see [🐧 Instalando Linux](https://podcodar.notion.site/Instalando-Linux-d78e8dcd9adf429b9a409b974c0d8fe5)
 
-- now enter a command `bun dev` your project will be running.
+- Start the development server with `bun dev`.
 
-- to run de **production** build `bun build && bun start`
+- For the **production** build, use `bun build && bun start`.
 
 ### Our Wikis
 
@@ -33,8 +33,8 @@ To work on this project you have use `yarn` or `bun` as package manager.
 - [Engineering Wiki][3]
 - [BanBan Board][4]
 
-### Let's code with us
+### Join Us in Coding !
 
 [2]: https://www.notion.so/podcodar/PodCodar-WebApp-4c1b6a896ebf45b49fed62c28ac45bef
 [3]: https://www.notion.so/podcodar/Engineering-Wiki-597eb2a7a0534547b1e0f9a2e48d22d2
-[4]: https://github.com/orgs/podcodar/projects/4
+[4]:  https://github.com/orgs/podcodar/projects/13
