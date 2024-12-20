@@ -19,6 +19,7 @@ function Metadata() {
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={images.logo} />
+        <meta property="og:logo" content={images.logo} />
 
         {/* Twitter Meta Tags */}
         <meta name="twitter:card" content="summary_large_image" />
