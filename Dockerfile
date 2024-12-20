@@ -35,6 +35,7 @@ EXPOSE 3000/tcp
 
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/.next .next
+COPY --from=prerelease /usr/src/app/public public
 COPY --from=prerelease /usr/src/app/next.config.js .
 COPY --from=prerelease /usr/src/app/package.json .
 

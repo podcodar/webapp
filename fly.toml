@@ -28,5 +28,5 @@ primary_region = 'gru'
   memory = "512mb" # 256mb is not enough for the fat, slow, and bloated node.js
 
 [[statics]]
-  guest_path = "/usr/src/app/.next"
+  guest_path = "/usr/src/app/public"
   url_prefix = "/"
