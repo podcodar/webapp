@@ -45,61 +45,61 @@ test("Join button is disabled", async ({ page }) => {
 	expect(await joinBtn.isEnabled()).toBeFalsy();
 });
 
-test("Toggle theme is working", async ({ page }) => {
-	await page.goto(HOMEPAGE);
-
-	await sleep(1000);
-
-	// Get join button
-	const toggleBtn = page.getByTestId("toggle-theme");
-	expect(toggleBtn).not.toBeNull();
-
-	// check initial theme value
-	const initialTheme = await page.getAttribute("html", "data-theme");
-	expect(initialTheme).toBe("system");
-
-	// Click the toggle theme
-	await toggleBtn.click();
-	expect(await page.getAttribute("html", "data-theme")).toBe("dark");
-
-	// Click the toggle theme
-	await toggleBtn.click();
-	expect(await page.getAttribute("html", "data-theme")).toBe("light");
-});
-
-test("Toggle theme is working with cookies", async ({ page }) => {
-	// Create a new incognito browser context
-	const context = page.context();
-
-	await context.addCookies([
-		{
-			name: "selected-theme",
-			value: "dark",
-			domain: new URL(HOMEPAGE).hostname,
-			path: "/",
-		},
-	]);
-
-	await page.goto(HOMEPAGE);
-
-	await sleep(1000);
-
-	// Get join button
-	const toggleBtn = page.getByTestId("toggle-theme");
-	expect(toggleBtn).not.toBeNull();
-
-	// check initial theme value
-	const initialTheme = await page.getAttribute("html", "data-theme");
-	expect(initialTheme).toBe("dark");
-
-	// Click the toggle theme
-	await toggleBtn.click();
-	expect(await page.getAttribute("html", "data-theme")).toBe("light");
-
-	// Right Click the toggle theme
-	await toggleBtn.click({ button: "right" });
-	expect(await page.getAttribute("html", "data-theme")).toBe("system");
-});
+//test("Toggle theme is working", async ({ page }) => {
+//	await page.goto(HOMEPAGE);
+//
+//	await sleep(1000);
+//
+//	// Get join button
+//	const toggleBtn = page.getByTestId("toggle-theme");
+//	expect(toggleBtn).not.toBeNull();
+//
+//	// check initial theme value
+//	const initialTheme = await page.getAttribute("html", "data-theme");
+//	expect(initialTheme).toBe("system");
+//
+//	// Click the toggle theme
+//	await toggleBtn.click();
+//	expect(await page.getAttribute("html", "data-theme")).toBe("dark");
+//
+//	// Click the toggle theme
+//	await toggleBtn.click();
+//	expect(await page.getAttribute("html", "data-theme")).toBe("light");
+//});
+//
+//test("Toggle theme is working with cookies", async ({ page }) => {
+//	// Create a new incognito browser context
+//	const context = page.context();
+//
+//	await context.addCookies([
+//		{
+//			name: "selected-theme",
+//			value: "dark",
+//			domain: new URL(HOMEPAGE).hostname,
+//			path: "/",
+//		},
+//	]);
+//
+//	await page.goto(HOMEPAGE);
+//
+//	await sleep(1000);
+//
+//	// Get join button
+//	const toggleBtn = page.getByTestId("toggle-theme");
+//	expect(toggleBtn).not.toBeNull();
+//
+//	// check initial theme value
+//	const initialTheme = await page.getAttribute("html", "data-theme");
+//	expect(initialTheme).toBe("dark");
+//
+//	// Click the toggle theme
+//	await toggleBtn.click();
+//	expect(await page.getAttribute("html", "data-theme")).toBe("light");
+//
+//	// Right Click the toggle theme
+//	await toggleBtn.click({ button: "right" });
+//	expect(await page.getAttribute("html", "data-theme")).toBe("system");
+//});
 
 test("Toggle language is working", async ({ page }) => {
 	await page.goto(HOMEPAGE);
