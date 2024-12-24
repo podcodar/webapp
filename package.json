@@ -7,6 +7,7 @@
     "prebuild": "bun run db:generate && bun run db:migrate",
 		"build": "remix vite:build",
 		"dev": "remix vite:dev",
+		"test": "bun test packages app",
 		"lint": "biome lint",
 		"fmt": "biome check --write ",
 		"encrypt": "gpg -c .env",
