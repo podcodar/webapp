@@ -1,40 +1,45 @@
-# Welcome to the PodCodar WebApp!
+# Welcome to Remix!
 
-We're glad you're here! This web app is a project created by the PodCodar community. Our main goal is to teach our mentees good development practices through hands-on experience.
+- 📖 [Remix docs](https://remix.run/docs)
 
-### Technologies
+## Development
 
-<div style="max-width: 200px; display: grid; grid-template-columns: repeat(6,auto); grid-gap: 1rem;">
-  <img src="./docs/images/typescript.svg" height="30" />
-  <img src="./docs/images/react.svg" height="30" />
-  <img src="./docs/images/next.svg" height="30" />
-  <img src="./docs/images/node.svg" height="30" />
-  <img src="./docs/images/git.svg" height="30" />
-  <img src="./docs/images/linux.svg" height="30" />
-</div>
+Run the dev server:
 
-### Getting Started
+```shellscript
+npm run dev
+```
 
-To work on this project, use `bun` as your package manager.
+## Deployment
 
-- Install dependencies using Bun by running the command `bun install`.
+First, build your app for production:
 
-- Run `bun decrypt` to decrypt the `.env.gpg` file. (It'll require a password. Ask current team members for it.)
+```sh
+npm run build
+```
 
-> Note: We strongly recommend running the project on Linux. If you have Windows as your OS, or some other non-GNU/Linux compatible OS, see [🐧 Instalando Linux](https://podcodar.notion.site/Instalando-Linux-d78e8dcd9adf429b9a409b974c0d8fe5)
+Then run the app in production mode:
 
-- Start the development server with `bun dev`.
+```sh
+npm start
+```
 
-- For the **production** build, use `bun build && bun start`.
+Now you'll need to pick a host to deploy it to.
 
-### Our Wikis
+### DIY
 
-- [WebApp wiki page][2]
-- [Engineering Wiki][3]
-- [BanBan Board][4]
+If you're familiar with deploying Node applications, the built-in Remix app
+server is production-ready.
 
-### Join Us in Coding !
+Make sure to deploy the output of `npm run build`
 
-[2]: https://www.notion.so/podcodar/PodCodar-WebApp-4c1b6a896ebf45b49fed62c28ac45bef
-[3]: https://www.notion.so/podcodar/Engineering-Wiki-597eb2a7a0534547b1e0f9a2e48d22d2
-[4]:  https://github.com/orgs/podcodar/projects/13
+- `build/server`
+- `build/client`
+
+## Styling
+
+This template comes with [Tailwind CSS](https://tailwindcss.com/) already
+configured for a simple default starting experience. You can use whatever css
+framework you prefer. See the
+[Vite docs on css](https://vitejs.dev/guide/features.html#css) for more
+information.

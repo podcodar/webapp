@@ -1,75 +1,59 @@
 {
-  "name": "@podcodar/webapp",
-  "homepage": "https://podcodar-webapp.web.app/",
-  "version": "0.1.1",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "dk:build": "docker build -t podcodar/webapp .",
+	"name": "webapp",
+	"private": true,
+	"sideEffects": false,
+	"type": "module",
+	"scripts": {
     "prebuild": "bun run db:generate && bun run db:migrate",
-    "build": "next build",
-    "build:static": "next build",
-    "start": "next start",
-    "encrypt": "gpg -c .env",
-    "decrypt": "gpg -d .env.gpg > .env",
-    "lint": "biome lint",
-    "fmt": "biome check --write ",
-    "e2e": "playwright test",
-    "test": "bun test packages",
-    "docs:dev": "vitepress dev docs",
-    "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs",
-    "db:generate": "drizzle-kit generate",
-    "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio",
-    "prepare": "bunx lefthook install"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.14.0",
-    "@emotion/styled": "^11.14.0",
-    "@libsql/client": "^0.14.0",
-    "dotenv": "^16.4.7",
-    "drizzle-orm": "^0.34.1",
-    "eslint-config-next": "^14.2.21",
-    "framer-motion": "^11.15.0",
-    "i18next": "^23.16.8",
-    "lefthook": "^1.10.0",
-    "next": "^15.1.2",
-    "next-plugin-yaml": "^1.0.1",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-i18next": "^15.2.0"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@playwright/test": "^1.49.1",
-    "@types/bun": "^1.1.14",
-    "@types/node": "^22.10.2",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "autoprefixer": "^10.4.20",
-    "daisyui": "^4.12.22",
-    "drizzle-kit": "^0.25.0",
-    "lint-staged": "^15.2.11",
-    "mermaid": "^11.4.1",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.17",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.2",
-    "vitepress": "^1.5.0",
-    "vitepress-carbon": "^1.5.0",
-    "vitepress-plugin-mermaid": "^2.0.17"
-  },
-  "lint-staged": {
-    "*.{md,svg}": "npx prettier --write",
-    "**/*.{tsx,ts,js,jsx}": "biome check --write"
-  },
-  "engines": {
-    "node": ">=18"
-  },
-  "volta": {
-    "node": "20.17.0",
-    "bun": "1.1.28"
-  },
-  "packageManager": "bun@1"
+		"build": "remix vite:build",
+		"dev": "remix vite:dev",
+		"lint": "biome lint",
+		"fmt": "biome check --write ",
+		"encrypt": "gpg -c .env",
+		"decrypt": "gpg -d .env.gpg > .env",
+		"e2e": "playwright test",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate": "drizzle-kit migrate",
+		"db:studio": "drizzle-kit studio",
+		"start": "remix-serve ./build/server/index.js",
+		"typecheck": "tsc"
+	},
+	"dependencies": {
+		"@libsql/client": "^0.14.0",
+		"@remix-run/node": "^2.15.2",
+		"@remix-run/react": "^2.15.2",
+		"@remix-run/serve": "^2.15.2",
+		"daisyui": "^4.12.22",
+		"dotenv": "^16.4.7",
+		"drizzle-orm": "^0.38.2",
+		"i18next": "^24.2.0",
+		"isbot": "^4.1.0",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-i18next": "^15.2.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@modyfi/vite-plugin-yaml": "^1.1.0",
+		"@playwright/test": "^1.49.1",
+		"@remix-run/dev": "^2.15.2",
+		"@types/react": "^18.2.20",
+		"@types/react-dom": "^18.2.7",
+		"autoprefixer": "^10.4.19",
+		"drizzle-kit": "^0.30.1",
+		"lefthook": "^1.10.0",
+		"lint-staged": "^15.2.11",
+		"postcss": "^8.4.38",
+		"tailwindcss": "^3.4.4",
+		"typescript": "^5.1.6",
+		"vite": "^5.1.0",
+		"vite-tsconfig-paths": "^4.2.1"
+	},
+	"lint-staged": {
+		"*.{md,mdx}": "bunx prettier --write",
+		"**/*.{tsx,ts,js,jsx}": "biome check --write"
+	},
+	"engines": {
+		"node": ">=20.0.0"
+	}
 }

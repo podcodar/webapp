@@ -1,36 +1,41 @@
 "use client";
 
-import { type Theme, getSelectedTheme, strToTheme, toggleTheme } from "@packages/utils/theme";
+import { type Theme, strToTheme, toggleTheme } from "@packages/utils/theme";
+import { Form } from "@remix-run/react";
 import { useState } from "react";
 
 export default function ToggleThemeButton() {
-  const [colorMode, setColorMode] = useState<Theme>(strToTheme(document.documentElement.dataset.theme ?? "system"));
+	const [colorMode, setColorMode] = useState<Theme>(
+		strToTheme(document.documentElement.dataset.theme ?? "system"),
+	);
 
-  function setNewTheme(newColorMode: Theme) {
-    document.documentElement.dataset.theme = newColorMode;
-    document.documentElement.className = newColorMode;
-    document.cookie = `selected-theme=${newColorMode}; path=/`;
-    setColorMode(newColorMode);
-  }
+	const info =
+		colorMode === "system"
+			? "Click to toggle between light and dark mode."
+			: "Right click to reset to system default.";
+	const label = `Selected Theme is ${colorMode}. ${info}`;
 
-  function handleToggleTheme() {
-    const selectedTheme = getSelectedTheme();
-    const newColorMode = toggleTheme(selectedTheme);
-    setNewTheme(newColorMode);
-  }
+	function handleClick() {
+		const newTheme = toggleTheme(colorMode);
+		setColorMode(newTheme);
+		document.documentElement.dataset.theme = newTheme;
+		document.documentElement.classList.remove("light", "dark");
+		document.documentElement.classList.add(newTheme);
+	}
 
-  const label = `Selected Theme is ${colorMode}. ${colorMode === "system" ? "Click to toggle between light and dark mode." : "Right click to reset to system default."}`;
+	return (
+		<Form method="post" navigate={false}>
+			<input type="hidden" name="theme" value={colorMode} />
 
-  return (
-    <button
-      type="button"
-      data-testid="toggle-theme"
-      aria-label={label}
-      onClick={handleToggleTheme}
-      onContextMenu={() => setNewTheme("system")}
-      className="btn"
-    >
-      {colorMode === "system" ? "⚙️" : colorMode === "light" ? "☀️" : "🌙"}
-    </button>
-  );
+			<button
+				type="submit"
+				data-testid="toggle-theme"
+				aria-label={label}
+				className="btn"
+				onClick={handleClick}
+			>
+				{colorMode === "system" ? "⚙️" : colorMode === "light" ? "☀️" : "🌙"}
+			</button>
+		</Form>
+	);
 }

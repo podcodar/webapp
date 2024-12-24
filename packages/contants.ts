@@ -1,0 +1,1 @@
+export const MAX_COOKIE_AGE = 2147483647;

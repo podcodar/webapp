@@ -1,23 +1,23 @@
 .blue {
-  --color: #17a9bc;
+	--color: #17a9bc;
 }
 
 .orange {
-  --color: #f99223;
+	--color: #f99223;
 }
 
 .pink {
-  --color: #ff4cff;
+	--color: #ff4cff;
 }
 
 .purple {
-  --color: #b794f4;
+	--color: #b794f4;
 }
 
 .card {
-  border-color: var(--color);
+	border-color: var(--color);
 }
 
 .card:hover {
-  box-shadow: -8px 8px 0 var(--color);
+	box-shadow: -8px 8px 0 var(--color);
 }

@@ -1,30 +1,15 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
-  "files": {
-    "ignore": ["playwright-report/**", "migrations/**", "docs/.vitepress", "node_modules", ".next", "**/*.(svg,js)"]
-  },
-  "formatter": {
-    "include": ["**/*.ts", "**/*.tsx", "**/*.json"],
-    "enabled": true,
-    "formatWithErrors": true,
-    "indentStyle": "space",
-    "indentWidth": 2,
-    "lineWidth": 120
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "nursery": {
-        "useSortedClasses": {
-          "options": {
-            "attributes": ["classList"],
-            "functions": ["clsx", "classes", "tw"]
-          }
-        }
-      }
-    }
-  }
+	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"style": {
+				"noParameterAssign": "off"
+			}
+		}
+	}
 }

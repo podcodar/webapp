@@ -4,6 +4,11 @@ services:
       context: .
       dockerfile: Dockerfile
       target: release
+    volumes:
+      - /app/node_modules
+      - .env/:/usr/src/app/.env
+    environment:
+      - NODE_ENV=production
 
     ports:
       - 3000:3000
@@ -15,3 +20,4 @@ services:
 
         - action: rebuild
           path: docker-compose.yml
+

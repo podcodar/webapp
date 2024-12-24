@@ -25,7 +25,7 @@ primary_region = 'gru'
 
 [[vm]]
   size = "shared-cpu-1x"
-  memory = "256mb" # WARN: 256mb is not enough for the fat, slow, and bloated node.js
+  memory = "256mb"
 
 [[statics]]
   guest_path = "/usr/src/app/public"
