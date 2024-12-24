@@ -1,6 +1,8 @@
 {
-	"name": "webapp",
-	"private": true,
+  "name": "@podcodar/webapp",
+  "homepage": "https://podcodar-webapp.web.app/",
+  "version": "0.1.1",
+  "private": true,
 	"sideEffects": false,
 	"type": "module",
 	"scripts": {
