@@ -37,7 +37,7 @@ function NavBar() {
 	const onClose = () => setIsOpen(false);
 
 	return (
-		<div className="navbar fixed flex flex-col bg-base-100 p-0 shadow-md">
+		<div className="navbar fixed flex flex-col bg-base-100 p-0 shadow-md z-10">
 			<div className="navbar z-10 mx-auto max-w-5xl gap-4 bg-base-100">
 				<button
 					type="button"
