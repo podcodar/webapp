@@ -80,6 +80,7 @@ export type TranslationNS =
 	| "team-page"
 	| "ask-us-page"
 	| "testimonials"
+	| "not-found"
 	| "transparency-portal";
 
 export type TranslationToken = `${TranslationNS}.${string}`;

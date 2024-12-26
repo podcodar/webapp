@@ -100,3 +100,6 @@ ask-us-page:
 
 transparency-portal:
   title: Transparency Portal
+
+not-found:
+  title: Oops, we couldn't find this page
