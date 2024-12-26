@@ -15,9 +15,6 @@ ${SITEMAP_URLS.map(
 `;
 
 export function loader() {
-	// handle "GET" request
-	// separating xml content from Response to keep clean code.
-	// Return the response with the content, a status 200 message, and the appropriate headers for an XML page
 	return new Response(SITEMAP_CONTENT, {
 		status: 200,
 		headers: {

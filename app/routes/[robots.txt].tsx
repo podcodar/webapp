@@ -11,7 +11,6 @@ Sitemap: ${SITEMAP_URL}
 `;
 
 export function loader() {
-	// return the text content, a status 200 success response, and set the content type to text/plain
 	return new Response(ROBOT_CONTENT, {
 		status: 200,
 		headers: {
