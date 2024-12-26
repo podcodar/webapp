@@ -101,3 +101,6 @@ ask-us-page:
   send-button: Perguntar
   checkbox-label: Mostrar perguntas respondidas
   answer-button-label: Marcar como respondida
+
+transparency-portal:
+  title: Portal de Transparência

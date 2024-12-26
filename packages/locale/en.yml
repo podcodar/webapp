@@ -97,3 +97,6 @@ ask-us-page:
   send-button: Ask
   checkbox-label: Show answered questions
   answer-button-label: Mask as answered
+
+transparency-portal:
+  title: Transparency Portal

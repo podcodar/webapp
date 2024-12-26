@@ -79,7 +79,8 @@ export type TranslationNS =
 	| "footer"
 	| "team-page"
 	| "ask-us-page"
-	| "testimonials";
+	| "testimonials"
+	| "transparency-portal";
 
 export type TranslationToken = `${TranslationNS}.${string}`;
 
