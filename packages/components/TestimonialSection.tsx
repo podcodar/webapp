@@ -64,7 +64,7 @@ function TestimonialCard({
 			className="carousel-item relative w-full border-red-100"
 			id={`testimonial-${idx}`}
 		>
-			<div className="card mx-40 min-w-400 rounded-sm border-10 border-blue-500">
+			<div className="card mx-12 md:mx-24 xl:mx-32 min-w-400 rounded-sm border-10 border-blue-500">
 				<img
 					src={img}
 					alt={name}
