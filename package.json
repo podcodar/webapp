@@ -6,23 +6,30 @@
 	"sideEffects": false,
 	"type": "module",
 	"scripts": {
-		"prebuild": "bun run db:generate && bun run db:migrate",
-		"deploy": "bun run build && wrangler pages deploy",
-		"build": "remix vite:build",
+		"postinstall": "wrangler types && bun run db:generate",
+
 		"dev": "remix vite:dev",
-		"test": "bun test packages app",
+		"prebuild": "bun run db:generate && bun run db:migrate",
+		"build": "remix vite:build",
+		"deploy": "bun run build && wrangler pages deploy",
+
 		"lint": "biome lint",
 		"fmt": "biome check --write ",
+
 		"encrypt": "gpg -c .env",
 		"decrypt": "gpg -d .env.gpg > .env && cp .env .dev.vars",
+
+		"test": "bun test packages app",
 		"e2e": "playwright test",
+
 		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
-		"start": "wrangler pages dev ./build/client",
-		"preview": "bun run build && wrangler pages dev",
-		"cf-typegen": "wrangler types",
+
 		"typegen": "wrangler types",
+		"preview": "bun run build && wrangler pages dev",
+		"start": "wrangler pages dev ./build/client",
+
 		"typecheck": "tsc"
 	},
 	"dependencies": {
