@@ -6,11 +6,11 @@
 	"sideEffects": false,
 	"type": "module",
 	"scripts": {
-		"postinstall": "wrangler types && bun run db:generate",
+		"dev": "bun run typegen && remix vite:dev",
 
-		"dev": "remix vite:dev",
-		"prebuild": "bun run db:generate && bun run db:migrate",
+		"prebuild": "bun run typegen && bun run db:migrate",
 		"build": "remix vite:build",
+
 		"deploy": "bun run build && wrangler pages deploy",
 
 		"lint": "biome lint",
@@ -22,11 +22,10 @@
 		"test": "bun test packages app",
 		"e2e": "playwright test",
 
-		"db:generate": "drizzle-kit generate",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
 
-		"typegen": "wrangler types",
+		"typegen": "wrangler types && drizzle-kit generate",
 		"preview": "bun run build && wrangler pages dev",
 		"start": "wrangler pages dev ./build/client",
 
