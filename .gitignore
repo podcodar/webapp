@@ -4,6 +4,10 @@ node_modules
 /build
 .env
 
+# wrangler
+.wrangler
+.dev.vars
+
 # playwright
 test-results
 playwright-report

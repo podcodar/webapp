@@ -9,7 +9,11 @@
 	],
 	"compilerOptions": {
 		"lib": ["DOM", "DOM.Iterable", "ES2022"],
-		"types": ["@remix-run/node", "vite/client"],
+		"types": [
+			"vite/client",
+			"@remix-run/cloudflare",
+			"@cloudflare/workers-types/2023-07-01"
+		],
 		"isolatedModules": true,
 		"esModuleInterop": true,
 		"jsx": "react-jsx",
@@ -24,6 +28,7 @@
 		"baseUrl": ".",
 		"paths": {
 			"@packages/*": ["./packages/*"],
+			"f/*": ["./functions/*"],
 			"~/*": ["./app/*"]
 		},
 
