@@ -1,14 +1,26 @@
 import { createClient } from "@libsql/client";
-import { raise } from "@packages/utils/typescript";
 import { config } from "dotenv";
 import { drizzle } from "drizzle-orm/libsql";
+import { membersTable, testimonialsTable } from "./schema";
 
 config({ path: ".env" }); // or .env.local
 
-const client = createClient({
-	url:
-		process.env.TURSO_CONNECTION_URL ?? raise("missing TURSO_CONNECTION_URL"),
-	authToken: process.env.TURSO_AUTH_TOKEN ?? raise("missing TURSO_AUTH_TOKEN"),
-});
+export class Database {
+	private db: ReturnType<typeof drizzle>;
 
-export const db = drizzle(client);
+	constructor(
+		url = process.env.TURSO_CONNECTION_URL ?? "",
+		authToken = process.env.TURSO_AUTH_TOKEN ?? "",
+	) {
+		const client = createClient({ url, authToken });
+		this.db = drizzle(client);
+	}
+
+	get testimonials() {
+		return this.db.select().from(testimonialsTable);
+	}
+
+	get members() {
+		return this.db.select().from(membersTable);
+	}
+}

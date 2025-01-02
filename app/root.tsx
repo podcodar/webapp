@@ -3,7 +3,7 @@ import type {
 	ActionFunctionArgs,
 	LinksFunction,
 	LoaderFunctionArgs,
-} from "@remix-run/node";
+} from "@remix-run/cloudflare";
 import {
 	Links,
 	Meta,
