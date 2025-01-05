@@ -1,4 +1,4 @@
-# workflow based on: https://vitepress.dev/guide/deploy#github-pages
+# ref: https://vitepress.dev/guide/deploy#github-pages
 name: Deploy docs to GitHub Pages
 
 on:
@@ -22,9 +22,7 @@ jobs:
       - name: build vitepress docs (bun)
         env:
           NODE_ENV: production
-        run: |
-          bun install --frozen-lockfile && \
-          bun docs:build
+        run: bun install --frozen-lockfile && bun docs:build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
