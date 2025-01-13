@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { links } from "../packages/config/site";
 
 const PAGE_MAP: Record<string, string> = {
-	development: "http://localhost:3000",
+	development: "http://localhost:5173",
 	production: "https://podcodar.org",
 };
 

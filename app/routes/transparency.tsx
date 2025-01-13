@@ -1,10 +1,12 @@
 import Section from "@packages/components/Section";
+import { TRANSPARENCY_FOLDER_ID } from "@packages/config/site";
 import { LocalizedText } from "@packages/locale/context";
 
-const FOLDER_ID = "1lNvrSfyhmpV4mgMbj4Vic72qEfe_r6my";
+type GoogleDriveListing = "list" | "grid";
 
 export default function TransparencyPortal() {
-	const driverSrc = `https://drive.google.com/embeddedfolderview?id=${FOLDER_ID}#list`;
+	const listing: GoogleDriveListing = "list";
+	const driverSrc = `https://drive.google.com/embeddedfolderview?id=${TRANSPARENCY_FOLDER_ID}#${listing}`;
 
 	return (
 		<Section className="px-0 pt-32 min-h-[100vh]">

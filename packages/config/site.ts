@@ -1,7 +1,10 @@
 export const title = "PodCodar Code School";
 export const pageURL = "https://podcodar.com";
+
+export const TRANSPARENCY_FOLDER_ID = "1lNvrSfyhmpV4mgMbj4Vic72qEfe_r6my";
 export const IFRAME_FORM_URL =
 	"https://docs.google.com/forms/d/e/1FAIpQLSeoy7Jg_LaXsJMDYJ1gXKBRPu4tIdQiPBG5ZmLennVKSb_GVg/viewform?embedded=true";
+
 export const PIX_KEY = "podcodar@gmail.com";
 // TODO: translate site description
 export const description = "Democratizando o acesso ao mercado de tecnologia.";
@@ -16,8 +19,6 @@ export const links = {
 	// community
 	team: "/team",
 	transparency: "/transparency",
-	wiki: "http://wiki.podcodar.com",
-	forum: "https://github.com/podcodar/forum/discussions",
 	secondaryButton: "#why-it-works",
 
 	// social
