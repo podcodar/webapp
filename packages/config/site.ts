@@ -15,6 +15,7 @@ export const images = {
 export const links = {
 	// community
 	team: "/team",
+	transparency: "/transparency",
 	wiki: "http://wiki.podcodar.com",
 	forum: "https://github.com/podcodar/forum/discussions",
 	secondaryButton: "#why-it-works",

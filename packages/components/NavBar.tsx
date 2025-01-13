@@ -17,11 +17,8 @@ const communityLinks = [
 	<Link key="team" href={links.team}>
 		<LocalizedText token={"navbar.team"} />
 	</Link>,
-	<Link key="wiki" target="_blank" href={links.wiki}>
-		<LocalizedText token={"navbar.wiki"} />
-	</Link>,
-	<Link key="forum" target="_blank" href={links.forum}>
-		<LocalizedText token={"navbar.forum"} />
+	<Link key="transparency" href={links.transparency}>
+		<LocalizedText token={"navbar.transparency"} />
 	</Link>,
 ];
 
@@ -56,7 +53,7 @@ function NavBar() {
 				</Link>
 
 				<div className="hidden w-full items-center justify-between md:flex">
-					<div className="flex gap-2">{communityLinks}</div>
+					<div className="flex gap-4">{communityLinks}</div>
 					<div className="flex gap-2">{actionButtons}</div>
 				</div>
 
