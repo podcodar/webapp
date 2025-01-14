@@ -1,6 +1,6 @@
 {
 	"name": "@podcodar/webapp",
-	"homepage": "https://podcodar-webapp.web.app/",
+	"homepage": "https://podcodar.org/",
 	"version": "0.1.1",
 	"private": true,
 	"sideEffects": false,
