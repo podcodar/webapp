@@ -1,37 +1,54 @@
-# Welcome to Remix!
+# Welcome to PodCodar WebApp!
+
+This WebApp is the main project of PodCodar, a learning community about programming and technology.
 
 - 📖 [Remix docs](https://remix.run/docs)
 
 ## Development
 
-Run the dev server:
+### System Dependencies
+
+To have a consistent development environment, we recommend using the following tools:
+
+- [Bun](https://bun.sh)
+- [direnv](https://direnv.net/)
+
+### Setup
 
 ```shellscript
-npm run dev
+direnv allow # if you have direnv
+
+bun install
+bun decrypt # to generate .env credentials
 ```
 
-## Deployment
+### Running the dev server
+
+```shellscript
+bun run dev
+```
+
+## Production
 
 First, build your app for production:
 
 ```sh
-npm run build
+bun run build
 ```
 
 Then run the app in production mode:
 
 ```sh
-npm start
+bun start
 ```
 
 Now you'll need to pick a host to deploy it to.
 
 ### DIY
 
-If you're familiar with deploying Node applications, the built-in Remix app
-server is production-ready.
+If you're familiar with deploying Node applications, the built-in Remix app server is production-ready.
 
-Make sure to deploy the output of `npm run build`
+Make sure to deploy the output of `bun run build`
 
 - `build/server`
 - `build/client`
