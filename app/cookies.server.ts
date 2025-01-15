@@ -1,5 +1,5 @@
 import { MAX_COOKIE_AGE } from "@packages/contants";
-import { createCookie } from "@remix-run/cloudflare"; // or cloudflare/deno
+import { createCookie } from "react-router";
 
 export const selectedTheme = createCookie("selected-theme", {
 	path: "/",

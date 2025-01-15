@@ -5,11 +5,14 @@ import RoadmapSection from "@packages/components/RoadmapSection";
 import TechSection from "@packages/components/TechSection";
 import TestimonialSection from "@packages/components/TestimonialSection";
 import WhyItWorksSection from "@packages/components/WhyItWorksSection";
-import type { LoaderFunctionArgs, MetaFunction } from "@remix-run/cloudflare";
-import { useLoaderData } from "@remix-run/react";
 
 import { description, title } from "@packages/config/site";
 import { Database } from "@packages/repositories/db";
+import {
+	type LoaderFunctionArgs,
+	type MetaFunction,
+	useLoaderData,
+} from "react-router";
 
 export const meta: MetaFunction = () => {
 	return [{ title }, { name: "description", content: description }];

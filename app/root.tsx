@@ -1,11 +1,9 @@
 import type { Theme } from "@packages/utils/theme";
-import type {
-	ActionFunctionArgs,
-	LinksFunction,
-	LoaderFunctionArgs,
-} from "@remix-run/cloudflare";
 import {
+	type ActionFunctionArgs,
 	Links,
+	type LinksFunction,
+	type LoaderFunctionArgs,
 	Meta,
 	Outlet,
 	Scripts,
@@ -14,7 +12,7 @@ import {
 	redirect,
 	useLoaderData,
 	useRouteError,
-} from "@remix-run/react";
+} from "react-router";
 
 import "./tailwind.css";
 import Metadata from "@packages/components/Metadata";

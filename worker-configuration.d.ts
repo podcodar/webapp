@@ -3,4 +3,6 @@
 interface Env {
 	TURSO_CONNECTION_URL: string;
 	TURSO_AUTH_TOKEN: string;
+	FLY_API_TOKEN: string;
+	CR_PAT: string;
 }

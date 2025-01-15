@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 
 import { Logo } from "@packages/components/icons";
