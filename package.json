@@ -21,9 +21,10 @@
 		"e2e": "playwright test",
 		"db:migrate": "drizzle-kit migrate",
 		"db:studio": "drizzle-kit studio",
-		"typegen": "wrangler types && drizzle-kit generate && react-router typegen",
+		"postinstall": "wrangler types",
 		"preview": "bun run build && wrangler pages dev",
 		"start": "wrangler pages dev ./build/client",
+		"typegen": "drizzle-kit generate && react-router typegen",
 		"typecheck": "tsc"
 	},
 	"dependencies": {
