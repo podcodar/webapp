@@ -11,3 +11,7 @@ node_modules
 # playwright
 test-results
 playwright-report
+
+# React Router
+/.react-router/
+/build/

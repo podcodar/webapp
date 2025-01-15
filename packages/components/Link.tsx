@@ -1,4 +1,4 @@
-import { Link as DefaulLink, type LinkProps } from "@remix-run/react";
+import { Link as DefaulLink, type LinkProps } from "react-router";
 
 type Props = Omit<LinkProps, "to"> & {
 	children: React.ReactNode;

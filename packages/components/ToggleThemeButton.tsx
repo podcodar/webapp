@@ -1,8 +1,6 @@
-"use client";
-
 import { type Theme, strToTheme, toggleTheme } from "@packages/utils/theme";
-import { Form } from "@remix-run/react";
 import { useState } from "react";
+import { Form } from "react-router";
 
 export default function ToggleThemeButton() {
 	const [colorMode, setColorMode] = useState<Theme>(
