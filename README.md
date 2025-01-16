@@ -2,7 +2,8 @@
 
 This WebApp is the main project of PodCodar, a learning community about programming and technology.
 
-- 📖 [Remix docs](https://remix.run/docs)
+- 📖 [React router docs](https://reactrouter.com/start/home)
+- 🧑‍💻 [PodCodar Engineering docs](https://podcodar.github.io/webapp)
 
 ## Features
 
@@ -26,10 +27,14 @@ To have a consistent development environment, we recommend using the following t
 ### Setup
 
 ```shellscript
-direnv allow # if you have direnv
+# (optional) if you have direnv
+direnv allow
 
-bun install
-bun decrypt # to generate .env credentials
+# install dependencies
+bun install 
+
+# decrypt project credentials into a .env file
+bun decrypt 
 ```
 
 ### Running the dev server
