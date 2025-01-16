@@ -3,4 +3,9 @@ import { flatRoutes } from "@react-router/fs-routes";
 
 const routes = await flatRoutes();
 
-export default [...routes, route("/*", "./catchall.tsx")] satisfies RouteConfig;
+const allRoutes = [
+	...routes,
+	route("/*", "./catchall.tsx"),
+] satisfies RouteConfig;
+
+export default allRoutes;
