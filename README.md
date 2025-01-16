@@ -2,7 +2,7 @@
 
 This WebApp is the main project of PodCodar, a learning community about programming and technology.
 
-- 📖 [React router docs](https://reactrouter.com/start/home)
+- 📖 [React Router docs](https://reactrouter.com/start/home)
 - 🧑‍💻 [PodCodar Engineering docs](https://podcodar.github.io/webapp)
 
 ## Features
@@ -31,10 +31,10 @@ To have a consistent development environment, we recommend using the following t
 direnv allow
 
 # install dependencies
-bun install 
+bun install
 
 # decrypt project credentials into a .env file
-bun decrypt 
+bun decrypt
 ```
 
 ### Running the dev server
