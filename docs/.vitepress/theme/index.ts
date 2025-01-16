@@ -1,4 +1,3 @@
-import { VPCarbon } from "vitepress-carbon"
+import { VPCarbon } from "vitepress-carbon";
 
-export default VPCarbon
-
+export default VPCarbon;
