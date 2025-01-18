@@ -6,9 +6,9 @@ import Section from "./Section";
 
 export default function HeroSection() {
   return (
-    <Section className="px-8 py-64 flex-col justify-center">
-      <div className="grid md:grid-cols-3 gap-8">
-        <div className="flex flex-col gap-6 py-16 text-center md:text-left ">
+    <Section className="px-8 py-24 md:py-48 flex-col justify-center min-h-screen">
+      <div className="grid md:grid-cols-2 gap-8">
+        <div className="flex flex-col gap-6 py-16 text-center md:text-left pt-36 order-last md:order-first">
           <h2 className="font-semibold text-3xl leading-tight sm:text-4xl">
             <LocalizedText
               token={"call-to-action.title"}
@@ -36,7 +36,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="flex w-full base:px-12 md:px-24 lg:px-36 md:col-span-2 animate-bounce">
+        <div className="max-h-96">
           <Illustration />
         </div>
       </div>
