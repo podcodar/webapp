@@ -11,10 +11,10 @@ Sitemap: ${SITEMAP_URL}
 `;
 
 export function loader() {
-	return new Response(ROBOT_CONTENT, {
-		status: 200,
-		headers: {
-			"Content-Type": "text/plain",
-		},
-	});
+  return new Response(ROBOT_CONTENT, {
+    status: 200,
+    headers: {
+      "Content-Type": "text/plain",
+    },
+  });
 }

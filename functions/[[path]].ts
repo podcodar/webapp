@@ -6,6 +6,6 @@ import * as build from "../build/server";
 import { getLoadContext } from "../load-context";
 
 export const onRequest = createPagesFunctionHandler({
-	build,
-	getLoadContext,
+  build,
+  getLoadContext,
 });

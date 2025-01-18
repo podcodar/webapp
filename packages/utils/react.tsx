@@ -3,18 +3,18 @@
 import react from "react";
 
 export interface ChildrenProps {
-	readonly children: react.ReactNode;
+  readonly children: react.ReactNode;
 }
 
 export function useEffectOnce(effect: react.EffectCallback) {
-	// eslint-disable-next-line react-hooks/exhaustive-deps
-	react.useEffect(effect, []);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  react.useEffect(effect, []);
 }
 
 export type SafeContextResult<T> = [
-	() => T,
-	react.Provider<T | null>,
-	react.Context<T | null>,
+  () => T,
+  react.Provider<T | null>,
+  react.Context<T | null>,
 ];
 
 /**
@@ -28,31 +28,31 @@ export type SafeContextResult<T> = [
  * @returns A context consumer, the context provider and the context itself
  */
 export function createCtx<T>(
-	displayName: Readonly<string>,
+  displayName: Readonly<string>,
 ): SafeContextResult<T> {
-	const Ctx = react.createContext<T | null>(null);
-	Ctx.displayName = displayName;
+  const Ctx = react.createContext<T | null>(null);
+  Ctx.displayName = displayName;
 
-	function useCtx() {
-		const value = react.useContext(Ctx);
-		if (value === null) {
-			throw new Error(
-				`Missing ${displayName} context provider upwards on this tree`,
-			);
-		}
+  function useCtx() {
+    const value = react.useContext(Ctx);
+    if (value === null) {
+      throw new Error(
+        `Missing ${displayName} context provider upwards on this tree`,
+      );
+    }
 
-		return value;
-	}
+    return value;
+  }
 
-	return [useCtx, Ctx.Provider, Ctx];
+  return [useCtx, Ctx.Provider, Ctx];
 }
 
 export function useIsClient() {
-	const [isClient, setIsClient] = react.useState(false);
+  const [isClient, setIsClient] = react.useState(false);
 
-	useEffectOnce(() => {
-		setIsClient(true);
-	});
+  useEffectOnce(() => {
+    setIsClient(true);
+  });
 
-	return isClient && typeof window !== "undefined";
+  return isClient && typeof window !== "undefined";
 }

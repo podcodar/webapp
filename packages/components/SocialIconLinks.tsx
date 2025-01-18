@@ -2,32 +2,32 @@ import { GithubIcon, LinkedInIcon } from "@packages/components/icons";
 import { links } from "@packages/config/site";
 
 interface Props {
-	githubUrl?: string;
-	linkedinUrl?: string;
+  githubUrl?: string;
+  linkedinUrl?: string;
 }
 
 export default function SocialIconLinks({
-	githubUrl = links.github,
-	linkedinUrl = links.linkedin,
+  githubUrl = links.github,
+  linkedinUrl = links.linkedin,
 }: Props) {
-	return (
-		<div className="flex flex-row justify-center text-lg">
-			<a
-				href={githubUrl}
-				target="_blank"
-				rel="noreferrer"
-				className="btn btn-ghost"
-			>
-				<GithubIcon />
-			</a>
-			<a
-				href={linkedinUrl}
-				target="_blank"
-				rel="noreferrer"
-				className="btn btn-ghost"
-			>
-				<LinkedInIcon />
-			</a>
-		</div>
-	);
+  return (
+    <div className="flex flex-row justify-center text-lg">
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="btn btn-ghost"
+      >
+        <GithubIcon />
+      </a>
+      <a
+        href={linkedinUrl}
+        target="_blank"
+        rel="noreferrer"
+        className="btn btn-ghost"
+      >
+        <LinkedInIcon />
+      </a>
+    </div>
+  );
 }
