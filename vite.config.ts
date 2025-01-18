@@ -7,10 +7,10 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import { getLoadContext } from "./load-context";
 
 export default defineConfig({
-	plugins: [
-		cloudflareDevProxy({ getLoadContext }),
-		viteYaml(),
-		reactRouter(),
-		tsconfigPaths(),
-	],
+  plugins: [
+    cloudflareDevProxy({ getLoadContext }),
+    viteYaml(),
+    reactRouter(),
+    tsconfigPaths(),
+  ],
 });

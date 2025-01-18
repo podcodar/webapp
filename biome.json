@@ -1,7 +1,10 @@
 {
-	"$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"formatter": {
+		"useEditorconfig": true
+	},
 	"files": {
-		"ignore": ["build/*"]
+		"ignore": ["build/*", "migrations/*"]
 	},
 	"organizeImports": {
 		"enabled": true

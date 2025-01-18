@@ -5,12 +5,10 @@ navbar:
   transparency: Transparência
 
 call-to-action:
-  title: Formação profissional para o <span>mercado de tecnologia</span>
+  title: A comunidade aonde <span>qualidade e oportunidade</span> se encontram!
   description: >-
-    Somos uma comunidade de tecnologia e computação que ensina programação
-    com foco na formação de profissionais. Existimos para democratizar o
-    conhecimento e o acesso às oportunidades de trabalho na área de
-    tecnologia
+    A PodCodar é uma comunidade colaborativa onde profissionais digitais podem se conectar, compartilhar conhecimento e trabalhar em projetos reais.
+  primary-button: Apoie essa ideia 💡
   secondary-button: Saiba mais
 
 why-it-works:

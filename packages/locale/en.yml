@@ -5,11 +5,10 @@ navbar:
   transparency: Transparency
 
 call-to-action:
-  title: Where professional meets <span>the IT market</span>
+  title: The community where <span>quality and opportunity</span> meet!
   description: >-
-    We are a technology and work community that teaches programming with a focus
-    on training professionals. We exist to democratize knowledge and access to job
-    opportunities in the technology area
+    PodCodar is a collaborative community where digital professionals can connect, share knowledge and work on real projects.
+  primary-button: Support this idea 💡
   secondary-button: Learn more
 
 why-it-works:
