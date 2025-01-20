@@ -1,5 +1,3 @@
-"use client";
-
 import react from "react";
 
 export interface ChildrenProps {

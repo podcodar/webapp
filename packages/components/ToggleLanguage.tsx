@@ -1,5 +1,3 @@
-"use client";
-
 import { BRFlagIcon, USFlagIcon } from "@packages/components/icons";
 import { useI18nActions, useI18nStates } from "@packages/locale/context";
 

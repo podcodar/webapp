@@ -1,5 +1,3 @@
-"use client";
-
 import I18nProvider from "@packages/locale/context";
 import { useIsClient } from "@packages/utils/react";
 import { Suspense } from "react";
