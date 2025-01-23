@@ -13,7 +13,7 @@ function Metadata() {
       <meta property="og:url" content={pageURL} />
       <meta property="og:title" content={title} />
       <meta property="og:image" content={images.og} />
-      <meta property="og:logo" content={images.logo} />
+      <meta property="og:logo" content={images.og} />
       <meta property="og:description" content={description} />
 
       {/* Google / Search Engine Tags */}
