@@ -6,6 +6,7 @@ function Metadata() {
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="icon" type="image/svg+xml" href={images.icon} />
+      <meta name="robots" content="index, follow" />
 
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
@@ -23,6 +24,7 @@ function Metadata() {
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
+      <meta name="twitter:site" content={pageURL} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={images.og} />
     </>
