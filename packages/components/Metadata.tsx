@@ -10,21 +10,20 @@ function Metadata() {
       {/* Open Graph / Facebook */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={pageURL} />
-      <meta property="og:image" content={images.og} />
-      <meta property="og:logo" content={images.logo} />
       <meta property="og:title" content={title} />
+      <meta property="og:image" content={images.og} />
       <meta property="og:description" content={description} />
 
       {/* Google / Search Engine Tags */}
       <meta itemProp="name" content={title} />
       <meta itemProp="description" content={description} />
-      <meta itemProp="image" content={images.logo} />
+      <meta itemProp="image" content={images.og} />
 
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={images.logo} />
+      <meta name="twitter:image" content={images.og} />
     </>
   );
 }
