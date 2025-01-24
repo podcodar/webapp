@@ -12,7 +12,7 @@ export const description = "Democratizando o acesso ao mercado de tecnologia.";
 export const images = {
   icon: "/images/favicon.svg",
   logo: "/images/favicon.svg",
-  og: "https://podcodar.org/images/favicon.svg",
+  og: "https://podcodar.org/images/og-512.png",
   pixQRCode: "/images/pix-qrcode.png",
 };
 
