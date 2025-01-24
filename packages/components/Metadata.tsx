@@ -6,6 +6,7 @@ function Metadata() {
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="icon" type="image/svg+xml" href={images.icon} />
+      <meta name="robots" content="index, follow" />
 
       {/* Google / Search Engine Tags */}
       <meta itemProp="name" content={title} />
@@ -27,6 +28,7 @@ function Metadata() {
 
       {/* Twitter Meta Tags */}
       <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content={pageURL} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={images.logo} />
