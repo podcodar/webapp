@@ -1,4 +1,4 @@
-export const title = "PodCodar Code School";
+export const title = "PodCodar";
 export const pageURL = "https://podcodar.com";
 
 export const TRANSPARENCY_FOLDER_ID = "1lNvrSfyhmpV4mgMbj4Vic72qEfe_r6my";
@@ -7,7 +7,8 @@ export const IFRAME_FORM_URL =
 
 export const PIX_KEY = "podcodar@gmail.com";
 // TODO: translate site description
-export const description = "Democratizando o acesso ao mercado de tecnologia.";
+export const description =
+  "A PodCodar é uma comunidade colaborativa onde profissionais digitais podem se conectar, compartilhar conhecimento e trabalhar em projetos reais.";
 
 export const images = {
   icon: "/images/favicon.svg",
