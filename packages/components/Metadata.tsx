@@ -17,6 +17,7 @@ function Metadata() {
       <meta property="og:url" content={pageURL} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
+      <meta property="og:logo" content={images.logo} />
       <meta property="og:image" itemProp="image" content={images.logo} />
       <meta
         property="og:image:secure_url"
