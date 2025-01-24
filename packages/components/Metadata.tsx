@@ -11,7 +11,7 @@ function Metadata() {
       {/* Google / Search Engine Tags */}
       <meta itemProp="name" content={title} />
       <meta itemProp="description" content={description} />
-      <meta itemProp="image" content={images.logo} />
+      <meta itemProp="image" content={images.og} />
 
       {/* Facebook Meta Tags */}
       <meta property="og:type" content="website" />
@@ -19,11 +19,11 @@ function Metadata() {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:logo" content={images.logo} />
-      <meta property="og:image" itemProp="image" content={images.logo} />
+      <meta property="og:image" itemProp="image" content={images.og} />
       <meta
         property="og:image:secure_url"
         itemProp="image"
-        content={images.logo}
+        content={images.og}
       />
 
       {/* Twitter Meta Tags */}
@@ -31,7 +31,7 @@ function Metadata() {
       <meta name="twitter:site" content={pageURL} />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={images.logo} />
+      <meta name="twitter:image" content={images.og} />
     </>
   );
 }
