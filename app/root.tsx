@@ -63,10 +63,14 @@ export function Layout({ children }: React.PropsWithChildren) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
-        <Links />
 
+        {/* default metadata */}
         <Metadata />
+
+        {/* specific metadata */}
+        <Meta />
+
+        <Links />
       </head>
       <body>
         <Providers>{children}</Providers>
