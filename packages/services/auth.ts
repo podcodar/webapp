@@ -10,5 +10,8 @@ export const auth: GitHubAuth = new GitHubAuth({
 });
 
 auth.setUrls({
+  signIn: "/admin/login",
+  signOut: "/admin/auth/logout",
+  refresh: "/admin/auth/refresh",
   callback: "/admin/auth/callback",
 });
