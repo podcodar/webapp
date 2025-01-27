@@ -1,15 +1,17 @@
+import { auth } from "@m3o/auth";
 import { GithubIcon } from "@packages/components/icons/GithubIcon";
 import {
-  type ActionFunction,
   type ActionFunctionArgs,
   Form,
+  type LoaderFunctionArgs,
   useActionData,
   useLoaderData,
 } from "react-router";
 
-const REDIRECT_URI = "http://localhost:3000/api/auth/callback/github";
-export function loader() {
-  return { title: "Login", redirectUri: REDIRECT_URI };
+export function loader({ request }: LoaderFunctionArgs) {
+  const url = new URL(request.url);
+  const redirectUri = auth.generateAuthUrl(url.hostname);
+  return { title: "Login", redirectUri };
 }
 
 export async function action({ request }: ActionFunctionArgs) {
