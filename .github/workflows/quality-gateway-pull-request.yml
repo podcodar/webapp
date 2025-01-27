@@ -3,7 +3,7 @@ on: [pull_request]
 
 jobs:
   quality_gateway:
-    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+    if: "${{ github.event.pull_request.head.repo.full_name == github.repository }}"
     runs-on: ubuntu-latest
     environment: Development
     env:
