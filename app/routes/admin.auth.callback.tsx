@@ -31,9 +31,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
     }),
   ]);
 
-  console.log("Redirecting to", redirectUrl);
-  console.debug({ redirectUrl, authHeader, refreshHeader });
-
   const headers = new Headers();
   headers.append("Set-Cookie", refreshHeader);
   headers.append("Set-Cookie", authHeader);

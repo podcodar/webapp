@@ -5,21 +5,19 @@ import { type LoaderFunctionArgs, Outlet, redirect } from "react-router";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
-
-  // if it's not the login page, ignore auth check
-  const isLogin = url.pathname === "/admin/login";
-  if (isLogin) return;
-
-  // if no auth token, redirect to refresh
   const cookieHeader = request.headers.get("Cookie");
-  const token = await authCookie.parse(cookieHeader);
-  if (!token) {
+  const accessToken = await authCookie.parse(cookieHeader);
+
+  if (!accessToken) {
+    if (url.pathname === auth.urls.signIn) return;
+
     return redirect(auth.urls.refresh, {
       headers: { redirect: url.pathname },
     });
   }
 
-  if (url.pathname.match(/^\/admin\/?$/)) {
+  // /admin, /admin/login -> /admin/dashboard
+  if (url.pathname.match(/^\/admin\/?$/) || url.pathname === auth.urls.signIn) {
     return redirect("/admin/dashboard");
   }
 }
