@@ -5,16 +5,11 @@ import { type LoaderFunctionArgs, useLoaderData } from "react-router";
 export function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const redirectUri = auth.generateAuthUrl(url.origin);
-
-  console.log({ redirectUri });
-
   return { title: "Login", redirectUri };
 }
 
 export default function LoginPage({ errors = "" }) {
   const initialState = useLoaderData<typeof loader>();
-
-  console.log({ initialState });
 
   const githubButton = (
     <div className="flex items-center gap-2">

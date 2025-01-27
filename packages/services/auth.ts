@@ -8,3 +8,7 @@ export const auth: GitHubAuth = new GitHubAuth({
   client_secret:
     process.env.GITHUB_CLIENT_SECRET ?? raise("GITHUB_CLIENT_SECRET not found"),
 });
+
+auth.setUrls({
+  callback: "/admin/auth/callback",
+});
