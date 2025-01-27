@@ -10,3 +10,13 @@ export const refreshCookie = createCookie("refresh-cookie", {
   path: "/",
   maxAge: MAX_COOKIE_AGE,
 });
+
+export async function hasValidSession(request: Request) {
+  const cookieHeader = request.headers.get("Cookie");
+  const [authToken, refreshToken] = await Promise.all([
+    authCookie.parse(cookieHeader),
+    refreshCookie.parse(cookieHeader),
+  ]);
+
+  return authToken && refreshToken;
+}
