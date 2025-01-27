@@ -1,13 +1,13 @@
 import Section from "@packages/components/Section";
 import { auth } from "@packages/services/auth";
-import { authCookie, hasValidSession } from "@packages/services/auth.server";
+import { authCookie } from "@packages/services/auth.server";
 import { type LoaderFunctionArgs, Outlet, redirect } from "react-router";
 
 export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
 
   // if it's not the login page, ignore auth check
-  const isLogin = url.pathname === auth.urls.signIn;
+  const isLogin = url.pathname === "/admin/login";
   if (isLogin) return;
 
   // if no auth token, redirect to refresh
@@ -19,12 +19,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
     });
   }
 
-  const isAuth = await hasValidSession(request);
-  if (!isAuth) {
-    return redirect(auth.urls.signOut);
+  if (url.pathname.match(/^\/admin\/?$/)) {
+    return redirect("/admin/dashboard");
   }
-
-  return redirect(auth.urls.signIn);
 }
 
 export default function AdminPage() {
