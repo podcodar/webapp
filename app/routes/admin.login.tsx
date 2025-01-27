@@ -1,35 +1,25 @@
-import { auth } from "@m3o/auth";
 import { GithubIcon } from "@packages/components/icons/GithubIcon";
-import {
-  type ActionFunctionArgs,
-  Form,
-  type LoaderFunctionArgs,
-  useActionData,
-  useLoaderData,
-} from "react-router";
+import { auth } from "@packages/services/auth";
+import { type LoaderFunctionArgs, useLoaderData } from "react-router";
 
 export function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
-  const redirectUri = auth.generateAuthUrl(url.hostname);
-  return { title: "Login", redirectUri };
-}
+  const redirectUri = auth.generateAuthUrl(url.origin);
 
-export async function action({ request }: ActionFunctionArgs) {
-  const url = new URL(request.url);
-  // TODO: setup a redirect to GitHub provider
-  return { title: "Signed In", redirectUri: url };
+  console.log({ redirectUri });
+
+  return { title: "Login", redirectUri };
 }
 
 export default function LoginPage({ errors = "" }) {
   const initialState = useLoaderData<typeof loader>();
-  const currentState = useActionData<typeof action>();
 
-  console.log({ initialState, currentState });
+  console.log({ initialState });
 
   const githubButton = (
     <div className="flex items-center gap-2">
       <GithubIcon />
-      <span>{currentState?.title ?? initialState.title} with GitHub</span>
+      <span>{initialState.title} with GitHub</span>
     </div>
   );
 
@@ -46,18 +36,17 @@ export default function LoginPage({ errors = "" }) {
           </h2>
         </div>
 
-        <Form className="grid gap-4" method="post">
-          <button
-            className="btn btn-outline btn-secondary w-full"
-            type="submit"
-          >
-            {githubButton}
-          </button>
+        <a
+          href={initialState.redirectUri}
+          className="btn btn-outline btn-secondary w-full"
+          type="submit"
+        >
+          {githubButton}
+        </a>
 
-          <p className="text-xs text-gray-500">
-            We use GitHub for authentication to keep things simple and secure.
-          </p>
-        </Form>
+        <p className="text-xs text-gray-500">
+          We use GitHub for authentication to keep things simple and secure.
+        </p>
 
         {errors && <p className="text-red-500">{errors}</p>}
       </div>
