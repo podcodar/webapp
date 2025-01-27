@@ -1,20 +1,18 @@
 import { GithubIcon } from "@packages/components/icons/GithubIcon";
 import { auth } from "@packages/services/auth";
-import { type LoaderFunctionArgs, useLoaderData } from "react-router";
+import { useLoaderData } from "react-router";
 
-export function loader({ request }: LoaderFunctionArgs) {
-  const url = new URL(request.url);
-  const redirectUri = auth.generateAuthUrl(url.origin);
-  return { title: "Login", redirectUri };
+export function loader() {
+  return { signOutUrl: auth.urls.signOut };
 }
 
-export default function LoginPage({ errors = "" }) {
-  const initialState = useLoaderData<typeof loader>();
+export default function AdminDashboard() {
+  const { signOutUrl } = useLoaderData<typeof loader>();
 
   const githubButton = (
     <div className="flex items-center gap-2">
       <GithubIcon />
-      <span>{initialState.title} with GitHub</span>
+      <span>Click here to sign-out</span>
     </div>
   );
 
@@ -27,12 +25,12 @@ export default function LoginPage({ errors = "" }) {
           </h1>
 
           <h2 className="text-sm font-light">
-            Welcome back! Please sign in to continue
+            You are signed with GitHub! Note that this page still in progress 🚧
           </h2>
         </div>
 
         <a
-          href={initialState.redirectUri}
+          href={signOutUrl}
           className="btn btn-outline btn-secondary w-full"
           type="submit"
         >
@@ -42,8 +40,6 @@ export default function LoginPage({ errors = "" }) {
         <p className="text-xs text-gray-500">
           We use GitHub for authentication to keep things simple and secure.
         </p>
-
-        {errors && <p className="text-red-500">{errors}</p>}
       </div>
     </div>
   );

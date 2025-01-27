@@ -1,18 +1,24 @@
 import Section from "@packages/components/Section";
+import { auth } from "@packages/services/auth";
+import { authCookie } from "@packages/services/auth.server";
 import { type LoaderFunctionArgs, Outlet, redirect } from "react-router";
 
-export function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
+  const cookieHeader = request.headers.get("Cookie");
+  const accessToken = await authCookie.parse(cookieHeader);
 
-  // if it's not the login page, ignore auth check
-  const isLogin = url.pathname === "/admin/login";
-  if (isLogin) return;
+  if (!accessToken) {
+    if (url.pathname === auth.urls.signIn) return;
 
-  // TODO: redirect if no sessions is available
-  const session = null;
-  const isAuth = !!session;
-  if (!isAuth) {
-    return redirect("/admin/login");
+    return redirect(auth.urls.refresh, {
+      headers: { redirect: url.pathname },
+    });
+  }
+
+  // /admin, /admin/login -> /admin/dashboard
+  if (url.pathname.match(/^\/admin\/?$/) || url.pathname === auth.urls.signIn) {
+    return redirect("/admin/dashboard");
   }
 }
 

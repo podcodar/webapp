@@ -18,4 +18,3 @@ jobs:
         with:
           version-file: package.json
           token: ${{ secrets.GITHUB_TOKEN }}
-
