@@ -29,7 +29,7 @@ export default function ToggleThemeButton() {
         type="submit"
         data-testid="toggle-theme"
         aria-label={label}
-        className="btn"
+        className="btn btn-ghost"
         onClick={handleClick}
       >
         {colorMode === "system" ? "⚙️" : colorMode === "light" ? "☀️" : "🌙"}
