@@ -321,7 +321,7 @@
 
     "@libsql/win32-x64-msvc": ["@libsql/win32-x64-msvc@0.4.7", "", { "os": "win32", "cpu": "x64" }, "sha512-7pJzOWzPm6oJUxml+PCDRzYQ4A1hTMHAciTAHfFK4fkbDZX33nWPVG7Y3vqdKtslcwAzwmrNDc6sXy2nwWnbiw=="],
 
-    "@m3o/auth": ["@jsr/m3o__auth@0.1.8", "https://npm.jsr.io/~/11/@jsr/m3o__auth/0.1.8.tgz", { "dependencies": { "@jsr/m3o__errors": "^0.1.0" } }, "sha512-kHbtcVF7+LJhoL7DBeNxAcEPh/ARn10M7k/YCARogGQdDQpWDmozbhd+d95FvuJl9HCj/9vyLYH2oSoiXPt8KQ=="],
+    "@m3o/auth": ["@jsr/m3o__auth@0.1.9", "https://npm.jsr.io/~/11/@jsr/m3o__auth/0.1.9.tgz", { "dependencies": { "@jsr/m3o__errors": "^0.1.0" } }, "sha512-nLdbqEch5DzGBDvDuQYNWDDILbjLD7WmqSW4N2eAqcm11X88zFutJIJxWsw3zbUXBByHDiQNmOnSWjxhINiyfQ=="],
 
     "@mermaid-js/mermaid-mindmap": ["@mermaid-js/mermaid-mindmap@9.3.0", "", { "dependencies": { "@braintree/sanitize-url": "^6.0.0", "cytoscape": "^3.23.0", "cytoscape-cose-bilkent": "^4.1.0", "cytoscape-fcose": "^2.1.0", "d3": "^7.0.0", "khroma": "^2.0.0", "non-layered-tidy-tree-layout": "^2.0.2" } }, "sha512-IhtYSVBBRYviH1Ehu8gk69pMDF8DSRqXBRDMWrEfHoaMruHeaP2DXA3PBnuwsMaCdPQhlUUcy/7DBLAEIXvCAw=="],
 
