@@ -1,3 +1,4 @@
+import { ADMIN_ROUTES } from "@packages/contants";
 import { getAuth } from "@packages/services/auth";
 import { authCookie, refreshCookie } from "@packages/services/auth.server";
 import { type LoaderFunctionArgs, redirect } from "react-router";
@@ -15,7 +16,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 
   const token = await auth.refreshAccessToken(refreshToken);
 
-  const redirectUrl = request.headers.get("redirect") ?? "/admin/dashboard";
+  const redirectUrl = request.headers.get("redirect") ?? ADMIN_ROUTES.dashboard;
   const [authHeader, refreshHeader] = await Promise.all([
     authCookie.serialize(token.access_token, { maxAge: token.expires_in }),
     refreshCookie.serialize(token.refresh_token, {

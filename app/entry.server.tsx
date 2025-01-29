@@ -26,7 +26,7 @@ export default async function handleRequest(
       signal: controller.signal,
       onError(error: unknown) {
         if (!controller.signal.aborted) {
-          // Log streaming rendering errors from inside the shell
+          // NOTE: Log streaming rendering errors from inside the shell
           console.error(error);
         }
         status = 500;

@@ -20,11 +20,6 @@ export function TabNav(props: TabNavProps) {
 
   if (hidden) return props.children;
 
-  console.log({
-    activeTab,
-    tabs,
-  });
-
   return (
     <nav className="grid gap-4">
       {props.header}

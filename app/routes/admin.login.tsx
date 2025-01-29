@@ -35,7 +35,6 @@ export default function LoginPage({ errors = "" }) {
         <a
           href={initialState.redirectUri}
           className="btn btn-outline btn-secondary w-full"
-          type="submit"
         >
           {githubButton}
         </a>

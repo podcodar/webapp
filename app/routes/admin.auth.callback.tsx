@@ -29,7 +29,8 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 
   const profile = await auth.fetchAuthenticatedUser(token.access_token);
   if (!VALID_EMAILS.some((reEmail) => reEmail.test(profile.email))) {
-    console.log({ profile, status: "401" });
+    // NOTE: this log is required to get information on people trying to access our app without authorization
+    console.debug({ profile, status: "401" });
     return new Response("Unauthorized user, your attempt will be reported", {
       status: 401,
       statusText: "Unauthorized",
