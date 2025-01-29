@@ -1,6 +1,7 @@
 import { ADMIN_ROUTES, VALID_EMAILS } from "@packages/contants";
 import { getAuth } from "@packages/services/auth";
 import { authCookie, refreshCookie } from "@packages/services/auth.server";
+import { logger } from "@packages/services/logger";
 import { type LoaderFunctionArgs, redirect } from "react-router";
 
 export async function loader({ request, context }: LoaderFunctionArgs) {
@@ -12,10 +13,12 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
   const auth = getAuth(context);
 
   if (!code) {
+    logger.error("missing code");
     return new Response("Missing code", { status: 400 });
   }
 
   if (!state) {
+    logger.error("missing state");
     return new Response("Missing state", { status: 400 });
   }
 
@@ -23,19 +26,33 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
   // assert(auth.isValidState(state), "Invalid state");
 
   const token = await auth.fetchAccessToken(code);
+
+  logger.info("access token fetched");
+  logger.debug({ token });
+
   if (!token) {
+    logger.error("missing token");
     return new Response("Failed to fetch access token", { status: 401 });
   }
 
   const profile = await auth.fetchAuthenticatedUser(token.access_token);
-  if (!VALID_EMAILS.some((reEmail) => reEmail.test(profile.email))) {
-    // NOTE: this log is required to get information on people trying to access our app without authorization
-    console.debug({ profile, status: "401" });
+  const shouldBlock = !VALID_EMAILS.some((reEmail) =>
+    reEmail.test(profile.email),
+  );
+
+  logger.info("fetched user profile");
+  logger.debug({ token, shouldBlock });
+
+  if (shouldBlock) {
+    logger.error({ profile, status: "401" });
+
     return new Response("Unauthorized user, your attempt will be reported", {
       status: 401,
       statusText: "Unauthorized",
     });
   }
+
+  logger.info("user authorized, serializing acookies");
 
   const redirectUrl = request.headers.get("redirect") ?? ADMIN_ROUTES.dashboard;
   const [authHeader, refreshHeader] = await Promise.all([
@@ -45,6 +62,8 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
     }),
   ]);
 
+  logger.info("cookies serialized, setting headers");
+
   // check if its a valid user
   const headers = new Headers();
   headers.append("Set-Cookie", refreshHeader);
@@ -52,6 +71,9 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 
   // TODO: create user
   // TODO: set user info in cookies
+
+  logger.info("redirecting to dashboard");
+  logger.debug({ redirectUrl, headers });
 
   return redirect(redirectUrl, { headers });
 }
