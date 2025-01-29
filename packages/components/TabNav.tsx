@@ -40,9 +40,11 @@ export function TabNav(props: TabNavProps) {
               {tab.title}
             </Link>
 
-            <div className="tab-content bg-base-100 border-base-300 p-6">
-              {props.children}
-            </div>
+            {tab.id !== activeTab ? null : (
+              <div className="tab-content bg-base-100 border-base-300 p-6">
+                {props.children}
+              </div>
+            )}
           </Fragment>
         ))}
       </div>
