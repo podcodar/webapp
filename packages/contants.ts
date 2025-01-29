@@ -18,6 +18,7 @@ export const SITEMAP_URLS = [
 export const ADMIN_ROUTES = {
   signIn: "/admin/login",
   signOut: "/admin/auth/logout",
+
   dashboard: "/admin/dashboard",
   members: "/admin/members",
   testimonials: "/admin/testimonials",

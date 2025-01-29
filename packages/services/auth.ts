@@ -1,4 +1,5 @@
 import { GitHubAuth } from "@m3o/auth";
+import { ADMIN_ROUTES } from "@packages/contants";
 import { raise } from "@packages/utils/typescript";
 import type { AppLoadContext } from "react-router";
 
@@ -14,8 +15,8 @@ export function getAuth(context: AppLoadContext): GitHubAuth {
   });
 
   auth.setUrls({
-    signIn: "/admin/login",
-    signOut: "/admin/auth/logout",
+    signIn: ADMIN_ROUTES.signIn,
+    signOut: ADMIN_ROUTES.signOut,
     refresh: "/admin/auth/refresh",
     callback: "/admin/auth/callback",
   });
