@@ -14,3 +14,15 @@ export const SITEMAP_URLS = [
     priority: 1.0,
   },
 ];
+
+const VALID_PERSONAL_EMAILS = [
+  "ma.souza.junior@gmail.com",
+  "pfrattezi@gmail.com",
+] as const;
+
+export const VALID_EMAILS = [
+  // all emails ending with @podcodar.org
+  new RegExp(/@podcodar\.org$/),
+  // personal emails
+  new RegExp(`(${VALID_PERSONAL_EMAILS.join("|")})$`),
+];
