@@ -4,17 +4,16 @@ import { authCookie, refreshCookie } from "@packages/services/auth.server";
 import { type LoaderFunctionArgs, redirect } from "react-router";
 
 export async function loader({ request, context }: LoaderFunctionArgs) {
-  const auth = getAuth(context);
   const cookies = request.headers.get("Cookie");
   const [authToken, refreshToken] = await Promise.all([
     authCookie.parse(cookies),
     refreshCookie.parse(cookies),
   ]);
 
-  if (authToken) return redirect("/admin/dashboard");
-  if (!refreshToken) return redirect(auth.urls.signIn);
+  if (authToken) return redirect(ADMIN_ROUTES.dashboard);
+  if (!refreshToken) return redirect(ADMIN_ROUTES.signIn);
 
-  const token = await auth.refreshAccessToken(refreshToken);
+  const token = await getAuth(context).refreshAccessToken(refreshToken);
 
   const redirectUrl = request.headers.get("redirect") ?? ADMIN_ROUTES.dashboard;
   const [authHeader, refreshHeader] = await Promise.all([

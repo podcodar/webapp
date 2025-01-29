@@ -1,7 +1,7 @@
 import Link from "@packages/components/Link";
 import Section from "@packages/components/Section";
 import { TabNav } from "@packages/components/TabNav";
-import { getAuth } from "@packages/services/auth";
+import { ADMIN_ROUTES } from "@packages/contants";
 import { authCookie } from "@packages/services/auth.server";
 import {
   type LoaderFunctionArgs,
@@ -10,23 +10,25 @@ import {
   useLoaderData,
 } from "react-router";
 
-export async function loader({ request, context }: LoaderFunctionArgs) {
-  const auth = getAuth(context);
+export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const cookieHeader = request.headers.get("Cookie");
   const accessToken = await authCookie.parse(cookieHeader);
 
   if (!accessToken) {
-    if (url.pathname === auth.urls.signIn) return { isAuthorized: false };
+    if (url.pathname === ADMIN_ROUTES.signIn) return { isAuthorized: false };
 
-    return redirect(auth.urls.refresh, {
+    return redirect(ADMIN_ROUTES.refresh, {
       headers: { redirect: url.pathname },
     });
   }
 
   // /admin, /admin/login -> /admin/dashboard
-  if (url.pathname.match(/^\/admin\/?$/) || url.pathname === auth.urls.signIn) {
-    return redirect("/admin/dashboard");
+  if (
+    url.pathname.match(/^\/admin\/?$/) ||
+    url.pathname === ADMIN_ROUTES.signIn
+  ) {
+    return redirect(ADMIN_ROUTES.dashboard);
   }
 
   const selectedTab =
@@ -49,7 +51,7 @@ export default function AdminPage() {
 
         <Link
           className="btn btn-sm btn-error btn-outline rounded-full"
-          href="/admin/auth/logout"
+          href={ADMIN_ROUTES.signOut}
         >
           Sign Out
         </Link>

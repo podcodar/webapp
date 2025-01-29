@@ -14,12 +14,7 @@ export function getAuth(context: AppLoadContext): GitHubAuth {
       raise("GITHUB_CLIENT_SECRET not found"),
   });
 
-  auth.setUrls({
-    signIn: ADMIN_ROUTES.signIn,
-    signOut: ADMIN_ROUTES.signOut,
-    refresh: "/admin/auth/refresh",
-    callback: "/admin/auth/callback",
-  });
+  auth.setUrls(ADMIN_ROUTES);
 
   return auth;
 }

@@ -1,4 +1,4 @@
-import { getAuth } from "@packages/services/auth";
+import { ADMIN_ROUTES } from "@packages/contants";
 import { authCookie, refreshCookie } from "@packages/services/auth.server";
 import type { LoaderFunctionArgs } from "react-router";
 import { redirect } from "react-router";
@@ -13,5 +13,5 @@ export async function loader({ context }: LoaderFunctionArgs) {
   headers.append("Set-Cookie", authToken);
   headers.append("Set-Cookie", refreshToken);
 
-  return redirect(getAuth(context).urls.signIn, { headers });
+  return redirect(ADMIN_ROUTES.signIn, { headers });
 }

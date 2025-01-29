@@ -16,13 +16,16 @@ export const SITEMAP_URLS = [
 ];
 
 export const ADMIN_ROUTES = {
-  signIn: "/admin/login",
+  // auth
   signOut: "/admin/auth/logout",
-
+  refresh: "/admin/auth/refresh",
+  callback: "/admin/auth/callback",
+  // pages
+  signIn: "/admin/login",
   dashboard: "/admin/dashboard",
   members: "/admin/members",
   testimonials: "/admin/testimonials",
-};
+} as const;
 
 const VALID_PERSONAL_EMAILS = [
   "ma.souza.junior@gmail.com",
