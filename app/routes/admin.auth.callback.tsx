@@ -27,8 +27,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
 
   const token = await auth.fetchAccessToken(code);
 
-  logger.info("access token fetched");
-  logger.debug({ token });
+  logger.info("access token fetched", { token });
 
   if (!token) {
     logger.error("missing token");
@@ -40,8 +39,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
     reEmail.test(profile.email),
   );
 
-  logger.info("fetched user profile");
-  logger.debug({ token, shouldBlock });
+  logger.info("fetched user profile", { token, shouldBlock });
 
   if (shouldBlock) {
     logger.error({ profile, status: "401" });
@@ -72,8 +70,7 @@ export async function loader({ request, context }: LoaderFunctionArgs) {
   // TODO: create user
   // TODO: set user info in cookies
 
-  logger.info("redirecting to dashboard");
-  logger.debug({ redirectUrl, headers });
+  logger.info("redirecting to dashboard", { redirectUrl, headers });
 
   return redirect(redirectUrl, { headers });
 }
