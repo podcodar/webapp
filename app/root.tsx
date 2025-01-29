@@ -77,6 +77,8 @@ export function Layout({ children }: React.PropsWithChildren) {
         <ScrollRestoration />
         <Scripts />
       </body>
+
+      <script src="/js/konami.js" type="application/javascript" />
     </html>
   );
 }

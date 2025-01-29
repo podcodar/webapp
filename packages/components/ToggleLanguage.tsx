@@ -13,7 +13,7 @@ export default function ToggleLanguage() {
       data-testid="toggle-language"
       aria-label="Toggle language button"
       onClick={handleToggle}
-      className="btn"
+      className="btn btn-ghost"
     >
       {text}
     </button>

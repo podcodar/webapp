@@ -1,4 +1,4 @@
-import daisyuiPlugin from "daisyui";
+import tailwindcss from "@tailwindcss/vite";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -13,10 +13,7 @@ const config: Config = {
     ],
   ],
 
-  plugins: [daisyuiPlugin],
-  daisyui: {
-    themes: ["light", "dark"],
-  },
+  plugins: [tailwindcss],
 };
 
 export default config;

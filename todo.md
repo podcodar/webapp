@@ -5,9 +5,9 @@
 - [x] theme toggle is not persisting
 - [x] translation are not working
 - [x] setup db connection
-- [ ] setup CI automation
-- [ ] setup Docs
-- [ ] setup Unit tests
+- [x] setup CI automation
+- [x] setup Docs
+- [x] setup Unit tests
 - [ ] Add remix icon to docs (remove nextjs?)
-- [ ] ref metatags
-- [ ] fix build errors
+- [x] ref metatags
+- [x] fix build errors

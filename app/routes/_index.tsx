@@ -7,7 +7,7 @@ import TestimonialSection from "@packages/components/TestimonialSection";
 import WhyItWorksSection from "@packages/components/WhyItWorksSection";
 
 import { description, title } from "@packages/config/site";
-import { Database } from "@packages/repositories/db";
+import { getDatabase } from "@packages/repositories/db";
 import {
   type LoaderFunctionArgs,
   type MetaFunction,
@@ -19,10 +19,7 @@ export const meta: MetaFunction = () => {
 };
 
 export async function loader({ context }: LoaderFunctionArgs) {
-  const db = new Database(
-    context.cloudflare.env.TURSO_CONNECTION_URL,
-    context.cloudflare.env.TURSO_AUTH_TOKEN,
-  );
+  const db = getDatabase(context);
   const testimonials = await db.testimonials;
   return { testimonials };
 }
