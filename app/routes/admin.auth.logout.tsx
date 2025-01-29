@@ -1,8 +1,9 @@
-import { auth } from "@packages/services/auth";
+import { getAuth } from "@packages/services/auth";
 import { authCookie, refreshCookie } from "@packages/services/auth.server";
+import type { LoaderFunctionArgs } from "react-router";
 import { redirect } from "react-router";
 
-export async function loader() {
+export async function loader({ context }: LoaderFunctionArgs) {
   const [authToken, refreshToken] = await Promise.all([
     authCookie.serialize("", { maxAge: -1 }),
     refreshCookie.serialize("", { maxAge: -1 }),
@@ -12,7 +13,5 @@ export async function loader() {
   headers.append("Set-Cookie", authToken);
   headers.append("Set-Cookie", refreshToken);
 
-  return redirect(auth.urls.signIn, {
-    headers,
-  });
+  return redirect(getAuth(context).urls.signIn, { headers });
 }

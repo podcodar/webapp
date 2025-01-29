@@ -1,10 +1,11 @@
 import { GithubIcon } from "@packages/components/icons/GithubIcon";
-import { auth } from "@packages/services/auth";
+import { getAuth } from "@packages/services/auth";
 import { type LoaderFunctionArgs, useLoaderData } from "react-router";
 
-export function loader({ request }: LoaderFunctionArgs) {
+export function loader({ request, context }: LoaderFunctionArgs) {
   const url = new URL(request.url);
-  const redirectUri = auth.generateAuthUrl(url.origin);
+  const redirectUri = getAuth(context).generateAuthUrl(url.origin);
+
   return { title: "Login", redirectUri };
 }
 

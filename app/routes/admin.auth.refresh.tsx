@@ -1,8 +1,9 @@
-import { auth } from "@packages/services/auth";
+import { getAuth } from "@packages/services/auth";
 import { authCookie, refreshCookie } from "@packages/services/auth.server";
 import { type LoaderFunctionArgs, redirect } from "react-router";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request, context }: LoaderFunctionArgs) {
+  const auth = getAuth(context);
   const cookies = request.headers.get("Cookie");
   const [authToken, refreshToken] = await Promise.all([
     authCookie.parse(cookies),

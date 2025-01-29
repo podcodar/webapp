@@ -1,8 +1,8 @@
-import { auth } from "@packages/services/auth";
+import { getAuth } from "@packages/services/auth";
 import { authCookie, refreshCookie } from "@packages/services/auth.server";
 import { type LoaderFunctionArgs, redirect } from "react-router";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request, context }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const params = new URLSearchParams(url.search);
   const code = params.get("code");
@@ -18,7 +18,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     return new Response("Missing state", { status: 400 });
   }
 
-  const token = await auth.fetchAccessToken(code, state);
+  const token = await getAuth(context).fetchAccessToken(code, state);
   if (!token) {
     return new Response("Failed to fetch access token", { status: 401 });
   }

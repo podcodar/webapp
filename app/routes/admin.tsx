@@ -1,7 +1,7 @@
 import Link from "@packages/components/Link";
 import Section from "@packages/components/Section";
 import { TabNav } from "@packages/components/TabNav";
-import { auth } from "@packages/services/auth";
+import { getAuth } from "@packages/services/auth";
 import { authCookie } from "@packages/services/auth.server";
 import {
   type LoaderFunctionArgs,
@@ -10,7 +10,8 @@ import {
   useLoaderData,
 } from "react-router";
 
-export async function loader({ request }: LoaderFunctionArgs) {
+export async function loader({ request, context }: LoaderFunctionArgs) {
+  const auth = getAuth(context);
   const url = new URL(request.url);
   const cookieHeader = request.headers.get("Cookie");
   const accessToken = await authCookie.parse(cookieHeader);
