@@ -16,7 +16,7 @@
 		"lint": "biome lint",
 		"fmt": "biome check --write ",
 		"encrypt": "gpg -c .env",
-		"decrypt": "gpg -d .env.gpg > .env",
+		"decrypt": "gpg -d .env.gpg > .env; bun run w:typegen",
 		"w": "wrangler",
 		"w:secret": "wrangler pages secret",
 		"w:typegen": "cp .env .dev.vars && wrangler types",
@@ -26,7 +26,7 @@
 		"db:studio": "drizzle-kit studio",
 		"preview": "bun run build && wrangler pages dev",
 		"start": "wrangler pages dev ./build/client",
-		"typegen": "drizzle-kit generate && react-router typegen && bun run w:typegen",
+		"typegen": "drizzle-kit generate && react-router typegen",
 		"typecheck": "tsc"
 	},
 	"dependencies": {
