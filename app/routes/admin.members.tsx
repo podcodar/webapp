@@ -1,3 +1,4 @@
+import { GithubIcon, LinkedInIcon } from "@packages/components/icons";
 import { getDatabase } from "@packages/repositories/db";
 import { classes } from "@packages/utils/classes";
 import { type LoaderFunctionArgs, useLoaderData } from "react-router";
@@ -35,8 +36,7 @@ function MembersTable() {
     <>
       <th>Name</th>
       <th>Role</th>
-      <th>Github</th>
-      <th>linkedin</th>
+      <th>Social</th>
       <th>Actions</th>
     </>
   );
@@ -85,9 +85,25 @@ function MembersTable() {
               </span>
             </td>
 
-            <td>{member.github}</td>
+            <td>
+              <a
+                href={member.github}
+                className="btn btn-ghost btn-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <GithubIcon />
+              </a>
 
-            <td>{member.linkedin}</td>
+              <a
+                href={member.linkedin}
+                className="btn btn-ghost btn-sm text-blue-600"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <LinkedInIcon />
+              </a>
+            </td>
 
             <th>
               <button
