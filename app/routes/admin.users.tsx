@@ -1,4 +1,5 @@
 import { getDatabase } from "@packages/repositories/db";
+import { classes } from "@packages/utils/classes";
 import { type LoaderFunctionArgs, useLoaderData } from "react-router";
 
 export async function loader({ context }: LoaderFunctionArgs) {
@@ -22,6 +23,12 @@ export default function AdminMembers() {
   );
 }
 
+const badgeRoleMap: Record<string, string> = {
+  mentored: "badge-secondary",
+  mentor: "badge-primary",
+  engineer: "badge-success",
+};
+
 function MembersTable() {
   const { members } = useLoaderData<typeof loader>();
   const headers = (
@@ -33,9 +40,9 @@ function MembersTable() {
       <th>Actions</th>
     </>
   );
+
   return (
     <table className="table">
-      {/* head */}
       <thead>
         <tr>
           <th>
@@ -43,6 +50,7 @@ function MembersTable() {
               <input type="checkbox" className="checkbox" />
             </label>
           </th>
+
           {headers}
         </tr>
       </thead>
@@ -62,10 +70,20 @@ function MembersTable() {
                     <img src={member.avatar} alt={member.name} />
                   </div>
                 </div>
+
+                <div>
+                  <div className="font-bold">
+                    {member.name.split(" ").slice(0, 2).join(" ")}
+                  </div>
+                </div>
               </div>
             </td>
 
-            <td>{member.role}</td>
+            <td>
+              <span className={classes("badge", badgeRoleMap[member.role])}>
+                {member.role}
+              </span>
+            </td>
 
             <td>{member.github}</td>
 
