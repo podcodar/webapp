@@ -62,7 +62,7 @@ export default function AdminPage() {
 
   const tabs = [
     { id: "dashboard", title: "Dashboard" },
-    { id: "users", title: "Users" },
+    { id: "members", title: "Members" },
     { id: "testimonials", title: "Testimonials" },
   ];
 
