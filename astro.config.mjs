@@ -8,6 +8,13 @@ import { defineConfig, fontProviders } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://example.com',
+	i18n: {
+		locales: ['pt-br', 'en'],
+		defaultLocale: 'pt-br',
+		routing: {
+			prefixDefaultLocale: false,
+		},
+	},
 	integrations: [mdx(), sitemap()],
 	vite: {
 		plugins: [tailwindcss()],

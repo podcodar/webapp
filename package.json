@@ -1,24 +1,34 @@
 {
-  "name": "webapp",
-  "type": "module",
-  "version": "0.0.1",
-  "engines": {
-    "node": ">=22.12.0"
-  },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@astrojs/mdx": "^5.0.3",
-    "@astrojs/rss": "^4.0.18",
-    "@astrojs/sitemap": "^3.7.2",
-    "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.1.7",
-    "daisyui": "^5.5.19",
-    "sharp": "^0.34.3",
-    "tailwindcss": "^4.2.2"
-  }
+	"name": "webapp",
+	"type": "module",
+	"version": "0.0.1",
+	"engines": {
+		"node": ">=22.12.0"
+	},
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"astro": "astro",
+		"lint": "biome check",
+		"lint:fix": "biome check --write",
+		"format": "biome format --write",
+		"format:check": "biome format",
+		"typecheck": "astro sync",
+		"lefthook": "lefthook"
+	},
+	"dependencies": {
+		"@astrojs/mdx": "^5.0.3",
+		"@astrojs/rss": "^4.0.18",
+		"@astrojs/sitemap": "^3.7.2",
+		"@tailwindcss/vite": "^4.2.2",
+		"astro": "^6.1.7",
+		"daisyui": "^5.5.19",
+		"sharp": "^0.34.3",
+		"tailwindcss": "^4.2.2"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.4.12",
+		"lefthook": "^2.1.6"
+	}
 }

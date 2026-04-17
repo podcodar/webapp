@@ -1,0 +1,30 @@
+# Lefthook configuration for git hooks
+# https://lefthook.dev/configuration/
+
+# Pre-commit hook runs before each commit
+pre-commit:
+  parallel: true
+  jobs:
+    # Run Biome on staged files (fast, only checks what changed)
+    - name: Biome check (staged)
+      files: git diff --cached --name-only --diff-filter=ACM
+      glob: "*.{js,mjs,cjs,ts,tsx,jsx,json,jsonc}"
+      run: bunx biome check --staged -- {files}
+
+    # Run Biome format check on staged files
+    - name: Biome format (staged)
+      files: git diff --cached --name-only --diff-filter=ACM
+      glob: "*.{js,mjs,cjs,ts,tsx,jsx,json,jsonc}"
+      run: bunx biome format --staged -- {files}
+
+# Pre-push hook runs before pushing to remote
+pre-push:
+  parallel: true
+  jobs:
+    # Full Biome check on all files (comprehensive check)
+    - name: Biome check (all)
+      run: bunx biome check
+
+    # Check TypeScript types (if tsc is available)
+    - name: TypeScript check
+      run: bunx astro sync
