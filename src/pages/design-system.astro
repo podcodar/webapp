@@ -1,7 +1,5 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
+import Layout from '../layouts/Layout.astro';
 
 const swatches = [
 	{ name: 'primary', bg: 'bg-primary', fg: 'text-primary-content' },
@@ -16,45 +14,37 @@ const swatches = [
 ] as const;
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead
-			title="Design system"
-			description="PodCodar / daisyUI semantic color swatches for comparison with podcodar.org"
-		/>
-	</head>
-	<body>
-		<Header />
-		<main class="mx-auto w-full max-w-4xl px-4 py-12">
-			<h1 class="mb-2">Design tokens</h1>
-			<p class="text-base-content/80 mb-8">
-				Tailwind CSS v4 + daisyUI — same stack as{' '}
-				<a href="https://github.com/podcodar/webapp">podcodar/webapp</a>. Use this page to visually compare
-				semantic colors with <a href="https://podcodar.org">podcodar.org</a>.
-			</p>
-			<div class="grid gap-4 sm:grid-cols-2">
-				{
-					swatches.map(({ name, bg, fg, border = '' }) => (
-						<div
-							class:list={['rounded-box flex min-h-24 items-center justify-between px-4 py-3', bg, fg, border]}
-						>
-							<span class="font-semibold capitalize">{name}</span>
-							<code class="rounded bg-black/10 px-2 py-1 text-xs">{name}</code>
-						</div>
-					))
-				}
-			</div>
-			<section class="mt-10">
-				<h2 class="mb-4 text-2xl">Actions</h2>
-				<div class="flex flex-wrap gap-2">
-					<button type="button" class="btn btn-primary">Primary</button>
-					<button type="button" class="btn btn-secondary">Secondary</button>
-					<button type="button" class="btn btn-accent">Accent</button>
-					<button type="button" class="btn btn-ghost">Ghost</button>
+<Layout
+	title="Design system"
+	description="PodCodar / daisyUI semantic color swatches for comparison with podcodar.org"
+	lang="en"
+	mainClass="mx-auto w-full max-w-4xl px-4 py-12"
+>
+	<h1 class="mb-2">Design tokens</h1>
+	<p class="text-base-content/80 mb-8">
+		Tailwind CSS v4 + daisyUI — same stack as{' '}
+		<a href="https://github.com/podcodar/webapp">podcodar/webapp</a>. Use this page to visually compare
+		semantic colors with <a href="https://podcodar.org">podcodar.org</a>.
+	</p>
+	<div class="grid gap-4 sm:grid-cols-2">
+		{
+			swatches.map(({ name, bg, fg, border = '' }) => (
+				<div
+					class:list={['rounded-box flex min-h-24 items-center justify-between px-4 py-3', bg, fg, border]}
+				>
+					<span class="font-semibold capitalize">{name}</span>
+					<code class="rounded bg-black/10 px-2 py-1 text-xs">{name}</code>
 				</div>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+			))
+		}
+	</div>
+	<section class="mt-10">
+		<h2 class="mb-4 text-2xl">Actions</h2>
+		<div class="flex flex-wrap gap-2">
+			<button type="button" class="btn btn-primary">Primary</button>
+			<button type="button" class="btn btn-secondary">Secondary</button>
+			<button type="button" class="btn btn-accent">Accent</button>
+			<button type="button" class="btn btn-ghost">Ghost</button>
+		</div>
+	</section>
+</Layout>

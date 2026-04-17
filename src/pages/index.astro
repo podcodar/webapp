@@ -1,47 +1,32 @@
 ---
-import { getLangFromUrl } from '../i18n/utils';
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
-
-const lang = getLangFromUrl(Astro.url);
+import Layout from '../layouts/Layout.astro';
 ---
 
-<!doctype html>
-<html lang={lang}>
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main class="mx-auto w-full max-w-[720px] px-4 py-12">
-			<h1>Olá, Astronauta!</h1>
-			<p>
-				Bem-vindo ao modelo oficial do blog da <a href="https://astro.build/">Astro</a>. Este modelo
-				serve como um ponto de partida leve e mínimo para qualquer pessoa que queira construir um site
-				pessoal, blog ou portfólio com Astro.
-			</p>
-			<p>
-				Este modelo vem com algumas integrações já configuradas no seu
-				<code>astro.config.mjs</code>. Você pode personalizar sua configuração com
-				<a href="https://astro.build/integrations">Astro Integrations</a> para adicionar
-				ferramentas como Tailwind, React ou Vue ao seu projeto.
-			</p>
-			<p>Aqui estão algumas ideias de como começar com o modelo:</p>
-			<ul class="mb-4 list-disc space-y-2 pl-6">
-				<li>Edite esta página em <code>src/pages/index.astro</code></li>
-				<li>Edite os itens do cabeçalho em <code>src/components/Header.astro</code></li>
-				<li>Adicione seu nome no rodapé em <code>src/components/Footer.astro</code></li>
-				<li>Confira as postagens do blog incluídas em <code>src/content/blog/</code></li>
-				<li>Personalize o layout da página do blog em <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Divirta-se! Se você ficar preso, lembre-se de
-				<a href="https://docs.astro.build/">ler os docs</a>
-				ou <a href="https://astro.build/chat">junte-se a nós no Discord</a> para fazer perguntas.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<h1>Olá, Astronauta!</h1>
+	<p>
+		Bem-vindo ao modelo oficial do blog da <a href="https://astro.build/">Astro</a>. Este modelo serve
+		como um ponto de partida leve e mínimo para qualquer pessoa que queira construir um site pessoal,
+		blog ou portfólio com Astro.
+	</p>
+	<p>
+		Este modelo vem com algumas integrações já configuradas no seu
+		<code>astro.config.mjs</code>. Você pode personalizar sua configuração com
+		<a href="https://astro.build/integrations">Astro Integrations</a> para adicionar ferramentas
+		como Tailwind, React ou Vue ao seu projeto.
+	</p>
+	<p>Aqui estão algumas ideias de como começar com o modelo:</p>
+	<ul class="mb-4 list-disc space-y-2 pl-6">
+		<li>Edite esta página em <code>src/pages/index.astro</code></li>
+		<li>Edite os itens do cabeçalho em <code>src/components/Header.astro</code></li>
+		<li>Adicione seu nome no rodapé em <code>src/components/Footer.astro</code></li>
+		<li>Confira as postagens do blog incluídas em <code>src/content/blog/</code></li>
+		<li>Personalize o layout da página do blog em <code>src/layouts/BlogPost.astro</code></li>
+	</ul>
+	<p>
+		Divirta-se! Se você ficar preso, lembre-se de
+		<a href="https://docs.astro.build/">ler os docs</a>
+		ou <a href="https://astro.build/chat">junte-se a nós no Discord</a> para fazer perguntas.
+	</p>
+</Layout>

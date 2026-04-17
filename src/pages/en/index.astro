@@ -1,47 +1,32 @@
 ---
-import { getLangFromUrl } from '../../i18n/utils';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import Header from '../../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
-
-const lang = getLangFromUrl(Astro.url);
+import Layout from '../../layouts/Layout.astro';
 ---
 
-<!doctype html>
-<html lang={lang}>
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main class="mx-auto w-full max-w-[720px] px-4 py-12">
-			<h1>Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like
-				Tailwind, React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul class="mb-4 list-disc space-y-2 pl-6">
-				<li>Edit this page in <code>src/pages/en/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<h1>Hello, Astronaut!</h1>
+	<p>
+		Welcome to the official <a href="https://astro.build/">Astro</a> blog template. This template
+		serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
+		website, blog, or portfolio with Astro.
+	</p>
+	<p>
+		This template comes with a few integrations already configured in your
+		<code>astro.config.mjs</code> file. You can customize your setup with
+		<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
+		React, or Vue to your project.
+	</p>
+	<p>Here are a few ideas on how to get started with the template:</p>
+	<ul class="mb-4 list-disc space-y-2 pl-6">
+		<li>Edit this page in <code>src/pages/en/index.astro</code></li>
+		<li>Edit the site header items in <code>src/components/Header.astro</code></li>
+		<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
+		<li>Check out the included blog posts in <code>src/content/blog/</code></li>
+		<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
+	</ul>
+	<p>
+		Have fun! If you get stuck, remember to
+		<a href="https://docs.astro.build/">read the docs</a>
+		or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
+	</p>
+</Layout>
