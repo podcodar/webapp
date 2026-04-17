@@ -1,6 +1,12 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
 import HeaderLink from './HeaderLink.astro';
+import LanguagePicker from './LanguagePicker.astro';
 import Logo from './Logo.astro';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <header
@@ -14,11 +20,14 @@ import Logo from './Logo.astro';
 			<Logo size="md" showTitle />
 		</div>
 		<div class="flex flex-wrap items-center gap-1">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/blog">Blog</HeaderLink>
-			<HeaderLink href="/about">About</HeaderLink>
+			<HeaderLink href={getRelativeLocaleUrl(lang, '/')}>{t('nav.home')}</HeaderLink>
+			<HeaderLink href={getRelativeLocaleUrl(lang, '/blog')}>{t('nav.blog')}</HeaderLink>
+			<HeaderLink href={getRelativeLocaleUrl(lang, '/about')}>{t('nav.about')}</HeaderLink>
+			<HeaderLink href={getRelativeLocaleUrl(lang, '/contact')}>{t('nav.contact')}</HeaderLink>
 		</div>
-		<div class="hidden min-[721px]:flex items-center gap-2">
+		<div class="flex items-center gap-2">
+			<LanguagePicker />
+			<a
 			<a
 				href="https://m.webtoo.ls/@astro"
 				target="_blank"

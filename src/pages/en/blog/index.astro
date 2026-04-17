@@ -1,12 +1,13 @@
 ---
 import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
-import { getLangFromUrl } from '../../i18n/utils';
-import BaseHead from '../../components/BaseHead.astro';
-import Footer from '../../components/Footer.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import Header from '../../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getLangFromUrl } from '../../../i18n/utils';
+import BaseHead from '../../../components/BaseHead.astro';
+import Footer from '../../../components/Footer.astro';
+import FormattedDate from '../../../components/FormattedDate.astro';
+import Header from '../../../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../../../consts';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -32,7 +33,7 @@ const lang = getLangFromUrl(Astro.url);
 								]}
 							>
 								<a
-									href={`/blog/${post.id}/`}
+									href={getRelativeLocaleUrl(lang, `/blog/${post.id}/`)}
 									class="group block no-underline transition-colors duration-200"
 								>
 									{post.data.heroImage && (

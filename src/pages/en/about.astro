@@ -1,13 +1,13 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import { getLangFromUrl } from '../i18n/utils';
-import Layout from '../layouts/BlogPost.astro';
+import AboutHeroImage from '../../assets/blog-placeholder-about.jpg';
+import { getLangFromUrl } from '../../i18n/utils';
+import Layout from '../../layouts/BlogPost.astro';
 
 const lang = getLangFromUrl(Astro.url);
 ---
 
 <Layout
-	title="Sobre Mim"
+	title="About Me"
 	description="Lorem ipsum dolor sit amet"
 	pubDate={new Date('August 08 2021')}
 	heroImage={AboutHeroImage}
