@@ -25,6 +25,14 @@ Astro treats files under `src/pages/` as routes (`.astro`, `.md`, etc.).
 
 Static assets such as images can go in `public/` or be imported from `src/assets/` as needed.
 
+## Styling (Tailwind CSS + daisyUI)
+
+This matches the open-source app at [podcodar/webapp](https://github.com/podcodar/webapp): **Tailwind CSS v4** via [`@tailwindcss/vite`](https://tailwindcss.com/docs/installation/framework-guides/astro) and **daisyUI** (`@import "tailwindcss";` + `@plugin "daisyui";` in [`src/styles/global.css`](src/styles/global.css)).
+
+Semantic colors (`primary`, `secondary`, `accent`, `base-*`, etc.) come from daisyUI’s default light/dark themes—the same OKLCH tokens as [podcodar.org](https://podcodar.org). The document theme follows system preference (`prefers-color-scheme`) or a stored `localStorage` key `podcodar-theme` (`light` / `dark`) set from an inline script in [`BaseHead.astro`](src/components/BaseHead.astro).
+
+For a quick visual check, open [`/design-system`](src/pages/design-system.astro) after `bun dev`.
+
 ## Commands
 
 Run these from the repository root:

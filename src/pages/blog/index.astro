@@ -16,90 +16,41 @@ const posts = (await getCollection('blog')).sort(
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-		<style>
-			main {
-				width: 960px;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
-				margin: 0;
-				padding: 0;
-			}
-			ul li {
-				width: calc(50% - 1rem);
-			}
-			ul li * {
-				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
-				display: block;
-			}
-			.title {
-				margin: 0;
-				color: rgb(var(--black));
-				line-height: 1;
-			}
-			.date {
-				margin: 0;
-				color: rgb(var(--gray));
-			}
-			ul li a:hover h4,
-			ul li a:hover .date {
-				color: rgb(var(--accent));
-			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
-			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
-			}
-		</style>
 	</head>
 	<body>
 		<Header />
-		<main>
+		<main class="mx-auto w-full max-w-[960px] px-4 py-12">
 			<section>
-				<ul>
+				<ul class="m-0 grid list-none grid-cols-1 gap-2 p-0 sm:grid-cols-2 sm:gap-8">
 					{
-						posts.map((post) => (
-							<li>
-								<a href={`/blog/${post.id}/`}>
+						posts.map((post, i) => (
+							<li
+								class:list={[
+									i === 0 ? 'mb-4 text-center sm:col-span-2 sm:mb-0' : '',
+								]}
+							>
+								<a
+									href={`/blog/${post.id}/`}
+									class="group block no-underline transition-colors duration-200"
+								>
 									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
+										<Image
+											class="mb-2 w-full rounded-box transition-shadow duration-200 group-hover:shadow-lg"
+											width={720}
+											height={360}
+											src={post.data.heroImage}
+											alt=""
+										/>
 									)}
-									<h4 class="title">{post.data.title}</h4>
-									<p class="date">
+									<h4
+										class:list={[
+											'm-0 leading-none text-base-content group-hover:text-primary',
+											i === 0 ? 'text-2xl sm:text-4xl' : 'text-2xl',
+										]}
+									>
+										{post.data.title}
+									</h4>
+									<p class="m-0 text-base-content/55 group-hover:text-primary">
 										<FormattedDate date={post.data.pubDate} />
 									</p>
 								</a>

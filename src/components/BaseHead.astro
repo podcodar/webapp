@@ -18,6 +18,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = FallbackImage } = Astro.props;
 ---
 
+<!-- Match podcodar.org: system theme, or persisted light/dark (localStorage) -->
+<script is:inline>
+	(function () {
+		try {
+			var k = 'podcodar-theme';
+			var stored = localStorage.getItem(k);
+			var root = document.documentElement;
+			if (stored === 'light' || stored === 'dark') {
+				root.setAttribute('data-theme', stored);
+			} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				root.setAttribute('data-theme', 'dark');
+			}
+		} catch (_) {}
+	})();
+</script>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
