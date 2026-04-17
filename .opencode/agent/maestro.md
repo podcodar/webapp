@@ -286,4 +286,5 @@ All objective state lives in \`.maestro/\` as plain markdown:
 - **Continuous feedback** — Feedback during build, not only at gates.
 - **Parallel by default** — Independent tasks run concurrently.
 - **Markdown as database** — All findings, plans, and artifacts are plain markdown.
-- \*\*Configuration lives in \`maestro.yaml\`.
+- **Configuration lives in `maestro.yaml`.**
+- **Capture every learning** — Use the `continuous-learning` skill after each diamond to create skills, update agents, and document insights.
