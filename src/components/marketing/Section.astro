@@ -1,0 +1,32 @@
+---
+interface Props {
+	id?: string;
+	eyebrow?: string;
+	title: string;
+	subtitle?: string;
+	variant?: 'default' | 'muted' | 'gradient';
+	class?: string;
+}
+
+const { id, eyebrow, title, subtitle, variant = 'default', class: className } = Astro.props;
+
+const bg =
+	variant === 'muted'
+		? 'bg-base-200/80'
+		: variant === 'gradient'
+			? 'bg-linear-to-b from-primary/10 via-base-100 to-base-100'
+			: 'bg-base-100';
+---
+
+<section id={id} class:list={[bg, 'scroll-mt-28 border-b border-base-300/60', className]}>
+	<div class="mx-auto max-w-6xl px-4 py-16 md:py-24">
+		{
+			eyebrow && (
+				<p class="text-primary mb-2 text-sm font-semibold tracking-wide uppercase">{eyebrow}</p>
+			)
+		}
+		<h2 class="mb-4 text-3xl font-bold tracking-tight md:text-4xl">{title}</h2>
+		{subtitle && <p class="text-base-content/85 mb-8 max-w-3xl text-lg leading-relaxed">{subtitle}</p>}
+		<slot />
+	</div>
+</section>

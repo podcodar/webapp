@@ -1,0 +1,223 @@
+# Maestro AI Diamond Chain workflow definition
+name: my-project
+description: Squad-based development using AI Diamond Chain methodology
+
+# Supported tools — agent runtimes to scaffold and use
+# Supported values: opencode, amp
+tools:
+  - opencode
+
+# Squad definition — maps roles to agent configurations
+agents:
+  architect:
+    role: architect
+    phase: discovery
+
+  researcher:
+    role: researcher
+    phase: discovery
+
+  ux-designer:
+    role: ux-designer
+    phase: discovery
+
+  frontend-engineer:
+    role: frontend-engineer
+    phase: build
+
+  backend-engineer:
+    role: backend-engineer
+    phase: build
+
+  devops-sre:
+    role: devops-sre
+    phase: build
+
+  qa-engineer:
+    role: qa-engineer
+    phase: quality
+
+  code-reviewer:
+    role: code-reviewer
+    phase: quality
+
+# AI Diamond Chain Configuration
+# Alternating Discovery and Implementation diamonds with Learn & Feed loop
+diamond_chain:
+  mode: infinite  # or "fixed:N" for limited iterations
+  learning_accumulation: true  # Compound learnings across diamonds
+
+# Diamond Definitions
+diamonds:
+  # Discovery Diamond: "What should we build?"
+  discovery:
+    description: Understand the problem and decide what to build
+    
+    # Phase 1: Diverge (Explore)
+    diverge:
+      parallel: true
+      agents: [researcher, ux-designer, architect]
+      activities:
+        researcher:
+          - market_analysis
+          - competitive_review
+          - trend_identification
+        ux-designer:
+          - user_research
+          - needs_exploration
+          - persona_development
+        architect:
+          - tech_hypotheses
+          - feasibility_exploration
+          - constraint_analysis
+      duration_target: "2-3 days"  # AI-accelerated
+      
+    # Phase 2: Converge (Define)
+    converge:
+      agent: maestro
+      outputs:
+        - discovery-decision-gate.md
+      criteria:
+        - problem_validated
+        - scope_defined
+        - success_criteria_set
+        - market_opportunity_sized
+        
+    decision_gate:
+      options: [GO, NO-GO, REFINE]
+      auto_trigger_next: false  # Human approval required
+      confidence_threshold: 70  # Minimum for GO decision
+      refinement_triggers:
+        - known_unknowns_count_exceeds: 2
+        - conflicting_findings
+        - low_confidence_critical_items
+        - missing_dependencies
+
+  # Implementation Diamond: "How do we build it?"
+  implementation:
+    description: Build and ship the solution
+    
+    # Phase 1: Diverge (Explore)
+    diverge:
+      parallel: true
+      agents: [architect, backend-engineer, frontend-engineer, devops-sre]
+      activities:
+        architect:
+          - architecture_options
+          - tradeoff_analysis
+          - pattern_exploration
+        backend-engineer:
+          - api_prototyping
+          - db_design_options
+        frontend-engineer:
+          - ui_pattern_exploration
+          - component_prototyping
+        devops-sre:
+          - infrastructure_options
+          - deployment_strategies
+      duration_target: "1-2 days"  # AI-accelerated
+      
+    # Phase 2: Converge (Deliver)
+    converge:
+      parallel: true
+      build_agents: [backend-engineer, frontend-engineer, devops-sre]
+      quality_agents: [qa-engineer, code-reviewer]
+      outputs:
+        - implementation-decision-gate.md
+        - build-report.md
+        - quality-gate-report.md
+      criteria:
+        - solution_works
+        - quality_met
+        - performance_acceptable
+        - security_scan_passed
+        
+    decision_gate:
+      options: [SHIP, NO-SHIP, FIX]
+      auto_trigger_next: true  # Auto-trigger Learn & Feed
+      quality_threshold: 80  # Minimum quality score for SHIP
+      fix_max_retries: 3
+
+  # Learn & Feed: The Chain Link
+  learn_and_feed:
+    description: Capture learnings to feed next Discovery Diamond
+    enabled: true
+    auto_trigger_after: implementation  # Auto-run after ship
+    agents: [researcher, ux-designer, architect]
+    activities:
+      researcher:
+        - usage_analytics
+        - market_response_analysis
+      ux-designer:
+        - user_feedback_synthesis
+        - satisfaction_analysis
+      architect:
+        - technical_learnings
+        - performance_assessment
+    outputs:
+      - learned-report.md
+    queue_for_next_discovery: true
+
+# Legacy workflow configuration (maintained for backward compatibility)
+workflow:
+  discovery:
+    parallel: true
+    confidence_threshold: 70
+    max_refinement_rounds: 3
+
+  synthesis:
+    approval: true
+    refinement_on:
+      - low_confidence_critical_items
+      - conflicting_findings
+      - known_unknowns_count_exceeds: 2
+      - missing_dependencies
+
+  build:
+    parallel: true
+    continuous_feedback:
+      enabled: true
+      trigger_on:
+        - module_complete
+        - checkpoint_reached
+        - pr_merged
+    modules:
+      - name: backend-core
+        agent: backend-engineer
+        checkpoint: "API contracts defined"
+        qa_entry_point: true
+      - name: infrastructure
+        agent: devops-sre
+        checkpoint: "Infrastructure as code complete"
+        qa_entry_point: true
+      - name: frontend-shell
+        agent: frontend-engineer
+        depends_on: [backend-core]
+        checkpoint: "UI components render with mock data"
+        qa_entry_point: true
+    feedback_queue:
+      enabled: true
+      file: "feedback-queue.md"
+      auto_pause_on_critical: true
+
+  quality:
+    parallel: true
+    on_failure: fix_and_retry
+    max_retries: 3
+    validations:
+      usecase_coverage:
+        required: true
+        min_coverage_percent: 80
+      workflow_testing:
+        required: true
+        test_happy_path: true
+        test_error_paths: true
+        test_edge_cases: true
+      edge_case_coverage:
+        required: true
+        categories:
+          - boundary_conditions
+          - empty_null_states
+          - concurrent_access
+          - failure_modes
+          - security_edge_cases

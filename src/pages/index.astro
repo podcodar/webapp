@@ -1,49 +1,71 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import ActivityGrid from '@/components/marketing/ActivityGrid.astro';
+import Hero from '@/components/marketing/Hero.astro';
+import HowToHelp from '@/components/marketing/HowToHelp.astro';
+import Section from '@/components/marketing/Section.astro';
+import TestimonialGrid from '@/components/marketing/TestimonialGrid.astro';
+import { LAYOUT_MAIN_FULL_WIDTH, SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import {
+	aboutCommunity,
+	activities,
+	hero,
+	howToHelp,
+	mission,
+	testimonials,
+} from '@/data/marketing';
+import ogDefaultImage from '@/data/og-default';
+import Layout from '@/layouts/Layout.astro';
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
+	<Hero content={hero} />
+	<Section id="mission" title={mission.title} variant="muted">
+		<div class="max-w-3xl space-y-4">
+			{mission.body.map((paragraph) => <p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>)}
+		</div>
+	</Section>
+	<Section
+		id="activities"
+		eyebrow="Comunidade"
+		title="Atividades"
+		subtitle="Da mentoria à roda de conversa — conheça algumas formas de participar da PodCodar."
+	>
+		<ActivityGrid items={activities} />
+	</Section>
+	<Section
+		id="testimonials"
+		eyebrow="Vozes"
+		title="Depoimentos"
+		subtitle="Quem passou por aqui compartilha um pouco da experiência. Textos podem ser atualizados junto às pessoas citadas."
+		variant="muted"
+	>
+		<TestimonialGrid items={testimonials} />
+	</Section>
+	<Section
+		id="how-to-help"
+		eyebrow="Participe"
+		title="Como posso ajudar?"
+		subtitle="Três caminhos comuns — escolha o que combina com você hoje."
+	>
+		<HowToHelp items={howToHelp} />
+	</Section>
+	<Section title="Sobre a comunidade" variant="gradient" subtitle={aboutCommunity.lead}>
+		<ul class="mb-8 max-w-3xl list-none space-y-3 pl-0">
+			{
+				aboutCommunity.points.map((point) => (
+					<li class="flex gap-3">
+						<span class="text-primary shrink-0" aria-hidden="true">
+							✓
+						</span>
+						<span class="text-base-content/90">{point}</span>
+					</li>
+				))
+			}
+		</ul>
+		<p class="m-0">
+			<a href="/about" class="btn btn-outline btn-primary no-underline">
+				Conheça mais no Sobre
+			</a>
+		</p>
+	</Section>
+</Layout>
