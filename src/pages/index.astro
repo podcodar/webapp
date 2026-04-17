@@ -1,32 +1,71 @@
 ---
-import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import ActivityGrid from '@/components/marketing/ActivityGrid.astro';
+import Hero from '@/components/marketing/Hero.astro';
+import HowToHelp from '@/components/marketing/HowToHelp.astro';
+import Section from '@/components/marketing/Section.astro';
+import TestimonialGrid from '@/components/marketing/TestimonialGrid.astro';
+import { LAYOUT_MAIN_FULL_WIDTH, SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
+import {
+	aboutCommunity,
+	activities,
+	hero,
+	howToHelp,
+	mission,
+	testimonials,
+} from '@/data/marketing';
+import ogDefaultImage from '@/data/og-default';
 import Layout from '@/layouts/Layout.astro';
 ---
 
-<Layout title={SITE_TITLE} description={SITE_DESCRIPTION}>
-	<h1>Olá, Astronauta!</h1>
-	<p>
-		Bem-vindo ao modelo oficial do blog da <a href="https://astro.build/">Astro</a>. Este modelo serve
-		como um ponto de partida leve e mínimo para qualquer pessoa que queira construir um site pessoal,
-		blog ou portfólio com Astro.
-	</p>
-	<p>
-		Este modelo vem com algumas integrações já configuradas no seu
-		<code>astro.config.mjs</code>. Você pode personalizar sua configuração com
-		<a href="https://astro.build/integrations">Astro Integrations</a> para adicionar ferramentas
-		como Tailwind, React ou Vue ao seu projeto.
-	</p>
-	<p>Aqui estão algumas ideias de como começar com o modelo:</p>
-	<ul class="mb-4 list-disc space-y-2 pl-6">
-		<li>Edite esta página em <code>src/pages/index.astro</code></li>
-		<li>Edite os itens do cabeçalho em <code>src/components/Header.astro</code></li>
-		<li>Adicione seu nome no rodapé em <code>src/components/Footer.astro</code></li>
-		<li>Confira as postagens do blog incluídas em <code>src/content/blog/</code></li>
-		<li>Personalize o layout da página do blog em <code>src/layouts/BlogPost.astro</code></li>
-	</ul>
-	<p>
-		Divirta-se! Se você ficar preso, lembre-se de
-		<a href="https://docs.astro.build/">ler os docs</a>
-		ou <a href="https://astro.build/chat">junte-se a nós no Discord</a> para fazer perguntas.
-	</p>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
+	<Hero content={hero} />
+	<Section id="mission" title={mission.title} variant="muted">
+		<div class="max-w-3xl space-y-4">
+			{mission.body.map((paragraph) => <p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>)}
+		</div>
+	</Section>
+	<Section
+		id="activities"
+		eyebrow="Comunidade"
+		title="Atividades"
+		subtitle="Da mentoria à roda de conversa — conheça algumas formas de participar da PodCodar."
+	>
+		<ActivityGrid items={activities} />
+	</Section>
+	<Section
+		id="testimonials"
+		eyebrow="Vozes"
+		title="Depoimentos"
+		subtitle="Quem passou por aqui compartilha um pouco da experiência. Textos podem ser atualizados junto às pessoas citadas."
+		variant="muted"
+	>
+		<TestimonialGrid items={testimonials} />
+	</Section>
+	<Section
+		id="how-to-help"
+		eyebrow="Participe"
+		title="Como posso ajudar?"
+		subtitle="Três caminhos comuns — escolha o que combina com você hoje."
+	>
+		<HowToHelp items={howToHelp} />
+	</Section>
+	<Section title="Sobre a comunidade" variant="gradient" subtitle={aboutCommunity.lead}>
+		<ul class="mb-8 max-w-3xl list-none space-y-3 pl-0">
+			{
+				aboutCommunity.points.map((point) => (
+					<li class="flex gap-3">
+						<span class="text-primary shrink-0" aria-hidden="true">
+							✓
+						</span>
+						<span class="text-base-content/90">{point}</span>
+					</li>
+				))
+			}
+		</ul>
+		<p class="m-0">
+			<a href="/about" class="btn btn-outline btn-primary no-underline">
+				Conheça mais no Sobre
+			</a>
+		</p>
+	</Section>
 </Layout>

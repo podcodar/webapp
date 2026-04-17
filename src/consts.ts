@@ -3,4 +3,7 @@
 
 export const SITE_TITLE = 'PodCodar';
 export const SITE_DESCRIPTION =
-	'Bem-vindo à PodCodar! Acreditamos que o conhecimento deve ser acessível a todos e que aprender pode ser leve e envolvente. Nossa missão é oferecer conteúdo educacional de qualidade para quem quer aprender novas habilidades e explorar ideias — seja estudante, profissional ou curioso. Junte-se a nós nessa jornada de descoberta e crescimento!';
+	'PodCodar — comunidade sem fins lucrativos que democratiza educação profissionalizante em tecnologia no Brasil. Mentoria, estudos em grupo e projetos reais.';
+
+/** Pass to `<Layout mainClass={...}>` for full-width pages (landing, hero sections). */
+export const LAYOUT_MAIN_FULL_WIDTH = 'flex flex-1 flex-col';

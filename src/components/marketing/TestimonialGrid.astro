@@ -1,0 +1,43 @@
+---
+import type { Testimonial } from '@/data/marketing';
+
+interface Props {
+	items: readonly Testimonial[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="grid gap-8 md:grid-cols-2">
+	{
+		items.map((t) => (
+			<figure class="border-base-300 bg-base-100/80 flex flex-col gap-4 rounded-2xl border p-6 shadow-sm">
+				<blockquote class="border-primary/40 text-base-content/90 flex-1 border-l-4 pl-4 text-base leading-relaxed">
+					<p class="m-0">{t.quote}</p>
+				</blockquote>
+				<figcaption class="border-base-300/80 border-t pt-4">
+					<a
+						href={t.profileUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="hover:bg-base-200/60 -m-1 flex min-w-0 items-center gap-3 rounded-lg p-1 no-underline transition-colors"
+					>
+						<img
+							src={t.avatarUrl}
+							alt=""
+							width={48}
+							height={48}
+							loading="lazy"
+							decoding="async"
+							class="border-base-300 h-12 w-12 shrink-0 rounded-full border object-cover"
+						/>
+						<div class="min-w-0">
+							<cite class="text-base-content block font-semibold not-italic">{t.name}</cite>
+							{t.role && <p class="text-base-content/60 mt-0.5 text-sm">{t.role}</p>}
+						</div>
+					</a>
+				</figcaption>
+			</figure>
+		))
+	}
+</div>

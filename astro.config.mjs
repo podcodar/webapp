@@ -5,12 +5,13 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
+import icon from 'astro-icon';
 
 const srcDir = fileURLToPath(new URL('./src', import.meta.url));
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
+	site: 'https://podcodar.org',
 	i18n: {
 		locales: ['pt-br'],
 		defaultLocale: 'pt-br',
@@ -18,7 +19,15 @@ export default defineConfig({
 			prefixDefaultLocale: false,
 		},
 	},
-	integrations: [mdx(), sitemap()],
+	integrations: [
+		mdx(),
+		sitemap(),
+		icon({
+			include: {
+				'simple-icons': ['github', 'linkedin', 'instagram', 'youtube', 'x', 'discord'],
+			},
+		}),
+	],
 	vite: {
 		plugins: [tailwindcss()],
 		resolve: {

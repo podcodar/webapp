@@ -1,5 +1,6 @@
 ---
 import type { ImageMetadata } from 'astro';
+import ClientRouter from 'astro/components/ClientRouter.astro';
 import BaseHead from '@/components/BaseHead.astro';
 import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header.astro';
@@ -11,7 +12,7 @@ interface Props {
 	image?: ImageMetadata;
 	/** Tailwind classes for `<main>` (width, padding, etc.) */
 	mainClass?: string;
-	/** Atributo `lang` do documento; padrão: locale do site (pt-BR). */
+	/** Document `lang`; defaults to site locale (pt-BR). */
 	lang?: string;
 }
 
@@ -19,7 +20,7 @@ const {
 	title,
 	description,
 	image,
-	mainClass = 'mx-auto w-full max-w-[720px] flex-1 px-4 py-36',
+	mainClass = 'mx-auto w-full max-w-[720px] flex-1 px-4',
 	lang: langOverride,
 } = Astro.props;
 
@@ -31,10 +32,17 @@ const documentLang = rawLang === 'pt-br' ? 'pt-BR' : rawLang;
 <html lang={documentLang}>
 	<head>
 		<BaseHead title={title} description={description} image={image} />
+		<ClientRouter />
 	</head>
 	<body class="flex min-h-screen flex-col">
+		<a
+			href="#main-content"
+			class="bg-primary text-primary-content focus:ring-primary fixed top-0 left-0 z-[100] -translate-y-full px-4 py-2 focus-visible:translate-y-0 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+		>
+			Pular para o conteúdo
+		</a>
 		<Header />
-		<main class={mainClass}>
+    <main id="main-content" class={mainClass}>
 			<slot />
 		</main>
 		<Footer />

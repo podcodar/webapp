@@ -1,0 +1,87 @@
+---
+import Section from '@/components/marketing/Section.astro';
+import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
+import { communicationChannels } from '@/data/marketing';
+import ogDefaultImage from '@/data/og-default';
+import Layout from '@/layouts/Layout.astro';
+
+const title = `Faça parte — ${SITE_TITLE}`;
+const description =
+	'Entre na PodCodar: WhatsApp, Discord, Google Meet — e um plano de ação para começar a colaborar.';
+---
+
+<Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
+	<header class="border-base-300/60 border-b bg-base-200/50 py-36">
+		<div class="mx-auto max-w-6xl px-4 py-14 md:py-16">
+			<h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Faça parte</h1>
+			<p class="text-base-content/85 m-0 max-w-2xl text-lg leading-relaxed">
+				Seja para aprender, ensinar ou colaborar com a comunidade, o caminho começa nos canais e nas guildas —
+				espaços onde organizamos estudos, mentorias e projetos.
+			</p>
+		</div>
+	</header>
+
+	<Section
+		title="Onde a comunidade vive"
+		subtitle="Comunicação diária no WhatsApp; estudos e conteúdo no Discord; reuniões e eventos ao vivo no Meet."
+	>
+		<ul class="max-w-3xl list-none space-y-4 pl-0">
+			{
+				communicationChannels.map((ch) => (
+					<li class="border-base-300/80 flex flex-col gap-1 rounded-xl border-l-4 border-primary pl-4">
+						<span class="text-base-content font-semibold">{ch.channel}</span>
+						<span class="text-base-content/85 text-sm leading-relaxed">{ch.description}</span>
+					</li>
+				))
+			}
+		</ul>
+	</Section>
+
+	<Section
+		title="Primeiros passos"
+		subtitle="Sugestão de roteiro para quem está chegando — adapte ao seu tempo."
+		variant="muted"
+	>
+		<ol class="text-base-content/90 max-w-3xl list-decimal space-y-4 pl-6 text-lg leading-relaxed">
+			<li>
+				<strong class="text-base-content">Imersão.</strong> Entre nos grupos no WhatsApp e nos canais do Discord;
+				leia as regras e se apresente.
+			</li>
+			<li>
+				<strong class="text-base-content">Escolha.</strong> Participe das guildas e iniciativas que mais fazem
+				sentido para você (projetos, eventos, design, etc.).
+			</li>
+			<li>
+				<strong class="text-base-content">Engajamento.</strong> Participe de grupos de estudo e de mentorias em
+				projetos — como mentorado ou mentor.
+			</li>
+			<li>
+				<strong class="text-base-content">Colaboração.</strong> Entre em discussões, junte-se a projetos e
+				compartilhe o que está aprendendo.
+			</li>
+			<li>
+				<strong class="text-base-content">Crescimento.</strong> Peça feedback, peça sugestões de estudo e proponha
+				ideias novas para as guildas.
+			</li>
+		</ol>
+	</Section>
+
+	<Section title="GitHub" subtitle="Código aberto, transparência e boas primeiras contribuições.">
+		<p class="m-0">
+			<a
+				href="https://github.com/podcodar"
+				target="_blank"
+				rel="noopener noreferrer"
+				class="btn btn-primary no-underline"
+			>
+				Acessar github.com/podcodar
+			</a>
+		</p>
+	</Section>
+
+	<Section title="Contato" subtitle="Prefere uma mensagem antes de entrar nos grupos?" variant="muted">
+		<p class="m-0">
+			<a href="/contact" class="btn btn-outline btn-primary no-underline">Ir para contato</a>
+		</p>
+	</Section>
+</Layout>
