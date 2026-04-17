@@ -28,3 +28,6 @@ pre-push:
     # Check TypeScript types (if tsc is available)
     - name: TypeScript check
       run: bunx astro sync
+
+    - name: Vitest
+      run: bun run test

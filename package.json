@@ -16,6 +16,8 @@
 		"format": "biome format --write && astro check --fix",
 		"format:check": "biome format",
 		"typecheck": "astro sync",
+		"test": "vitest run",
+		"test:watch": "vitest",
 		"lefthook": "lefthook"
 	},
 	"dependencies": {
@@ -32,6 +34,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.12",
-		"lefthook": "^2.1.6"
+		"lefthook": "^2.1.6",
+		"vitest": "^4.1.4"
 	}
 }
