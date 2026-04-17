@@ -1,63 +1,42 @@
-# Astro Starter Kit: Blog
+# Welcome to PodCodar WebApp
+
+This WebApp is the main project of [PodCodar](https://github.com/podcodar), a learning community about programming and technology.
+
+- 📖 [Astro documentation](https://docs.astro.build)
+- 🧑‍💻 [PodCodar Engineering docs](https://podcodar.github.io/webapp)
+
+## Features
+
+- ⚡ Static site generation with [Astro](https://astro.build/)
+- 📝 Markdown and MDX for pages and blog posts
+- 📚 Content collections with typed frontmatter
+- 🗺️ Sitemap and RSS feed
+- 🔒 TypeScript by default
+- 🎨 Minimal, customizable styling
+
+## Quick start
 
 ```sh
-bun create astro@latest -- --template blog
+bun install
+bun dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The dev server runs at [http://localhost:4321](http://localhost:4321).
 
-Features:
+For project layout, CLI commands, and how we work on this repo, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+## Production
 
-## 🚀 Project Structure
+Build the site:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```sh
+bun run build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Output is written to `./dist/`. Preview the production build locally:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+bun run preview
+```
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `bun install`             | Installs dependencies                            |
-| `bun dev`             | Starts local dev server at `localhost:4321`      |
-| `bun build`           | Build your production site to `./dist/`          |
-| `bun preview`         | Preview your build locally, before deploying     |
-| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `bun astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Deploy the contents of `dist/` to any static host (GitHub Pages, Netlify, Cloudflare Pages, etc.).
