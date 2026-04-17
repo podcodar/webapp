@@ -1,5 +1,5 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '@/layouts/Layout.astro';
 
 const swatches: {
 	name: string;
@@ -11,7 +11,12 @@ const swatches: {
 	{ name: 'secondary', bg: 'bg-secondary', fg: 'text-secondary-content' },
 	{ name: 'accent', bg: 'bg-accent', fg: 'text-accent-content' },
 	{ name: 'neutral', bg: 'bg-neutral', fg: 'text-neutral-content' },
-	{ name: 'base-100', bg: 'bg-base-100', fg: 'text-base-content', border: 'border border-base-300' },
+	{
+		name: 'base-100',
+		bg: 'bg-base-100',
+		fg: 'text-base-content',
+		border: 'border border-base-300',
+	},
 	{ name: 'info', bg: 'bg-info', fg: 'text-info-content' },
 	{ name: 'success', bg: 'bg-success', fg: 'text-success-content' },
 	{ name: 'warning', bg: 'bg-warning', fg: 'text-warning-content' },

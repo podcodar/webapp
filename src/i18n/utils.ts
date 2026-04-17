@@ -1,4 +1,4 @@
-import { defaultLang, ui } from './ui';
+import { defaultLang, ui } from '@/i18n/ui';
 
 export type Lang = keyof typeof ui;
 

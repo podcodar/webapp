@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE } from '@/consts';
 
 interface Props {
 	/** Logo mark size (`nav` = 36px + bold title, same as podcodar.fly.dev navbar) */
@@ -22,7 +22,10 @@ const markClass =
 				? 'h-9 w-9 min-h-9 min-w-9'
 				: 'h-10 w-10 min-h-10 min-w-10';
 
-const titleClass = size === 'nav' ? 'text-lg font-bold text-base-content' : 'text-lg font-semibold text-base-content';
+const titleClass =
+	size === 'nav'
+		? 'text-lg font-bold text-base-content'
+		: 'text-lg font-semibold text-base-content';
 ---
 
 <a

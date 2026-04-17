@@ -10,6 +10,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
+		"update": "bun update --all",
 		"lint": "biome check",
 		"lint:fix": "biome check --write && astro check --fix",
 		"format": "biome format --write && astro check --fix",
