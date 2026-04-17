@@ -11,7 +11,7 @@ interface Props {
 	image?: ImageMetadata;
 	/** Tailwind classes for `<main>` (width, padding, etc.) */
 	mainClass?: string;
-	/** Document language; defaults from the URL locale */
+	/** Atributo `lang` do documento; padrão: locale do site (pt-BR). */
 	lang?: string;
 }
 
@@ -19,19 +19,20 @@ const {
 	title,
 	description,
 	image,
-	mainClass = 'mx-auto w-full max-w-[720px] px-4 py-12',
+	mainClass = 'mx-auto w-full max-w-[720px] flex-1 px-4 py-36',
 	lang: langOverride,
 } = Astro.props;
 
-const lang = langOverride ?? getLangFromUrl(Astro.url);
+const rawLang = langOverride ?? getLangFromUrl(Astro.url);
+const documentLang = rawLang === 'pt-br' ? 'pt-BR' : rawLang;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={documentLang}>
 	<head>
 		<BaseHead title={title} description={description} image={image} />
 	</head>
-	<body>
+	<body class="flex min-h-screen flex-col">
 		<Header />
 		<main class={mainClass}>
 			<slot />

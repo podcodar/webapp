@@ -3,4 +3,4 @@
 
 export const SITE_TITLE = 'PodCodar';
 export const SITE_DESCRIPTION =
-	'Welcome to PodCodar! We believe that knowledge should be accessible to everyone, and that learning should be fun and engaging. Our mission is to provide high-quality educational content that empowers individuals to learn new skills and explore new ideas. Whether you are a student, a professional, or just someone who loves to learn, we have something for you. Join us on this journey of discovery and growth!';
+	'Bem-vindo à PodCodar! Acreditamos que o conhecimento deve ser acessível a todos e que aprender pode ser leve e envolvente. Nossa missão é oferecer conteúdo educacional de qualidade para quem quer aprender novas habilidades e explorar ideias — seja estudante, profissional ou curioso. Junte-se a nós nessa jornada de descoberta e crescimento!';

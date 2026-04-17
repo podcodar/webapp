@@ -11,21 +11,23 @@
 		"preview": "astro preview",
 		"astro": "astro",
 		"lint": "biome check",
-		"lint:fix": "biome check --write",
-		"format": "biome format --write",
+		"lint:fix": "biome check --write && astro check --fix",
+		"format": "biome format --write && astro check --fix",
 		"format:check": "biome format",
 		"typecheck": "astro sync",
 		"lefthook": "lefthook"
 	},
 	"dependencies": {
+		"@astrojs/check": "^0.9.8",
 		"@astrojs/mdx": "^5.0.3",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.2",
 		"@tailwindcss/vite": "^4.2.2",
 		"astro": "^6.1.7",
 		"daisyui": "^5.5.19",
-		"sharp": "^0.34.3",
-		"tailwindcss": "^4.2.2"
+		"sharp": "^0.34.5",
+		"tailwindcss": "^4.2.2",
+		"typescript": "^6.0.3"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.12",

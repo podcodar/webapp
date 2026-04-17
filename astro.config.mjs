@@ -9,7 +9,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 export default defineConfig({
 	site: 'https://example.com',
 	i18n: {
-		locales: ['pt-br', 'en'],
+		locales: ['pt-br'],
 		defaultLocale: 'pt-br',
 		routing: {
 			prefixDefaultLocale: false,

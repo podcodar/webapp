@@ -10,7 +10,11 @@ const posts = (await getCollection('blog')).sort(
 );
 ---
 
-<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} mainClass="mx-auto w-full max-w-[960px] px-4 py-12">
+<Layout
+	title={SITE_TITLE}
+	description={SITE_DESCRIPTION}
+	mainClass="mx-auto w-full max-w-[960px] flex-1 px-4 py-36"
+>
 	<section>
 		<ul class="m-0 grid list-none grid-cols-1 gap-2 p-0 sm:grid-cols-2 sm:gap-8">
 			{
