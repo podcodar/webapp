@@ -1,80 +1,63 @@
-# Welcome to PodCodar WebApp!
-
-This WebApp is the main project of PodCodar, a learning community about
-programming and technology.
-
-- 📖 [React Router docs](https://reactrouter.com/start/home)
-- 🧑‍💻 [PodCodar Engineering docs](https://podcodar.github.io/webapp)
-
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Development
-
-### System Dependencies
-
-To have a consistent development environment, we recommend using the following
-tools:
-
-- [Bun](https://bun.sh)
-- [direnv](https://direnv.net/)
-
-### Setup
-
-```shellscript
-# (optional) if you have direnv
-direnv allow
-
-# install dependencies
-bun install
-
-# decrypt project credentials into a .env file
-bun decrypt
-```
-
-### Running the dev server
-
-```shellscript
-bun run dev
-```
-
-## Production
-
-First, build your app for production:
+# Astro Starter Kit: Blog
 
 ```sh
-bun run build
+bun create astro@latest -- --template blog
 ```
 
-Then run the app in production mode:
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-```sh
-bun start
+Features:
+
+- ✅ Minimal styling (make it your own!)
+- ✅ 100/100 Lighthouse performance
+- ✅ SEO-friendly with canonical URLs and Open Graph data
+- ✅ Sitemap support
+- ✅ RSS Feed support
+- ✅ Markdown & MDX support
+
+## 🚀 Project Structure
+
+Inside of your Astro project, you'll see the following folders and files:
+
+```text
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── content/
+│   ├── layouts/
+│   └── pages/
+├── astro.config.mjs
+├── README.md
+├── package.json
+└── tsconfig.json
 ```
 
-Now you'll need to pick a host to deploy it to.
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
-### DIY
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-If you're familiar with deploying Node applications, the built-in Remix app
-server is production-ready.
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
 
-Make sure to deploy the output of `bun run build`
+Any static assets, like images, can be placed in the `public/` directory.
 
-- `build/server`
-- `build/client`
+## 🧞 Commands
 
-## Styling
+All commands are run from the root of the project, from a terminal:
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already
-configured for a simple default starting experience. You can use whatever css
-framework you prefer. See the
-[Vite docs on css](https://vitejs.dev/guide/features.html#css) for more
-information.
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `bun install`             | Installs dependencies                            |
+| `bun dev`             | Starts local dev server at `localhost:4321`      |
+| `bun build`           | Build your production site to `./dist/`          |
+| `bun preview`         | Preview your build locally, before deploying     |
+| `bun astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `bun astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Credit
+
+This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).

@@ -1,9 +1,0 @@
-@import "tailwindcss";
-@plugin "daisyui";
-
-html,
-body {
-	@media (prefers-color-scheme: dark) {
-		color-scheme: dark;
-	}
-}
