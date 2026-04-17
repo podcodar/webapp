@@ -1,8 +1,13 @@
 ---
+import Logo from './Logo.astro';
+
 const today = new Date();
 ---
 
 <footer class="border-t border-base-300 bg-base-200/90 px-4 py-12 text-center text-base-content/70">
+	<div class="mb-6 flex justify-center">
+		<Logo size="sm" showTitle class="justify-center" />
+	</div>
 	<p class="m-0">&copy; {today.getFullYear()} Your name here. All rights reserved.</p>
 	<div class="mt-4 flex justify-center gap-4">
 		<a

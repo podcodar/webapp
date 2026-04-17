@@ -1,6 +1,6 @@
 ---
-import { SITE_TITLE } from '../consts';
 import HeaderLink from './HeaderLink.astro';
+import Logo from './Logo.astro';
 ---
 
 <header
@@ -10,9 +10,9 @@ import HeaderLink from './HeaderLink.astro';
 		class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-4 py-3"
 		aria-label="Main"
 	>
-		<h2 class="m-0 text-lg font-semibold">
-			<a href="/" class="text-base-content no-underline hover:text-primary">{SITE_TITLE}</a>
-		</h2>
+		<div class="flex min-w-0 items-center">
+			<Logo size="md" showTitle />
+		</div>
 		<div class="flex flex-wrap items-center gap-1">
 			<HeaderLink href="/">Home</HeaderLink>
 			<HeaderLink href="/blog">Blog</HeaderLink>
