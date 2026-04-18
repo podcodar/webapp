@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # Maestro Setup
 .maestro/
+
+# E2E Tests - Playwright
+test-results/
+playwright-report/

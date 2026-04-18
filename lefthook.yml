@@ -17,6 +17,18 @@ pre-commit:
       glob: "*.{js,mjs,cjs,ts,tsx,jsx,json,jsonc}"
       run: bunx biome format --staged -- {files}
 
+# Manual commands for working with staged files
+staged:
+  parallel: true
+  jobs:
+    - name: List staged files
+      run: git diff --cached --name-only --diff-filter=ACM
+
+    - name: Format staged files
+      files: git diff --cached --name-only --diff-filter=ACM
+      glob: "*.{js,mjs,cjs,ts,tsx,jsx,json,jsonc}"
+      run: bunx biome format --staged -- {files}
+
 # Pre-push hook runs before pushing to remote
 pre-push:
   parallel: true

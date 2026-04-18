@@ -3,7 +3,7 @@ import { SITE_TITLE } from '@/consts';
 
 interface Props {
 	/** Logo mark size (`nav` = 36px + bold title, same as podcodar.fly.dev navbar) */
-	size?: 'sm' | 'md' | 'lg' | 'nav';
+	size?: 'sm' | 'md' | 'lg' | 'nav' | 'full';
 	/** Show site title next to the mark */
 	showTitle?: boolean;
 	class?: string;
@@ -20,7 +20,9 @@ const markClass =
 			? 'h-14 w-14 min-h-14 min-w-14'
 			: size === 'nav'
 				? 'h-9 w-9 min-h-9 min-w-9'
-				: 'h-10 w-10 min-h-10 min-w-10';
+				: size === 'full'
+					? 'w-full'
+					: 'h-10 w-10 min-h-10 min-w-10';
 
 const titleClass =
 	size === 'nav'
