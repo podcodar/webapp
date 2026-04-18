@@ -18,7 +18,8 @@
 			"**/*.mdx",
 			"**/*.json",
 			"**/*.jsonc",
-			"!worker-configuration.d.ts"
+			"!worker-configuration.d.ts",
+			"!dist/**/*"
 		]
 	},
 	"formatter": {

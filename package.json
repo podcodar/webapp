@@ -44,6 +44,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.12",
 		"lefthook": "^2.1.6",
+		"vite-tsconfig-paths": "^6.1.1",
 		"vitest": "^4.1.4"
 	},
 	"overrides": {

@@ -1,16 +1,18 @@
-import { fileURLToPath } from 'node:url';
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
+import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://podcodar.org',
-	adapter: cloudflare(),
 	output: 'server',
+	adapter: cloudflare({
+		prerenderEnvironment: 'node',
+	}),
 
 	i18n: {
 		locales: ['pt-br'],
@@ -29,15 +31,6 @@ export default defineConfig({
 			},
 		}),
 	],
-
-	vite: {
-		plugins: [tailwindcss()],
-		resolve: {
-			alias: {
-				'@': fileURLToPath(new URL('./src', import.meta.url)),
-			},
-		},
-	},
 
 	fonts: [
 		{
@@ -63,4 +56,8 @@ export default defineConfig({
 			},
 		},
 	],
+
+	vite: {
+		plugins: [tailwindcss(), tsconfigPaths()],
+	},
 });
