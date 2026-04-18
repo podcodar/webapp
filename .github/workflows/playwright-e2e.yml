@@ -85,4 +85,6 @@ jobs:
           JOB_STATUS: ${{ job.status }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          script-path: .github/workflows/comment-pr.js
+          script: |
+            const script = require('./.github/workflows/comment-pr.js')
+            await script({ github, context, core })
