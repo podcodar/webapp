@@ -27,7 +27,7 @@ test.describe('Blog', () => {
     await expect(page).toHaveTitle(/PodCodar/i);
 
     // There should be at least one article/post link on the listing page
-    const firstPost = page.locator('ul li a').first();
+    const firstPost = page.locator('section ul li a').first();
     await expect(firstPost).toBeVisible();
   });
 
@@ -35,7 +35,7 @@ test.describe('Blog', () => {
     await page.goto('/blog');
 
     // Click the very first post link in the listing
-    const firstPost = page.locator('ul li a').first();
+    const firstPost = page.locator('section ul li a').first();
     await expect(firstPost).toBeVisible();
 
     const postTitle = await firstPost.textContent();
@@ -46,7 +46,7 @@ test.describe('Blog', () => {
 
     // The post page should have a <h1> matching the post title text
     if (postTitle) {
-      await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+      await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible();
     }
   });
 
@@ -54,11 +54,11 @@ test.describe('Blog', () => {
     await page.goto('/blog');
 
     // Open the first post
-    await page.locator('ul li a').first().click();
+    await page.locator('section ul li a').first().click();
     await expect(page).toHaveURL(/\/blog\/.+/);
 
     // Confirm the post heading is visible
-    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await expect(page.getByRole('heading', { level: 1 }).first()).toBeVisible();
 
     // Scroll to the bottom of the post
     await page.evaluate(() =>
