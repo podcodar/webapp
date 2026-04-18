@@ -1,6 +1,5 @@
 {
 	"name": "webapp",
-	"type": "module",
 	"version": "0.0.1",
 	"engines": {
 		"node": ">=22.12.0"
@@ -10,8 +9,7 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
-		"deps": "bun x playwright install-deps",
-		"postinstall": "lefthook install && playwright install",
+		"postinstall": "lefthook install",
 		"update": "bun update --all",
 		"lint": "biome check",
 		"lint:fix": "biome check --write && astro check --fix",

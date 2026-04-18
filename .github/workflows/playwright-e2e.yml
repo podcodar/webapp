@@ -40,18 +40,6 @@ jobs:
       - name: Build Astro site
         run: bun run build
 
-      - name: Start Astro preview server
-        run: bunx astro preview --port 4321 &
-
-      # Give the preview server a moment to be ready
-      - name: Wait for preview server
-        run: |
-          for i in $(seq 1 30); do
-            curl -sf http://localhost:4321/ && echo "Server ready" && break
-            echo "Waiting for server... attempt $i"
-            sleep 2
-          done
-
       - name: Run Playwright E2E tests
         run: bunx playwright test
         env:
