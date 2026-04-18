@@ -17,7 +17,8 @@
 			"**/*.astro",
 			"**/*.mdx",
 			"**/*.json",
-			"**/*.jsonc"
+			"**/*.jsonc",
+			"!worker-configuration.d.ts"
 		]
 	},
 	"formatter": {

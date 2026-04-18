@@ -8,3 +8,4 @@ decrypt = "gpg -d .env.gpg > .env"
 [tools]
 pulumi = "latest"
 bun = "latest"
+node = "lts"

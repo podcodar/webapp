@@ -9,7 +9,10 @@
 		"dev": "astro dev",
 		"build": "astro build",
 		"preview": "astro preview",
+		"w": "wrangler",
+		"w:build": "bun run build && wrangler build",
 		"astro": "astro",
+		"astro:a": "astro add",
 		"update": "bun update --all",
 		"lint": "biome check",
 		"lint:fix": "biome check --write && astro check --fix",
@@ -18,10 +21,13 @@
 		"typecheck": "astro sync",
 		"test": "vitest run",
 		"test:watch": "vitest",
-		"lefthook": "lefthook"
+		"lefthook": "lefthook",
+		"generate-types": "wrangler types",
+		"postinstall": "lefthook install && bun run generate-types"
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.8",
+		"@astrojs/cloudflare": "^13.1.10",
 		"@astrojs/mdx": "^5.0.3",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.2",
@@ -32,11 +38,15 @@
 		"daisyui": "^5.5.19",
 		"sharp": "^0.34.5",
 		"tailwindcss": "^4.2.2",
-		"typescript": "^6.0.3"
+		"typescript": "^6.0.3",
+		"wrangler": "^4.83.0"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.12",
 		"lefthook": "^2.1.6",
 		"vitest": "^4.1.4"
+	},
+	"overrides": {
+		"vite": "^7"
 	}
 }

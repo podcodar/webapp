@@ -1,0 +1,20 @@
+{
+	"compatibility_date": "2026-04-17",
+	"compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
+	"name": "podcodar",
+	"main": "@astrojs/cloudflare/entrypoints/server",
+	"assets": {
+		"directory": "./dist",
+		"binding": "ASSETS"
+	},
+	"observability": {
+		"enabled": true,
+		"head_sampling_rate": 1,
+		"logs": {
+			"enabled": true,
+			"head_sampling_rate": 1,
+			"invocation_logs": true,
+			"persist": true
+		}
+	}
+}
