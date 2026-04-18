@@ -10,6 +10,8 @@
 		"build": "astro build",
 		"preview": "astro preview",
 		"astro": "astro",
+		"deps": "bun x playwright install-deps",
+		"postinstall": "lefthook install && playwright install",
 		"update": "bun update --all",
 		"lint": "biome check",
 		"lint:fix": "biome check --write && astro check --fix",
@@ -39,6 +41,7 @@
 		"@biomejs/biome": "^2.4.12",
 		"@playwright/test": "^1.59.1",
 		"lefthook": "^2.1.6",
+		"playwright": "^1.59.1",
 		"vitest": "^4.1.4"
 	}
 }
