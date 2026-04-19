@@ -74,5 +74,5 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const script = require('./.github/workflows/comment-pr.cjs')
+            const script = require('./.github/workflows/comment-pr.js')
             await script({ github, context, core })
