@@ -8,56 +8,56 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://podcodar.org',
-	output: 'server',
-	adapter: cloudflare({
-		prerenderEnvironment: 'node',
-	}),
+  site: 'https://podcodar.org',
+  output: 'server',
+  adapter: cloudflare({
+    prerenderEnvironment: 'node',
+  }),
 
-	i18n: {
-		locales: ['pt-br'],
-		defaultLocale: 'pt-br',
-		routing: {
-			prefixDefaultLocale: false,
-		},
-	},
+  i18n: {
+    locales: ['pt-br'],
+    defaultLocale: 'pt-br',
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
 
-	integrations: [
-		mdx(),
-		sitemap(),
-		icon({
-			include: {
-				'simple-icons': ['github', 'linkedin', 'instagram', 'youtube', 'x', 'discord'],
-			},
-		}),
-	],
+  integrations: [
+    mdx(),
+    sitemap(),
+    icon({
+      include: {
+        'simple-icons': ['github', 'linkedin', 'instagram', 'youtube', 'x', 'discord'],
+      },
+    }),
+  ],
 
-	fonts: [
-		{
-			provider: fontProviders.local(),
-			name: 'Atkinson',
-			cssVariable: '--font-atkinson',
-			fallbacks: ['sans-serif'],
-			options: {
-				variants: [
-					{
-						src: ['./src/assets/fonts/atkinson-regular.woff'],
-						weight: 400,
-						style: 'normal',
-						display: 'swap',
-					},
-					{
-						src: ['./src/assets/fonts/atkinson-bold.woff'],
-						weight: 700,
-						style: 'normal',
-						display: 'swap',
-					},
-				],
-			},
-		},
-	],
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: 'Atkinson',
+      cssVariable: '--font-atkinson',
+      fallbacks: ['sans-serif'],
+      options: {
+        variants: [
+          {
+            src: ['./src/assets/fonts/atkinson-regular.woff'],
+            weight: 400,
+            style: 'normal',
+            display: 'swap',
+          },
+          {
+            src: ['./src/assets/fonts/atkinson-bold.woff'],
+            weight: 700,
+            style: 'normal',
+            display: 'swap',
+          },
+        ],
+      },
+    },
+  ],
 
-	vite: {
-		plugins: [tailwindcss(), tsconfigPaths()],
-	},
+  vite: {
+    plugins: [tailwindcss(), tsconfigPaths()],
+  },
 });
