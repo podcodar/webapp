@@ -7,6 +7,9 @@
     "directory": "./dist",
     "binding": "ASSETS"
   },
+  "dev": {
+    "port": 4321
+  },
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1,
