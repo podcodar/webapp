@@ -10,29 +10,29 @@ const t = useTranslations(lang);
 ---
 
 <footer class="border-t border-base-300 bg-base-200/90 px-4 py-12 text-center text-base-content/70">
-	<div class="mb-6 flex justify-center">
-		<Logo size="sm" showTitle class="justify-center" />
-	</div>
-	<p class="m-0">&copy; {today.getFullYear()} PodCodar. {t('footer.copyright')}</p>
-	<div class="mt-6 flex flex-wrap justify-center gap-5 sm:gap-6">
-		{
-			footerSocialLinks.map((link) => (
-				<a
-					href={link.href}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-base-content/70 hover:text-primary transition-colors"
-				>
-					<span class="sr-only">{link.label}</span>
-					<Icon
-						name={footerSocialIconify[link.network]}
-						aria-hidden="true"
-						width={28}
-						height={28}
-						class="inline-block"
-					/>
-				</a>
-			))
-		}
-	</div>
+  <div class="mb-6 flex justify-center">
+    <Logo size="sm" showTitle class="justify-center" />
+  </div>
+  <p class="m-0">&copy; {today.getFullYear()} PodCodar. {t('footer.copyright')}</p>
+  <div class="mt-6 flex flex-wrap justify-center gap-5 sm:gap-6">
+    {
+      footerSocialLinks.map((link) => (
+        <a
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-base-content/70 hover:text-primary transition-colors"
+        >
+          <span class="sr-only">{link.label}</span>
+          <Icon
+            name={footerSocialIconify[link.network]}
+            aria-hidden="true"
+            width={28}
+            height={28}
+            class="inline-block"
+          />
+        </a>
+      ))
+    }
+  </div>
 </footer>

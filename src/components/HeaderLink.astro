@@ -10,15 +10,15 @@ const isActive = href === pathname || href === `/${subpath?.[0] ?? ''}`;
 ---
 
 <a
-	href={href}
-	class:list={[
-		'inline-block border-b-4 px-2 py-4 text-sm font-medium no-underline transition-colors',
-		isActive
-			? 'border-primary text-primary'
-			: 'border-transparent text-base-content hover:text-primary',
-		className,
-	]}
-	{...props}
+  href={href}
+  class:list={[
+    'inline-block border-b-4 px-2 py-4 text-sm font-medium no-underline transition-colors',
+    isActive
+      ? 'border-primary text-primary'
+      : 'border-transparent text-base-content hover:text-primary',
+    className,
+  ]}
+  {...props}
 >
-	<slot />
+  <slot />
 </a>

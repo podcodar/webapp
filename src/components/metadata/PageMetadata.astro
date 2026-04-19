@@ -7,9 +7,9 @@ import type { ImageMetadata } from 'astro';
 import FallbackImage from '@/assets/blog-placeholder-1.jpg';
 
 interface Props {
-	title: string;
-	description: string;
-	image?: ImageMetadata;
+  title: string;
+  description: string;
+  image?: ImageMetadata;
 }
 
 const { title, description, image = FallbackImage } = Astro.props;

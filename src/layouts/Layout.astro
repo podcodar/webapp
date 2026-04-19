@@ -7,21 +7,21 @@ import Header from '@/components/Header.astro';
 import { getLangFromUrl } from '@/i18n/utils';
 
 interface Props {
-	title: string;
-	description: string;
-	image?: ImageMetadata;
-	/** Tailwind classes for `<main>` (width, padding, etc.) */
-	mainClass?: string;
-	/** Document `lang`; defaults to site locale (pt-BR). */
-	lang?: string;
+  title: string;
+  description: string;
+  image?: ImageMetadata;
+  /** Tailwind classes for `<main>` (width, padding, etc.) */
+  mainClass?: string;
+  /** Document `lang`; defaults to site locale (pt-BR). */
+  lang?: string;
 }
 
 const {
-	title,
-	description,
-	image,
-	mainClass = 'mx-auto w-full max-w-[720px] flex-1 px-4',
-	lang: langOverride,
+  title,
+  description,
+  image,
+  mainClass = 'mx-auto w-full max-w-[720px] flex-1 px-4',
+  lang: langOverride,
 } = Astro.props;
 
 const rawLang = langOverride ?? getLangFromUrl(Astro.url);
@@ -30,21 +30,21 @@ const documentLang = rawLang === 'pt-br' ? 'pt-BR' : rawLang;
 
 <!doctype html>
 <html lang={documentLang}>
-	<head>
-		<BaseHead title={title} description={description} image={image} />
-		<ClientRouter />
-	</head>
-	<body class="flex min-h-screen flex-col">
-		<a
-			href="#main-content"
-			class="bg-primary text-primary-content focus:ring-primary fixed top-0 left-0 z-[100] -translate-y-full px-4 py-2 focus-visible:translate-y-0 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
-		>
-			Pular para o conteúdo
-		</a>
-		<Header />
+  <head>
+    <BaseHead title={title} description={description} image={image} />
+    <ClientRouter />
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <a
+      href="#main-content"
+      class="bg-primary text-primary-content focus:ring-primary fixed top-0 left-0 z-[100] -translate-y-full px-4 py-2 focus-visible:translate-y-0 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+    >
+      Pular para o conteúdo
+    </a>
+    <Header />
     <main id="main-content" class={mainClass}>
-			<slot />
-		</main>
-		<Footer />
-	</body>
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>

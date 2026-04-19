@@ -2,26 +2,26 @@
 import type { HelpPath } from '@/data/marketing';
 
 interface Props {
-	items: readonly HelpPath[];
+  items: readonly HelpPath[];
 }
 
 const { items } = Astro.props;
 ---
 
 <div class="grid gap-6 md:grid-cols-3">
-	{
-		items.map((item) => (
-			<article class="card border-base-300 bg-base-100 border shadow-sm">
-				<div class="card-body">
-					<h3 class="card-title text-lg">{item.title}</h3>
-					<p class="text-base-content/80 mb-6 flex-1 text-sm leading-relaxed">{item.description}</p>
-					<div class="card-actions justify-stretch">
-						<a href={item.href} class="btn btn-primary btn-block no-underline">
-							{item.cta}
-						</a>
-					</div>
-				</div>
-			</article>
-		))
-	}
+  {
+    items.map((item) => (
+      <article class="card border-base-300 bg-base-100 border shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title text-lg">{item.title}</h3>
+          <p class="text-base-content/80 mb-6 flex-1 text-sm leading-relaxed">{item.description}</p>
+          <div class="card-actions justify-stretch">
+            <a href={item.href} class="btn btn-primary btn-block no-underline">
+              {item.cta}
+            </a>
+          </div>
+        </div>
+      </article>
+    ))
+  }
 </div>

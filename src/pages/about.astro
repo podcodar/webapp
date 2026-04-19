@@ -2,121 +2,121 @@
 import Section from '@/components/marketing/Section.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
 import {
-	aboutCommunity,
-	communicationChannels,
-	coreValues,
-	eventsBlock,
-	mission,
-	projects,
+  aboutCommunity,
+  communicationChannels,
+  coreValues,
+  eventsBlock,
+  mission,
+  projects,
 } from '@/data/marketing';
 import ogDefaultImage from '@/data/og-default';
 import Layout from '@/layouts/Layout.astro';
 
 const title = `Sobre — ${SITE_TITLE}`;
 const description =
-	'Missão, valores e como a PodCodar se organiza: núcleo pedagógico, guildas, iniciativas e canais de comunicação.';
+  'Missão, valores e como a PodCodar se organiza: núcleo pedagógico, guildas, iniciativas e canais de comunicação.';
 ---
 
 <Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
-	<header class="border-base-300/60 from-primary/5 to-base-100 border-b bg-linear-to-b">
-		<div class="mx-auto max-w-6xl px-4 py-36 md:py-48">
-			<p class="text-primary mb-2 text-sm font-semibold tracking-wide uppercase">PodCodar</p>
-			<h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Sobre nós</h1>
-			<p class="text-base-content/85 m-0 max-w-2xl text-lg leading-relaxed">
-				Somos uma comunidade e organização sem fins lucrativos focada em transformar vidas por meio da educação
-				profissionalizante em tecnologia — com inclusão, colaboração e qualidade de ensino.
-			</p>
-		</div>
-	</header>
+  <header class="border-base-300/60 from-primary/5 to-base-100 border-b bg-linear-to-b">
+    <div class="mx-auto max-w-6xl px-4 py-36 md:py-48">
+      <p class="text-primary mb-2 text-sm font-semibold tracking-wide uppercase">PodCodar</p>
+      <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Sobre nós</h1>
+      <p class="text-base-content/85 m-0 max-w-2xl text-lg leading-relaxed">
+        Somos uma comunidade e organização sem fins lucrativos focada em transformar vidas por meio da educação
+        profissionalizante em tecnologia — com inclusão, colaboração e qualidade de ensino.
+      </p>
+    </div>
+  </header>
 
-	<Section title={mission.title} variant="muted">
-		<div class="max-w-3xl space-y-4">
-			{mission.body.map((paragraph) => (
-				<p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>
-			))}
-		</div>
-	</Section>
+  <Section title={mission.title} variant="muted">
+    <div class="max-w-3xl space-y-4">
+      {mission.body.map((paragraph) => (
+        <p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>
+      ))}
+    </div>
+  </Section>
 
-	<Section title="Valores" subtitle="Três princípios que guiam a cultura da comunidade.">
-		<ul class="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
-			{
-				coreValues.map((v) => (
-					<li class="border-base-300 bg-base-100 rounded-2xl border p-6 shadow-sm">
-						<h2 class="text-primary mb-2 text-lg font-bold">{v.title}</h2>
-						<p class="text-base-content/85 m-0 text-sm leading-relaxed">{v.text}</p>
-					</li>
-				))
-			}
-		</ul>
-	</Section>
+  <Section title="Valores" subtitle="Três princípios que guiam a cultura da comunidade.">
+    <ul class="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+      {
+        coreValues.map((v) => (
+          <li class="border-base-300 bg-base-100 rounded-2xl border p-6 shadow-sm">
+            <h2 class="text-primary mb-2 text-lg font-bold">{v.title}</h2>
+            <p class="text-base-content/85 m-0 text-sm leading-relaxed">{v.text}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
 
-	<Section title={aboutCommunity.title} subtitle={aboutCommunity.lead}>
-		<ul class="mb-0 max-w-3xl list-none space-y-3 pl-0">
-			{
-				aboutCommunity.points.map((point) => (
-					<li class="flex gap-3">
-						<span class="text-primary shrink-0" aria-hidden="true">
-							✓
-						</span>
-						<span class="text-base-content/90 text-lg leading-relaxed">{point}</span>
-					</li>
-				))
-			}
-		</ul>
-	</Section>
+  <Section title={aboutCommunity.title} subtitle={aboutCommunity.lead}>
+    <ul class="mb-0 max-w-3xl list-none space-y-3 pl-0">
+      {
+        aboutCommunity.points.map((point) => (
+          <li class="flex gap-3">
+            <span class="text-primary shrink-0" aria-hidden="true">
+              ✓
+            </span>
+            <span class="text-base-content/90 text-lg leading-relaxed">{point}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
 
-	<Section
-		title="Onde conversamos"
-		subtitle="Cada canal tem um papel — escolha o ritmo que combina com você."
-		variant="muted"
-	>
-		<ul class="max-w-3xl list-none space-y-4 pl-0">
-			{
-				communicationChannels.map((ch) => (
-					<li class="border-base-300/80 flex flex-col gap-1 rounded-xl border-l-4 border-primary pl-4">
-						<span class="text-base-content font-semibold">{ch.channel}</span>
-						<span class="text-base-content/85 text-sm leading-relaxed">{ch.description}</span>
-					</li>
-				))
-			}
-		</ul>
-	</Section>
+  <Section
+    title="Onde conversamos"
+    subtitle="Cada canal tem um papel — escolha o ritmo que combina com você."
+    variant="muted"
+  >
+    <ul class="max-w-3xl list-none space-y-4 pl-0">
+      {
+        communicationChannels.map((ch) => (
+          <li class="border-base-300/80 flex flex-col gap-1 rounded-xl border-l-4 border-primary pl-4">
+            <span class="text-base-content font-semibold">{ch.channel}</span>
+            <span class="text-base-content/85 text-sm leading-relaxed">{ch.description}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
 
-	<Section
-		eyebrow="Open source"
-		title="Projetos e repositórios"
-		subtitle="A comunidade também constrói em código aberto — além das iniciativas dentro das guildas."
-	>
-		<ul class="grid gap-4 md:grid-cols-2">
-			{
-				projects.map((project) => (
-					<li class="border-base-300 bg-base-100 rounded-2xl border p-6 shadow-sm">
-						<h2 class="mb-2 text-xl font-semibold">{project.name}</h2>
-						<p class="text-base-content/80 m-0 mb-4 text-sm leading-relaxed">{project.description}</p>
-						<a
-							href={project.href}
-							target="_blank"
-							rel="noopener noreferrer"
-							class="btn btn-ghost btn-sm px-0 no-underline"
-						>
-							Abrir link →
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</Section>
+  <Section
+    eyebrow="Open source"
+    title="Projetos e repositórios"
+    subtitle="A comunidade também constrói em código aberto — além das iniciativas dentro das guildas."
+  >
+    <ul class="grid gap-4 md:grid-cols-2">
+      {
+        projects.map((project) => (
+          <li class="border-base-300 bg-base-100 rounded-2xl border p-6 shadow-sm">
+            <h2 class="mb-2 text-xl font-semibold">{project.name}</h2>
+            <p class="text-base-content/80 m-0 mb-4 text-sm leading-relaxed">{project.description}</p>
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-ghost btn-sm px-0 no-underline"
+            >
+              Abrir link →
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </Section>
 
-	<Section title={eventsBlock.title} subtitle={eventsBlock.body} variant="gradient">
-		<p class="m-0">
-			<a
-				href={eventsBlock.externalHref}
-				target="_blank"
-				rel="noopener noreferrer"
-				class="btn btn-primary no-underline"
-			>
-				{eventsBlock.externalLabel}
-			</a>
-		</p>
-	</Section>
+  <Section title={eventsBlock.title} subtitle={eventsBlock.body} variant="gradient">
+    <p class="m-0">
+      <a
+        href={eventsBlock.externalHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn-primary no-underline"
+      >
+        {eventsBlock.externalLabel}
+      </a>
+    </p>
+  </Section>
 </Layout>
