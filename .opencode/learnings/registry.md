@@ -39,3 +39,12 @@ All captured learnings from the AI Diamond Chain are registered here.
 - **Summary:** Created tmux-automation skill with commands for creating detached sessions, sending keys programmatically, capturing output, and session management
 - **Location:** `.opencode/skills/tmux-automation/SKILL.md`
 - **Confidence:** 🟢 High
+
+---
+
+## 2026-04-18 - DaisyUI v5 Custom Theme Configuration
+- **Type:** skill
+- **Source:** Implementation Diamond - Custom theme creation for PodCodar brand
+- **Summary:** Learned DaisyUI v5's new `@plugin "daisyui/theme"` syntax with OKLCH color format, created light/dark theme pair with PodCodar brand colors (tech blues + warm amber accents), disabled default themes for clean implementation
+- **Location:** `.opencode/skills/daisyui-v5-themes/SKILL.md`, `src/styles/global.css`
+- **Confidence:** 🟢 High

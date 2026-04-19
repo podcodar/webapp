@@ -3,7 +3,7 @@
 
 export const SITE_TITLE = 'PodCodar';
 export const SITE_DESCRIPTION =
-	'PodCodar — comunidade sem fins lucrativos que democratiza educação profissionalizante em tecnologia no Brasil. Mentoria, estudos em grupo e projetos reais.';
+  'PodCodar — comunidade sem fins lucrativos que democratiza educação profissionalizante em tecnologia no Brasil. Mentoria, estudos em grupo e projetos reais.';
 
 /** Pass to `<Layout mainClass={...}>` for full-width pages (landing, hero sections). */
 export const LAYOUT_MAIN_FULL_WIDTH = 'flex flex-1 flex-col';

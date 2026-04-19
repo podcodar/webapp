@@ -1,10 +1,10 @@
 ---
-import { SITE_DESCRIPTION } from '@/consts';
+import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 import ogDefaultImage from '@/data/og-default';
 import Layout from '@/layouts/Layout.astro';
 ---
 
-<Layout title="Contato" description={SITE_DESCRIPTION} image={ogDefaultImage}>
+<Layout title={`Contato | ${SITE_TITLE}`} description={SITE_DESCRIPTION} image={ogDefaultImage}>
   <section class="py-36">
   	<h1>Entre em contato</h1>
     <p>Sinta-se livre para entrar em contato!</p>

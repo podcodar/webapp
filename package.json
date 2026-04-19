@@ -1,6 +1,5 @@
 {
 	"name": "webapp",
-	"type": "module",
 	"version": "0.0.1",
 	"engines": {
 		"node": ">=22.12.0"
@@ -21,6 +20,7 @@
 		"typecheck": "astro sync",
 		"test": "vitest run",
 		"test:watch": "vitest",
+		"e2e": "playwright test",
 		"lefthook": "lefthook",
 		"generate-types": "wrangler types",
 		"postinstall": "lefthook install && bun run generate-types"
@@ -43,8 +43,10 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.4.12",
+		"@playwright/test": "^1.59.1",
 		"lefthook": "^2.1.6",
 		"vite-tsconfig-paths": "^6.1.1",
+		"playwright": "^1.59.1",
 		"vitest": "^4.1.4"
 	},
 	"overrides": {
