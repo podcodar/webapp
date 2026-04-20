@@ -1,0 +1,7 @@
+name: webapp
+description: A minimal Bun Pulumi program
+runtime: bun
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: bun

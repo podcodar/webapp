@@ -9,10 +9,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://podcodar.org',
-  output: 'server',
-  adapter: cloudflare({
-    prerenderEnvironment: 'node',
-  }),
+  adapter: cloudflare({ prerenderEnvironment: 'node' }),
 
   i18n: {
     locales: ['pt-br'],
