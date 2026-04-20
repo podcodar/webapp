@@ -15,13 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: write  # needed for the PR comment step
+      pull-requests: write # needed for the PR comment step
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Astro requires Node >=22.12.0 (see .node-version / package.json engines)
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version-file: ".node-version"
 
@@ -49,7 +49,7 @@ jobs:
       # Always upload artifacts so failures can be investigated
       - name: Upload Playwright report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-report
           path: playwright-report/
@@ -57,7 +57,7 @@ jobs:
 
       - name: Upload test results (traces, videos, screenshots)
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: playwright-results
           path: test-results/
@@ -68,7 +68,7 @@ jobs:
       # (GITHUB_TOKEN is scoped to the target repo).
       - name: Comment on PR
         if: always() && github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v9
         env:
           JOB_STATUS: ${{ job.status }}
         with:
