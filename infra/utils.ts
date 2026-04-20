@@ -1,5 +1,5 @@
-import * as path from 'node:path';
 import * as fs from 'node:fs';
+import * as path from 'node:path';
 
 export const today = () => new Date().toISOString().split('T')[0];
 

@@ -1,25 +1,25 @@
 pre-commit:
   parallel: true
-  jobs:
-    - name: lint code
-      run: bunx biome format --write {staged_files}
+  commands:
+    lint-code:
+      run: bunx biome check --write {staged_files} && bunx biome format --write {staged_files}
       glob: "*.{ts,tsx,js,jsx,astro,json}"
       stage_fixed: true
 
-    - name: lint docs
+    lint-docs:
       run: bunx prettier --write {staged_files}
       glob: "*.{md,mdx}"
       stage_fixed: true
 
-    - name: format yaml
+    format-yaml:
       run: bunx prettier --write {staged_files}
       glob: "*.{yml,yaml}"
       stage_fixed: true
 
 pre-push:
-  jobs:
-    - name: lint check
+  commands:
+    lint:
       run: bun run lint
 
-    - name: tests
+    tests:
       run: CI=true bun run test
