@@ -15,7 +15,10 @@ interface Props {
 const { title, description, image } = Astro.props;
 
 /** Root-relative URLs that respect `base` (e.g. GitHub Pages project sites). */
-const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+const withBase = (path: string) => {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return `${base}/${path.replace(/^\//, '')}`;
+};
 
 /**
  * Absolute asset URL in production (nested routes like /blog/...).
@@ -24,7 +27,11 @@ const withBase = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^
 const assetHref = (path: string) => {
   const rel = withBase(path);
   if (import.meta.env.DEV || !Astro.site) return rel;
-  return new URL(rel, Astro.site).href;
+  try {
+    return new URL(rel, Astro.site).href;
+  } catch {
+    return rel;
+  }
 };
 
 const logoIconHref = assetHref('images/logo.svg');
