@@ -39,12 +39,13 @@ jobs:
       # Build the Astro site and start the preview server on port 4321
       - name: Build Astro site
         run: bun run build
+        env:
+          BASE_URL: "http://localhost:4321"
 
       - name: Run Playwright E2E tests
         run: bunx playwright test
         env:
           CI: "true"
-          BASE_URL: "http://localhost:4321"
           PLAYWRIGHT_BASE_URL: "http://localhost:4321"
 
       # Always upload artifacts so failures can be investigated

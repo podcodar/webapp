@@ -46,3 +46,5 @@ jobs:
 
       - name: Build
         run: bun run build
+        env:
+          BASE_URL: "http://localhost:4321"
