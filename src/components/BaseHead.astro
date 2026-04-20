@@ -29,44 +29,6 @@ const assetHref = (path: string) => {
 
 const logoIconHref = assetHref('images/logo.svg');
 ---
-
-<!-- Theme: `podcodar-theme` cookie (`light` / `dark`), or OS preference if unset. -->
-<script is:inline>
-  (function () {
-    try {
-      try {
-        var legacy = localStorage.getItem('podcodar-theme');
-        if (legacy === 'light' || legacy === 'dark') {
-          document.cookie =
-            'podcodar-theme=' +
-            encodeURIComponent(legacy) +
-            '; path=/; max-age=' +
-            60 * 60 * 24 * 365 +
-            '; SameSite=Lax';
-          localStorage.removeItem('podcodar-theme');
-        }
-      } catch (_) {}
-      function getCookie(name) {
-        var raw = '; ' + document.cookie;
-        var parts = raw.split('; ' + name + '=');
-        if (parts.length !== 2) return null;
-        var v = parts.pop();
-        if (!v) return null;
-        var value = v.split(';').shift();
-        return value ? decodeURIComponent(value) : null;
-      }
-      var root = document.documentElement;
-      var c = getCookie('podcodar-theme');
-      var stored = c === 'light' || c === 'dark' ? c : null;
-      if (stored === 'light' || stored === 'dark') {
-        root.setAttribute('data-theme', stored);
-      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        root.setAttribute('data-theme', 'dark');
-      }
-    } catch (_) {}
-  })();
-</script>
-
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href={logoIconHref} />
