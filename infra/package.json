@@ -9,6 +9,7 @@
     "destroy --target": "pulumi destroy --target"
   },
   "devDependencies": {
+    "@pulumi/command": "^1.2.1",
     "@types/bun": "latest"
   },
   "dependencies": {

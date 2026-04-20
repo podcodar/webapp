@@ -1,4 +1,5 @@
 import * as cloudflare from '@pulumi/cloudflare';
+import * as command from '@pulumi/command';
 import * as pulumi from '@pulumi/pulumi';
 
 import { absolutePath, discoverWorkerModules, today } from './utils';
@@ -10,19 +11,31 @@ const environment = config.require('environment');
 const isProd = environment === 'production';
 const workerDomain = isProd ? 'https://podcodar.org' : 'https://dev.podcodar.org';
 
-const worker = new cloudflare.Worker(`podcodar-${environment}`, {
-  accountId,
-  name: `podcodar-${environment}`,
-  observability: {
-    enabled: true,
-    headSamplingRate: 1,
-    logs: {
-      enabled: true,
-      headSamplingRate: 1,
-      invocationLogs: true,
-    },
+const builder = new command.local.Command('build-worker', {
+  create: 'cd .. && bun run w:build',
+  delete: 'echo "No cleanup necessary"',
+  environment: {
+    BASE_URL: workerDomain,
   },
 });
+
+const worker = new cloudflare.Worker(
+  `podcodar-${environment}`,
+  {
+    accountId,
+    name: `podcodar-${environment}`,
+    observability: {
+      enabled: true,
+      headSamplingRate: 1,
+      logs: {
+        enabled: true,
+        headSamplingRate: 1,
+        invocationLogs: true,
+      },
+    },
+  },
+  { dependsOn: [builder] }
+);
 
 const workerVersion = new cloudflare.WorkerVersion(
   `podcodar-worker-version-${environment}`,
@@ -34,7 +47,7 @@ const workerVersion = new cloudflare.WorkerVersion(
     compatibilityFlags: ['global_fetch_strictly_public', 'nodejs_compat'],
 
     assets: {
-      directory: absolutePath('../dist/'),
+      directory: absolutePath('../dist/client/'),
       config: {
         runWorkerFirst: false,
       },
@@ -70,12 +83,16 @@ new cloudflare.WorkersDeployment(
   { dependsOn: [workerVersion] }
 );
 
-new cloudflare.WorkersCustomDomain(`podcodar-custom-domain-${environment}`, {
-  zoneId,
-  accountId,
-  service: worker.name,
-  hostname: workerDomain,
-});
+new cloudflare.WorkersCustomDomain(
+  `podcodar-custom-domain-${environment}`,
+  {
+    zoneId,
+    accountId,
+    service: worker.name,
+    hostname: workerDomain,
+  },
+  { dependsOn: [worker] }
+);
 
 export const workerScriptName = worker.name;
 export const domain = workerDomain;
