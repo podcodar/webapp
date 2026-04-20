@@ -44,6 +44,7 @@ jobs:
         run: bunx playwright test
         env:
           CI: "true"
+          BASE_URL: "http://localhost:4321"
           PLAYWRIGHT_BASE_URL: "http://localhost:4321"
 
       # Always upload artifacts so failures can be investigated

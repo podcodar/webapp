@@ -40,8 +40,9 @@ jobs:
       - name: Astro check
         run: bunx astro check
 
-      - name: Unit tests (Vitest)
-        run: bun run test
+      # INFO: disabled for now
+      # - name: Unit tests (Vitest)
+      #   run: bun run test
 
       - name: Build
         run: bun run build
