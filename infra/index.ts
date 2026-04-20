@@ -34,7 +34,7 @@ const workerVersion = new cloudflare.WorkerVersion(
     compatibilityFlags: ['global_fetch_strictly_public', 'nodejs_compat'],
 
     assets: {
-      directory: absolutePath('../dist/client/'),
+      directory: absolutePath('../dist/'),
       config: {
         runWorkerFirst: false,
       },

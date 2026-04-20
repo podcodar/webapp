@@ -9,7 +9,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
   site: process.env.BASE_URL,
-  adapter: cloudflare(),
+  adapter: cloudflare({ prerenderEnvironment: 'node' }),
 
   i18n: {
     locales: ['pt-br'],
