@@ -2,7 +2,7 @@ pre-commit:
   parallel: true
   commands:
     lint-code:
-      run: bunx biome check --write {staged_files} && bunx biome format --write {staged_files}
+      run: bunx biome check --fix --unsafe {staged_files}  && bunx biome format --fix {staged_files}
       glob: "*.{ts,tsx,js,jsx,astro,json}"
       stage_fixed: true
 

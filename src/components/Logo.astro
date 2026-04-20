@@ -25,8 +25,8 @@ interface Props {
 const { size = 'md', showTitle = true, class: className } = Astro.props;
 
 const logoSrc = `${import.meta.env.BASE_URL}/images/logo.svg`;
-const markClass = sizeMap[size] ?? sizeMap['md'];
-const titleClass = titleMap[size] ?? titleMap['default'];
+const markClass = sizeMap[size] ?? sizeMap.md;
+const titleClass = titleMap[size] ?? titleMap.default;
 ---
 
 <a
