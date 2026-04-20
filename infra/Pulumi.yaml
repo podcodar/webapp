@@ -1,5 +1,5 @@
-name: webapp
-description: A minimal Bun Pulumi program
+name: podcodar
+description: A minimal Astro Pulumi setup for Cloudflare
 runtime: bun
 config:
   pulumi:tags:

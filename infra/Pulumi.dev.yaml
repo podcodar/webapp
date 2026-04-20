@@ -1,1 +1,5 @@
 encryptionsalt: v1:Gdj9op3TwXU=:v1:kDnyl22pMO9mQbYf:8Z2dtUWLJir5VNDyjHZcmQVY9MxFGg==
+config:
+  podcodar:accountId: b2386820ea46b6a9a2eff9e3f8ff5182
+  podcodar:zoneId: 41af03736c37c38d8d6b2db7c02548a4
+  podcodar:environment: production

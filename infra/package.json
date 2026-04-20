@@ -2,11 +2,18 @@
   "name": "webapp",
   "main": "index.ts",
   "type": "module",
+  "scripts": {
+    "up": "pulumi up",
+    "preview": "pulumi preview",
+    "destroy": "pulumi destroy",
+    "destroy --target": "pulumi destroy --target"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "dependencies": {
-    "@pulumi/pulumi": "^3.226.0"
+    "@pulumi/pulumi": "^3.226.0",
+    "@pulumi/cloudflare": "^6.9.0"
   },
   "peerDependencies": {
     "typescript": "^5"
