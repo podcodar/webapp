@@ -1,3 +1,4 @@
+// https://astro.build/config
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
@@ -6,9 +7,8 @@ import { defineConfig, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
-// https://astro.build/config
 export default defineConfig({
-  site: 'https://podcodar.org',
+  site: process.env.BASE_URL,
   adapter: cloudflare({ prerenderEnvironment: 'node' }),
 
   i18n: {
