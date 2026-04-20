@@ -2,66 +2,66 @@
 import Layout from '@/layouts/Layout.astro';
 
 const swatches: {
-	name: string;
-	bg: string;
-	fg: string;
-	border?: string;
+  name: string;
+  bg: string;
+  fg: string;
+  border?: string;
 }[] = [
-	{ name: 'primary', bg: 'bg-primary', fg: 'text-primary-content' },
-	{ name: 'secondary', bg: 'bg-secondary', fg: 'text-secondary-content' },
-	{ name: 'accent', bg: 'bg-accent', fg: 'text-accent-content' },
-	{ name: 'neutral', bg: 'bg-neutral', fg: 'text-neutral-content' },
-	{
-		name: 'base-100',
-		bg: 'bg-base-100',
-		fg: 'text-base-content',
-		border: 'border border-base-300',
-	},
-	{ name: 'info', bg: 'bg-info', fg: 'text-info-content' },
-	{ name: 'success', bg: 'bg-success', fg: 'text-success-content' },
-	{ name: 'warning', bg: 'bg-warning', fg: 'text-warning-content' },
-	{ name: 'error', bg: 'bg-error', fg: 'text-error-content' },
+  { name: 'primary', bg: 'bg-primary', fg: 'text-primary-content' },
+  { name: 'secondary', bg: 'bg-secondary', fg: 'text-secondary-content' },
+  { name: 'accent', bg: 'bg-accent', fg: 'text-accent-content' },
+  { name: 'neutral', bg: 'bg-neutral', fg: 'text-neutral-content' },
+  {
+    name: 'base-100',
+    bg: 'bg-base-100',
+    fg: 'text-base-content',
+    border: 'border border-base-300',
+  },
+  { name: 'info', bg: 'bg-info', fg: 'text-info-content' },
+  { name: 'success', bg: 'bg-success', fg: 'text-success-content' },
+  { name: 'warning', bg: 'bg-warning', fg: 'text-warning-content' },
+  { name: 'error', bg: 'bg-error', fg: 'text-error-content' },
 ];
 ---
 
 <Layout
-	title="Design system"
-	description="Tokens de cor semânticos PodCodar / daisyUI para comparar com podcodar.org"
-	mainClass="mx-auto w-full max-w-4xl flex-1 px-4 py-36"
+  title="Design system"
+  description="Tokens de cor semânticos PodCodar / daisyUI para comparar com podcodar.org"
+  mainClass="mx-auto w-full max-w-4xl flex-1 px-4 py-36"
 >
-	<h1 class="mb-2">Tokens de design</h1>
-	<p class="mb-8 text-base-content/80">
-		Tailwind CSS v4 + daisyUI — a mesma base do{' '}
-		<a href="https://github.com/podcodar/webapp">podcodar/webapp</a>. Use esta página para comparar as
-		cores semânticas com <a href="https://podcodar.org">podcodar.org</a>.
-	</p>
-	<div class="grid gap-4 sm:grid-cols-2">
-		{
-			swatches.map(({ name, bg, fg, border = '' }) => (
-				<div
-					class:list={['rounded-box flex min-h-24 items-center justify-between px-4 py-3', bg, fg, border]}
-				>
-					<span class="font-semibold capitalize">{name}</span>
-					<code class="rounded bg-black/10 px-2 py-1 text-xs">{name}</code>
-				</div>
-			))
-		}
-	</div>
-	<section class="mt-10">
-		<h2 class="mb-4 text-2xl">Ações</h2>
-		<div class="flex flex-wrap gap-2">
-			<button type="button" class="btn btn-primary">
-				Primário
-			</button>
-			<button type="button" class="btn btn-secondary">
-				Secundário
-			</button>
-			<button type="button" class="btn btn-accent">
-				Destaque
-			</button>
-			<button type="button" class="btn btn-ghost">
-				Ghost
-			</button>
-		</div>
-	</section>
+  <h1 class="mb-2">Tokens de design</h1>
+  <p class="mb-8 text-base-content/80">
+    Tailwind CSS v4 + daisyUI — a mesma base do{' '}
+    <a href="https://github.com/podcodar/webapp">podcodar/webapp</a>. Use esta página para comparar as
+    cores semânticas com <a href="https://podcodar.org">podcodar.org</a>.
+  </p>
+  <div class="grid gap-4 sm:grid-cols-2">
+    {
+      swatches.map(({ name, bg, fg, border = '' }) => (
+        <div
+          class:list={['rounded-box flex min-h-24 items-center justify-between px-4 py-3', bg, fg, border]}
+        >
+          <span class="font-semibold capitalize">{name}</span>
+          <code class="rounded bg-black/10 px-2 py-1 text-xs">{name}</code>
+        </div>
+      ))
+    }
+  </div>
+  <section class="mt-10">
+    <h2 class="mb-4 text-2xl">Ações</h2>
+    <div class="flex flex-wrap gap-2">
+      <button type="button" class="btn btn-primary">
+        Primário
+      </button>
+      <button type="button" class="btn btn-secondary">
+        Secundário
+      </button>
+      <button type="button" class="btn btn-accent">
+        Destaque
+      </button>
+      <button type="button" class="btn btn-ghost">
+        Ghost
+      </button>
+    </div>
+  </section>
 </Layout>

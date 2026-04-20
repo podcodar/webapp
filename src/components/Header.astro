@@ -8,50 +8,50 @@ const t = useTranslations(lang);
 const pathname = Astro.url.pathname;
 
 const navigationLinks = [
-	{ href: getRelativeLocaleUrl(lang, '/'), label: t('nav.home') },
-	{ href: getRelativeLocaleUrl(lang, '/blog'), label: t('nav.blog') },
-	{ href: getRelativeLocaleUrl(lang, '/about'), label: t('nav.about') },
-	{ href: getRelativeLocaleUrl(lang, '/contact'), label: t('nav.contact') },
+  { href: getRelativeLocaleUrl(lang, '/'), label: t('nav.home') },
+  { href: getRelativeLocaleUrl(lang, '/blog'), label: t('nav.blog') },
+  { href: getRelativeLocaleUrl(lang, '/about'), label: t('nav.about') },
+  { href: getRelativeLocaleUrl(lang, '/contact'), label: t('nav.contact') },
 ];
 
 const ctaLinks = {
-	secondary: { href: getRelativeLocaleUrl(lang, '/contributing'), label: t('nav.contributing') },
-	primary: { href: getRelativeLocaleUrl(lang, '/join-us'), label: t('nav.join_us') },
+  secondary: { href: getRelativeLocaleUrl(lang, '/contributing'), label: t('nav.contributing') },
+  primary: { href: getRelativeLocaleUrl(lang, '/join-us'), label: t('nav.join_us') },
 };
 ---
 
 <header class="fixed top-0 z-50 w-full p-4">
-	<nav
-		class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 rounded-lg bg-base-100/80 px-4 py-2 shadow-md backdrop-blur-sm"
-		aria-label="Primary"
-	>
-		<div class="flex min-w-0 flex-1 flex-wrap items-center gap-2 lg:gap-4">
-			<Logo size="nav" showTitle />
-			<ul class="menu menu-horizontal flex flex-1 flex-wrap justify-center gap-0 px-0 sm:justify-start lg:gap-1">
-				{
-					navigationLinks.map((link) => (
-						<li>
-							<a
-								class:list={[
-									'btn btn-xs btn-ghost',
-									link.href === pathname && 'btn-outline btn-primary',
-								]}
-								href={link.href}
-							>
-								{link.label}
-							</a>
-						</li>
-					))
-				}
-			</ul>
-		</div>
-		<div class="flex items-center gap-1 sm:gap-2">
-			<a href={ctaLinks.secondary.href} class="btn btn-ghost btn-sm">
-				{ctaLinks.secondary.label}
-			</a>
-			<a href={ctaLinks.primary.href} class="btn btn-primary btn-sm">
-				{ctaLinks.primary.label}
-			</a>
-		</div>
-	</nav>
+  <nav
+    class="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 rounded-lg bg-base-100/80 px-4 py-2 shadow-md backdrop-blur-sm"
+    aria-label="Primary"
+  >
+    <div class="flex min-w-0 flex-1 flex-wrap items-center gap-2 lg:gap-4">
+      <Logo size="nav" showTitle />
+      <ul class="menu menu-horizontal flex flex-1 flex-wrap justify-center gap-0 px-0 sm:justify-start lg:gap-1">
+        {
+          navigationLinks.map((link) => (
+            <li>
+              <a
+                class:list={[
+                  'btn btn-xs btn-ghost',
+                  link.href === pathname && 'btn-outline btn-primary',
+                ]}
+                href={link.href}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="flex items-center gap-1 sm:gap-2">
+      <a href={ctaLinks.secondary.href} class="btn btn-ghost btn-sm">
+        {ctaLinks.secondary.label}
+      </a>
+      <a href={ctaLinks.primary.href} class="btn btn-primary btn-sm">
+        {ctaLinks.primary.label}
+      </a>
+    </div>
+  </nav>
 </header>

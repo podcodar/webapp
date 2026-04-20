@@ -6,52 +6,52 @@ import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 import Layout from '@/layouts/Layout.astro';
 
 const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
 
 <Layout
-	title={SITE_TITLE}
-	description={SITE_DESCRIPTION}
-	mainClass="mx-auto w-full max-w-[960px] flex-1 px-4 py-36"
+  title={SITE_TITLE}
+  description={SITE_DESCRIPTION}
+  mainClass="mx-auto w-full max-w-[960px] flex-1 px-4 py-36"
 >
-	<section>
-		<ul class="m-0 grid list-none grid-cols-1 gap-2 p-0 sm:grid-cols-2 sm:gap-8">
-			{
-				posts.map((post, i) => (
-					<li
-						class:list={[
-							i === 0 ? 'mb-4 text-center sm:col-span-2 sm:mb-0' : '',
-						]}
-					>
-						<a
-							href={`/blog/${post.id}/`}
-							class="group block no-underline transition-colors duration-200"
-						>
-							{post.data.heroImage && (
-								<Image
-									class="mb-2 w-full rounded-box transition-shadow duration-200 group-hover:shadow-lg"
-									width={720}
-									height={360}
-									src={post.data.heroImage}
-									alt=""
-								/>
-							)}
-							<h4
-								class:list={[
-									'm-0 leading-none text-base-content group-hover:text-primary',
-									i === 0 ? 'text-2xl sm:text-4xl' : 'text-2xl',
-								]}
-							>
-								{post.data.title}
-							</h4>
-							<p class="m-0 text-base-content/55 group-hover:text-primary">
-								<FormattedDate date={post.data.pubDate} />
-							</p>
-						</a>
-					</li>
-				))
-			}
-		</ul>
-	</section>
+  <section>
+    <ul class="m-0 grid list-none grid-cols-1 gap-2 p-0 sm:grid-cols-2 sm:gap-8">
+      {
+        posts.map((post, i) => (
+          <li
+            class:list={[
+              i === 0 ? 'mb-4 text-center sm:col-span-2 sm:mb-0' : '',
+            ]}
+          >
+            <a
+              href={`/blog/${post.id}/`}
+              class="group block no-underline transition-colors duration-200"
+            >
+              {post.data.heroImage && (
+                <Image
+                  class="mb-2 w-full rounded-box transition-shadow duration-200 group-hover:shadow-lg"
+                  width={720}
+                  height={360}
+                  src={post.data.heroImage}
+                  alt=""
+                />
+              )}
+              <h4
+                class:list={[
+                  'm-0 leading-none text-base-content group-hover:text-primary',
+                  i === 0 ? 'text-2xl sm:text-4xl' : 'text-2xl',
+                ]}
+              >
+                {post.data.title}
+              </h4>
+              <p class="m-0 text-base-content/55 group-hover:text-primary">
+                <FormattedDate date={post.data.pubDate} />
+              </p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </Layout>

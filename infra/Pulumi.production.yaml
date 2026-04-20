@@ -1,0 +1,5 @@
+encryptionsalt: v1:rdiHVQl5LMg=:v1:TBUR8b5pLVzpz7EC:BKWBG1o1aIs3OgqwO1JLcbCXx8e8/A==
+config:
+  podcodar:accountId: 9ccff81da5d7c234138d96989610537d
+  podcodar:zoneId: ec5904d9f2d5278ff1ecaf0ca2b71808
+  podcodar:environment: production

@@ -38,7 +38,7 @@ export default defineConfig({
 
   // Run your local dev server before starting the tests.
   webServer: {
-    command: 'bun run dev',
+    command: 'bun run preview',
     url: targetUrl,
     reuseExistingServer: !process.env.CI,
   },

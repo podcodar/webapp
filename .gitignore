@@ -26,6 +26,8 @@ pnpm-debug.log*
 # Maestro Setup
 .maestro/
 
+# Cloudflare
+.wrangler/
 # E2E Tests - Playwright
 test-results/
 playwright-report/

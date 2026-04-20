@@ -1,50 +1,49 @@
 ---
 import { SITE_TITLE } from '@/consts';
 
+const sizeMap = {
+  sm: 'h-8 w-8 min-h-8 min-w-8',
+  md: 'h-10 w-10 min-h-10 min-w-10',
+  lg: 'h-14 w-14 min-h-14 min-w-14',
+  nav: 'h-9 w-9 min-h-9 min-w-9',
+  full: 'w-full',
+} as const;
+
+const titleMap: Record<string, string> = {
+  default: 'text-lg font-semibold text-base-content',
+  nav: 'text-lg font-bold text-base-content',
+};
+
 interface Props {
-	/** Logo mark size (`nav` = 36px + bold title, same as podcodar.fly.dev navbar) */
-	size?: 'sm' | 'md' | 'lg' | 'nav' | 'full';
-	/** Show site title next to the mark */
-	showTitle?: boolean;
-	class?: string;
+  /** Logo mark size (`nav` = 36px + bold title, same as podcodar.fly.dev navbar) */
+  size?: 'sm' | 'md' | 'lg' | 'nav' | 'full';
+  /** Show site title next to the mark */
+  showTitle?: boolean;
+  class?: string;
 }
 
 const { size = 'md', showTitle = true, class: className } = Astro.props;
 
-const logoSrc = `${import.meta.env.BASE_URL}images/logo.svg`;
-
-const markClass =
-	size === 'sm'
-		? 'h-8 w-8 min-h-8 min-w-8'
-		: size === 'lg'
-			? 'h-14 w-14 min-h-14 min-w-14'
-			: size === 'nav'
-				? 'h-9 w-9 min-h-9 min-w-9'
-				: size === 'full'
-					? 'w-full'
-					: 'h-10 w-10 min-h-10 min-w-10';
-
-const titleClass =
-	size === 'nav'
-		? 'text-lg font-bold text-base-content'
-		: 'text-lg font-semibold text-base-content';
+const logoSrc = `${import.meta.env.BASE_URL}/images/logo.svg`;
+const markClass = sizeMap[size] ?? sizeMap.md;
+const titleClass = titleMap[size] ?? titleMap.default;
 ---
 
 <a
-	href={import.meta.env.BASE_URL}
-	class:list={[
-		'flex items-center gap-2 no-underline transition-opacity hover:opacity-90',
-		className,
-	]}
+  href={import.meta.env.BASE_URL}
+  class:list={[
+    'flex items-center gap-2 no-underline transition-opacity hover:opacity-90',
+    className,
+  ]}
 >
-	<img
-		src={logoSrc}
-		alt="PodCodar"
-		width="300"
-		height="300"
-		class:list={[markClass, 'object-contain']}
-		loading="eager"
-		decoding="async"
-	/>
-	{showTitle && <span class={titleClass}>{SITE_TITLE}</span>}
+  <img
+    src={logoSrc}
+    alt="PodCodar"
+    width="300"
+    height="300"
+    class:list={[markClass, 'object-contain']}
+    loading="eager"
+    decoding="async"
+  />
+  {showTitle && <span class={titleClass}>{SITE_TITLE}</span>}
 </a>
