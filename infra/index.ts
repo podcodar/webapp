@@ -9,7 +9,7 @@ const accountId = config.require('accountId');
 const zoneId = config.require('zoneId');
 const environment = config.require('environment');
 const isProd = environment === 'production';
-const workerDomain = isProd ? 'https://podcodar.org' : 'https://dev.podcodar.org';
+const workerDomain = isProd ? 'https://prod.podcodar.org' : 'https://dev.podcodar.org';
 
 const builder = new command.local.Command('build-worker', {
   create: 'cd .. && bun run w:build',
@@ -67,7 +67,7 @@ const workerVersion = new cloudflare.WorkerVersion(
   { dependsOn: [worker] }
 );
 
-new cloudflare.WorkersDeployment(
+const workerDeployment = new cloudflare.WorkersDeployment(
   `podcodar-worker-deployment-${environment}`,
   {
     accountId,
@@ -91,7 +91,7 @@ new cloudflare.WorkersCustomDomain(
     service: worker.name,
     hostname: workerDomain,
   },
-  { dependsOn: [worker] }
+  { dependsOn: [worker, workerDeployment] }
 );
 
 export const workerScriptName = worker.name;
