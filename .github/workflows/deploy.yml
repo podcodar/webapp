@@ -8,7 +8,7 @@ on:
       - completed
 
 concurrency:
-  group: deploy-mock-${{ github.event.workflow_run.head_branch }}
+  group: deploy-${{ github.event.workflow_run.head_branch }}
   cancel-in-progress: true
 
 jobs:
@@ -18,15 +18,46 @@ jobs:
       github.event.workflow_run.head_branch == 'main' &&
       github.event.workflow_run.event == 'push'
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     permissions:
       contents: read
+      # Required for Pulumi to access Cloudflare API
+      id-token: write
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.workflow_run.head_sha }}
 
-      - name: Mock production deploy
-        run: |
-          echo "Mock deploy: main updated (sha=${GITHUB_SHA})"
-          echo "Replace this step with real deploy (hosting, container registry, etc.)."
+      # Build Astro app (produces dist/ needed by Pulumi)
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".node-version"
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: bun run w:build
+
+      # Pulumi infra update
+      - name: Configure Pulumi
+        uses: pulumi/actions@v5
+        with:
+          workDir: infra
+          stack-name: webapp.production
+          # Enables OIDC-based authentication (no long-lived secrets needed)
+          cloud-url: puffinsystems
+          # Use access token from env (set in repo secrets)
+          # auth via PULUMI_ACCESS_TOKEN env var
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
+
+      - name: Pulumi up
+        run: cd infra && bun run up
+        env:
+          # Pass Cloudflare credentials to Pulumi
+          CF_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
