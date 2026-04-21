@@ -2,8 +2,6 @@ name: Deploy
 
 on:
   push:
-    tags:
-      - "v*"
     branches:
       - main
 
@@ -12,27 +10,14 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  detect-deploy:
-    runs-on: ubuntu-latest
-    outputs:
-      stack: ${{ steps.detect.outputs.stack }}
-    steps:
-      - id: detect
-        run: |
-          if [[ "${{ github.ref_type }}" == "tag" && "${{ github.ref_name }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "stack=production" >> $GITHUB_OUTPUT
-          else
-            echo "stack=dev" >> $GITHUB_OUTPUT
-          fi
-
   deploy:
-    needs: detect-deploy
     runs-on: ubuntu-latest
     environment: cloudflare
     timeout-minutes: 20
     permissions:
       contents: read
       id-token: write
+
     steps:
       - uses: actions/checkout@v6
         with:
@@ -54,7 +39,7 @@ jobs:
         with:
           command: up
           work-dir: infra
-          stack-name: ${{ needs.detect-deploy.outputs.stack }}
+          stack-name: dev
           cloud-url: ${{ secrets.PULUMI_BACKEND_URL }}
         env:
           AWS_REGION: auto
