@@ -1,3 +1,4 @@
+import { execSync } from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 
@@ -7,13 +8,9 @@ export function getGitCommitHash(): string {
   const skip = process.env.FORCE === 'true';
   if (skip) return Date.now().toString(); // Use timestamp to force a new deployment without relying on git
 
-  const branch = fs.readFileSync('../.git/HEAD', 'utf-8').trim();
-  if (branch.startsWith('ref:')) {
-    const refPath = path.join('../.git', branch.slice(5));
-    return fs.readFileSync(refPath, 'utf-8').trim();
-  }
-
-  return branch; // Detached HEAD state, return the hash directly
+  return execSync('git rev-parse HEAD', { cwd: path.resolve(__dirname, '..') })
+    .toString()
+    .trim();
 }
 
 /**
