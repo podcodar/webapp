@@ -53,11 +53,9 @@ jobs:
           command: up
           work-dir: infra
           stack-name: ${{ needs.detect-deploy.outputs.stack }}
-          cloud-url: s3://podcodar-pulumi-state?endpoint=${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com
+          cloud-url: ${{ secrets.PULUMI_BACKEND_URL }}
         env:
-          # R2
           AWS_REGION: auto
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
-          PULUMI_ACCESS_TOKEN: fake-token
