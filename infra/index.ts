@@ -11,6 +11,11 @@ const environment = config.require('environment');
 const isProd = environment === 'production';
 const workerDomain = isProd ? 'https://prod.podcodar.org' : 'https://dev.podcodar.org';
 
+console.log({
+  pwd: process.cwd(),
+  dist: absolutePath('../dist/client/'),
+});
+
 const builder = new command.local.Command('build-worker', {
   create: 'cd .. && bun run w:build',
   delete: 'echo "No cleanup necessary"',

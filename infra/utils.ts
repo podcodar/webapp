@@ -4,7 +4,7 @@ import * as path from 'node:path';
 export const today = () => new Date().toISOString().split('T')[0];
 
 export const absolutePath = (relativePath: string) =>
-  new URL(relativePath, import.meta.url).pathname;
+  new URL(relativePath, import.meta.url ?? __dirname).pathname;
 
 /**
  * Discover all .mjs module files from the Astro build output.
