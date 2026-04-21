@@ -11,13 +11,19 @@ const environment = config.require('environment');
 const isProd = environment === 'production';
 const workerDomain = isProd ? 'https://prod.podcodar.org' : 'https://dev.podcodar.org';
 
-const builder = new command.local.Command('build-worker', {
-  create: 'cd .. && bun run w:build > /dev/null && echo $PWD/dist',
-  delete: 'echo "No cleanup necessary"',
-  environment: {
-    BASE_URL: workerDomain,
+const builder = new command.local.Command(
+  'build-worker',
+  {
+    create: 'cd .. && bun run w:build > /dev/null && echo $PWD/dist',
+    delete: 'echo "No cleanup necessary"',
+    environment: {
+      BASE_URL: workerDomain,
+    },
   },
-});
+  {
+    replacementTrigger: Date.now().toString(), // Force rebuild on every run
+  }
+);
 
 const worker = new cloudflare.Worker(
   `podcodar-${environment}`,
@@ -47,7 +53,7 @@ const workerVersion = new cloudflare.WorkerVersion(
     compatibilityFlags: ['global_fetch_strictly_public', 'nodejs_compat'],
 
     assets: {
-      directory: pulumi.interpolate`${builder.stdout}/client/`,
+      directory: builder.stdout.apply((dist) => `${dist}/client/`),
       config: {
         runWorkerFirst: false,
       },
@@ -62,9 +68,7 @@ const workerVersion = new cloudflare.WorkerVersion(
       },
     ],
 
-    modules: pulumi.interpolate`${builder.stdout}/server`.apply((serverDir) =>
-      discoverWorkerModules(serverDir)
-    ),
+    modules: builder.stdout.apply((serverDir) => discoverWorkerModules(`${serverDir}/server`)),
   },
   { dependsOn: [worker] }
 );
