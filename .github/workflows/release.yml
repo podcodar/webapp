@@ -1,0 +1,77 @@
+name: Release Workflow
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+      - "v*.*.*-*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Create Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get version
+        id: get_version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/}
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+          # Determine if this is a pre-release
+          if [[ "$VERSION" == *-* ]]; then
+            echo "prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "prerelease=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate release notes
+        run: |
+          cat > release-notes.md << 'NOTES'
+          ## Release ${{ steps.get_version.outputs.version }}
+
+          ### What's New
+
+          Check the [CHANGELOG](./CHANGELOG.md) for details.
+
+          ### Installation
+
+          ```bash
+          # Clone and build
+          git clone https://github.com/${{ github.repository }}.git
+          cd webapp
+          bun install
+          bun run build
+          ```
+
+          ### Verify
+
+          ```bash
+          bun run typecheck
+          bun run lint
+          bun test
+          ```
+
+          ---
+
+          **Full Changelog**: https://github.com/${{ github.repository }}/compare/${{ steps.get_version.outputs.version }}...main
+          NOTES
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ steps.get_version.outputs.version }} 🎉
+          body_path: release-notes.md
+          draft: false
+          prerelease: ${{ steps.get_version.outputs.prerelease }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
