@@ -47,27 +47,15 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Configure Pulumi
+      - name: Applying infrastructure 🚀
         uses: pulumi/actions@v6
         with:
+          cmd: up
           workDir: infra
-          stack-name: podcodar.${{ needs.detect-deploy.outputs.stack }}
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-
-      - name: Pulumi up
-        run: |
-          cd infra && pulumi login && pulumi up --yes
+          stack-name: ${{ needs.detect-deploy.outputs.stack }}
+          cloud-url: s3://podcodar-pulumi-state?endpoint=${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com
         env:
           # R2
           AWS_REGION: auto
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
-          # Cloudflare
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-
-          # Pulumi
-          PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
-          PULUMI_BACKEND_URL: "s3://podcodar-pulumi-state?endpoint=${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com"
