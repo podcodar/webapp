@@ -4,9 +4,9 @@ import * as path from 'node:path';
 export const today = () => new Date().toISOString().split('T')[0];
 
 export function getGitCommitHash(): string {
-  const branch = fs.readFileSync('.git/HEAD', 'utf-8').trim();
+  const branch = fs.readFileSync('../.git/HEAD', 'utf-8').trim();
   if (branch.startsWith('ref:')) {
-    const refPath = path.join('.git', branch.slice(5));
+    const refPath = path.join('../.git', branch.slice(5));
     return fs.readFileSync(refPath, 'utf-8').trim();
   }
 
