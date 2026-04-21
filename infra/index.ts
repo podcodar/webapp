@@ -2,7 +2,7 @@ import * as cloudflare from '@pulumi/cloudflare';
 import * as command from '@pulumi/command';
 import * as pulumi from '@pulumi/pulumi';
 
-import { absolutePath, discoverWorkerModules, today } from './utils';
+import { discoverWorkerModules, today } from './utils';
 
 const config = new pulumi.Config();
 const accountId = config.require('accountId');
@@ -11,13 +11,8 @@ const environment = config.require('environment');
 const isProd = environment === 'production';
 const workerDomain = isProd ? 'https://prod.podcodar.org' : 'https://dev.podcodar.org';
 
-console.log({
-  pwd: process.cwd(),
-  dist: absolutePath('../dist/client/'),
-});
-
 const builder = new command.local.Command('build-worker', {
-  create: 'cd .. && bun run w:build',
+  create: 'cd .. && bun run w:build > /dev/null && echo $PWD/dist',
   delete: 'echo "No cleanup necessary"',
   environment: {
     BASE_URL: workerDomain,
@@ -52,7 +47,7 @@ const workerVersion = new cloudflare.WorkerVersion(
     compatibilityFlags: ['global_fetch_strictly_public', 'nodejs_compat'],
 
     assets: {
-      directory: absolutePath('../dist/client/'),
+      directory: pulumi.interpolate`${builder.stdout}/client/`,
       config: {
         runWorkerFirst: false,
       },
@@ -67,7 +62,9 @@ const workerVersion = new cloudflare.WorkerVersion(
       },
     ],
 
-    modules: discoverWorkerModules(absolutePath('../dist/server')),
+    modules: pulumi.interpolate`${builder.stdout}/server`.apply((serverDir) =>
+      discoverWorkerModules(serverDir)
+    ),
   },
   { dependsOn: [worker] }
 );
