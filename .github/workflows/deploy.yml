@@ -26,6 +26,7 @@ jobs:
   deploy:
     needs: detect-deploy
     runs-on: ubuntu-latest
+    environment: cloudflare
     timeout-minutes: 20
     permissions:
       contents: read
