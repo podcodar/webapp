@@ -7,11 +7,9 @@ root = true
 [*]
 end_of_line = lf
 insert_final_newline = true
-
-# Set default charset
-[*.{tsx,ts,jsx,js}]
-charset = utf-8
-#
-# Set tab width
 indent_style = space
 indent_size = 2
+
+# Set default charset
+[*.{tsx,ts,jsx,js,astro,mdx,json,jsonc}]
+charset = utf-8

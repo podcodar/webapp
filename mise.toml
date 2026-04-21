@@ -1,0 +1,11 @@
+[env]
+'_'.file = ".env"
+
+[tasks]
+encrypt = "gpg -c .env"
+decrypt = "gpg -d .env.gpg > .env"
+
+[tools]
+node = "lts"
+bun = "latest"
+pulumi = "latest"

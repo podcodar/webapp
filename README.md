@@ -1,80 +1,42 @@
-# Welcome to PodCodar WebApp!
+# Welcome to PodCodar WebApp
 
-This WebApp is the main project of PodCodar, a learning community about
-programming and technology.
+This WebApp is the main project of [PodCodar](https://github.com/podcodar), a learning community about programming and technology.
 
-- 📖 [React Router docs](https://reactrouter.com/start/home)
+- 📖 [Astro documentation](https://docs.astro.build)
 - 🧑‍💻 [PodCodar Engineering docs](https://podcodar.github.io/webapp)
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
+- ⚡ Static site generation with [Astro](https://astro.build/)
+- 📝 Markdown and MDX for pages and blog posts
+- 📚 Content collections with typed frontmatter
+- 🗺️ Sitemap and RSS feed
 - 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- 🎨 Minimal, customizable styling
 
-## Development
+## Quick start
 
-### System Dependencies
-
-To have a consistent development environment, we recommend using the following
-tools:
-
-- [Bun](https://bun.sh)
-- [direnv](https://direnv.net/)
-
-### Setup
-
-```shellscript
-# (optional) if you have direnv
-direnv allow
-
-# install dependencies
+```sh
 bun install
-
-# decrypt project credentials into a .env file
-bun decrypt
+bun dev
 ```
 
-### Running the dev server
+The dev server runs at [http://localhost:4321](http://localhost:4321).
 
-```shellscript
-bun run dev
-```
+For project layout, CLI commands, and how we work on this repo, see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## Production
 
-First, build your app for production:
+Build the site:
 
 ```sh
 bun run build
 ```
 
-Then run the app in production mode:
+Output is written to `./dist/`. Preview the production build locally:
 
 ```sh
-bun start
+bun run preview
 ```
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying Node applications, the built-in Remix app
-server is production-ready.
-
-Make sure to deploy the output of `bun run build`
-
-- `build/server`
-- `build/client`
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already
-configured for a simple default starting experience. You can use whatever css
-framework you prefer. See the
-[Vite docs on css](https://vitejs.dev/guide/features.html#css) for more
-information.
+Deploy the contents of `dist/` to any static host (GitHub Pages, Netlify, Cloudflare Pages, etc.).

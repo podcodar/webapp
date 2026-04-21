@@ -1,22 +1,25 @@
-# EXAMPLE USAGE:
-#
-#   Refer for explanation to following link:
-#   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
-#
+pre-commit:
+  parallel: true
+  commands:
+    lint-code:
+      run: bunx biome check --fix --unsafe {staged_files}  && bunx biome format --fix {staged_files}
+      glob: "*.{ts,tsx,js,jsx,astro,json}"
+      stage_fixed: true
+
+    lint-docs:
+      run: bunx prettier --write {staged_files}
+      glob: "*.{md,mdx}"
+      stage_fixed: true
+
+    format-yaml:
+      run: bunx prettier --write {staged_files}
+      glob: "*.{yml,yaml}"
+      stage_fixed: true
+
 pre-push:
   commands:
-    build:
-      tags: build
-      run: bun run build
     lint:
-      tags: lint
       run: bun run lint
-    unit-test:
-      tags: tests
-      run: bun run test
 
-pre-commit:
-  commands:
-    lint:
-      tags: lint
-      run: bun lint-staged
+    e2e:
+      run: CI=true bun run e2e

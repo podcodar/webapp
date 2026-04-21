@@ -1,0 +1,216 @@
+@import "tailwindcss";
+
+/* DaisyUI v5 with custom PodCodar themes - default themes disabled */
+@plugin "daisyui" {
+	themes: false;
+}
+
+/* Scan Astro pages, components, and content for class names */
+@source "../**/*.{astro,html,js,ts,mjs,md,mdx}";
+
+/*
+  PodCodar uses the same stack as github.com/podcodar/webapp: Tailwind CSS v4 + daisyUI.
+  Custom PodCodar themes based on the mascot llama colors: purple/violet primary,
+  lavender secondary, with white/cream base. Colors use OKLCH format.
+*/
+
+/* PodCodar Light Theme (Default) - Based on mascot colors: purple/violet primary */
+@plugin "daisyui/theme" {
+	name: "podcodar-light";
+	default: true;
+	prefersdark: false;
+	color-scheme: light;
+
+	/* Background layers - Clean white with subtle purple tint */
+	--color-base-100: oklch(99% 0.002 300);
+	--color-base-200: oklch(96% 0.005 300);
+	--color-base-300: oklch(90% 0.01 300);
+	--color-base-content: oklch(25% 0.02 300);
+
+	/* Primary - Purple/Violet (from mascot outline) */
+	--color-primary: oklch(60% 0.2 285);
+	--color-primary-content: oklch(99% 0.005 300);
+
+	/* Secondary - Lavender/Lilac (lighter purple accent) */
+	--color-secondary: oklch(75% 0.12 290);
+	--color-secondary-content: oklch(30% 0.03 290);
+
+	/* Accent - Deep Purple (sunglasses lenses) */
+	--color-accent: oklch(50% 0.18 285);
+	--color-accent-content: oklch(99% 0.005 300);
+
+	/* Neutral - Warm Gray */
+	--color-neutral: oklch(45% 0.02 300);
+	--color-neutral-content: oklch(99% 0.005 300);
+
+	/* Semantic colors */
+	--color-info: oklch(70% 0.15 250);
+	--color-info-content: oklch(25% 0.03 250);
+
+	--color-success: oklch(65% 0.15 145);
+	--color-success-content: oklch(99% 0.005 145);
+
+	--color-warning: oklch(75% 0.15 85);
+	--color-warning-content: oklch(30% 0.03 85);
+
+	--color-error: oklch(60% 0.18 25);
+	--color-error-content: oklch(99% 0.005 25);
+
+	/* Radius tokens */
+	--radius-selector: 0.5rem;
+	--radius-field: 0.375rem;
+	--radius-box: 0.75rem;
+
+	/* Size tokens */
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+
+	/* Border */
+	--border: 1px;
+
+	/* Effects */
+	--depth: 1;
+	--noise: 0;
+}
+
+/* PodCodar Dark Theme - Deep purple-tinted dark theme */
+@plugin "daisyui/theme" {
+	name: "podcodar-dark";
+	default: false;
+	prefersdark: true;
+	color-scheme: dark;
+
+	/* Background layers - Deep dark with purple tint */
+	--color-base-100: oklch(20% 0.02 300);
+	--color-base-200: oklch(25% 0.025 300);
+	--color-base-300: oklch(32% 0.03 300);
+	--color-base-content: oklch(96% 0.015 300);
+
+	/* Primary - Bright Purple/Violet (glowing mascot style) */
+	--color-primary: oklch(70% 0.18 285);
+	--color-primary-content: oklch(20% 0.03 300);
+
+	/* Secondary - Soft Lavender (for dark mode harmony) */
+	--color-secondary: oklch(80% 0.1 290);
+	--color-secondary-content: oklch(25% 0.03 290);
+
+	/* Accent - Vibrant Purple */
+	--color-accent: oklch(65% 0.22 285);
+	--color-accent-content: oklch(99% 0.005 300);
+
+	/* Neutral - Purple-Gray */
+	--color-neutral: oklch(70% 0.03 300);
+	--color-neutral-content: oklch(20% 0.02 300);
+
+	/* Semantic colors */
+	--color-info: oklch(70% 0.12 250);
+	--color-info-content: oklch(20% 0.03 250);
+
+	--color-success: oklch(70% 0.12 145);
+	--color-success-content: oklch(20% 0.03 145);
+
+	--color-warning: oklch(75% 0.12 85);
+	--color-warning-content: oklch(25% 0.03 85);
+
+	--color-error: oklch(65% 0.15 25);
+	--color-error-content: oklch(99% 0.005 25);
+
+	/* Radius tokens */
+	--radius-selector: 0.5rem;
+	--radius-field: 0.375rem;
+	--radius-box: 0.75rem;
+
+	/* Size tokens */
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+
+	/* Border */
+	--border: 1px;
+
+	/* Effects */
+	--depth: 1;
+	--noise: 0;
+}
+
+@layer base {
+	html {
+		color-scheme: light dark;
+	}
+
+	body {
+		@apply bg-base-100 font-sans text-base-content antialiased;
+		font-family: var(--font-atkinson), ui-sans-serif, system-ui, sans-serif;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply mb-2 font-bold leading-tight text-base-content;
+	}
+
+	h1 {
+		@apply text-5xl;
+	}
+	h2 {
+		@apply text-4xl;
+	}
+	h3 {
+		@apply text-3xl;
+	}
+	h4 {
+		@apply text-2xl;
+	}
+	h5 {
+		@apply text-xl;
+	}
+
+	a {
+		@apply text-primary underline-offset-2 hover:underline;
+	}
+
+	p {
+		@apply mb-4 leading-relaxed;
+	}
+
+	code {
+		@apply rounded bg-base-200 px-1.5 py-0.5 text-sm;
+	}
+
+	pre {
+		@apply rounded-box p-6;
+	}
+
+	pre > code {
+		@apply bg-transparent p-0;
+	}
+
+	blockquote {
+		@apply border-l-4 border-primary pl-5 text-xl not-italic;
+	}
+
+	hr {
+		@apply my-6 border-0 border-t border-base-300;
+	}
+
+	img {
+		@apply h-auto max-w-full rounded-lg;
+	}
+
+	table {
+		@apply w-full;
+	}
+
+	textarea,
+	input {
+		@apply text-base;
+	}
+}
+
+@media (max-width: 720px) {
+	body {
+		@apply text-lg;
+	}
+}

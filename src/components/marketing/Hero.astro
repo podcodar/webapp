@@ -1,0 +1,44 @@
+---
+import Logo from '@/components/Logo.astro';
+import type { HeroContent } from '@/data/marketing';
+
+interface Props {
+  content: HeroContent;
+}
+
+const { content } = Astro.props;
+---
+
+<section
+  class="from-base-100 via-base-200/40 to-base-100 relative overflow-hidden border-b border-base-300/60 bg-linear-to-br py-28 md:py-36"
+  aria-labelledby="hero-heading"
+>
+  <div
+    class="pointer-events-none absolute inset-0 opacity-[0.07]"
+    aria-hidden="true"
+    style="background-image: radial-gradient(circle at 20% 30%, oklch(55% 0.2 250) 0%, transparent 45%), radial-gradient(circle at 80% 70%, oklch(60% 0.15 160) 0%, transparent 40%);"
+  >
+  </div>
+
+  <div class="relative mx-auto grid grid-cols-2 max-w-6xl gap-10 px-4 py-16 md:flex-row md:items-center md:py-24 lg:gap-16">
+    <div class="flex-1">
+      <p class="text-primary mb-3 text-sm font-semibold tracking-wide uppercase">{content.eyebrow}</p>
+      <h1 id="hero-heading" class="mb-5 text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
+        {content.headline}
+      </h1>
+      <p class="text-base-content/90 mb-8 text-lg leading-relaxed md:text-xl">
+        {content.subhead}
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a href={content.primaryCta.href} class="btn btn-primary btn-lg no-underline">
+          {content.primaryCta.label}
+        </a>
+        <a href={content.secondaryCta.href} class="btn btn-outline btn-primary btn-lg no-underline">
+          {content.secondaryCta.label}
+        </a>
+      </div>
+    </div>
+
+    <Logo size="full" showTitle={false} class="mb-4 scale-scale"/>
+  </div>
+</section>
