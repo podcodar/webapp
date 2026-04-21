@@ -50,8 +50,8 @@ jobs:
       - name: Applying infrastructure 🚀
         uses: pulumi/actions@v6
         with:
-          cmd: up
-          workDir: infra
+          command: up
+          work-dir: infra
           stack-name: ${{ needs.detect-deploy.outputs.stack }}
           cloud-url: s3://podcodar-pulumi-state?endpoint=${{ secrets.CLOUDFLARE_ACCOUNT_ID }}.r2.cloudflarestorage.com
         env:
