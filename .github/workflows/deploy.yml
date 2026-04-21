@@ -46,9 +46,6 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build
-        run: bun run w:build
-
       - name: Configure Pulumi
         uses: pulumi/actions@v6
         with:
