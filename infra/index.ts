@@ -2,7 +2,7 @@ import * as cloudflare from '@pulumi/cloudflare';
 import * as command from '@pulumi/command';
 import * as pulumi from '@pulumi/pulumi';
 
-import { discoverWorkerModules, today } from './utils';
+import { discoverWorkerModules, getGitCommitHash, today } from './utils';
 
 const config = new pulumi.Config();
 const accountId = config.require('accountId');
@@ -20,9 +20,7 @@ const builder = new command.local.Command(
       BASE_URL: workerDomain,
     },
   },
-  {
-    replacementTrigger: Date.now().toString(), // Force rebuild on every run
-  }
+  { replacementTrigger: getGitCommitHash() }
 );
 
 const worker = new cloudflare.Worker(

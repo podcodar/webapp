@@ -3,8 +3,15 @@ import * as path from 'node:path';
 
 export const today = () => new Date().toISOString().split('T')[0];
 
-export const absolutePath = (relativePath: string) =>
-  new URL(relativePath, import.meta.url ?? __dirname).pathname;
+export function getGitCommitHash(): string {
+  const branch = fs.readFileSync('.git/HEAD', 'utf-8').trim();
+  if (branch.startsWith('ref:')) {
+    const refPath = path.join('.git', branch.slice(5));
+    return fs.readFileSync(refPath, 'utf-8').trim();
+  }
+
+  return branch; // Detached HEAD state, return the hash directly
+}
 
 /**
  * Discover all .mjs module files from the Astro build output.
