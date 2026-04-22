@@ -18,7 +18,6 @@ export const METRICS = [
   { value: '300+', label: 'membros' },
   { value: '30+', label: 'mentorados' },
   { value: '16+', label: 'colocados em empregos' },
-  { value: '2', label: 'colocados em universidades federais' },
 ] as const;
 
 export type BoardMember = (typeof BOARD_MEMBERS)[number];
