@@ -1,0 +1,20 @@
+---
+import { Icon } from 'astro-icon/components';
+import { socialIconify, socialLinks } from '@/data/social-links';
+---
+
+<div class="mt-6 flex flex-wrap justify-center gap-5 sm:gap-6">
+  {
+    socialLinks.map((link) => (
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-base-content/70 hover:text-primary transition-colors"
+      >
+        <span class="sr-only">{link.label}</span>
+        <Icon name={socialIconify[link.network]} aria-hidden="true" width={28} height={28} class="inline-block" />
+      </a>
+    ))
+  }
+</div>

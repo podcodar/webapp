@@ -1,9 +1,9 @@
 /**
  * Footer / social presence. Update hrefs if a handle or invite URL changes.
  */
-export type SocialNetwork = 'github' | 'linkedin' | 'instagram' | 'youtube' | 'x' | 'discord';
+export type SocialNetwork = 'github' | 'linkedin' | 'instagram' | 'youtube';
 
-export type FooterSocialLink = {
+export type SocialLink = {
   href: string;
   /** Screen reader label (pt-BR). */
   label: string;
@@ -11,19 +11,17 @@ export type FooterSocialLink = {
 };
 
 /** Iconify ids for `astro-icon` + `@iconify-json/simple-icons`. */
-export const footerSocialIconify: Record<SocialNetwork, string> = {
+export const socialIconify: Record<SocialNetwork, string> = {
   github: 'simple-icons:github',
   linkedin: 'simple-icons:linkedin',
   instagram: 'simple-icons:instagram',
   youtube: 'simple-icons:youtube',
-  x: 'simple-icons:x',
-  discord: 'simple-icons:discord',
 };
 
-export const footerSocialLinks: FooterSocialLink[] = [
+export const socialLinks: SocialLink[] = [
   {
     network: 'github',
-    href: 'https://github.com/podcodar',
+    href: 'https://github.com/podcodar/',
     label: 'PodCodar no GitHub',
   },
   {
@@ -38,17 +36,7 @@ export const footerSocialLinks: FooterSocialLink[] = [
   },
   {
     network: 'youtube',
-    href: 'https://www.youtube.com/@podcodar',
+    href: 'https://www.youtube.com/@podcodar5070',
     label: 'PodCodar no YouTube',
-  },
-  {
-    network: 'x',
-    href: 'https://x.com/podcodar',
-    label: 'PodCodar no X',
-  },
-  {
-    network: 'discord',
-    href: 'https://discord.com/invite/podcodar',
-    label: 'PodCodar no Discord',
   },
 ];

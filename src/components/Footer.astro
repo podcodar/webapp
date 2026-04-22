@@ -1,7 +1,6 @@
 ---
-import { Icon } from 'astro-icon/components';
 import Logo from '@/components/Logo.astro';
-import { footerSocialIconify, footerSocialLinks } from '@/data/social-links';
+import SocialLinks from '@/components/SocialLinks.astro';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const today = new Date();
@@ -14,25 +13,5 @@ const t = useTranslations(lang);
     <Logo size="sm" showTitle class="justify-center" />
   </div>
   <p class="m-0">&copy; {today.getFullYear()} PodCodar. {t('footer.copyright')}</p>
-  <div class="mt-6 flex flex-wrap justify-center gap-5 sm:gap-6">
-    {
-      footerSocialLinks.map((link) => (
-        <a
-          href={link.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-base-content/70 hover:text-primary transition-colors"
-        >
-          <span class="sr-only">{link.label}</span>
-          <Icon
-            name={footerSocialIconify[link.network]}
-            aria-hidden="true"
-            width={28}
-            height={28}
-            class="inline-block"
-          />
-        </a>
-      ))
-    }
-  </div>
+  <SocialLinks />
 </footer>

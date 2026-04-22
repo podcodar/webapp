@@ -31,6 +31,31 @@ test.describe('Homepage', () => {
     const footer = page.locator('footer');
     await expect(footer).toBeInViewport();
   });
+
+  test('shows only official social links in the footer', async ({ page }) => {
+    await page.goto('/');
+
+    const footer = page.locator('footer');
+
+    await expect(footer.getByRole('link', { name: /podcodar no github/i })).toHaveAttribute(
+      'href',
+      'https://github.com/podcodar/'
+    );
+    await expect(footer.getByRole('link', { name: /podcodar no linkedin/i })).toHaveAttribute(
+      'href',
+      'https://www.linkedin.com/company/podcodar/'
+    );
+    await expect(footer.getByRole('link', { name: /podcodar no instagram/i })).toHaveAttribute(
+      'href',
+      'https://www.instagram.com/podcodar/'
+    );
+    await expect(footer.getByRole('link', { name: /podcodar no youtube/i })).toHaveAttribute(
+      'href',
+      'https://www.youtube.com/@podcodar5070'
+    );
+
+    await expect(footer.getByRole('link')).toHaveCount(4);
+  });
 });
 
 // ──────────────────────────────────────────────────────────────────────────────
