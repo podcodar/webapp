@@ -10,6 +10,7 @@
         "@astrojs/mdx": "^5.0.3",
         "@astrojs/rss": "^4.0.18",
         "@astrojs/sitemap": "^3.7.2",
+        "@iconify-json/lucide": "^1.2.102",
         "@iconify-json/simple-icons": "^1.2.79",
         "@tailwindcss/vite": "^4.2.2",
         "astro": "^6.1.8",
@@ -201,6 +202,8 @@
     "@grpc/grpc-js": ["@grpc/grpc-js@1.14.3", "", { "dependencies": { "@grpc/proto-loader": "^0.8.0", "@js-sdsl/ordered-map": "^4.4.2" } }, "sha512-Iq8QQQ/7X3Sac15oB6p0FmUg/klxQvXLeileoqrTRGJYLV+/9tubbr9ipz0GKHjmXVsgFPo/+W+2cA8eNcR+XA=="],
 
     "@grpc/proto-loader": ["@grpc/proto-loader@0.8.0", "", { "dependencies": { "lodash.camelcase": "^4.3.0", "long": "^5.0.0", "protobufjs": "^7.5.3", "yargs": "^17.7.2" }, "bin": { "proto-loader-gen-types": "build/bin/proto-loader-gen-types.js" } }, "sha512-rc1hOQtjIWGxcxpb9aHAfLpIctjEnsDehj0DAiVfBlmT84uvR0uUtN2hEi/ecvWVjXUGf5qPF4qEgiLOx1YIMQ=="],
+
+    "@iconify-json/lucide": ["@iconify-json/lucide@1.2.102", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-Dm3EEqu5NrmzyDMB2U1+8yroEj2/dB9V4KlH0m/szwwF/ofSf0cPaGTZqkd1aExXjCor+vU53ttRMCGuXf+/cg=="],
 
     "@iconify-json/simple-icons": ["@iconify-json/simple-icons@1.2.79", "", { "dependencies": { "@iconify/types": "*" } }, "sha512-aNyO7Fd1qej9oQfIyohYFRv0lhQLaZ+6UkK1c1qwax0MDPUOZOdq65MlU500kow97pD/W+b2u1And3e25eE24Q=="],
 

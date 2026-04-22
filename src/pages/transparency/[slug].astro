@@ -1,0 +1,154 @@
+---
+import { getCollection, render } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import FormattedDate from '@/components/FormattedDate.astro';
+import { useTranslations } from '@/i18n/utils';
+import Layout from '@/layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const docs = await getCollection('transparency');
+  return docs.map((doc) => ({
+    params: { slug: doc.id },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+
+const t = useTranslations('pt-br');
+
+const { Content } = await render(doc);
+
+const iconMap: Record<string, string> = {
+  institucional: 'lucide:scroll-text',
+  financeiro: 'lucide:trending-up',
+  fiscal: 'lucide:shield-check',
+};
+
+const categoryColors: Record<string, { bg: string; text: string; gradient: string }> = {
+  institucional: {
+    bg: 'bg-blue-500/10',
+    text: 'text-blue-500',
+    gradient: 'from-blue-500 to-blue-600',
+  },
+  financeiro: {
+    bg: 'bg-emerald-500/10',
+    text: 'text-emerald-500',
+    gradient: 'from-emerald-500 to-emerald-600',
+  },
+  fiscal: {
+    bg: 'bg-violet-500/10',
+    text: 'text-violet-500',
+    gradient: 'from-violet-500 to-violet-600',
+  },
+};
+
+const icon = iconMap[doc.data.category] || 'lucide:file';
+const colors = categoryColors[doc.data.category] || {
+  bg: 'bg-primary/10',
+  text: 'text-primary',
+  gradient: 'from-primary to-primary/80',
+};
+---
+
+<Layout
+  title={doc.data.title}
+  description={doc.data.description}
+  mainClass="flex flex-1 flex-col"
+>
+  <!-- Hero with gradient -->
+  <div class={`relative overflow-hidden bg-gradient-to-br ${colors.bg} via-base-100 to-base-100 border-b border-base-300/50`}>
+    <!-- Background decoration -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+      <div class={`absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br ${colors.gradient} opacity-5 rounded-full blur-3xl`}></div>
+      <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+    </div>
+    
+    <div class="relative mx-auto max-w-4xl px-4 py-24">
+      <!-- Breadcrumb -->
+      <nav class="mb-8" aria-label="Breadcrumb">
+        <a 
+          href="/transparency" 
+          class="inline-flex items-center gap-2 text-sm text-base-content/60 hover:text-primary transition-colors"
+        >
+          <Icon name="lucide:arrow-left" class="w-4 h-4" />
+          {t('transparency.title')}
+        </a>
+      </nav>
+      
+      <!-- Header -->
+      <div class="flex flex-col md:flex-row md:items-start gap-6">
+        <!-- Icon -->
+        <div class={`w-20 h-20 rounded-2xl ${colors.bg} flex items-center justify-center shrink-0`}>
+          <Icon name={icon} class={`w-10 h-10 ${colors.text}`} />
+        </div>
+        
+        <!-- Content -->
+        <div class="flex-1">
+          <div class={`inline-flex items-center gap-2 px-3 py-1 rounded-full ${colors.bg} ${colors.text} text-sm font-medium mb-3`}>
+            <Icon name="lucide:tag" class="w-3.5 h-3.5" />
+            {t(`transparency.category.${doc.data.category}`)}
+          </div>
+          
+          <h1 class="text-3xl md:text-4xl font-bold mb-3 tracking-tight">
+            {doc.data.title}
+          </h1>
+          
+          <p class="text-lg text-base-content/70 mb-4 leading-relaxed">
+            {doc.data.description}
+          </p>
+          
+          <div class="flex flex-wrap items-center gap-4 text-sm text-base-content/50">
+            <span class="flex items-center gap-2">
+              <Icon name="lucide:calendar-days" class="w-4 h-4" />
+              <FormattedDate date={doc.data.date} />
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions Bar -->
+  {doc.data.fileUrl && (
+    <div class="sticky top-20 z-10 bg-base-100/80 backdrop-blur-md border-b border-base-300/50">
+      <div class="mx-auto max-w-4xl px-4 py-4">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-base-content/60 hidden sm:block">
+            Documento disponível para download
+          </span>
+          <a
+            href={doc.data.fileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r ${colors.gradient} text-white rounded-lg font-medium hover:shadow-lg hover:shadow-primary/20 transition-all duration-300 ml-auto`}
+          >
+            <Icon name="lucide:external-link" class="w-4 h-4" />
+            {t('transparency.view')}
+            <Icon name="lucide:arrow-up-right" class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <!-- Content -->
+  <article class="flex-1 py-12 md:py-16">
+    <div class="mx-auto max-w-4xl px-4">
+      <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary hover:prose-a:text-primary/80 prose-img:rounded-xl">
+        <Content />
+      </div>
+      
+      <!-- Navigation -->
+      <div class="mt-16 pt-8 border-t border-base-300/50">
+        <a
+          href="/transparency"
+          class="inline-flex items-center gap-2 text-base-content/60 hover:text-primary transition-colors"
+        >
+          <Icon name="lucide:arrow-left" class="w-4 h-4" />
+          Voltar para todos os documentos
+        </a>
+      </div>
+    </div>
+  </article>
+</Layout>

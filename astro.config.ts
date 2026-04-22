@@ -25,6 +25,7 @@ export default defineConfig({
     icon({
       include: {
         'simple-icons': ['github', 'linkedin', 'instagram', 'youtube', 'x', 'discord'],
+        lucide: ['*'],
       },
     }),
   ],
