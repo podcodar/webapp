@@ -36,7 +36,7 @@ export const socialLinks: SocialLink[] = [
   },
   {
     network: 'youtube',
-    href: 'https://www.youtube.com/@podcodar5070',
+    href: 'https://www.youtube.com/@podcodar5070/',
     label: 'PodCodar no YouTube',
   },
 ];
