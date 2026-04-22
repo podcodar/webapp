@@ -1,7 +1,9 @@
 /**
  * Footer / social presence. Update hrefs if a handle or invite URL changes.
  */
-export type SocialNetwork = 'github' | 'linkedin' | 'instagram' | 'youtube';
+const SOCIAL_LINKS = ['github', 'linkedin', 'instagram', 'youtube'] as const;
+
+export type SocialNetwork = (typeof SOCIAL_LINKS)[number];
 
 export type SocialLink = {
   href: string;
