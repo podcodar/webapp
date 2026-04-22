@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { Icon } from 'astro-icon/components';
+import FormattedDate from '@/components/FormattedDate.astro';
+
+interface Props {
+  doc: CollectionEntry<'transparency'>;
+  href: string;
+}
+
+const { doc, href } = Astro.props;
+
+const iconMap: Record<string, string> = {
+  institucional: 'lucide:scroll-text',
+  financeiro: 'lucide:trending-up',
+  fiscal: 'lucide:shield-check',
+};
+
+const categoryColors: Record<string, string> = {
+  institucional: 'bg-blue-500/10 text-blue-500 group-hover:bg-blue-500/20',
+  financeiro: 'bg-emerald-500/10 text-emerald-500 group-hover:bg-emerald-500/20',
+  fiscal: 'bg-violet-500/10 text-violet-500 group-hover:bg-violet-500/20',
+};
+
+const icon = iconMap[doc.data.category] || 'lucide:file';
+const colorClass =
+  categoryColors[doc.data.category] || 'bg-primary/10 text-primary group-hover:bg-primary/20';
+---
+
+<a
+  href={href}
+  class="group relative flex flex-col h-full bg-base-100 rounded-2xl border border-base-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 overflow-hidden"
+>
+  <!-- Top accent line -->
+  <div class={`h-1 w-full ${doc.data.category === 'institucional' ? 'bg-blue-500' : doc.data.category === 'financeiro' ? 'bg-emerald-500' : 'bg-violet-500'}`}></div>
+  
+  <div class="p-6 flex flex-col h-full">
+    <!-- Header with icon and category -->
+    <div class="flex items-start justify-between mb-4">
+      <div class={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 ${colorClass}`}>
+        <Icon name={icon} class="w-7 h-7" />
+      </div>
+      <div class="opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
+        <div class="w-10 h-10 rounded-full bg-base-200 flex items-center justify-center">
+          <Icon name="lucide:arrow-up-right" class="w-5 h-5 text-primary" />
+        </div>
+      </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="flex-1">
+      <h3 class="text-xl font-bold mb-2 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+        {doc.data.title}
+      </h3>
+      <p class="text-base-content/60 text-sm leading-relaxed line-clamp-3 mb-4">
+        {doc.data.description}
+      </p>
+    </div>
+    
+    <!-- Footer -->
+    <div class="flex items-center gap-2 pt-4 border-t border-base-200 text-xs text-base-content/50">
+      <Icon name="lucide:calendar-days" class="w-4 h-4" />
+      <FormattedDate date={doc.data.date} />
+    </div>
+  </div>
+</a>

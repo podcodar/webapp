@@ -17,4 +17,16 @@ const blog = defineCollection({
     }),
 });
 
-export const collections = { blog };
+const transparency = defineCollection({
+  loader: glob({ base: './src/content/transparency', pattern: '**/*.{md,mdx}' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.enum(['institucional', 'financeiro', 'fiscal']),
+    date: z.coerce.date(),
+    fileUrl: z.string().optional(),
+    icon: z.string().optional(),
+  }),
+});
+
+export const collections = { blog, transparency };
