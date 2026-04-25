@@ -1,0 +1,99 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import Logo from '@/components/Logo.astro';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+interface Props {
+  navigationLinks: Array<{ href: string; label: string }>;
+  ctaLinks: {
+    secondary: { href: string; label: string };
+    primary: { href: string; label: string };
+  };
+  pathname: string;
+}
+
+const { navigationLinks, ctaLinks, pathname } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<div class="drawer drawer-start lg:hidden">
+  <input id="mobile-menu-drawer" type="checkbox" class="drawer-toggle" />
+
+  <!-- Hamburger button -->
+  <div class="drawer-content">
+    <label
+      for="mobile-menu-drawer"
+      class="btn btn-ghost btn-sm drawer-button"
+      aria-label={t('nav.menu')}
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 6h16M4 12h16M4 18h16"
+        />
+      </svg>
+    </label>
+  </div>
+
+  <!-- Drawer side panel -->
+  <div class="drawer-side z-50">
+    <label
+      for="mobile-menu-drawer"
+      aria-label="close sidebar"
+      class="drawer-overlay"
+    ></label>
+    <div class="flex h-full w-[80vw] max-w-sm flex-col bg-base-100 p-4">
+      <!-- Top: Logo + Navigation links -->
+      <div class="flex flex-col gap-4">
+        <div class="flex items-center gap-2">
+          <Logo size="nav" showTitle />
+        </div>
+        <ul class="menu w-full gap-1 p-0">
+          {
+            navigationLinks.map((link) => (
+              <li>
+                <a
+                  class:list={[
+                    'btn btn-ghost btn-sm w-full justify-start',
+                    link.href === pathname && 'btn-outline btn-primary',
+                  ]}
+                  href={link.href}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <!-- Center: empty space (flex-1 pushes content apart) -->
+      <div class="flex-1"></div>
+
+      <!-- Bottom: CTAs -->
+      <div class="flex flex-col gap-2">
+        <a
+          href={ctaLinks.secondary.href}
+          class="btn btn-ghost btn-sm w-full"
+        >
+          {ctaLinks.secondary.label}
+        </a>
+        <a
+          href={ctaLinks.primary.href}
+          class="btn btn-primary btn-sm w-full"
+        >
+          {ctaLinks.primary.label}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

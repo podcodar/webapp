@@ -9,6 +9,8 @@ export const ui = {
     'nav.contributing': 'Como posso ajudar?',
     'nav.join_us': 'Faça parte!',
     'nav.transparency': 'Transparência',
+    'nav.menu': 'Menu',
+    'nav.close_menu': 'Fechar menu',
     'footer.copyright': 'Todos os direitos reservados.',
     // Transparency page
     'transparency.title': 'Transparência',
