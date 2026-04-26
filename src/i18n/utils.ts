@@ -19,7 +19,10 @@ export function useTranslations(lang?: Lang) {
 }
 
 function normalizePath(path: string): string {
-  return path === '/' ? path : path.replace(/\/$/, '');
+  if (path.length === 0) return '/';
+  if (path === '/') return path;
+
+  return path.replace(/\/$/, '');
 }
 
 export function isActive(linkPath: string, currentPath: string): boolean {
