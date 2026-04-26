@@ -15,7 +15,7 @@ const { content } = Astro.props;
 ---
 
 <section
-  class="from-base-100 via-base-200/40 to-base-100 relative overflow-hidden border-b border-base-300/60 bg-linear-to-br py-28 md:py-36"
+  class="from-base-100 via-base-200/40 to-base-100 relative overflow-hidden border-b border-base-300/60 bg-linear-to-br py-16 md:py-28 lg:py-36"
   aria-labelledby="hero-heading"
 >
   <div
@@ -25,17 +25,17 @@ const { content } = Astro.props;
   >
   </div>
 
-  <div class="relative mx-auto grid grid-cols-2 max-w-6xl gap-10 px-4 py-16 md:flex-row md:items-center md:py-24 lg:gap-16">
-    <div class="flex-1">
-      <p class="text-primary mb-3 text-sm font-semibold tracking-wide uppercase">{content.eyebrow}</p>
-      <h1 id="hero-heading" class="mb-5 text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
+  <div class="relative mx-auto flex flex-col md:flex-row max-w-6xl gap-8 md:gap-10 lg:gap-16 px-4 py-12 md:py-16 lg:py-24 items-center">
+    <div class="flex-1 text-center md:text-left">
+      <p class="text-primary mb-2 md:mb-3 text-xs md:text-sm font-semibold tracking-wide uppercase">{content.eyebrow}</p>
+      <h1 id="hero-heading" class="mb-4 md:mb-5 text-3xl md:text-5xl lg:text-6xl leading-tight font-bold tracking-tight">
         {content.headline}
       </h1>
-      <p class="text-base-content/90 mb-8 text-lg leading-relaxed md:text-xl">
+      <p class="text-base-content/90 mb-6 md:mb-8 text-base md:text-lg leading-relaxed md:text-xl">
         {content.subhead}
       </p>
       {(content.primaryCta ?? content.secondaryCta) && (
-        <div class="flex flex-wrap gap-3">
+        <div class="flex flex-wrap gap-3 justify-center md:justify-start">
           {content.primaryCta && (
             <a href={content.primaryCta.href} class="btn btn-primary btn-lg no-underline">
               {content.primaryCta.label}
@@ -50,6 +50,6 @@ const { content } = Astro.props;
       )}
     </div>
 
-    <Logo size="full" showTitle={false} class="mb-4 scale-scale"/>
+    <Logo size="full" showTitle={false} class="mb-4 scale-scale hidden md:block"/>
   </div>
 </section>

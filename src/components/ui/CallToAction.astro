@@ -4,26 +4,24 @@ import { Icon } from 'astro-icon/components';
 interface Props {
   icon: string;
   title: string;
-  description: string;
+  description?: string;
   class?: string;
 }
 
 const { icon, title, description, class: className = '' } = Astro.props;
 ---
 
-<section class={`py-16 md:py-24 relative overflow-hidden ${className}`}>
-  <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-base-100 to-secondary/5"></div>
-  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
+<section class={`relative overflow-hidden bg-linear-to-br from-primary/5 via-base-100 to-secondary/5 py-12 md:py-16 lg:py-24 ${className}`}>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
 
-  <div class="relative mx-auto max-w-6xl px-4">
-    <div class="max-w-2xl mx-auto text-center">
-      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/20 mx-auto mb-6">
-        <Icon name={icon} class="w-8 h-8 text-primary-content" />
-      </div>
-      <h2 class="text-3xl font-bold mb-4">{title}</h2>
-      <p class="text-lg text-base-content/70 mb-8">{description}</p>
+  <div class="relative mx-auto max-w-4xl px-4 text-center">
+    <div class="w-12 h-12 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/20 mx-auto mb-4 md:mb-6">
+      <Icon name={icon} class="w-6 h-6 md:w-8 md:h-8 text-primary-content" />
+    </div>
+    <h2 class="text-xl md:text-2xl lg:text-3xl font-bold mb-3 md:mb-4">{title}</h2>
+    {description && <p class="text-base-content/70 mb-6 md:mb-8 max-w-2xl mx-auto text-base md:text-lg leading-relaxed">{description}</p>}
+    <div class="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
       <slot />
     </div>
-    <slot name="footer" />
   </div>
 </section>

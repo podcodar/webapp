@@ -61,7 +61,7 @@ const description = t('about.hero.subtitle');
         class="mb-12"
       />
 
-      <ul class="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+      <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {coreValues.map((value, index) => {
           const cards = [
             { from: 'from-blue-500/5', to: 'to-blue-600/10', border: 'hover:border-blue-500/30', gradient: 'from-blue-500 to-blue-600', icon: 'lucide:users' },
@@ -127,7 +127,7 @@ const description = t('about.hero.subtitle');
         class="mb-8"
       />
 
-      <ul class="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
+      <ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {communicationChannels.map((ch) => (
           <ChannelCard icon={ch.icon} title={t(ch.nameKey)} subtitle={t(ch.descKey)} color={ch.color} />
         ))}

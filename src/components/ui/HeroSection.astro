@@ -27,26 +27,26 @@ const { eyebrow, title, subtitle, stats, class: className = '' } = Astro.props;
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary/3 to-secondary/3 rounded-full blur-3xl"></div>
   </div>
 
-  <div class="relative mx-auto max-w-6xl px-4 py-24 md:py-32">
+  <div class="relative mx-auto max-w-6xl px-4 py-16 md:py-20 lg:py-32">
     {eyebrow && (
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 text-primary text-xs md:text-sm font-medium mb-4 md:mb-6">
         <slot name="eyebrow-icon" />
         <span>{eyebrow}</span>
       </div>
     )}
 
-    <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-base-content via-base-content to-base-content/70 bg-clip-text">
+    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6 bg-gradient-to-r from-base-content via-base-content to-base-content/70 bg-clip-text">
       {title}
     </h1>
 
     {subtitle && (
-      <p class="text-xl text-base-content/70 max-w-2xl leading-relaxed">
+      <p class="text-base md:text-lg lg:text-xl text-base-content/70 max-w-2xl leading-relaxed">
         {subtitle}
       </p>
     )}
 
     {stats.length > 0 && (
-      <div class="flex flex-wrap gap-6 mt-10">
+      <div class="flex flex-wrap gap-4 md:gap-6 mt-8 md:mt-10">
         {stats.map((stat) => {
           const colorClasses = {
             primary: 'bg-primary/10 text-primary',
@@ -56,13 +56,13 @@ const { eyebrow, title, subtitle, stats, class: className = '' } = Astro.props;
           };
           const color = stat.color ?? 'blue';
           return (
-            <div class="flex items-center gap-3">
-              <div class={`w-12 h-12 rounded-xl ${colorClasses[color]} flex items-center justify-center`}>
-                <Icon name={stat.icon} class="w-6 h-6" />
+            <div class="flex items-center gap-2 md:gap-3">
+              <div class={`w-10 h-10 md:w-12 md:h-12 rounded-xl ${colorClasses[color]} flex items-center justify-center`}>
+                <Icon name={stat.icon} class="w-5 h-5 md:w-6 md:h-6" />
               </div>
               <div>
-                <span class="block text-2xl font-bold">{stat.value}</span>
-                <span class="text-sm text-base-content/60">{stat.label}</span>
+                <span class="block text-xl md:text-2xl font-bold">{stat.value}</span>
+                <span class="text-xs md:text-sm text-base-content/60">{stat.label}</span>
               </div>
             </div>
           );
