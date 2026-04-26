@@ -15,6 +15,7 @@ interface Props {
 const { navigationLinks, ctaLinks, pathname } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+const pathnameNormalized = pathname.replace(/\/$/, '') || '/';
 ---
 
 <div class="drawer drawer-start lg:hidden">
@@ -46,19 +47,23 @@ const t = useTranslations(lang);
         </div>
         <ul class="menu w-full gap-1 p-0">
           {
-            navigationLinks.map((link) => (
-              <li>
-                <a
-                  class:list={[
-                    'btn btn-ghost btn-sm w-full justify-start',
-                    link.href === pathname && 'btn-outline btn-primary',
-                  ]}
-                  href={link.href}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))
+            navigationLinks.map((link) => {
+              const hrefStr = String(link.href);
+              const isActive = hrefStr.replace(/\/$/, '') === pathnameNormalized;
+              return (
+                <li>
+                  <a
+                    class:list={[
+                      'btn btn-ghost btn-sm w-full justify-start',
+                      isActive && 'btn-outline btn-primary',
+                    ]}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })
           }
         </ul>
       </div>
