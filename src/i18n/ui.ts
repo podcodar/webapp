@@ -194,6 +194,12 @@ export const ui = {
     'contributing.hero.title': 'Como posso ajudar?',
     'contributing.hero.subtitle':
       'Como organização sem fins lucrativos, a PodCodar depende de pessoas e organizações que acreditam na democratização da educação em tecnologia. Você pode apoiar com recursos, tempo ou parcerias estratégicas.',
+    'contributing.hero.stats.volunteers.value': '50+',
+    'contributing.hero.stats.volunteers.label': 'Voluntários',
+    'contributing.hero.stats.projects.value': '20+',
+    'contributing.hero.stats.projects.label': 'Projetos',
+    'contributing.hero.stats.years.value': '5+',
+    'contributing.hero.stats.years.label': 'Anos',
     'contributing.donations.title': 'Doações',
     'contributing.donations.subtitle':
       'Doações de pessoas físicas e patrocínios ajudam a financiar sustentabilidade, impacto e crescimento — plataforma de ensino, oficinas e fortalecimento do time.',

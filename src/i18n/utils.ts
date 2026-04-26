@@ -17,3 +17,9 @@ export function useTranslations(lang?: Lang) {
     );
   };
 }
+
+export function isActive(linkPath: string, currentPath: string): boolean {
+  const normalizedLink = linkPath.replace(/\/$/, '') || '/';
+  const normalizedCurrent = currentPath.replace(/\/$/, '') || '/';
+  return normalizedLink === normalizedCurrent;
+}

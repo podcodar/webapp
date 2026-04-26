@@ -2,7 +2,7 @@
 import { getRelativeLocaleUrl } from 'astro:i18n';
 import Logo from '@/components/Logo.astro';
 import MobileMenu from '@/components/MobileMenu.astro';
-import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, isActive, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -51,15 +51,13 @@ const ctaLinks = {
         <ul class="menu menu-horizontal flex flex-1 flex-wrap gap-0 px-0 lg:gap-1">
           {
             navigationLinks.map((link) => {
-              const hrefStr = String(link.href);
-              const linkPathname = new URL(hrefStr).pathname.replace(/\/$/, '') || '/';
-              const isActive = linkPathname === pathname;
+              const isActiveLink = isActive(link.href, pathname);
               return (
                 <li>
                   <a
                     class:list={[
                       'btn btn-xs btn-ghost',
-                      isActive && 'btn-outline btn-primary',
+                      isActiveLink && 'btn-outline btn-primary',
                     ]}
                     href={link.href}
                   >

@@ -18,6 +18,26 @@ const description = t('contributing.hero.subtitle');
     eyebrow={t('contributing.hero.eyebrow')}
     title={t('contributing.hero.title')}
     subtitle={t('contributing.hero.subtitle')}
+    stats={[
+      {
+        icon: 'lucide:users',
+        value: t('contributing.hero.stats.volunteers.value'),
+        label: t('contributing.hero.stats.volunteers.label'),
+        color: 'violet',
+      },
+      {
+        icon: 'lucide:folder-code',
+        value: t('contributing.hero.stats.projects.value'),
+        label: t('contributing.hero.stats.projects.label'),
+        color: 'emerald',
+      },
+      {
+        icon: 'lucide:calendar',
+        value: t('contributing.hero.stats.years.value'),
+        label: t('contributing.hero.stats.years.label'),
+        color: 'blue',
+      },
+    ]}
   >
     <Icon name="lucide:heart" slot="eyebrow-icon" class="w-4 h-4" />
   </HeroSection>
