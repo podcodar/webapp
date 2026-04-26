@@ -46,10 +46,11 @@ const pathnameNormalized = pathname.replace(/\/$/, '') || '/';
           <Logo size="nav" showTitle />
         </div>
         <ul class="menu w-full gap-1 p-0">
-          {
+{
             navigationLinks.map((link) => {
               const hrefStr = String(link.href);
-              const isActive = hrefStr.replace(/\/$/, '') === pathnameNormalized;
+              const linkPathname = new URL(hrefStr).pathname.replace(/\/$/, '') || '/';
+              const isActive = linkPathname === pathnameNormalized;
               return (
                 <li>
                   <a
