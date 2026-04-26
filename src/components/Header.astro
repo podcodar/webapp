@@ -53,6 +53,7 @@ const ctaLinks = {
             navigationLinks.map((link) => {
               const hrefStr = String(link.href);
               const isActive = hrefStr.replace(/\/$/, '') === pathname;
+              console.log('[DEBUG] hrefStr:', hrefStr, 'pathname:', pathname, 'isActive:', isActive);
               return (
                 <li>
                   <a
