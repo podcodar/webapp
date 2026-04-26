@@ -7,6 +7,7 @@ import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+console.log('[DEBUG Header] pathname:', pathname);
 
 const navigationLinks = [
   { href: getRelativeLocaleUrl(lang, '/'), label: t('nav.home') },
@@ -53,6 +54,7 @@ const ctaLinks = {
             navigationLinks.map((link) => {
               const hrefStr = String(link.href);
               const isActive = hrefStr.replace(/\/$/, '') === pathname;
+              console.log('[DEBUG Header] hrefStr:', hrefStr, 'isActive:', isActive);
               return (
                 <li>
                   <a
