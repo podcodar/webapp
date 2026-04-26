@@ -18,8 +18,12 @@ export function useTranslations(lang?: Lang) {
   };
 }
 
+function normalizePath(path: string): string {
+  return path === '/' ? path : path.replace(/\/$/, '');
+}
+
 export function isActive(linkPath: string, currentPath: string): boolean {
-  const normalizedLink = linkPath.replace(/\/$/, '') || '/';
-  const normalizedCurrent = currentPath.replace(/\/$/, '') || '/';
-  return normalizedLink === normalizedCurrent;
+  const normalizedLink = normalizePath(linkPath);
+  const normalizedCurrent = normalizePath(currentPath);
+  return normalizedLink.endsWith(normalizedCurrent);
 }
