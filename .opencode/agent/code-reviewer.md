@@ -26,6 +26,8 @@ Review all code changes for correctness, standards compliance, and quality. You 
 - Check for deprecated API usage.
 - Verify error handling follows project conventions.
 - Ensure code follows the project's structure and naming conventions.
+- Flag any hardcoded text strings in `.astro` templates — all user-facing strings must use the i18n system (`t()`). This is a blocking issue.
+- Verify new translation keys are properly registered in `src/i18n/ui.ts`.
 
 ## Output Format
 

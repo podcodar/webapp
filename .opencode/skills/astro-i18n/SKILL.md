@@ -12,6 +12,7 @@ compatibility: opencode
 ## Quick Start
 
 ### 1. Configure astro.config.mjs
+
 ```js
 i18n: {
   locales: ['pt-br', 'en'],
@@ -23,12 +24,14 @@ i18n: {
 ```
 
 ### 2. Create Translation Files
+
 ```
 src/i18n/ui.ts    # Translation strings
 src/i18n/utils.ts # Helper functions
 ```
 
 ### 3. Organize Pages
+
 ```
 src/pages/
 ├── index.astro        # default locale (pt-br)
@@ -46,53 +49,57 @@ src/pages/
 ## Core Concepts
 
 ### Locale Detection Priority
+
 1. **Cookie** (user selected) - highest priority
 2. **Browser Accept-Language header** - middleware (SSR required)
 3. **Default locale** - fallback
 
 ### URL Structure
+
 | prefixDefaultLocale | default locale URL | other locale URL |
-|---------------------|-------------------|-----------------|
-| false | `/` | `/en/` |
-| true | `/pt-br/` | `/en/` |
+| ------------------- | ------------------ | ---------------- |
+| false               | `/`                | `/en/`           |
+| true                | `/pt-br/`          | `/en/`           |
 
 ---
 
 ## File Reference
 
 ### src/i18n/ui.ts
+
 ```typescript
 export const languages = {
-  en: 'English',
-  'pt-br': 'Português (Brasil)',
+  en: "English",
+  "pt-br": "Português (Brasil)",
 } as const;
 
-export const defaultLang = 'pt-br';
+export const defaultLang = "pt-br";
 
 export const ui = {
   en: {
-    'nav.home': 'Home',
-    'nav.blog': 'Blog',
-    'nav.about': 'About',
-    'nav.contact': 'Contact',
-    'footer.copyright': 'All rights reserved.',
+    "nav.home": "Home",
+    "nav.blog": "Blog",
+    "nav.about": "About",
+    "nav.contact": "Contact",
+    "footer.copyright": "All rights reserved.",
   },
-  'pt-br': {
-    'nav.home': 'Início',
-    'nav.blog': 'Blog',
-    'nav.about': 'Sobre',
-    'nav.contact': 'Contato',
-    'footer.copyright': 'Todos os direitos reservados.',
+  "pt-br": {
+    "nav.home": "Início",
+    "nav.blog": "Blog",
+    "nav.about": "Sobre",
+    "nav.contact": "Contato",
+    "footer.copyright": "Todos os direitos reservados.",
   },
 } as const;
 ```
 
 ### src/i18n/utils.ts
+
 ```typescript
-import { ui, defaultLang } from './ui';
+import { ui, defaultLang } from "./ui";
 
 export function getLangFromUrl(url: URL): keyof typeof ui {
-  const segments = url.pathname.split('/').filter(Boolean);
+  const segments = url.pathname.split("/").filter(Boolean);
   const firstSegment = segments[0];
   if (firstSegment && firstSegment in ui) {
     return firstSegment as keyof typeof ui;
@@ -146,6 +153,7 @@ const t = useTranslations(lang);
 ## Language Picker with Cookie Persistence
 
 ### src/components/LanguagePicker.astro
+
 ```astro
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
@@ -203,15 +211,76 @@ const currentPath = getPathWithoutLocale(pathname, currentLang);
 
 ---
 
+## Text Convention (MANDATORY)
+
+ALL user-visible text in `.astro` files MUST use the i18n system. Hardcoded
+strings in templates are forbidden.
+
+### Correct
+
+```astro
+---
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+<HeroSection title={t('about.hero.title')} eyebrow={t('about.hero.eyebrow')} />
+<SectionHeader title={t('contact.methods.title')} subtitle={t('contact.methods.subtitle')} />
+<p>{t('contributing.donations.body')}</p>
+```
+
+### Wrong
+
+```astro
+<HeroSection title="Sobre nós" eyebrow="PodCodar" />
+<SectionHeader title="Canais de Comunicação" subtitle="Escolha o canal..." />
+<p>Se quiser contribuir financeiramente...</p>
+```
+
+### Exception
+
+Data-driven content from `src/data/*.ts` files (board member names, metric
+values, channel names, project names) is iterable data, not display strings.
+These may be used directly:
+
+```astro
+<!-- OK — iterated from marketing.ts data -->
+{projects.map((project) => <h3>{project.name}</h3>)}
+
+<!-- NOT OK — hardcoded section header -->
+<h2>Projetos e repositórios</h2>
+<!-- Should be: -->
+<h2>{t('about.projects.title')}</h2>
+```
+
+### Adding New Keys
+
+When adding a new key to `src/i18n/ui.ts`, follow the namespace pattern:
+
+```
+{page}.{section}.{field}
+```
+
+Examples:
+
+- `about.hero.eyebrow` — About page, hero section, eyebrow badge
+- `joinUs.steps.01.title` — Join Us page, steps section, step 1 title
+- `contributing.volunteering.body` — Contributing page, volunteering section, body text
+
+---
+
 ## Common Pitfalls
 
 ### 1. Hardcoded lang Attribute
+
 **WRONG**:
+
 ```html
-<html lang="en">
+<html lang="en"></html>
 ```
 
 **CORRECT**:
+
 ```astro
 ---
 import { getLangFromUrl } from '../i18n/utils';
@@ -221,12 +290,15 @@ const lang = getLangFromUrl(Astro.url);
 ```
 
 ### 2. Static Links Without getRelativeLocaleUrl
+
 **WRONG**:
+
 ```html
-<a href="/about">
+<a href="/about"></a>
 ```
 
 **CORRECT**:
+
 ```astro
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
@@ -236,13 +308,16 @@ const lang = getLangFromUrl(Astro.url);
 ```
 
 ### 3. Wrong Default Locale
+
 **WRONG** (default must be explicitly set):
+
 ```js
 locales: ['en', 'pt-br'],
 defaultLocale: 'en',
 ```
 
 **CORRECT**:
+
 ```js
 locales: ['pt-br', 'en'],
 defaultLocale: 'pt-br',
@@ -278,6 +353,7 @@ defaultLocale: 'pt-br',
 ## When Server-Side Redirect is Needed
 
 For server-side redirect based on browser language, add SSR adapter:
+
 1. Install `@astrojs/node`
 2. Set `output: 'server'`
 3. Create `src/middleware.ts` for server-side detection
