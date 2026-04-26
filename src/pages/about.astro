@@ -88,13 +88,10 @@ const description =
         </div>
       </div>
 
-      <div class="relative max-w-3xl">
-        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl transform rotate-1"></div>
-        <div class="relative bg-base-100 rounded-xl border border-base-300 p-8">
-          {mission.body.map((paragraph) => (
-            <p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>
-          ))}
-        </div>
+      <div class="max-w-3xl space-y-4">
+        {mission.body.map((paragraph) => (
+          <p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>
+        ))}
       </div>
     </div>
   </section>
@@ -186,15 +183,12 @@ const description =
         {communicationChannels.map((ch, index) => {
           const channelIcons = ['lucide:message-square', 'simple-icons:discord', 'lucide:video'];
           return (
-            <li class="group relative">
-              <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/10 rounded-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-300"></div>
-              <div class="relative bg-base-100 rounded-2xl border border-base-300 p-6 hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/5 transition-all duration-300">
-                <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-3 group-hover:bg-blue-500/20 transition-colors duration-300">
-                  <Icon name={channelIcons[index]} class="w-5 h-5 text-blue-600" />
-                </div>
-                <h3 class="text-lg font-semibold mb-1">{ch.channel}</h3>
-                <p class="text-base-content/85 m-0 text-sm leading-relaxed">{ch.description}</p>
+            <li class="bg-base-100 rounded-2xl border border-base-300 p-6 hover:border-blue-500/30 hover:shadow-lg transition-all duration-300">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-3">
+                <Icon name={channelIcons[index]} class="w-5 h-5 text-blue-600" />
               </div>
+              <h3 class="text-lg font-semibold mb-1">{ch.channel}</h3>
+              <p class="text-base-content/85 m-0 text-sm leading-relaxed">{ch.description}</p>
             </li>
           );
         })}
@@ -217,21 +211,18 @@ const description =
 
       <ul class="grid gap-4 md:grid-cols-2 max-w-3xl">
         {projects.map((project) => (
-          <li class="group">
-            <div class="absolute inset-0 bg-gradient-to-br from-violet-500/5 to-violet-600/10 rounded-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-300"></div>
-            <div class="relative bg-base-100 rounded-2xl border border-base-300 p-6 hover:border-violet-500/30 hover:shadow-lg hover:shadow-violet-500/5 transition-all duration-300">
-              <h3 class="text-xl font-semibold mb-2 group-hover:text-violet-600 transition-colors">{project.name}</h3>
-              <p class="text-base-content/80 m-0 mb-4 text-sm leading-relaxed">{project.description}</p>
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 text-sm font-medium text-violet-600 hover:text-violet-700 no-underline transition-colors"
-              >
-                <Icon name="lucide:external-link" class="w-4 h-4" />
-                Abrir link
-              </a>
-            </div>
+          <li class="bg-base-100 rounded-2xl border border-base-300 p-6 hover:border-violet-500/30 hover:shadow-lg transition-all duration-300">
+            <h3 class="text-xl font-semibold mb-2">{project.name}</h3>
+            <p class="text-base-content/80 m-0 mb-4 text-sm leading-relaxed">{project.description}</p>
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-sm font-medium text-violet-600 hover:text-violet-700 no-underline"
+            >
+              <Icon name="lucide:external-link" class="w-4 h-4" />
+              Abrir link
+            </a>
           </li>
         ))}
       </ul>
