@@ -5,7 +5,8 @@ type Props = HTMLAttributes<'a'>;
 
 const { href, class: className, ...props } = Astro.props;
 const pathname = Astro.url.pathname.replace(import.meta.env.BASE_URL, '').replace(/\/$/, '') || '/';
-const hrefNormalized = href.replace(/\/$/, '') || '/';
+const hrefStr = typeof href === 'string' ? href : (href?.pathname ?? '/');
+const hrefNormalized = hrefStr.replace(/\/$/, '') || '/';
 const subpath = pathname.match(/[^/]+/g);
 const isActive = hrefNormalized === pathname || hrefNormalized === `/${subpath?.[0] ?? ''}`;
 ---
