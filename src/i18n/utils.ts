@@ -18,7 +18,8 @@ export function useTranslations(lang?: Lang) {
   };
 }
 
-function normalizePath(path: string): string {
+function normalizePath(path = '/'): string {
+  console.log({ path });
   if (!path || path === '/') return '/';
 
   return path.replace(/\/$/, '');
