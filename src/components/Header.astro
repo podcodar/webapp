@@ -51,8 +51,8 @@ const ctaLinks = {
         <ul class="menu menu-horizontal flex flex-1 flex-wrap gap-0 px-0 lg:gap-1">
           {
             navigationLinks.map((link) => {
-              const href = typeof link.href === 'string' ? link.href : link.href?.pathname ?? '/';
-              const isActive = href.replace(/\/$/, '') === pathname;
+              const hrefStr = String(link.href);
+              const isActive = hrefStr.replace(/\/$/, '') === pathname;
               return (
                 <li>
                   <a
