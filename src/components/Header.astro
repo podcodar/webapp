@@ -1,12 +1,12 @@
 ---
 import { getRelativeLocaleUrl } from 'astro:i18n';
+import HeaderLink from '@/components/HeaderLink.astro';
 import Logo from '@/components/Logo.astro';
 import MobileMenu from '@/components/MobileMenu.astro';
-import { getLangFromUrl, isActive, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const navigationLinks = [
   { href: getRelativeLocaleUrl(lang, '/'), label: t('nav.home') },
@@ -30,7 +30,7 @@ const ctaLinks = {
     <!-- Mobile: Logo + Hamburger in a flex row -->
     <div class="flex w-full items-center justify-between lg:hidden">
       <div class="flex items-center gap-2">
-        <MobileMenu {navigationLinks} {ctaLinks} {pathname} />
+        <MobileMenu {navigationLinks} {ctaLinks} />
       </div>
 
       <div class="flex items-center gap-2">
@@ -50,22 +50,11 @@ const ctaLinks = {
         <Logo size="nav" showTitle />
         <ul class="menu menu-horizontal flex flex-1 flex-wrap gap-0 px-0 lg:gap-1">
           {
-            navigationLinks.map((link) => {
-              const isActiveLink = isActive(link.href, pathname);
-              return (
-                <li>
-                  <a
-                    class:list={[
-                      'btn btn-xs btn-ghost',
-                      isActiveLink && 'btn-outline btn-primary',
-                    ]}
-                    href={link.href}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })
+            navigationLinks.map((link) => (
+              <li>
+                <HeaderLink href={link.href} class="btn-xs">{link.label}</HeaderLink>
+              </li>
+            ))
           }
         </ul>
       </div>

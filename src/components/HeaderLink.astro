@@ -13,10 +13,8 @@ const isActiveLink = isActive(hrefStr, pathname);
 <a
   href={href}
   class:list={[
-    'inline-block border-b-4 px-2 py-4 text-sm font-medium no-underline transition-colors',
-    isActiveLink
-      ? 'border-primary text-primary'
-      : 'border-transparent text-base-content hover:text-primary',
+    'btn btn-ghost',
+    isActiveLink && 'btn-outline btn-primary',
     className,
   ]}
   {...props}

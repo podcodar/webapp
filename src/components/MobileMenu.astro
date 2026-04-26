@@ -1,7 +1,8 @@
 ---
 import { Icon } from 'astro-icon/components';
+import HeaderLink from '@/components/HeaderLink.astro';
 import Logo from '@/components/Logo.astro';
-import { getLangFromUrl, isActive, useTranslations } from '@/i18n/utils';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
   navigationLinks: Array<{ href: string; label: string }>;
@@ -9,10 +10,9 @@ interface Props {
     secondary: { href: string; label: string };
     primary: { href: string; label: string };
   };
-  pathname: string;
 }
 
-const { navigationLinks, ctaLinks, pathname } = Astro.props;
+const { navigationLinks, ctaLinks } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 ---
@@ -44,24 +44,15 @@ const t = useTranslations(lang);
         <div class="flex items-center gap-2">
           <Logo size="nav" showTitle />
         </div>
-        <ul class="menu w-full gap-1 p-0">
-{
-            navigationLinks.map((link) => {
-              const isActiveLink = isActive(link.href, pathname);
-              return (
-                <li>
-                  <a
-                    class:list={[
-                      'btn btn-ghost btn-sm w-full justify-start',
-                      isActiveLink && 'btn-outline btn-primary',
-                    ]}
-                    href={link.href}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })
+<ul class="menu w-full gap-1 p-0">
+          {
+            navigationLinks.map((link) => (
+              <li>
+                <HeaderLink href={link.href} class="btn-sm w-full justify-start">
+                  {link.label}
+                </HeaderLink>
+              </li>
+            ))
           }
         </ul>
       </div>
