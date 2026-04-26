@@ -88,10 +88,13 @@ const description =
         </div>
       </div>
 
-      <div class="max-w-3xl space-y-4 pl-2">
-        {mission.body.map((paragraph) => (
-          <p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>
-        ))}
+      <div class="relative max-w-3xl">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl transform rotate-1"></div>
+        <div class="relative bg-base-100 rounded-xl border border-base-300 p-8">
+          {mission.body.map((paragraph) => (
+            <p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>
+          ))}
+        </div>
       </div>
     </div>
   </section>
