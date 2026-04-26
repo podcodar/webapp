@@ -1,0 +1,54 @@
+---
+import { Icon } from 'astro-icon/components';
+
+type StepColor = 'primary' | 'violet' | 'emerald' | 'blue';
+
+interface Props {
+  step: string;
+  icon: string;
+  title: string;
+  desc: string;
+  color: StepColor;
+}
+
+const { step, icon, title, desc, color } = Astro.props;
+
+const COLORS: Record<StepColor, { text: string; gradient: string; gradientHover: string }> = {
+  violet: {
+    text: 'text-violet-500',
+    gradient: 'from-violet-500/10 to-violet-500/20',
+    gradientHover: 'group-hover:from-violet-500/20',
+  },
+  emerald: {
+    text: 'text-emerald-500',
+    gradient: 'from-emerald-500/10 to-emerald-500/20',
+    gradientHover: 'group-hover:from-emerald-500/20',
+  },
+  blue: {
+    text: 'text-blue-500',
+    gradient: 'from-blue-500/10 to-blue-500/20',
+    gradientHover: 'group-hover:from-blue-500/20',
+  },
+  primary: {
+    text: 'text-primary',
+    gradient: 'from-primary/10 to-primary/20',
+    gradientHover: 'group-hover:from-primary/20',
+  },
+};
+
+const c = COLORS[color];
+---
+
+<li class="group relative pl-16">
+  <div class={`absolute left-0 top-0 w-12 h-12 rounded-xl bg-gradient-to-br ${c.gradient} flex items-center justify-center group-hover:scale-110 ${c.gradientHover} transition-all duration-300`}>
+    <Icon name={icon} class={`w-5 h-5 ${c.text}`} />
+  </div>
+  <div class="absolute left-5 top-12 bottom-0 w-px bg-gradient-to-b from-base-300 to-transparent"></div>
+  <div>
+    <h3 class="text-lg font-semibold flex items-center gap-2">
+      <span class={`${c.text} font-mono text-sm`}>{step}</span>
+      {title}
+    </h3>
+    <p class="text-base-content/70 text-sm leading-relaxed mt-1">{desc}</p>
+  </div>
+</li>

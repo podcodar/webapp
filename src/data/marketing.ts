@@ -188,20 +188,35 @@ export const eventsBlock = {
   externalHref: 'https://github.com/podcodar',
 } as const;
 
+type ChannelColor = 'emerald' | 'violet' | 'blue';
+
+export type CommunicationChannel = {
+  channel: string;
+  description: string;
+  icon: string;
+  color: ChannelColor;
+};
+
 /** Communication channels (onboarding guide). */
-export const communicationChannels: { channel: string; description: string }[] = [
+export const communicationChannels: CommunicationChannel[] = [
   {
     channel: 'WhatsApp',
     description:
       'Comunicação do dia a dia: avisos rápidos, interação social e coordenação com a turma.',
+    icon: 'lucide:message-circle',
+    color: 'emerald',
   },
   {
     channel: 'Discord',
     description:
       'Grupos de estudo, canais técnicos, mentorias e discussões — é o “quartel-general” assíncrono da PodCodar.',
+    icon: 'simple-icons:discord',
+    color: 'violet',
   },
   {
     channel: 'Google Meet',
     description: 'Reuniões do núcleo pedagógico, workshops e encontros ao vivo com a comunidade.',
+    icon: 'lucide:video',
+    color: 'blue',
   },
 ];
