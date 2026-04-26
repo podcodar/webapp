@@ -4,7 +4,8 @@ import ClientRouter from 'astro/components/ClientRouter.astro';
 import BaseHead from '@/components/BaseHead.astro';
 import Footer from '@/components/Footer.astro';
 import Header from '@/components/Header.astro';
-import { getLangFromUrl } from '@/i18n/utils';
+import type { Lang } from '@/i18n/utils';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 interface Props {
   title: string;
@@ -26,6 +27,7 @@ const {
 
 const rawLang = langOverride ?? getLangFromUrl(Astro.url);
 const documentLang = rawLang === 'pt-br' ? 'pt-BR' : rawLang;
+const t = useTranslations(rawLang as Lang);
 ---
 
 <!doctype html>
@@ -39,7 +41,7 @@ const documentLang = rawLang === 'pt-br' ? 'pt-BR' : rawLang;
       href="#main-content"
       class="bg-primary text-primary-content focus:ring-primary fixed top-0 left-0 z-[100] -translate-y-full px-4 py-2 focus-visible:translate-y-0 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
     >
-      Pular para o conteúdo
+      {t('layout.skipToContent')}
     </a>
     <Header />
     <main id="main-content" class={mainClass}>

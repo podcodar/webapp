@@ -1,14 +1,15 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { Activity } from '@/data/marketing';
+import { useTranslations } from '@/i18n/utils';
 
 interface Props {
   items: readonly Activity[];
 }
 
 const { items } = Astro.props;
+const t = useTranslations();
 
-/** Iconify icon names for activity items */
 const iconMap: Record<Activity['icon'], string> = {
   interview: 'lucide:mic',
   career: 'lucide:briefcase',
@@ -30,8 +31,8 @@ const iconMap: Record<Activity['icon'], string> = {
           >
             <Icon name={iconMap[item.icon]} class="h-7 w-7" />
           </div>
-          <h3 class="card-title text-xl">{item.title}</h3>
-          <p class="text-base-content/80 text-sm leading-relaxed">{item.description}</p>
+          <h3 class="card-title text-xl">{t(item.titleKey)}</h3>
+          <p class="text-base-content/80 text-sm leading-relaxed">{t(item.descKey)}</p>
         </div>
       </article>
     ))

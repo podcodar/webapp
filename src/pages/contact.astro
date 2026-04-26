@@ -4,12 +4,13 @@ import CallToAction from '@/components/ui/CallToAction.astro';
 import HeroSection from '@/components/ui/HeroSection.astro';
 import InquiryCard from '@/components/ui/InquiryCard.astro';
 import SectionHeader from '@/components/ui/SectionHeader.astro';
-import { socialIconify, socialLinks } from '@/data/social-links';
+import { SITE_TITLE } from '@/consts';
+import { socialLinks } from '@/data/social-links';
 import { CONTACT_EMAIL } from '@/data/transparency';
 import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
-const t = useTranslations('pt-br');
+const t = useTranslations();
 
 const inquiries = [
   {
@@ -57,7 +58,7 @@ const inquiries = [
 ];
 ---
 
-<Layout title={`${t('nav.contact')} | PodCodar`} description={t('contact.subtitle')} mainClass="flex flex-1 flex-col">
+<Layout title={`${t('nav.contact')} | ${SITE_TITLE}`} description={t('contact.subtitle')} mainClass="flex flex-1 flex-col">
   <!-- Hero Section -->
   <HeroSection
     eyebrow={t('contact.eyebrow')}
@@ -162,7 +163,7 @@ const inquiries = [
               class="flex items-center gap-3 px-6 py-3 rounded-xl border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 h-full"
               aria-label={link.label}
             >
-              <Icon name={socialIconify[link.network]} class="w-5 h-5" />
+              <Icon name={link.icon} class="w-5 h-5" />
               <span class="font-medium">{link.label}</span>
             </a>
           </li>

@@ -7,25 +7,25 @@ import StepItem from '@/components/ui/StepItem.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
 import { communicationChannels } from '@/data/marketing';
 import ogDefaultImage from '@/data/og-default';
+import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
-const title = `Faça parte — ${SITE_TITLE}`;
-const description =
-  'Entre na PodCodar: WhatsApp, Discord, Google Meet — e um plano de ação para começar a colaborar.';
-
+const t = useTranslations();
+const title = `${t('nav.join_us')} — ${SITE_TITLE}`;
+const description = t('joinUs.hero.subtitle');
 const channelStats = communicationChannels.length;
 ---
 
 <Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
   <!-- Hero Section -->
   <HeroSection
-    eyebrow="Junte-se à comunidade"
-    title="Faça parte"
-    subtitle="Seja para aprender, ensinar ou colaborar com a comunidade, o caminho começa nos canais e nas guildas — espaços onde organizamos estudos, mentorias e projetos."
+    eyebrow={t('joinUs.hero.eyebrow')}
+    title={t('joinUs.hero.title')}
+    subtitle={t('joinUs.hero.subtitle')}
     stats={[
-      { icon: 'lucide:message-square', value: channelStats, label: 'Canais principais', color: 'blue' },
-      { icon: 'lucide:users', value: '300+', label: 'Membros ativos', color: 'violet' },
-      { icon: 'lucide:calendar', value: 'Semanal', label: 'Encontros', color: 'emerald' },
+      { icon: 'lucide:message-square', value: channelStats, label: t('joinUs.hero.stats.channels'), color: 'blue' },
+      { icon: 'lucide:users', value: '300+', label: t('joinUs.hero.stats.members'), color: 'violet' },
+      { icon: 'lucide:calendar', value: 'Semanal', label: t('joinUs.hero.stats.meetups'), color: 'emerald' },
     ]}
   />
 
@@ -34,20 +34,15 @@ const channelStats = communicationChannels.length;
     <div class="mx-auto max-w-6xl px-4">
       <SectionHeader
         icon="lucide:radio"
-        title="Onde a comunidade vive"
-        subtitle="Comunicação diária no WhatsApp; estudos e conteúdo no Discord; reuniões e eventos ao vivo no Meet."
+        title={t('joinUs.channels.title')}
+        subtitle={t('joinUs.channels.subtitle')}
         color="primary"
         class="mb-12"
       />
 
       <ul class="grid gap-5 md:grid-cols-3">
         {communicationChannels.map((ch) => (
-          <ChannelCard
-            icon={ch.icon}
-            title={ch.channel}
-            subtitle={ch.description}
-            color={ch.color}
-          />
+          <ChannelCard icon={ch.icon} title={t(ch.nameKey)} subtitle={t(ch.descKey)} color={ch.color} />
         ))}
       </ul>
     </div>
@@ -58,18 +53,18 @@ const channelStats = communicationChannels.length;
     <div class="mx-auto max-w-6xl px-4">
       <SectionHeader
         icon="lucide:compass"
-        title="Primeiros passos"
-        subtitle="Sugestão de roteiro para quem está chegando — adapte ao seu tempo."
+        title={t('joinUs.steps.title')}
+        subtitle={t('joinUs.steps.subtitle')}
         color="violet"
         class="mb-12"
       />
 
       <ol class="max-w-3xl list-none space-y-6 pl-0">
-        <StepItem step="01" icon="lucide:compass" title="Imersão" desc="Entre nos grupos no WhatsApp e nos canais do Discord; leia as regras e se apresente." color="violet" />
-        <StepItem step="02" icon="lucide:target" title="Escolha" desc="Participe das guildas e iniciativas que mais fazem sentido para você (projetos, eventos, design, etc.)." color="emerald" />
-        <StepItem step="03" icon="lucide:handshake" title="Engajamento" desc="Participe de grupos de estudo e de mentorias em projetos — como mentorado ou mentor." color="blue" />
-        <StepItem step="04" icon="lucide:code-2" title="Colaboração" desc="Entre em discussões, junte-se a projetos e compartilhe o que está aprendendo." color="primary" />
-        <StepItem step="05" icon="lucide:trending-up" title="Crescimento" desc="Peça feedback, peça sugestões de estudo e proponha ideias novas para as guildas." color="violet" />
+        <StepItem step="01" icon="lucide:compass" title={t('joinUs.steps.s1.title')} desc={t('joinUs.steps.s1.desc')} color="violet" />
+        <StepItem step="02" icon="lucide:target" title={t('joinUs.steps.s2.title')} desc={t('joinUs.steps.s2.desc')} color="emerald" />
+        <StepItem step="03" icon="lucide:handshake" title={t('joinUs.steps.s3.title')} desc={t('joinUs.steps.s3.desc')} color="blue" />
+        <StepItem step="04" icon="lucide:code-2" title={t('joinUs.steps.s4.title')} desc={t('joinUs.steps.s4.desc')} color="primary" />
+        <StepItem step="05" icon="lucide:trending-up" title={t('joinUs.steps.s5.title')} desc={t('joinUs.steps.s5.desc')} color="violet" />
       </ol>
     </div>
   </section>
@@ -86,15 +81,15 @@ const channelStats = communicationChannels.length;
             <Icon name="lucide:github" class="w-8 h-8 text-primary-content" />
           </div>
           <div class="flex-1">
-            <h2 class="text-2xl font-bold mb-2">GitHub</h2>
-            <p class="text-base-content/70 mb-4">Código aberto, transparência e boas primeiras contribuições.</p>
+            <h2 class="text-2xl font-bold mb-2">{t('joinUs.github.title')}</h2>
+            <p class="text-base-content/70 mb-4">{t('joinUs.github.desc')}</p>
             <a
               href="https://github.com/podcodar"
               target="_blank"
               rel="noopener noreferrer"
               class="inline-flex items-center gap-2 text-primary font-medium hover:underline"
             >
-              <span>Acessar github.com/podcodar</span>
+              <span>{t('joinUs.github.linkText')}</span>
               <Icon name="lucide:external-link" class="w-4 h-4" />
             </a>
           </div>
@@ -104,7 +99,7 @@ const channelStats = communicationChannels.length;
             rel="noopener noreferrer"
             class="btn btn-primary no-underline"
           >
-            Ver repositórios
+            {t('joinUs.github.cta')}
           </a>
         </div>
       </div>
@@ -124,8 +119,8 @@ const channelStats = communicationChannels.length;
           </div>
           <SectionHeader
             icon="lucide:mail"
-            title="Contato"
-            subtitle="Prefere uma mensagem antes de entrar nos grupos? Entre em contato!"
+            title={t('joinUs.contact.title')}
+            subtitle={t('joinUs.contact.subtitle')}
             color="primary"
             class="justify-center mb-4"
           />
@@ -139,8 +134,8 @@ const channelStats = communicationChannels.length;
             <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
               <Icon name="lucide:send" class="w-6 h-6 text-primary" />
             </div>
-            <h3 class="font-semibold mb-2">Envie uma mensagem</h3>
-            <p class="text-sm text-base-content/60">Fale diretamente com a gente pelo formulário de contato.</p>
+            <h3 class="font-semibold mb-2">{t('joinUs.contact.sendTitle')}</h3>
+            <p class="text-sm text-base-content/60">{t('joinUs.contact.sendDesc')}</p>
           </a>
 
           <a
@@ -152,25 +147,25 @@ const channelStats = communicationChannels.length;
             <div class="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
               <Icon name="lucide:message-square" class="w-6 h-6 text-violet-500" />
             </div>
-            <h3 class="font-semibold mb-2">Conversar no Discord</h3>
-            <p class="text-sm text-base-content/60">Participe das discussões e conheça a comunidade.</p>
+            <h3 class="font-semibold mb-2">{t('joinUs.contact.discordTitle')}</h3>
+            <p class="text-sm text-base-content/60">{t('joinUs.contact.discordDesc')}</p>
           </a>
         </div>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-base-content/60">
           <span class="flex items-center gap-2">
             <Icon name="lucide:zap" class="w-4 h-4 text-primary" />
-            Resposta rápida
+            {t('joinUs.contact.tagFast')}
           </span>
           <span class="hidden sm:block">•</span>
           <span class="flex items-center gap-2">
             <Icon name="lucide:heart" class="w-4 h-4 text-emerald-500" />
-            Comunidade acolhedora
+            {t('joinUs.contact.tagCommunity')}
           </span>
           <span class="hidden sm:block">•</span>
           <span class="flex items-center gap-2">
             <Icon name="lucide:shield" class="w-4 h-4 text-violet-500" />
-            Espaço seguro
+            {t('joinUs.contact.tagSafe')}
           </span>
         </div>
       </div>

@@ -11,7 +11,7 @@ import { BOARD_MEMBERS, CNPJ, CONTACT_EMAIL, METRICS } from '@/data/transparency
 import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
-const t = useTranslations('pt-br');
+const t = useTranslations();
 
 const documents = (await getCollection('transparency')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -36,12 +36,12 @@ const formattedLastUpdated = lastUpdated?.toLocaleDateString('pt-br', {
 >
   <!-- Hero Section -->
   <HeroSection
-    eyebrow="Compromisso com a Transparência"
+    eyebrow={t('transparency.hero.eyebrow')}
     title={t('transparency.title')}
     subtitle={t('transparency.intro')}
     stats={[
-      { icon: 'lucide:file-text', value: documents.length, label: 'Documentos', color: 'blue' },
-      { icon: 'lucide:users', value: BOARD_MEMBERS.length, label: 'Membros', color: 'violet' },
+      { icon: 'lucide:file-text', value: documents.length, label: t('transparency.hero.stats.documents'), color: 'blue' },
+      { icon: 'lucide:users', value: BOARD_MEMBERS.length, label: t('transparency.hero.stats.members'), color: 'violet' },
       ...(lastUpdated && formattedLastUpdated ? [{ icon: 'lucide:calendar-check', value: formattedLastUpdated, label: t('transparency.lastUpdated'), color: 'emerald' as const }] : []),
     ]}
   >

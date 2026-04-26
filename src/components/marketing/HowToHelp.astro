@@ -1,11 +1,13 @@
 ---
 import type { HelpPath } from '@/data/marketing';
+import { useTranslations } from '@/i18n/utils';
 
 interface Props {
   items: readonly HelpPath[];
 }
 
 const { items } = Astro.props;
+const t = useTranslations();
 ---
 
 <div class="grid gap-6 md:grid-cols-3">
@@ -13,11 +15,11 @@ const { items } = Astro.props;
     items.map((item) => (
       <article class="card border-base-300 bg-base-100 border shadow-sm">
         <div class="card-body">
-          <h3 class="card-title text-lg">{item.title}</h3>
-          <p class="text-base-content/80 mb-6 flex-1 text-sm leading-relaxed">{item.description}</p>
+          <h3 class="card-title text-lg">{t(item.titleKey)}</h3>
+          <p class="text-base-content/80 mb-6 flex-1 text-sm leading-relaxed">{t(item.descKey)}</p>
           <div class="card-actions justify-stretch">
             <a href={item.href} class="btn btn-primary btn-block no-underline">
-              {item.cta}
+              {t(item.ctaKey)}
             </a>
           </div>
         </div>

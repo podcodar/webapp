@@ -1,9 +1,14 @@
 ---
 import Logo from '@/components/Logo.astro';
-import type { HeroContent } from '@/data/marketing';
 
 interface Props {
-  content: HeroContent;
+  content: {
+    eyebrow: string;
+    headline: string;
+    subhead: string;
+    primaryCta?: { label: string; href: string };
+    secondaryCta?: { label: string; href: string };
+  };
 }
 
 const { content } = Astro.props;
@@ -29,14 +34,20 @@ const { content } = Astro.props;
       <p class="text-base-content/90 mb-8 text-lg leading-relaxed md:text-xl">
         {content.subhead}
       </p>
-      <div class="flex flex-wrap gap-3">
-        <a href={content.primaryCta.href} class="btn btn-primary btn-lg no-underline">
-          {content.primaryCta.label}
-        </a>
-        <a href={content.secondaryCta.href} class="btn btn-outline btn-primary btn-lg no-underline">
-          {content.secondaryCta.label}
-        </a>
-      </div>
+      {(content.primaryCta ?? content.secondaryCta) && (
+        <div class="flex flex-wrap gap-3">
+          {content.primaryCta && (
+            <a href={content.primaryCta.href} class="btn btn-primary btn-lg no-underline">
+              {content.primaryCta.label}
+            </a>
+          )}
+          {content.secondaryCta && (
+            <a href={content.secondaryCta.href} class="btn btn-outline btn-primary btn-lg no-underline">
+              {content.secondaryCta.label}
+            </a>
+          )}
+        </div>
+      )}
     </div>
 
     <Logo size="full" showTitle={false} class="mb-4 scale-scale"/>
