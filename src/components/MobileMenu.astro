@@ -1,5 +1,4 @@
 ---
-import { getRelativeLocaleUrl } from 'astro:i18n';
 import Logo from '@/components/Logo.astro';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
@@ -45,11 +44,11 @@ const t = useTranslations(lang);
   </div>
 
   <!-- Drawer side panel -->
-  <div class="drawer-side z-50">
+  <div class="drawer-side fixed z-50 m-[-1rem] w-screen">
     <label
       for="mobile-menu-drawer"
       aria-label="close sidebar"
-      class="drawer-overlay"
+      class="drawer-overlay w-full"
     ></label>
     <div class="flex h-full w-[80vw] max-w-sm flex-col bg-base-100 p-4">
       <!-- Top: Logo + Navigation links -->
