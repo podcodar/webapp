@@ -209,8 +209,19 @@
 	}
 }
 
-@media (max-width: 720px) {
+/* Reduced text size on mobile to keep content readable without aggressive scaling */
+@media (max-width: 640px) {
 	body {
-		@apply text-lg;
+		@apply text-base;
+	}
+
+	h1 {
+		@apply text-4xl;
+	}
+	h2 {
+		@apply text-3xl;
+	}
+	h3 {
+		@apply text-2xl;
 	}
 }

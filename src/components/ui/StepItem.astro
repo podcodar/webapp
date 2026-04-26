@@ -39,14 +39,14 @@ const COLORS: Record<StepColor, { text: string; gradient: string; gradientHover:
 const c = COLORS[color];
 ---
 
-<li class="group relative pl-16">
-  <div class={`absolute left-0 top-0 w-12 h-12 rounded-xl bg-gradient-to-br ${c.gradient} flex items-center justify-center group-hover:scale-110 ${c.gradientHover} transition-all duration-300`}>
-    <Icon name={icon} class={`w-5 h-5 ${c.text}`} />
+<li class="group relative pl-14 md:pl-16">
+  <div class={`absolute left-0 top-0 w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br ${c.gradient} flex items-center justify-center group-hover:scale-110 ${c.gradientHover} transition-all duration-300`}>
+    <Icon name={icon} class={`w-4 h-4 md:w-5 md:h-5 ${c.text}`} />
   </div>
-  <div class="absolute left-5 top-12 bottom-0 w-px bg-gradient-to-b from-base-300 to-transparent"></div>
+  <div class="absolute left-4 md:left-5 top-10 md:top-12 bottom-0 w-px bg-gradient-to-b from-base-300 to-transparent"></div>
   <div>
-    <h3 class="text-lg font-semibold flex items-center gap-2">
-      <span class={`${c.text} font-mono text-sm`}>{step}</span>
+    <h3 class="text-base md:text-lg font-semibold flex items-center gap-2">
+      <span class={`${c.text} font-mono text-xs md:text-sm`}>{step}</span>
       {title}
     </h3>
     <p class="text-base-content/70 text-sm leading-relaxed mt-1">{desc}</p>

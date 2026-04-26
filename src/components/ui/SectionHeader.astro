@@ -19,12 +19,12 @@ const colorGradients = {
 };
 ---
 
-<div class={`flex items-center gap-4 ${className}`}>
-  <div class={`w-14 h-14 rounded-2xl bg-gradient-to-br ${colorGradients[color]} flex items-center justify-center shadow-lg`}>
-    <Icon name={icon} class="w-7 h-7 text-primary-content" />
+<div class={`flex items-center gap-3 md:gap-4 ${className}`}>
+  <div class={`w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${colorGradients[color]} flex items-center justify-center shadow-lg`}>
+    <Icon name={icon} class="w-6 h-6 md:w-7 md:h-7 text-primary-content" />
   </div>
   <div>
-    <h2 class="text-3xl font-bold">{title}</h2>
-    {subtitle && <p class="text-base-content/60">{subtitle}</p>}
+    <h2 class="text-2xl md:text-3xl font-bold">{title}</h2>
+    {subtitle && <p class="text-sm md:text-base text-base-content/60">{subtitle}</p>}
   </div>
 </div>
