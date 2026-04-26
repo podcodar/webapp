@@ -135,3 +135,213 @@ test.describe('Contact page', () => {
     await expect(page.getByRole('heading', { name: /contato|entre em contato/i })).toBeVisible();
   });
 });
+
+// ──────────────────────────────────────────────────────────────────────────────
+// About page (/about)
+// ──────────────────────────────────────────────────────────────────────────────
+
+test.describe('About page', () => {
+  test('has hero section with gradient background and eyebrow badge', async ({ page }) => {
+    await page.goto('/about');
+
+    // Eyebrow badge is visible
+    const eyebrowBadge = page.locator('section').first().getByText('PodCodar');
+    await expect(eyebrowBadge).toBeVisible();
+
+    // Hero heading is visible
+    await expect(page.getByRole('heading', { name: /sobre nós/i, level: 1 })).toBeVisible();
+
+    // Gradient background section exists
+    const heroSection = page.locator('section').first();
+    await expect(heroSection).toHaveClass(/gradient/);
+  });
+
+  test('has mission section with icon header', async ({ page }) => {
+    await page.goto('/about');
+
+    // Mission section with icon
+    await expect(page.getByRole('heading', { name: /^missão$/i, level: 2 })).toBeVisible();
+  });
+
+  test('has values section with 3 value cards', async ({ page }) => {
+    await page.goto('/about');
+
+    // Values section heading
+    await expect(page.getByRole('heading', { name: /^valores$/i, level: 2 })).toBeVisible();
+
+    // Three value cards: Inclusão, Colaboração, Qualidade de ensino
+    const valuesSection = page.locator('section:has-text("Valores")');
+    await expect(valuesSection.getByText('Inclusão')).toBeVisible();
+    await expect(valuesSection.getByText('Colaboração')).toBeVisible();
+    await expect(valuesSection.getByText('Qualidade de ensino')).toBeVisible();
+  });
+
+  test('has communication channels section with 3 channel cards', async ({ page }) => {
+    await page.goto('/about');
+
+    // Communication channels heading
+    await expect(page.getByRole('heading', { name: /onde conversamos/i })).toBeVisible();
+
+    // Three channel cards: WhatsApp, Discord, Google Meet
+    const channelsSection = page.locator('section:has-text("Onde conversamos")');
+    await expect(channelsSection.getByText('WhatsApp')).toBeVisible();
+    await expect(channelsSection.getByText('Discord')).toBeVisible();
+    await expect(channelsSection.getByText('Google Meet')).toBeVisible();
+  });
+
+  test('has projects section with project cards linking to GitHub', async ({ page }) => {
+    await page.goto('/about');
+
+    // Projects section heading
+    await expect(page.getByRole('heading', { name: /projetos e repositórios/i })).toBeVisible();
+
+    // Project cards have links to GitHub
+    const projectsSection = page.locator('section:has-text("Projetos e repositórios")');
+    await expect(projectsSection.getByRole('link', { name: /abrir link/i })).toHaveCount(2);
+
+    // Check GitHub links are correct
+    const githubLinks = projectsSection.getByRole('link', { name: /abrir link/i });
+    await expect(githubLinks.nth(0)).toHaveAttribute('href', 'https://github.com/podcodar/webapp');
+    await expect(githubLinks.nth(1)).toHaveAttribute('href', 'https://github.com/podcodar');
+  });
+});
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Join Us page (/join-us)
+// ──────────────────────────────────────────────────────────────────────────────
+
+test.describe('Join Us page', () => {
+  test('has hero section with stats (3 channels, 300+ members, weekly encounters)', async ({
+    page,
+  }) => {
+    await page.goto('/join-us');
+
+    // Hero heading is visible
+    await expect(page.getByRole('heading', { name: /faça parte/i, level: 1 })).toBeVisible();
+
+    // Stats are displayed
+    await expect(page.getByText('Canais principais')).toBeVisible();
+    await expect(page.getByText('3')).toBeVisible(); // channelStats
+    await expect(page.getByText('Membros ativos')).toBeVisible();
+    await expect(page.getByText('300+')).toBeVisible();
+    await expect(page.getByText('Encontros')).toBeVisible();
+    await expect(page.getByText('Semanal')).toBeVisible();
+  });
+
+  test('has channels section with 3 channel cards', async ({ page }) => {
+    await page.goto('/join-us');
+
+    // Channels section heading
+    await expect(page.getByRole('heading', { name: /onde a comunidade vive/i })).toBeVisible();
+
+    // Three channel cards
+    await expect(page.getByText('WhatsApp')).toBeVisible();
+    await expect(page.getByText('Discord')).toBeVisible();
+    await expect(page.getByText('Google Meet')).toBeVisible();
+  });
+
+  test('has steps section with 5 numbered steps', async ({ page }) => {
+    await page.goto('/join-us');
+
+    // Steps section heading
+    await expect(page.getByRole('heading', { name: /primeiros passos/i })).toBeVisible();
+
+    // Five steps: Imersão, Escolha, Engajamento, Colaboração, Crescimento
+    await expect(page.getByText('Imersão')).toBeVisible();
+    await expect(page.getByText('Escolha')).toBeVisible();
+    await expect(page.getByText('Engajamento')).toBeVisible();
+    await expect(page.getByText('Colaboração')).toBeVisible();
+    await expect(page.getByText('Crescimento')).toBeVisible();
+  });
+
+  test('has GitHub section with CTA', async ({ page }) => {
+    await page.goto('/join-us');
+
+    // GitHub section
+    await expect(page.getByRole('heading', { name: /^github$/i, level: 2 })).toBeVisible();
+    await expect(page.getByText(/github.com\/podcodar/i)).toBeVisible();
+
+    // GitHub CTA button
+    await expect(page.getByRole('link', { name: /ver repositórios/i })).toHaveAttribute(
+      'href',
+      'https://github.com/podcodar'
+    );
+  });
+
+  test('has contact section with link to /contact', async ({ page }) => {
+    await page.goto('/join-us');
+
+    // Contact section
+    await expect(page.getByRole('heading', { name: /^contato$/i, level: 2 })).toBeVisible();
+
+    // Link to contact page
+    await expect(page.getByRole('link', { name: /envie uma mensagem/i })).toHaveAttribute(
+      'href',
+      '/contact'
+    );
+  });
+});
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Contact page (/contact)
+// ──────────────────────────────────────────────────────────────────────────────
+
+test.describe('Contact page', () => {
+  test('has hero section with response stats', async ({ page }) => {
+    await page.goto('/contact');
+
+    // Hero heading
+    await expect(page.getByRole('heading', { name: /contato|entre em contato/i })).toBeVisible();
+
+    // Response stats are displayed
+    await expect(page.getByText(/resposta rápida/i)).toBeVisible();
+    await expect(page.getByText(/comunidade/i)).toBeVisible();
+    await expect(page.getByText(/espaço seguro/i)).toBeVisible();
+  });
+
+  test('has contact methods section with email link', async ({ page }) => {
+    await page.goto('/contact');
+
+    // Contact methods heading
+    await expect(page.getByRole('heading', { name: /métodos de contato/i })).toBeVisible();
+
+    // Email link with mailto
+    const emailLink = page.locator('a[href^="mailto:"]');
+    await expect(emailLink).toBeVisible();
+  });
+
+  test('has inquiries section with 5 inquiry type cards', async ({ page }) => {
+    await page.goto('/contact');
+
+    // Inquiries section heading
+    await expect(page.getByRole('heading', { name: /tipos de contato/i })).toBeVisible();
+
+    // Five inquiry type cards
+    await expect(page.getByText(/mentoria|mentorship/i)).toBeVisible();
+    await expect(page.getByText(/parcerias|partnerships/i)).toBeVisible();
+    await expect(page.getByText(/voluntariado|volunteer/i)).toBeVisible();
+    await expect(page.getByText(/doações|donations/i)).toBeVisible();
+    await expect(page.getByText(/geral|general/i)).toBeVisible();
+  });
+
+  test('has social links section', async ({ page }) => {
+    await page.goto('/contact');
+
+    // Social links section heading
+    await expect(page.getByRole('heading', { name: /redes sociais|social/i })).toBeVisible();
+
+    // Social links are present
+    await expect(page.getByRole('link', { name: /podcodar no github/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /podcodar no linkedin/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /podcodar no instagram/i })).toBeVisible();
+    await expect(page.getByRole('link', { name: /podcodar no youtube/i })).toBeVisible();
+  });
+
+  test('has CTA section with mailto link', async ({ page }) => {
+    await page.goto('/contact');
+
+    // CTA section with email button
+    const mailtoLink = page.locator('a[href^="mailto:"]').last();
+    await expect(mailtoLink).toBeVisible();
+  });
+});

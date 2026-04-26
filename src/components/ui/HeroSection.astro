@@ -1,0 +1,75 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Stat {
+  icon: string;
+  value: string | number;
+  label: string;
+  color?: 'primary' | 'violet' | 'emerald' | 'blue';
+}
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  stats?: Stat[];
+  class?: string;
+}
+
+const { eyebrow, title, subtitle, stats, class: className = '' } = Astro.props;
+---
+
+<section class={`relative overflow-hidden bg-gradient-to-br from-primary/5 via-base-100 to-base-100 border-b border-base-300/50 ${className}`}>
+  <!-- Background decoration -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary/3 to-secondary/3 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-4 py-24 md:py-32">
+    {eyebrow && (
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+        <slot name="eyebrow-icon" />
+        <span>{eyebrow}</span>
+      </div>
+    )}
+
+    <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-base-content via-base-content to-base-content/70 bg-clip-text">
+      {title}
+    </h1>
+
+    {subtitle && (
+      <p class="text-xl text-base-content/70 max-w-2xl leading-relaxed">
+        {subtitle}
+      </p>
+    )}
+
+    {stats && stats.length > 0 && (
+      <div class="flex flex-wrap gap-6 mt-10">
+        {stats.map((stat) => {
+          const colorClasses = {
+            primary: 'bg-primary/10 text-primary',
+            violet: 'bg-violet-500/10 text-violet-500',
+            emerald: 'bg-emerald-500/10 text-emerald-500',
+            blue: 'bg-blue-500/10 text-blue-500',
+          };
+          const color = stat.color ?? 'blue';
+          return (
+            <div class="flex items-center gap-3">
+              <div class={`w-12 h-12 rounded-xl ${colorClasses[color]} flex items-center justify-center`}>
+                <Icon name={stat.icon} class="w-6 h-6" />
+              </div>
+              <div>
+                <span class="block text-2xl font-bold">{stat.value}</span>
+                <span class="text-sm text-base-content/60">{stat.label}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    )}
+
+    <slot />
+  </div>
+</section>

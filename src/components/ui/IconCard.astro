@@ -1,0 +1,29 @@
+---
+interface Props {
+  value: string;
+  label: string;
+  color?: 'primary' | 'violet' | 'emerald' | 'blue';
+  class?: string;
+}
+
+const { value, label, color = 'emerald', class: className = '' } = Astro.props;
+
+const colorPairs = {
+  primary: { from: 'from-primary/5', to: 'to-primary/10', text: 'text-primary' },
+  violet: { from: 'from-violet-500/5', to: 'to-violet-600/10', text: 'text-violet-500' },
+  emerald: { from: 'from-emerald-500/5', to: 'to-emerald-600/10', text: 'text-emerald-500' },
+  blue: { from: 'from-blue-500/5', to: 'to-blue-600/10', text: 'text-blue-500' },
+};
+
+const colors = colorPairs[color];
+---
+
+<li class={`relative group ${className}`}>
+  <div class={`absolute inset-0 bg-gradient-to-br ${colors.from} to-${colors.to} rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300`}></div>
+  <div class="relative bg-base-100 rounded-2xl border border-base-300 p-6 text-center hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300">
+    <div class={`text-4xl font-bold bg-gradient-to-br ${colors.text} to-${color === 'primary' ? 'primary' : color === 'violet' ? 'violet-600' : color === 'emerald' ? 'emerald-600' : 'blue-600'}/70 bg-clip-text text-transparent mb-2`}>
+      {value}
+    </div>
+    <div class="text-sm text-base-content/70">{label}</div>
+  </div>
+</li>
