@@ -1,5 +1,7 @@
 ---
-import Section from '@/components/marketing/Section.astro';
+import { Icon } from 'astro-icon/components';
+import HeroSection from '@/components/ui/HeroSection.astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
 import ogDefaultImage from '@/data/og-default';
 import Layout from '@/layouts/Layout.astro';
@@ -9,69 +11,98 @@ const description = 'Doações, voluntariado e parcerias: formas de apoiar a mis
 ---
 
 <Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
-  <header class="border-base-300/60 border-b bg-base-200/50 py-36">
-    <div class="mx-auto max-w-6xl px-4 py-14 md:py-16">
-      <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Como posso ajudar?</h1>
-      <p class="text-base-content/85 m-0 max-w-2xl text-lg leading-relaxed">
-        Como organização sem fins lucrativos, a PodCodar depende de pessoas e organizações que acreditam na
-        democratização da educação em tecnologia. Você pode apoiar com recursos, tempo ou parcerias estratégicas.
-      </p>
+  <!-- Hero Section -->
+  <HeroSection
+    eyebrow="Participe"
+    title="Como posso ajudar?"
+    subtitle="Como organização sem fins lucrativos, a PodCodar depende de pessoas e organizações que acreditam na democratização da educação em tecnologia. Você pode apoiar com recursos, tempo ou parcerias estratégicas."
+  >
+    <Icon name="lucide:heart" slot="eyebrow-icon" class="w-4 h-4" />
+  </HeroSection>
+
+  <!-- Donations Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:gift"
+        title="Doações"
+        subtitle="Doações de pessoas físicas e patrocínios ajudam a financiar sustentabilidade, impacto e crescimento — plataforma de ensino, oficinas e fortalecimento do time."
+        color="primary"
+        class="mb-8"
+      />
+
+      <div class="max-w-3xl">
+        <p class="text-base-content/90 m-0 mb-6 text-lg leading-relaxed">
+          Se quiser contribuir financeiramente ou combinar outras formas de apoio, fale com a gente — assim
+          direcionamos sua contribuição de acordo com as necessidades atuais da comunidade.
+        </p>
+        <p class="m-0">
+          <a href="/contact" class="btn btn-primary no-underline">
+            Falar sobre doação
+          </a>
+        </p>
+      </div>
     </div>
-  </header>
+  </section>
 
-  <Section
-    title="Doações"
-    subtitle="Doações de pessoas físicas e patrocínios ajudam a financiar sustentabilidade, impacto e crescimento — plataforma de ensino, oficinas e fortalecimento do time."
-  >
-    <p class="text-base-content/90 m-0 mb-6 max-w-3xl text-lg leading-relaxed">
-      Se quiser contribuir financeiramente ou combinar outras formas de apoio, fale com a gente — assim
-      direcionamos sua contribuição de acordo com as necessidades atuais da comunidade.
-    </p>
-    <p class="m-0">
-      <a href="/contact" class="btn btn-primary no-underline">
-        Falar sobre doação
-      </a>
-    </p>
-  </Section>
+  <!-- Volunteering Section -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-base-200/50 to-base-100 border-y border-base-300/50">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:hand-helping"
+        title="Voluntariado"
+        subtitle="Tempo e talento: mentoria, facilitação de estudos e eventos, revisão de código, design, comunicação e muito mais."
+        color="violet"
+        class="mb-8"
+      />
 
-  <Section
-    title="Voluntariado"
-    variant="muted"
-    subtitle="Tempo e talento: mentoria, facilitação de estudos e eventos, revisão de código, design, comunicação e muito mais."
-  >
-    <p class="text-base-content/90 m-0 mb-4 max-w-3xl text-lg leading-relaxed">
-      Você não precisa ser “nível sênior” para ajudar — quem está um passo à frente já pode apoiar quem vem atrás.
-      Também há espaço para quem quer organizar encontros, revisar materiais ou participar de projetos nas
-      guildas.
-    </p>
-    <p class="text-base-content/90 m-0 mb-6 max-w-3xl text-lg leading-relaxed">
-      Repositórios abertos e issues no GitHub são outra porta de entrada para contribuir com código e documentação.
-    </p>
-    <p class="m-0 flex flex-wrap gap-3">
-      <a href="/join-us" class="btn btn-outline btn-primary no-underline">
-        Primeiros passos na comunidade
-      </a>
-      <a
-        href="https://github.com/podcodar"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn-ghost no-underline"
-      >
-        GitHub da organização
-      </a>
-    </p>
-  </Section>
+      <div class="max-w-3xl">
+        <p class="text-base-content/90 m-0 mb-4 text-lg leading-relaxed">
+          Você não precisa ser "nível sênior" para ajudar — quem está um passo à frente já pode apoiar quem vem
+          atrás. Também há espaço para quem quer organizar encontros, revisar materiais ou participar de projetos
+          nas guildas.
+        </p>
+        <p class="text-base-content/90 m-0 mb-6 text-lg leading-relaxed">
+          Repositórios abertos e issues no GitHub são outra porta de entrada para contribuir com código e
+          documentação.
+        </p>
+        <p class="m-0 flex flex-wrap gap-3">
+          <a href="/join-us" class="btn btn-outline btn-primary no-underline">
+            Primeiros passos na comunidade
+          </a>
+          <a
+            href="https://github.com/podcodar"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-ghost no-underline"
+          >
+            GitHub da organização
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
 
-  <Section
-    title="Parcerias"
-    subtitle="Empresas e fundos podem apoiar diversidade e educação em tecnologia — inclusive parcerias para contratação de pessoas qualificadas pela PodCodar."
-  >
-    <p class="text-base-content/90 m-0 mb-6 max-w-3xl text-lg leading-relaxed">
-      Se sua organização quer patrocinar iniciativas, bancar oficinas ou conectar-se a talentos da comunidade,
-      entre em contato para alinharmos expectativas e formato de parceria.
-    </p>
-    <p class="m-0 flex flex-wrap gap-3">
-      <a href="/contact" class="btn btn-primary no-underline">Propor parceria</a>
-    </p>
-  </Section>
+  <!-- Partnerships Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:handshake"
+        title="Parcerias"
+        subtitle="Empresas e fundos podem apoiar diversidade e educação em tecnologia — inclusive parcerias para contratação de pessoas qualificadas pela PodCodar."
+        color="emerald"
+        class="mb-8"
+      />
+
+      <div class="max-w-3xl">
+        <p class="text-base-content/90 m-0 mb-6 text-lg leading-relaxed">
+          Se sua organização quer patrocinar iniciativas, bancar oficinas ou conectar-se a talentos da comunidade,
+          entre em contato para alinharmos expectativas e formato de parceria.
+        </p>
+        <p class="m-0 flex flex-wrap gap-3">
+          <a href="/contact" class="btn btn-primary no-underline">Propor parceria</a>
+        </p>
+      </div>
+    </div>
+  </section>
 </Layout>

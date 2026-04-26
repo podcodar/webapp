@@ -316,11 +316,12 @@ test.describe('Contact page', () => {
       page.getByRole('heading', { name: /sobre o que você pode entrar em contato/i })
     ).toBeVisible();
 
-    // Five inquiry type cards - using actual translation titles
+    // Six inquiry type cards - using actual translation titles
+    await expect(page.getByText('Precisando contratar?')).toBeVisible();
+    await expect(page.getByText('Workshops Patrocinados')).toBeVisible();
     await expect(page.getByText('Mentoria e carreira')).toBeVisible();
     await expect(page.getByText('Parcerias e colaborações')).toBeVisible();
-    await expect(page.getByText('Voluntariado')).toBeVisible();
-    await expect(page.getByText('Doações e apoio')).toBeVisible();
+    await expect(page.getByText('Doações, apoio e voluntariado')).toBeVisible();
     await expect(page.getByText('Outros assuntos')).toBeVisible();
   });
 

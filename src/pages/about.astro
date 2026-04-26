@@ -1,5 +1,9 @@
 ---
 import { Icon } from 'astro-icon/components';
+import CallToAction from '@/components/ui/CallToAction.astro';
+import ChannelCard from '@/components/ui/ChannelCard.astro';
+import HeroSection from '@/components/ui/HeroSection.astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
 import {
   aboutCommunity,
@@ -19,74 +23,23 @@ const description =
 
 <Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
   <!-- Hero Section -->
-  <section class="relative overflow-hidden bg-gradient-to-br from-primary/5 via-base-100 to-base-100 border-b border-base-300/50">
-    <!-- Background decoration -->
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary/3 to-secondary/3 rounded-full blur-3xl"></div>
-    </div>
-
-    <div class="relative mx-auto max-w-6xl px-4 py-24 md:py-32">
-      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-        <Icon name="lucide:heart" class="w-4 h-4" />
-        <span>PodCodar</span>
-      </div>
-
-      <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-r from-base-content via-base-content to-base-content/70 bg-clip-text">
-        Sobre nós
-      </h1>
-
-      <p class="text-xl text-base-content/70 max-w-2xl leading-relaxed">
-        Somos uma comunidade e organização sem fins lucrativos focada em transformar vidas por meio da educação
-        profissionalizante em tecnologia — com inclusão, colaboração e qualidade de ensino.
-      </p>
-
-      <!-- Quick stats -->
-      <div class="flex flex-wrap gap-6 mt-10">
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
-            <Icon name="lucide:users" class="w-6 h-6 text-blue-500" />
-          </div>
-          <div>
-            <span class="block text-2xl font-bold">Comunidade</span>
-            <span class="text-sm text-base-content/60">Inclusiva e acolhedora</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center">
-            <Icon name="lucide:graduation-cap" class="w-6 h-6 text-violet-500" />
-          </div>
-          <div>
-            <span class="block text-2xl font-bold">Educação</span>
-            <span class="text-sm text-base-content/60">Profissionalizante</span>
-          </div>
-        </div>
-        <div class="flex items-center gap-3">
-          <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center">
-            <Icon name="lucide:hand-heart" class="w-6 h-6 text-emerald-500" />
-          </div>
-          <div>
-            <span class="block text-2xl font-bold">Impacto</span>
-            <span class="text-sm text-base-content/60">Social e comunitário</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <HeroSection
+    eyebrow="PodCodar"
+    title="Sobre nós"
+    subtitle="Somos uma comunidade e organização sem fins lucrativos focada em transformar vidas por meio da educação profissionalizante em tecnologia — com inclusão, colaboração e qualidade de ensino."
+    stats={[
+      { icon: 'lucide:users', value: 'Comunidade', label: 'Inclusiva e acolhedora', color: 'blue' },
+      { icon: 'lucide:graduation-cap', value: 'Educação', label: 'Profissionalizante', color: 'violet' },
+      { icon: 'lucide:hand-heart', value: 'Impacto', label: 'Social e comunitário', color: 'emerald' },
+    ]}
+  >
+    <Icon name="lucide:heart" slot="eyebrow-icon" class="w-4 h-4" />
+  </HeroSection>
 
   <!-- Mission Section -->
   <section class="py-16 md:py-24 bg-base-100">
     <div class="mx-auto max-w-6xl px-4">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/20">
-          <Icon name="lucide:target" class="w-7 h-7 text-primary-content" />
-        </div>
-        <div>
-          <h2 class="text-3xl font-bold">Missão</h2>
-          <p class="text-base-content/60">O que nos move</p>
-        </div>
-      </div>
+      <SectionHeader icon="lucide:target" title="Missão" subtitle="O que nos move" color="primary" class="mb-8" />
 
       <div class="max-w-3xl space-y-4">
         {mission.body.map((paragraph) => (
@@ -99,28 +52,26 @@ const description =
   <!-- Values Section -->
   <section class="py-16 md:py-24 bg-gradient-to-b from-base-200/50 to-base-100 border-y border-base-300/50">
     <div class="mx-auto max-w-6xl px-4">
-      <div class="flex items-center gap-4 mb-12">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-lg shadow-violet-500/20">
-          <Icon name="lucide:sparkles" class="w-7 h-7 text-white" />
-        </div>
-        <div>
-          <h2 class="text-3xl font-bold">Valores</h2>
-          <p class="text-base-content/60">Três princípios que guiam a cultura da comunidade</p>
-        </div>
-      </div>
+      <SectionHeader
+        icon="lucide:sparkles"
+        title="Valores"
+        subtitle="Três princípios que guiam a cultura da comunidade"
+        color="violet"
+        class="mb-12"
+      />
 
       <ul class="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
         {coreValues.map((value, index) => {
-          const colors = [
-            { from: 'from-blue-500/5', to: 'to-blue-600/10', border: 'hover:border-blue-500/30', shadow: 'hover:shadow-blue-500/5', icon: 'lucide:users', gradient: 'from-blue-500 to-blue-600' },
-            { from: 'from-emerald-500/5', to: 'to-emerald-600/10', border: 'hover:border-emerald-500/30', shadow: 'hover:shadow-emerald-500/5', icon: 'lucide:handshake', gradient: 'from-emerald-500 to-emerald-600' },
-            { from: 'from-violet-500/5', to: 'to-violet-600/10', border: 'hover:border-violet-500/30', shadow: 'hover:shadow-violet-500/5', icon: 'lucide:award', gradient: 'from-violet-500 to-violet-600' },
+          const cards = [
+            { from: 'from-blue-500/5', to: 'to-blue-600/10', border: 'hover:border-blue-500/30', gradient: 'from-blue-500 to-blue-600', icon: 'lucide:users' },
+            { from: 'from-emerald-500/5', to: 'to-emerald-600/10', border: 'hover:border-emerald-500/30', gradient: 'from-emerald-500 to-emerald-600', icon: 'lucide:handshake' },
+            { from: 'from-violet-500/5', to: 'to-violet-600/10', border: 'hover:border-violet-500/30', gradient: 'from-violet-500 to-violet-600', icon: 'lucide:award' },
           ];
-          const c = colors[index];
+          const c = cards[index];
           return (
-            <li class="relative group">
-              <div class={`absolute inset-0 bg-gradient-to-br ${c.from} to-${c.to} rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300`}></div>
-              <div class={`relative bg-base-100 rounded-2xl border border-base-300 p-6 hover:${c.border} hover:shadow-lg ${c.shadow} transition-all duration-300`}>
+            <li class="relative group grid">
+              <div class={`absolute inset-0 bg-gradient-to-br ${c.from} ${c.to} rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300`}></div>
+              <div class={`relative bg-base-100 rounded-2xl border border-base-300 p-6 ${c.border} hover:shadow-lg transition-all duration-300 grid grid-rows-[auto_auto_1fr]`}>
                 <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${c.gradient} flex items-center justify-center mb-4`}>
                   <Icon name={c.icon} class="w-6 h-6 text-white" />
                 </div>
@@ -137,21 +88,19 @@ const description =
   <!-- Culture Section -->
   <section class="py-16 md:py-24 bg-base-100">
     <div class="mx-auto max-w-6xl px-4">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center shadow-lg shadow-emerald-500/20">
-          <Icon name="lucide:building-2" class="w-7 h-7 text-white" />
-        </div>
-        <div>
-          <h2 class="text-3xl font-bold">{aboutCommunity.title}</h2>
-          <p class="text-base-content/60">{aboutCommunity.lead}</p>
-        </div>
-      </div>
+      <SectionHeader
+        icon="lucide:building-2"
+        title={aboutCommunity.title}
+        subtitle={aboutCommunity.lead}
+        color="emerald"
+        class="mb-8"
+      />
 
       <ul class="mb-0 max-w-3xl list-none space-y-4 pl-2">
         {aboutCommunity.points.map((point, index) => {
           const icons = ['lucide:book-marked', 'lucide:git-branch', 'lucide:rocket'];
           return (
-            <li class="flex gap-4 items-start group">
+            <li class="grid grid-cols-[auto_1fr] gap-4 items-start group">
               <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors duration-300">
                 <Icon name={icons[index]} class="w-5 h-5 text-emerald-600" />
               </div>
@@ -169,29 +118,18 @@ const description =
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
 
     <div class="relative mx-auto max-w-6xl px-4">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-500/20">
-          <Icon name="lucide:message-circle" class="w-7 h-7 text-white" />
-        </div>
-        <div>
-          <h2 class="text-3xl font-bold">Onde conversamos</h2>
-          <p class="text-base-content/60">Cada canal tem um papel — escolha o ritmo que combina com você</p>
-        </div>
-      </div>
+      <SectionHeader
+        icon="lucide:message-circle"
+        title="Onde conversamos"
+        subtitle="Cada canal tem um papel — escolha o ritmo que combina com você"
+        color="blue"
+        class="mb-8"
+      />
 
-      <ul class="grid gap-4 md:grid-cols-1 lg:grid-cols-3 max-w-4xl">
-        {communicationChannels.map((ch, index) => {
-          const channelIcons = ['lucide:message-square', 'simple-icons:discord', 'lucide:video'];
-          return (
-            <li class="bg-base-100 rounded-2xl border border-base-300 p-6 hover:border-blue-500/30 hover:shadow-lg transition-all duration-300">
-              <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center mb-3">
-                <Icon name={channelIcons[index]} class="w-5 h-5 text-blue-600" />
-              </div>
-              <h3 class="text-lg font-semibold mb-1">{ch.channel}</h3>
-              <p class="text-base-content/85 m-0 text-sm leading-relaxed">{ch.description}</p>
-            </li>
-          );
-        })}
+      <ul class="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
+        {communicationChannels.map((ch) => (
+          <ChannelCard icon={ch.icon} title={ch.channel} subtitle={ch.description} color={ch.color} />
+        ))}
       </ul>
     </div>
   </section>
@@ -199,19 +137,17 @@ const description =
   <!-- Projects Section -->
   <section class="py-16 md:py-24 bg-base-100">
     <div class="mx-auto max-w-6xl px-4">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-violet-600 flex items-center justify-center shadow-lg shadow-violet-500/20">
-          <Icon name="lucide:folder-git-2" class="w-7 h-7 text-white" />
-        </div>
-        <div>
-          <h2 class="text-3xl font-bold">Projetos e repositórios</h2>
-          <p class="text-base-content/60">A comunidade também constrói em código aberto — além das iniciativas dentro das guildas</p>
-        </div>
-      </div>
+      <SectionHeader
+        icon="lucide:folder-git-2"
+        title="Projetos e repositórios"
+        subtitle="A comunidade também constrói em código aberto — além das iniciativas dentro das guildas"
+        color="violet"
+        class="mb-8"
+      />
 
       <ul class="grid gap-4 md:grid-cols-2 max-w-3xl">
         {projects.map((project) => (
-          <li class="bg-base-100 rounded-2xl border border-base-300 p-6 hover:border-violet-500/30 hover:shadow-lg transition-all duration-300">
+          <li class="bg-base-100 rounded-2xl border border-base-300 p-6 hover:border-violet-500/30 hover:shadow-lg transition-all duration-300 grid grid-rows-[auto_1fr_auto]">
             <h3 class="text-xl font-semibold mb-2">{project.name}</h3>
             <p class="text-base-content/80 m-0 mb-4 text-sm leading-relaxed">{project.description}</p>
             <a
@@ -229,30 +165,16 @@ const description =
     </div>
   </section>
 
-  <!-- Events Section -->
-  <section class="py-16 md:py-24 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-base-100 to-base-100"></div>
-    <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
-    <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
-
-    <div class="relative mx-auto max-w-6xl px-4 text-center">
-      <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/20 mx-auto mb-6">
-        <Icon name="lucide:calendar-days" class="w-8 h-8 text-primary-content" />
-      </div>
-      <h2 class="text-3xl font-bold mb-4">{eventsBlock.title}</h2>
-      <p class="text-lg text-base-content/70 max-w-2xl mx-auto mb-8">
-        {eventsBlock.body}
-      </p>
-
-      <a
-        href={eventsBlock.externalHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-content rounded-xl font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
-      >
-        <Icon name="lucide:external-link" class="w-5 h-5" />
-        {eventsBlock.externalLabel}
-      </a>
-    </div>
-  </section>
+  <!-- Events CTA Section -->
+  <CallToAction icon="lucide:calendar-days" title={eventsBlock.title} description={eventsBlock.body}>
+    <a
+      href={eventsBlock.externalHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-content rounded-xl font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
+    >
+      <Icon name="lucide:external-link" class="w-5 h-5" />
+      {eventsBlock.externalLabel}
+    </a>
+  </CallToAction>
 </Layout>

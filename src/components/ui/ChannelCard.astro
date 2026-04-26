@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 
-type CardColor = 'primary' | 'violet' | 'emerald' | 'blue';
+type CardColor = 'violet' | 'emerald' | 'blue';
 
 interface Props {
   icon: string;
@@ -31,20 +31,14 @@ const COLORS: Record<CardColor, { from: string; to: string; text: string; border
     text: 'text-blue-500',
     border: 'hover:border-blue-500/30',
   },
-  primary: {
-    from: 'from-primary/5',
-    to: 'to-primary/10',
-    text: 'text-primary',
-    border: 'hover:border-primary/30',
-  },
 };
 
 const c = COLORS[color];
 ---
 
-<li class="group relative">
+<li class="group relative grid">
   <div class={`absolute inset-0 bg-gradient-to-br ${c.from} ${c.to} rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300`}></div>
-  <div class={`relative bg-base-100 rounded-2xl border border-base-300 p-6 ${c.border} hover:shadow-lg transition-all duration-300`}>
+  <div class={`relative bg-base-100 rounded-2xl border border-base-300 p-6 ${c.border} hover:shadow-lg transition-all duration-300 grid grid-rows-[auto_auto_1fr]`}>
     <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${c.from} ${c.text} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
       <Icon name={icon} class="w-6 h-6" />
     </div>

@@ -60,13 +60,18 @@ export const ui = {
     'contact.inquiries.mentorship.title': 'Mentoria e carreira',
     'contact.inquiries.mentorship.desc':
       'Dúvidas sobre mentoring, carreira em tech ou orientação profissional.',
+    'contact.inquiries.hiring.title': 'Precisando contratar?',
+    'contact.inquiries.hiring.desc':
+      'A PodCodar é um parceiro valioso para empresas que buscam profissionais qualificados. Nossa comunidade forma talentos prontos para atuar no mercado — entre em contato para encontrar o candidato ideal para a sua vaga.',
+    'contact.inquiries.workshops.title': 'Workshops Patrocinados',
+    'contact.inquiries.workshops.desc':
+      'Criamos workshops de treinamento focados em preparar candidatos para vagas específicas da sua empresa. Uma forma de conectar seu processo seletivo a profissionais já em formação.',
     'contact.inquiries.partnerships.title': 'Parcerias e colaborações',
     'contact.inquiries.partnerships.desc':
       'Propostas de parcerias, eventos conjuntos ou Apoiadores.',
-    'contact.inquiries.volunteer.title': 'Voluntariado',
-    'contact.inquiries.volunteer.desc': 'Quer contribuir com a comunidade como voluntário.',
-    'contact.inquiries.donations.title': 'Doações e apoio',
-    'contact.inquiries.donations.desc': 'Questões sobre apoio financeiro ou institucional.',
+    'contact.inquiries.donations.title': 'Doações, apoio e voluntariado',
+    'contact.inquiries.donations.desc':
+      'Apoio financeiro, institucional ou contribuir com tempo e habilidades como voluntário na comunidade.',
     'contact.inquiries.general.title': 'Outros assuntos',
     'contact.inquiries.general.desc': 'Qualquer outra dúvida ou sugestão.',
     'response.fast': '1-2 dias',

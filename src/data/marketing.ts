@@ -25,7 +25,7 @@ export const mission = {
 export type Activity = {
   title: string;
   description: string;
-  icon: 'interview' | 'career' | 'groups' | 'project' | 'cafe';
+  icon: 'interview' | 'career' | 'groups' | 'project' | 'cafe' | 'workshop';
 };
 
 export const activities: Activity[] = [
@@ -58,6 +58,12 @@ export const activities: Activity[] = [
     description:
       'Encontros para trocar experiência, apresentar o que você está construindo e conhecer a comunidade com calma (e café).',
     icon: 'cafe',
+  },
+  {
+    title: 'Workshops',
+    description:
+      'Oficinas práticas sobre tecnologia, carreira e ferramentas — do básico ao avançado, abertas para toda a comunidade.',
+    icon: 'workshop',
   },
 ] as const;
 
