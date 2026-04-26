@@ -18,11 +18,11 @@ export function useTranslations(lang?: Lang) {
   };
 }
 
-function normalizePath(path = '/'): string {
-  console.log({ path });
-  if (!path || path === '/') return '/';
+function normalizePath(path: string | URL = '/'): string {
+  const hrefStr = typeof path === 'string' ? path : (path.pathname ?? '/');
 
-  return path.replace(/\/$/, '');
+  if (!hrefStr || hrefStr === '/') return '/';
+  return hrefStr.replace(/\/$/, '');
 }
 
 export function isActive(linkPath: string, currentPath: string): boolean {
