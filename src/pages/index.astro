@@ -5,66 +5,70 @@ import HowToHelp from '@/components/marketing/HowToHelp.astro';
 import Section from '@/components/marketing/Section.astro';
 import TestimonialGrid from '@/components/marketing/TestimonialGrid.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
-import {
-  aboutCommunity,
-  activities,
-  hero,
-  howToHelp,
-  mission,
-  testimonials,
-} from '@/data/marketing';
+import { aboutCommunity, activities, howToHelp, mission, testimonials } from '@/data/marketing';
 import ogDefaultImage from '@/data/og-default';
+import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
+
+const t = useTranslations();
+
+const heroContent = {
+  eyebrow: t('home.hero.eyebrow'),
+  headline: t('home.hero.headline'),
+  subhead: t('home.hero.subhead'),
+  primaryCta: { label: t('nav.join_us'), href: '/join-us' },
+  secondaryCta: { label: t('nav.contributing'), href: '/contributing' },
+} as const;
 ---
 
 <Layout title={SITE_TITLE} description={SITE_DESCRIPTION} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
-  <Hero content={hero} />
-  <Section id="mission" title={mission.title} variant="muted">
+  <Hero content={heroContent} />
+  <Section id="mission" title={t('home.mission.title')} variant="muted">
     <div class="max-w-3xl space-y-4">
-      {mission.body.map((paragraph) => <p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>)}
+      {mission.bodyKeys.map((key) => <p class="text-base-content/90 m-0 text-lg leading-relaxed">{t(key)}</p>)}
     </div>
   </Section>
   <Section
     id="activities"
-    eyebrow="Comunidade"
-    title="Atividades"
-    subtitle="Da mentoria à roda de conversa — conheça algumas formas de participar da PodCodar."
+    eyebrow={t('home.activities.eyebrow')}
+    title={t('home.activities.title')}
+    subtitle={t('home.activities.subtitle')}
   >
     <ActivityGrid items={activities} />
   </Section>
   <Section
     id="testimonials"
-    eyebrow="Vozes"
-    title="Depoimentos"
-    subtitle="Quem passou por aqui compartilha um pouco da experiência. Textos podem ser atualizados junto às pessoas citadas."
+    eyebrow={t('home.testimonials.eyebrow')}
+    title={t('home.testimonials.title')}
+    subtitle={t('home.testimonials.subtitle')}
     variant="muted"
   >
     <TestimonialGrid items={testimonials} />
   </Section>
   <Section
     id="how-to-help"
-    eyebrow="Participe"
-    title="Como posso ajudar?"
-    subtitle="Três caminhos comuns — escolha o que combina com você hoje."
+    eyebrow={t('home.howToHelp.eyebrow')}
+    title={t('home.howToHelp.title')}
+    subtitle={t('home.howToHelp.subtitle')}
   >
     <HowToHelp items={howToHelp} />
   </Section>
-  <Section title="Sobre a comunidade" variant="gradient" subtitle={aboutCommunity.lead}>
+  <Section title={t('home.community.title')} variant="gradient" subtitle={t(aboutCommunity.leadKey)}>
     <ul class="mb-8 max-w-3xl list-none space-y-3 pl-0">
       {
-        aboutCommunity.points.map((point) => (
+        aboutCommunity.pointKeys.map((key) => (
           <li class="flex gap-3">
             <span class="text-primary shrink-0" aria-hidden="true">
               ✓
             </span>
-            <span class="text-base-content/90">{point}</span>
+            <span class="text-base-content/90">{t(key)}</span>
           </li>
         ))
       }
     </ul>
     <p class="m-0">
       <a href="/about" class="btn btn-outline btn-primary no-underline">
-        Conheça mais no Sobre
+        {t('home.community.cta')}
       </a>
     </p>
   </Section>

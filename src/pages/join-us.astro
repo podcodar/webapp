@@ -1,87 +1,174 @@
 ---
-import Section from '@/components/marketing/Section.astro';
+import { Icon } from 'astro-icon/components';
+import ChannelCard from '@/components/ui/ChannelCard.astro';
+import HeroSection from '@/components/ui/HeroSection.astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import StepItem from '@/components/ui/StepItem.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
 import { communicationChannels } from '@/data/marketing';
 import ogDefaultImage from '@/data/og-default';
+import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
-const title = `Faça parte — ${SITE_TITLE}`;
-const description =
-  'Entre na PodCodar: WhatsApp, Discord, Google Meet — e um plano de ação para começar a colaborar.';
+const t = useTranslations();
+const title = `${t('nav.join_us')} — ${SITE_TITLE}`;
+const description = t('joinUs.hero.subtitle');
+const channelStats = communicationChannels.length;
 ---
 
 <Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
-  <header class="border-base-300/60 border-b bg-base-200/50 py-36">
-    <div class="mx-auto max-w-6xl px-4 py-14 md:py-16">
-      <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Faça parte</h1>
-      <p class="text-base-content/85 m-0 max-w-2xl text-lg leading-relaxed">
-        Seja para aprender, ensinar ou colaborar com a comunidade, o caminho começa nos canais e nas guildas —
-        espaços onde organizamos estudos, mentorias e projetos.
-      </p>
+  <!-- Hero Section -->
+  <HeroSection
+    eyebrow={t('joinUs.hero.eyebrow')}
+    title={t('joinUs.hero.title')}
+    subtitle={t('joinUs.hero.subtitle')}
+    stats={[
+      { icon: 'lucide:message-square', value: channelStats, label: t('joinUs.hero.stats.channels'), color: 'blue' },
+      { icon: 'lucide:users', value: '300+', label: t('joinUs.hero.stats.members'), color: 'violet' },
+      { icon: 'lucide:calendar', value: 'Semanal', label: t('joinUs.hero.stats.meetups'), color: 'emerald' },
+    ]}
+  />
+
+  <!-- Channels Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:radio"
+        title={t('joinUs.channels.title')}
+        subtitle={t('joinUs.channels.subtitle')}
+        color="primary"
+        class="mb-12"
+      />
+
+      <ul class="grid gap-5 md:grid-cols-3">
+        {communicationChannels.map((ch) => (
+          <ChannelCard icon={ch.icon} title={t(ch.nameKey)} subtitle={t(ch.descKey)} color={ch.color} />
+        ))}
+      </ul>
     </div>
-  </header>
+  </section>
 
-  <Section
-    title="Onde a comunidade vive"
-    subtitle="Comunicação diária no WhatsApp; estudos e conteúdo no Discord; reuniões e eventos ao vivo no Meet."
-  >
-    <ul class="max-w-3xl list-none space-y-4 pl-0">
-      {
-        communicationChannels.map((ch) => (
-          <li class="border-base-300/80 flex flex-col gap-1 rounded-xl border-l-4 border-primary pl-4">
-            <span class="text-base-content font-semibold">{ch.channel}</span>
-            <span class="text-base-content/85 text-sm leading-relaxed">{ch.description}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </Section>
+  <!-- Steps Section -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-base-200/50 to-base-100 border-y border-base-300/50">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:compass"
+        title={t('joinUs.steps.title')}
+        subtitle={t('joinUs.steps.subtitle')}
+        color="violet"
+        class="mb-12"
+      />
 
-  <Section
-    title="Primeiros passos"
-    subtitle="Sugestão de roteiro para quem está chegando — adapte ao seu tempo."
-    variant="muted"
-  >
-    <ol class="text-base-content/90 max-w-3xl list-decimal space-y-4 pl-6 text-lg leading-relaxed">
-      <li>
-        <strong class="text-base-content">Imersão.</strong> Entre nos grupos no WhatsApp e nos canais do Discord;
-        leia as regras e se apresente.
-      </li>
-      <li>
-        <strong class="text-base-content">Escolha.</strong> Participe das guildas e iniciativas que mais fazem
-        sentido para você (projetos, eventos, design, etc.).
-      </li>
-      <li>
-        <strong class="text-base-content">Engajamento.</strong> Participe de grupos de estudo e de mentorias em
-        projetos — como mentorado ou mentor.
-      </li>
-      <li>
-        <strong class="text-base-content">Colaboração.</strong> Entre em discussões, junte-se a projetos e
-        compartilhe o que está aprendendo.
-      </li>
-      <li>
-        <strong class="text-base-content">Crescimento.</strong> Peça feedback, peça sugestões de estudo e proponha
-        ideias novas para as guildas.
-      </li>
-    </ol>
-  </Section>
+      <ol class="max-w-3xl list-none space-y-6 pl-0">
+        <StepItem step="01" icon="lucide:compass" title={t('joinUs.steps.s1.title')} desc={t('joinUs.steps.s1.desc')} color="violet" />
+        <StepItem step="02" icon="lucide:target" title={t('joinUs.steps.s2.title')} desc={t('joinUs.steps.s2.desc')} color="emerald" />
+        <StepItem step="03" icon="lucide:handshake" title={t('joinUs.steps.s3.title')} desc={t('joinUs.steps.s3.desc')} color="blue" />
+        <StepItem step="04" icon="lucide:code-2" title={t('joinUs.steps.s4.title')} desc={t('joinUs.steps.s4.desc')} color="primary" />
+        <StepItem step="05" icon="lucide:trending-up" title={t('joinUs.steps.s5.title')} desc={t('joinUs.steps.s5.desc')} color="violet" />
+      </ol>
+    </div>
+  </section>
 
-  <Section title="GitHub" subtitle="Código aberto, transparência e boas primeiras contribuições.">
-    <p class="m-0">
-      <a
-        href="https://github.com/podcodar"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn-primary no-underline"
-      >
-        Acessar github.com/podcodar
-      </a>
-    </p>
-  </Section>
+  <!-- GitHub Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="relative overflow-hidden rounded-2xl border border-base-300 bg-gradient-to-br from-base-100 to-base-200/50 p-8 md:p-12 group hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300">
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-violet-500/5 rounded-full blur-3xl"></div>
 
-  <Section title="Contato" subtitle="Prefere uma mensagem antes de entrar nos grupos?" variant="muted">
-    <p class="m-0">
-      <a href="/contact" class="btn btn-outline btn-primary no-underline">Ir para contato</a>
-    </p>
-  </Section>
+        <div class="relative flex flex-col md:flex-row items-start md:items-center gap-6">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform duration-300">
+            <Icon name="lucide:github" class="w-8 h-8 text-primary-content" />
+          </div>
+          <div class="flex-1">
+            <h2 class="text-2xl font-bold mb-2">{t('joinUs.github.title')}</h2>
+            <p class="text-base-content/70 mb-4">{t('joinUs.github.desc')}</p>
+            <a
+              href="https://github.com/podcodar"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+            >
+              <span>{t('joinUs.github.linkText')}</span>
+              <Icon name="lucide:external-link" class="w-4 h-4" />
+            </a>
+          </div>
+          <a
+            href="https://github.com/podcodar"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary no-underline"
+          >
+            {t('joinUs.github.cta')}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-16 md:py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-base-100 to-secondary/5"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
+
+    <div class="relative mx-auto max-w-6xl px-4">
+      <div class="max-w-3xl mx-auto">
+        <div class="text-center mb-12">
+          <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg shadow-primary/20 mx-auto mb-6">
+            <Icon name="lucide:message-circle" class="w-8 h-8 text-primary-content" />
+          </div>
+          <SectionHeader
+            icon="lucide:mail"
+            title={t('joinUs.contact.title')}
+            subtitle={t('joinUs.contact.subtitle')}
+            color="primary"
+            class="justify-center mb-4"
+          />
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 mb-8">
+          <a
+            href="/contact"
+            class="group relative p-6 bg-base-100 rounded-2xl border border-base-300 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 text-center"
+          >
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="lucide:send" class="w-6 h-6 text-primary" />
+            </div>
+            <h3 class="font-semibold mb-2">{t('joinUs.contact.sendTitle')}</h3>
+            <p class="text-sm text-base-content/60">{t('joinUs.contact.sendDesc')}</p>
+          </a>
+
+          <a
+            href="https://github.com/podcodar"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group relative p-6 bg-base-100 rounded-2xl border border-base-300 hover:border-violet-500/30 hover:shadow-lg hover:shadow-violet-500/5 transition-all duration-300 text-center"
+          >
+            <div class="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="lucide:message-square" class="w-6 h-6 text-violet-500" />
+            </div>
+            <h3 class="font-semibold mb-2">{t('joinUs.contact.discordTitle')}</h3>
+            <p class="text-sm text-base-content/60">{t('joinUs.contact.discordDesc')}</p>
+          </a>
+        </div>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-base-content/60">
+          <span class="flex items-center gap-2">
+            <Icon name="lucide:zap" class="w-4 h-4 text-primary" />
+            {t('joinUs.contact.tagFast')}
+          </span>
+          <span class="hidden sm:block">•</span>
+          <span class="flex items-center gap-2">
+            <Icon name="lucide:heart" class="w-4 h-4 text-emerald-500" />
+            {t('joinUs.contact.tagCommunity')}
+          </span>
+          <span class="hidden sm:block">•</span>
+          <span class="flex items-center gap-2">
+            <Icon name="lucide:shield" class="w-4 h-4 text-violet-500" />
+            {t('joinUs.contact.tagSafe')}
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

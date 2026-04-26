@@ -1,5 +1,9 @@
 ---
-import Section from '@/components/marketing/Section.astro';
+import { Icon } from 'astro-icon/components';
+import CallToAction from '@/components/ui/CallToAction.astro';
+import ChannelCard from '@/components/ui/ChannelCard.astro';
+import HeroSection from '@/components/ui/HeroSection.astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
 import {
   aboutCommunity,
@@ -10,113 +14,168 @@ import {
   projects,
 } from '@/data/marketing';
 import ogDefaultImage from '@/data/og-default';
+import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
-const title = `Sobre — ${SITE_TITLE}`;
-const description =
-  'Missão, valores e como a PodCodar se organiza: núcleo pedagógico, guildas, iniciativas e canais de comunicação.';
+const t = useTranslations();
+const title = `${t('nav.about')} — ${SITE_TITLE}`;
+const description = t('about.hero.subtitle');
 ---
 
 <Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
-  <header class="border-base-300/60 from-primary/5 to-base-100 border-b bg-linear-to-b">
-    <div class="mx-auto max-w-6xl px-4 py-36 md:py-48">
-      <p class="text-primary mb-2 text-sm font-semibold tracking-wide uppercase">PodCodar</p>
-      <h1 class="mb-4 text-4xl font-bold tracking-tight md:text-5xl">Sobre nós</h1>
-      <p class="text-base-content/85 m-0 max-w-2xl text-lg leading-relaxed">
-        Somos uma comunidade e organização sem fins lucrativos focada em transformar vidas por meio da educação
-        profissionalizante em tecnologia — com inclusão, colaboração e qualidade de ensino.
-      </p>
-    </div>
-  </header>
-
-  <Section title={mission.title} variant="muted">
-    <div class="max-w-3xl space-y-4">
-      {mission.body.map((paragraph) => (
-        <p class="text-base-content/90 m-0 text-lg leading-relaxed">{paragraph}</p>
-      ))}
-    </div>
-  </Section>
-
-  <Section title="Valores" subtitle="Três princípios que guiam a cultura da comunidade.">
-    <ul class="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
-      {
-        coreValues.map((v) => (
-          <li class="border-base-300 bg-base-100 rounded-2xl border p-6 shadow-sm">
-            <h2 class="text-primary mb-2 text-lg font-bold">{v.title}</h2>
-            <p class="text-base-content/85 m-0 text-sm leading-relaxed">{v.text}</p>
-          </li>
-        ))
-      }
-    </ul>
-  </Section>
-
-  <Section title={aboutCommunity.title} subtitle={aboutCommunity.lead}>
-    <ul class="mb-0 max-w-3xl list-none space-y-3 pl-0">
-      {
-        aboutCommunity.points.map((point) => (
-          <li class="flex gap-3">
-            <span class="text-primary shrink-0" aria-hidden="true">
-              ✓
-            </span>
-            <span class="text-base-content/90 text-lg leading-relaxed">{point}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </Section>
-
-  <Section
-    title="Onde conversamos"
-    subtitle="Cada canal tem um papel — escolha o ritmo que combina com você."
-    variant="muted"
+  <!-- Hero Section -->
+  <HeroSection
+    eyebrow={t('about.hero.eyebrow')}
+    title={t('about.hero.title')}
+    subtitle={t('about.hero.subtitle')}
+    stats={[
+      { icon: 'lucide:users', value: t('about.hero.stats.community.value'), label: t('about.hero.stats.community.label'), color: 'blue' },
+      { icon: 'lucide:graduation-cap', value: t('about.hero.stats.education.value'), label: t('about.hero.stats.education.label'), color: 'violet' },
+      { icon: 'lucide:hand-heart', value: t('about.hero.stats.impact.value'), label: t('about.hero.stats.impact.label'), color: 'emerald' },
+    ]}
   >
-    <ul class="max-w-3xl list-none space-y-4 pl-0">
-      {
-        communicationChannels.map((ch) => (
-          <li class="border-base-300/80 flex flex-col gap-1 rounded-xl border-l-4 border-primary pl-4">
-            <span class="text-base-content font-semibold">{ch.channel}</span>
-            <span class="text-base-content/85 text-sm leading-relaxed">{ch.description}</span>
-          </li>
-        ))
-      }
-    </ul>
-  </Section>
+    <Icon name="lucide:heart" slot="eyebrow-icon" class="w-4 h-4" />
+  </HeroSection>
 
-  <Section
-    eyebrow="Open source"
-    title="Projetos e repositórios"
-    subtitle="A comunidade também constrói em código aberto — além das iniciativas dentro das guildas."
-  >
-    <ul class="grid gap-4 md:grid-cols-2">
-      {
-        projects.map((project) => (
-          <li class="border-base-300 bg-base-100 rounded-2xl border p-6 shadow-sm">
-            <h2 class="mb-2 text-xl font-semibold">{project.name}</h2>
-            <p class="text-base-content/80 m-0 mb-4 text-sm leading-relaxed">{project.description}</p>
+  <!-- Mission Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader icon="lucide:target" title={t('about.mission.title')} subtitle={t('about.mission.subtitle')} color="primary" class="mb-8" />
+
+      <div class="max-w-3xl space-y-4">
+        {mission.bodyKeys.map((key) => (
+          <p class="text-base-content/90 m-0 text-lg leading-relaxed">{t(key)}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-base-200/50 to-base-100 border-y border-base-300/50">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:sparkles"
+        title={t('about.values.title')}
+        subtitle={t('about.values.subtitle')}
+        color="violet"
+        class="mb-12"
+      />
+
+      <ul class="grid gap-6 md:grid-cols-1 lg:grid-cols-3">
+        {coreValues.map((value, index) => {
+          const cards = [
+            { from: 'from-blue-500/5', to: 'to-blue-600/10', border: 'hover:border-blue-500/30', gradient: 'from-blue-500 to-blue-600', icon: 'lucide:users' },
+            { from: 'from-emerald-500/5', to: 'to-emerald-600/10', border: 'hover:border-emerald-500/30', gradient: 'from-emerald-500 to-emerald-600', icon: 'lucide:handshake' },
+            { from: 'from-violet-500/5', to: 'to-violet-600/10', border: 'hover:border-violet-500/30', gradient: 'from-violet-500 to-violet-600', icon: 'lucide:award' },
+          ];
+          const c = cards[index];
+          return (
+            <li class="relative group grid">
+              <div class={`absolute inset-0 bg-gradient-to-br ${c.from} ${c.to} rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300`}></div>
+              <div class={`relative bg-base-100 rounded-2xl border border-base-300 p-6 ${c.border} hover:shadow-lg transition-all duration-300 grid grid-rows-[auto_auto_1fr]`}>
+                <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${c.gradient} flex items-center justify-center mb-4`}>
+                  <Icon name={c.icon} class="w-6 h-6 text-white" />
+                </div>
+                <h3 class="text-xl font-bold mb-2">{t(value.titleKey)}</h3>
+                <p class="text-base-content/85 m-0 text-sm leading-relaxed">{t(value.textKey)}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Culture Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:building-2"
+        title={t(aboutCommunity.titleKey)}
+        subtitle={t(aboutCommunity.leadKey)}
+        color="emerald"
+        class="mb-8"
+      />
+
+      <ul class="mb-0 max-w-3xl list-none space-y-4 pl-2">
+        {aboutCommunity.pointKeys.map((key, index) => {
+          const icons = ['lucide:book-marked', 'lucide:git-branch', 'lucide:rocket'];
+          return (
+            <li class="grid grid-cols-[auto_1fr] gap-4 items-start group">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center shrink-0 group-hover:bg-emerald-500/20 transition-colors duration-300">
+                <Icon name={icons[index]} class="w-5 h-5 text-emerald-600" />
+              </div>
+              <span class="text-base-content/90 text-lg leading-relaxed pt-1">{t(key)}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Communication Channels Section -->
+  <section class="py-16 md:py-24 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-base-100 to-secondary/5"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent"></div>
+
+    <div class="relative mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:message-circle"
+        title={t('about.channels.title')}
+        subtitle={t('about.channels.subtitle')}
+        color="blue"
+        class="mb-8"
+      />
+
+      <ul class="grid gap-4 md:grid-cols-1 lg:grid-cols-3">
+        {communicationChannels.map((ch) => (
+          <ChannelCard icon={ch.icon} title={t(ch.nameKey)} subtitle={t(ch.descKey)} color={ch.color} />
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:folder-git-2"
+        title={t('about.projects.title')}
+        subtitle={t('about.projects.subtitle')}
+        color="violet"
+        class="mb-8"
+      />
+
+      <ul class="grid gap-4 md:grid-cols-2 max-w-3xl">
+        {projects.map((project) => (
+          <li class="bg-base-100 rounded-2xl border border-base-300 p-6 hover:border-violet-500/30 hover:shadow-lg transition-all duration-300 grid grid-rows-[auto_1fr_auto]">
+            <h3 class="text-xl font-semibold mb-2">{t(project.nameKey)}</h3>
+            <p class="text-base-content/80 m-0 mb-4 text-sm leading-relaxed">{t(project.descKey)}</p>
             <a
               href={project.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="btn btn-ghost btn-sm px-0 no-underline"
+              class="inline-flex items-center gap-2 text-sm font-medium text-violet-600 hover:text-violet-700 no-underline"
             >
-              Abrir link →
+              <Icon name="lucide:external-link" class="w-4 h-4" />
+              {t('about.projects.linkText')}
             </a>
           </li>
-        ))
-      }
-    </ul>
-  </Section>
+        ))}
+      </ul>
+    </div>
+  </section>
 
-  <Section title={eventsBlock.title} subtitle={eventsBlock.body} variant="gradient">
-    <p class="m-0">
-      <a
-        href={eventsBlock.externalHref}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn-primary no-underline"
-      >
-        {eventsBlock.externalLabel}
-      </a>
-    </p>
-  </Section>
+  <!-- Events CTA Section -->
+  <CallToAction icon="lucide:calendar-days" title={t(eventsBlock.titleKey)} description={t(eventsBlock.bodyKey)}>
+    <a
+      href={eventsBlock.externalHref}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-content rounded-xl font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
+    >
+      <Icon name="lucide:external-link" class="w-5 h-5" />
+      {t(eventsBlock.ctaKey)}
+    </a>
+  </CallToAction>
 </Layout>

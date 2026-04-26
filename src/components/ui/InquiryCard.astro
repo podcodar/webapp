@@ -1,0 +1,24 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  bg: string;
+  border: string;
+  gradient: string;
+}
+
+const { icon, title, description, bg, border, gradient } = Astro.props;
+---
+
+<li class="group">
+  <div class={`h-full p-6 rounded-xl border ${bg} ${border} transition-all duration-300 group-hover:shadow-lg grid grid-rows-[auto_auto_1fr]`}>
+    <div class={`w-10 h-10 rounded-lg bg-gradient-to-br ${gradient} flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300`}>
+      <Icon name={icon} class="w-5 h-5 text-white" />
+    </div>
+    <h3 class="font-semibold mb-1">{title}</h3>
+    <p class="text-sm text-base-content/60">{description}</p>
+  </div>
+</li>

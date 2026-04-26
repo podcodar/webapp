@@ -1,16 +1,185 @@
 ---
-import { SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
-import ogDefaultImage from '@/data/og-default';
+import { Icon } from 'astro-icon/components';
+import CallToAction from '@/components/ui/CallToAction.astro';
+import HeroSection from '@/components/ui/HeroSection.astro';
+import InquiryCard from '@/components/ui/InquiryCard.astro';
+import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { SITE_TITLE } from '@/consts';
+import { socialLinks } from '@/data/social-links';
+import { CONTACT_EMAIL } from '@/data/transparency';
+import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
+
+const t = useTranslations();
+
+const inquiries = [
+  {
+    icon: 'lucide:briefcase',
+    bg: 'bg-primary/5',
+    border: 'border-primary/20',
+    gradient: 'from-primary to-primary/70',
+    key: 'hiring' as const,
+  },
+  {
+    icon: 'lucide:presentation',
+    bg: 'bg-emerald-500/5',
+    border: 'border-emerald-500/20',
+    gradient: 'from-emerald-500 to-emerald-600',
+    key: 'workshops' as const,
+  },
+  {
+    icon: 'lucide:graduation-cap',
+    bg: 'bg-blue-500/5',
+    border: 'border-blue-500/20',
+    gradient: 'from-blue-500 to-blue-600',
+    key: 'mentorship' as const,
+  },
+  {
+    icon: 'lucide:handshake',
+    bg: 'bg-violet-500/5',
+    border: 'border-violet-500/20',
+    gradient: 'from-violet-500 to-violet-600',
+    key: 'partnerships' as const,
+  },
+  {
+    icon: 'lucide:heart',
+    bg: 'bg-emerald-500/5',
+    border: 'border-emerald-500/20',
+    gradient: 'from-emerald-500 to-emerald-600',
+    key: 'donations' as const,
+  },
+  {
+    icon: 'lucide:help-circle',
+    bg: 'bg-blue-500/5',
+    border: 'border-blue-500/20',
+    gradient: 'from-blue-500 to-blue-600',
+    key: 'general' as const,
+  },
+];
 ---
 
-<Layout title={`Contato | ${SITE_TITLE}`} description={SITE_DESCRIPTION} image={ogDefaultImage}>
-  <section class="py-36">
-  	<h1>Entre em contato</h1>
-    <p>Sinta-se livre para entrar em contato!</p>
-    <p>
-      E-mail:{' '}
-      <a href="mailto:contato@podcodar.org">contato@podcodar.org</a>
-    </p>
+<Layout title={`${t('nav.contact')} | ${SITE_TITLE}`} description={t('contact.subtitle')} mainClass="flex flex-1 flex-col">
+  <!-- Hero Section -->
+  <HeroSection
+    eyebrow={t('contact.eyebrow')}
+    title={t('contact.title')}
+    subtitle={t('contact.intro')}
+    stats={[
+      { icon: 'lucide:zap', value: t('response.fast'), label: t('response.fast.desc'), color: 'primary' },
+      { icon: 'lucide:users', value: t('response.community'), label: t('response.community.desc'), color: 'violet' },
+      { icon: 'lucide:headphones', value: t('response.support'), label: t('response.support.desc'), color: 'emerald' },
+    ]}
+  >
+    <Icon name="lucide:rocket" slot="eyebrow-icon" class="w-4 h-4" />
+  </HeroSection>
+
+  <!-- Contact Methods Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:mail"
+        title={t('contact.methods.title')}
+        subtitle={t('contact.methods.subtitle')}
+        color="primary"
+        class="mb-12"
+      />
+
+      <ul class="grid gap-6 md:grid-cols-3">
+        <li>
+          <a href={`mailto:${CONTACT_EMAIL}`} class="group block p-6 rounded-2xl border border-primary/20 bg-base-100 transition-all duration-300 hover:shadow-lg hover:border-primary/40 grid grid-rows-[auto_auto_1fr]">
+            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="lucide:mail" class="w-6 h-6 text-primary" />
+            </div>
+            <span class="block text-sm text-base-content/60 mb-1">{t('contact.email.label')}</span>
+            <span class="block text-lg font-semibold group-hover:text-primary transition-colors">{t('contact.email.value')}</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="group block p-6 rounded-2xl border border-violet-500/20 bg-base-100 transition-all duration-300 hover:shadow-lg hover:border-violet-500/40 grid grid-rows-[auto_auto_1fr]">
+            <div class="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="lucide:message-circle" class="w-6 h-6 text-violet-500" />
+            </div>
+            <span class="block text-sm text-base-content/60 mb-1">{t('contact.discord.label')}</span>
+            <span class="block text-lg font-semibold group-hover:text-primary transition-colors">{t('contact.discord.value')}</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="group block p-6 rounded-2xl border border-emerald-500/20 bg-base-100 transition-all duration-300 hover:shadow-lg hover:border-emerald-500/40 grid grid-rows-[auto_auto_1fr]">
+            <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+              <Icon name="lucide:calendar" class="w-6 h-6 text-emerald-500" />
+            </div>
+            <span class="block text-sm text-base-content/60 mb-1">{t('contact.events.label')}</span>
+            <span class="block text-lg font-semibold group-hover:text-primary transition-colors">{t('contact.events.value')}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </section>
+
+  <!-- Types of Inquiries Section -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-base-200/50 to-base-100 border-y border-base-300/50">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:help-circle"
+        title={t('contact.inquiries.title')}
+        subtitle={t('contact.inquiries.subtitle')}
+        color="violet"
+        class="mb-12"
+      />
+
+      <ul class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {inquiries.map((card) => (
+          <InquiryCard
+            icon={card.icon}
+            title={t(`contact.inquiries.${card.key}.title`)}
+            description={t(`contact.inquiries.${card.key}.desc`)}
+            bg={card.bg}
+            border={card.border}
+            gradient={card.gradient}
+          />
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Social Links Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:share-2"
+        title={t('contact.social.title')}
+        subtitle={t('contact.social.subtitle')}
+        color="blue"
+        class="mb-12"
+      />
+
+      <ul class="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {socialLinks.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex items-center gap-3 px-6 py-3 rounded-xl border border-base-300 bg-base-100 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 h-full"
+              aria-label={link.label}
+            >
+              <Icon name={link.icon} class="w-5 h-5" />
+              <span class="font-medium">{link.label}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CallToAction icon="lucide:send" title={t('contact.cta.title')} description={t('contact.cta.text')}>
+    <a
+      href={`mailto:${CONTACT_EMAIL}`}
+      class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-content rounded-xl font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
+    >
+      <Icon name="lucide:mail" class="w-5 h-5" />
+      {t('contact.cta.button')}
+    </a>
+  </CallToAction>
 </Layout>

@@ -163,6 +163,8 @@ This squad uses 9 specialized agents:
 - **Configured in**: `astro.config.ts`
 - **Skill available**: `astro-i18n` for adding English support
 - Default locale does not use URL prefix (`prefixDefaultLocale: false`)
+- **Convention**: ALL user-visible text in `.astro` templates must go through the i18n system (`t()`). Hardcoded strings are not allowed. See the `astro-i18n` skill for the full rule.
+- **How**: Import `useTranslations` from `@/i18n/utils`, call `t('key')`. Add keys to `src/i18n/ui.ts` under the relevant page namespace (e.g., `about.hero.title`).
 
 ---
 

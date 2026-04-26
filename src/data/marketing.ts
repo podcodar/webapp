@@ -1,207 +1,204 @@
-/** User-facing copy for the landing and institutional pages (pt-BR strings). */
-
-export const hero = {
-  eyebrow: 'PodCodar',
-  headline: 'Educação em tecnologia, feita em comunidade',
-  subhead:
-    'Somos uma comunidade e organização sem fins lucrativos focada em transformar a vida de brasileiros por meio da educação profissionalizante em tecnologia — com mentoria, estudos em grupo e projetos reais.',
-  /** Short line in the hero side card */
-  cardTagline: 'Democratizar o acesso ao conhecimento. Estudar junto. Crescer com propósito.',
-  primaryCta: { label: 'Faça parte', href: '/join-us' },
-  secondaryCta: { label: 'Como posso ajudar?', href: '/contributing' },
-} as const;
-
-export type HeroContent = typeof hero;
+// ── Mission ──────────────────────────────────────────────────────────────────
 
 export const mission = {
-  title: 'Missão',
-  body: [
-    'A PodCodar existe para democratizar o acesso à educação profissionalizante nas áreas de tecnologia. Acreditamos que qualificação e acesso ao conhecimento digital são motores de mudança de vida — e que, no Brasil, essa educação ainda costuma ser elitizada, limitada e cara.',
-    'Por isso guiamos e damos acesso a quem deseja se profissionalizar: em comunidade, com escuta e responsabilidade social.',
-    'Nosso foco de ensino inclui, entre outras frentes: software (front-end e back-end), infraestrutura, inteligência artificial, dados (incluindo engenharia e ciência de dados) e design (UI e UX).',
-  ],
+  titleKey: 'marketing.mission.title',
+  bodyKeys: ['marketing.mission.body.0', 'marketing.mission.body.1', 'marketing.mission.body.2'],
 } as const;
 
+// ── Activities ───────────────────────────────────────────────────────────────
+
 export type Activity = {
-  title: string;
-  description: string;
-  icon: 'interview' | 'career' | 'groups' | 'project' | 'cafe';
+  titleKey: string;
+  descKey: string;
+  icon: 'interview' | 'career' | 'groups' | 'project' | 'cafe' | 'workshop';
 };
 
 export const activities: Activity[] = [
   {
-    title: 'Entrevistas simuladas',
-    description:
-      'Pratique processos seletivos com apoio da comunidade e feedback para ganhar confiança antes da entrevista de verdade.',
     icon: 'interview',
+    titleKey: 'marketing.activities.interview.title',
+    descKey: 'marketing.activities.interview.desc',
   },
   {
-    title: 'Mentoria de carreira',
-    description:
-      'Conversas e orientação para transição, currículo, portfólio e próximos passos — do primeiro estágio à troca de área.',
     icon: 'career',
+    titleKey: 'marketing.activities.career.title',
+    descKey: 'marketing.activities.career.desc',
   },
   {
-    title: 'Grupos de estudo',
-    description:
-      'Turmas e canais no WhatsApp e no Discord para tirar dúvidas, compartilhar materiais e manter o ritmo de estudo coletivo.',
     icon: 'groups',
+    titleKey: 'marketing.activities.groups.title',
+    descKey: 'marketing.activities.groups.desc',
   },
   {
-    title: 'Assistência em projetos',
-    description:
-      'Mentoria em projetos práticos — da ideia ao repositório — com apoio de quem já passou por desafios parecidos.',
     icon: 'project',
+    titleKey: 'marketing.activities.project.title',
+    descKey: 'marketing.activities.project.desc',
   },
   {
-    title: 'Café com Código',
-    description:
-      'Encontros para trocar experiência, apresentar o que você está construindo e conhecer a comunidade com calma (e café).',
     icon: 'cafe',
+    titleKey: 'marketing.activities.cafe.title',
+    descKey: 'marketing.activities.cafe.desc',
+  },
+  {
+    icon: 'workshop',
+    titleKey: 'marketing.activities.workshop.title',
+    descKey: 'marketing.activities.workshop.desc',
   },
 ] as const;
 
+// ── Testimonials ─────────────────────────────────────────────────────────────
+
 export type Testimonial = {
   id: number;
-  name: string;
+  nameKey: string;
   role?: string;
   avatarUrl: string;
   profileUrl: string;
-  quote: string;
+  quoteKey: string;
 };
 
 export const testimonials: Testimonial[] = [
   {
     id: 1,
-    name: 'Giovanna Neves Damasceno',
+    nameKey: 'marketing.testimonials.1.name',
+    quoteKey: 'marketing.testimonials.1.quote',
     avatarUrl: 'https://avatars.githubusercontent.com/u/18710340?v=4',
     profileUrl: 'https://github.com/giovannand',
-    quote:
-      'A PodCodar juntou minha trajetória em tecnologia com o desejo de trabalhar com pessoas e ajudá-las a se desenvolver. É um projeto com propósito claro — amo fazer parte.',
   },
   {
     id: 2,
-    name: 'Gilberto Ferreira Borges Júnior',
+    nameKey: 'marketing.testimonials.2.name',
+    quoteKey: 'marketing.testimonials.2.quote',
     avatarUrl: 'https://avatars.githubusercontent.com/u/57193296?v=4',
     profileUrl: 'https://github.com/borgesgfj',
-    quote:
-      'Com o apoio da comunidade fiz a transição da pesquisa e do ensino em física para engenharia de software. Hoje contribuir de volta é tão gratificante quanto aprender aqui.',
   },
   {
     id: 3,
-    name: 'Filipe Barbosa',
+    nameKey: 'marketing.testimonials.3.name',
+    quoteKey: 'marketing.testimonials.3.quote',
     avatarUrl: 'https://avatars.githubusercontent.com/u/65319425?v=4',
     profileUrl: 'https://github.com/Filipe-barbosa',
-    quote:
-      'Pensei que programar não era pra mim — entrei na comunidade e, com o tempo, a confiança veio. Hoje sigo construindo carreira com a rede ao lado.',
   },
   {
     id: 4,
-    name: 'Guilherme Barbosa',
+    nameKey: 'marketing.testimonials.4.name',
+    quoteKey: 'marketing.testimonials.4.quote',
     avatarUrl: 'https://avatars.githubusercontent.com/u/73261443?v=4',
     profileUrl: 'https://github.com/Guilherme-BS',
-    quote:
-      'A PodCodar mudou minha perspectiva: novas conversas, novos aprendizados e um lugar onde me sinto em casa na tecnologia.',
   },
 ] as const;
 
+// ── How to Help ──────────────────────────────────────────────────────────────
+
 export type HelpPath = {
-  title: string;
-  description: string;
+  titleKey: string;
+  descKey: string;
   href: string;
-  cta: string;
+  ctaKey: string;
 };
 
 export const howToHelp: HelpPath[] = [
   {
-    title: 'Doações',
-    description:
-      'Apoio financeiro de pessoas físicas e patrocínios ajudam a manter a PodCodar sustentável e a ampliar impacto — plataforma de ensino, oficinas e equipe.',
+    titleKey: 'marketing.help.donations.title',
+    descKey: 'marketing.help.donations.desc',
     href: '/contact',
-    cta: 'Falar sobre doação',
+    ctaKey: 'marketing.help.donations.cta',
   },
   {
-    title: 'Voluntariado',
-    description:
-      'Tempo e habilidades: mentoria, facilitação de estudos e eventos, revisão de código, design e comunicação — há espaço para o seu jeito de contribuir.',
+    titleKey: 'marketing.help.volunteering.title',
+    descKey: 'marketing.help.volunteering.desc',
     href: '/contributing',
-    cta: 'Ver voluntariado',
+    ctaKey: 'marketing.help.volunteering.cta',
   },
   {
-    title: 'Parcerias',
-    description:
-      'Empresas e fundos podem apoiar diversidade e educação em tecnologia — inclusive parcerias para contratação de pessoas qualificadas pela comunidade.',
+    titleKey: 'marketing.help.partnerships.title',
+    descKey: 'marketing.help.partnerships.desc',
     href: '/contact',
-    cta: 'Propor parceria',
+    ctaKey: 'marketing.help.partnerships.cta',
   },
 ] as const;
 
-/** Core values (from the onboarding guide). */
-export const coreValues: { title: string; text: string }[] = [
+// ── Core Values ──────────────────────────────────────────────────────────────
+
+export const coreValues = [
+  { titleKey: 'marketing.values.inclusion.title', textKey: 'marketing.values.inclusion.text' },
   {
-    title: 'Inclusão',
-    text: 'Garantir que a educação tecnológica seja acessível a todos, independentemente de origem, renda ou localização. Somos um espaço seguro e acolhedor.',
+    titleKey: 'marketing.values.collaboration.title',
+    textKey: 'marketing.values.collaboration.text',
   },
-  {
-    title: 'Colaboração',
-    text: 'Estudar junto é mais prazeroso e eficiente. Valorizamos o compartilhamento de conhecimento, discussões abertas e o apoio mútuo em projetos e estudos.',
-  },
-  {
-    title: 'Qualidade de ensino',
-    text: 'Foco em mentoria e conteúdo que prepare de fato a próxima geração de profissionais digitais para o mercado de trabalho.',
-  },
-];
+  { titleKey: 'marketing.values.quality.title', textKey: 'marketing.values.quality.text' },
+] as const;
+
+// ── About Community ──────────────────────────────────────────────────────────
 
 export const aboutCommunity = {
-  title: 'Cultura e organização',
-  lead: 'A comunidade se organiza para multiplicar impacto: núcleo pedagógico, guildas por área e iniciativas práticas dentro de cada uma.',
-  points: [
-    'Núcleo Pedagógico: centraliza visão, prioridades e alocação de pessoas e recursos para as iniciativas.',
-    'Guildas: núcleos por área de interesse ou entrega (projetos, eventos, design e outras frentes).',
-    'Iniciativas: programas concretos — mentorias, incubadora, Café com Código, meetups, workshops, Chá com Design e mais.',
+  titleKey: 'marketing.community.title',
+  leadKey: 'marketing.community.lead',
+  pointKeys: [
+    'marketing.community.point.1',
+    'marketing.community.point.2',
+    'marketing.community.point.3',
   ],
 } as const;
 
+// ── Projects ─────────────────────────────────────────────────────────────────
+
 export type ProjectItem = {
-  name: string;
-  description: string;
+  nameKey: string;
+  descKey: string;
   href: string;
 };
 
 export const projects: ProjectItem[] = [
   {
-    name: 'Site e materiais PodCodar',
-    description: 'Este site e recursos da comunidade em evolução — contribuições são bem-vindas.',
+    nameKey: 'marketing.projects.site.name',
+    descKey: 'marketing.projects.site.desc',
     href: 'https://github.com/podcodar/webapp',
   },
   {
-    name: 'Organização no GitHub',
-    description: 'Repositórios abertos da PodCodar — issues e PRs são um ótimo primeiro passo.',
+    nameKey: 'marketing.projects.github.name',
+    descKey: 'marketing.projects.github.desc',
     href: 'https://github.com/podcodar',
   },
 ] as const;
 
+// ── Events ───────────────────────────────────────────────────────────────────
+
 export const eventsBlock = {
-  title: 'Eventos',
-  body: 'Café com Código, meetups e workshops são alguns dos formatos em que a comunidade se encontra ao vivo (muitas vezes no Google Meet). Novidades e convites circulam nos grupos e no Discord.',
-  externalLabel: 'Ver organização no GitHub',
+  titleKey: 'marketing.events.title',
+  bodyKey: 'marketing.events.body',
+  ctaKey: 'marketing.events.cta',
   externalHref: 'https://github.com/podcodar',
 } as const;
 
-/** Communication channels (onboarding guide). */
-export const communicationChannels: { channel: string; description: string }[] = [
+// ── Communication Channels ───────────────────────────────────────────────────
+
+export type ChannelColor = 'emerald' | 'violet' | 'blue';
+
+export type CommunicationChannel = {
+  nameKey: string;
+  descKey: string;
+  icon: string;
+  color: ChannelColor;
+};
+
+export const communicationChannels: CommunicationChannel[] = [
   {
-    channel: 'WhatsApp',
-    description:
-      'Comunicação do dia a dia: avisos rápidos, interação social e coordenação com a turma.',
+    nameKey: 'marketing.channels.whatsapp.name',
+    descKey: 'marketing.channels.whatsapp.desc',
+    icon: 'lucide:message-circle',
+    color: 'emerald',
   },
   {
-    channel: 'Discord',
-    description:
-      'Grupos de estudo, canais técnicos, mentorias e discussões — é o “quartel-general” assíncrono da PodCodar.',
+    nameKey: 'marketing.channels.discord.name',
+    descKey: 'marketing.channels.discord.desc',
+    icon: 'simple-icons:discord',
+    color: 'violet',
   },
   {
-    channel: 'Google Meet',
-    description: 'Reuniões do núcleo pedagógico, workshops e encontros ao vivo com a comunidade.',
+    nameKey: 'marketing.channels.meet.name',
+    descKey: 'marketing.channels.meet.desc',
+    icon: 'lucide:video',
+    color: 'blue',
   },
-];
+] as const;

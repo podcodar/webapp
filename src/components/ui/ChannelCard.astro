@@ -1,0 +1,48 @@
+---
+import { Icon } from 'astro-icon/components';
+
+type CardColor = 'violet' | 'emerald' | 'blue';
+
+interface Props {
+  icon: string;
+  title: string;
+  subtitle: string;
+  color: CardColor;
+}
+
+const { icon, title, subtitle, color } = Astro.props;
+
+const COLORS: Record<CardColor, { from: string; to: string; text: string; border: string }> = {
+  emerald: {
+    from: 'from-emerald-500/5',
+    to: 'to-emerald-600/10',
+    text: 'text-emerald-500',
+    border: 'hover:border-emerald-500/30',
+  },
+  violet: {
+    from: 'from-violet-500/5',
+    to: 'to-violet-600/10',
+    text: 'text-violet-500',
+    border: 'hover:border-violet-500/30',
+  },
+  blue: {
+    from: 'from-blue-500/5',
+    to: 'to-blue-600/10',
+    text: 'text-blue-500',
+    border: 'hover:border-blue-500/30',
+  },
+};
+
+const c = COLORS[color];
+---
+
+<li class="group relative grid">
+  <div class={`absolute inset-0 bg-gradient-to-br ${c.from} ${c.to} rounded-2xl transform rotate-1 group-hover:rotate-2 transition-transform duration-300`}></div>
+  <div class={`relative bg-base-100 rounded-2xl border border-base-300 p-6 ${c.border} hover:shadow-lg transition-all duration-300 grid grid-rows-[auto_auto_1fr]`}>
+    <div class={`w-12 h-12 rounded-xl bg-gradient-to-br ${c.from} ${c.text} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+      <Icon name={icon} class="w-6 h-6" />
+    </div>
+    <h3 class="text-xl font-semibold mb-2 group-hover:text-primary transition-colors">{title}</h3>
+    <p class="text-base-content/70 text-sm leading-relaxed">{subtitle}</p>
+  </div>
+</li>

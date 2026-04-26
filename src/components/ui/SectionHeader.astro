@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  icon: string;
+  title: string;
+  subtitle?: string;
+  color?: 'primary' | 'violet' | 'emerald' | 'blue';
+  class?: string;
+}
+
+const { icon, title, subtitle, color = 'primary', class: className = '' } = Astro.props;
+
+const colorGradients = {
+  primary: 'from-primary to-primary/70 shadow-primary/20',
+  violet: 'from-violet-500 to-violet-600 shadow-violet-500/20',
+  emerald: 'from-emerald-500 to-emerald-600 shadow-emerald-500/20',
+  blue: 'from-blue-500 to-blue-600 shadow-blue-500/20',
+};
+---
+
+<div class={`flex items-center gap-4 ${className}`}>
+  <div class={`w-14 h-14 rounded-2xl bg-gradient-to-br ${colorGradients[color]} flex items-center justify-center shadow-lg`}>
+    <Icon name={icon} class="w-7 h-7 text-primary-content" />
+  </div>
+  <div>
+    <h2 class="text-3xl font-bold">{title}</h2>
+    {subtitle && <p class="text-base-content/60">{subtitle}</p>}
+  </div>
+</div>

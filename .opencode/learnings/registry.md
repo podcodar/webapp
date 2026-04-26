@@ -15,6 +15,7 @@ All captured learnings from the AI Diamond Chain are registered here.
 
 ```markdown
 ## [Date] - [Learning Title]
+
 - **Type:** skill/agent/workflow/reference
 - **Source:** Which diamond/event produced this
 - **Summary:** 1-2 sentence description
@@ -25,6 +26,7 @@ All captured learnings from the AI Diamond Chain are registered here.
 ---
 
 ## 2026-04-17 - Continuous Learning System
+
 - **Type:** skill
 - **Source:** User request to create learning rules
 - **Summary:** Created continuous-learning skill and supporting docs to ensure all learnings are captured, condensed for reuse, and documented for long-term reference
@@ -34,6 +36,7 @@ All captured learnings from the AI Diamond Chain are registered here.
 ---
 
 ## 2026-04-17 - Tmux Automation Skill
+
 - **Type:** skill
 - **Source:** User request for tmux skill for detached session control
 - **Summary:** Created tmux-automation skill with commands for creating detached sessions, sending keys programmatically, capturing output, and session management
@@ -43,8 +46,19 @@ All captured learnings from the AI Diamond Chain are registered here.
 ---
 
 ## 2026-04-18 - DaisyUI v5 Custom Theme Configuration
+
 - **Type:** skill
 - **Source:** Implementation Diamond - Custom theme creation for PodCodar brand
 - **Summary:** Learned DaisyUI v5's new `@plugin "daisyui/theme"` syntax with OKLCH color format, created light/dark theme pair with PodCodar brand colors (tech blues + warm amber accents), disabled default themes for clean implementation
 - **Location:** `.opencode/skills/daisyui-v5-themes/SKILL.md`, `src/styles/global.css`
+- **Confidence:** 🟢 High
+
+---
+
+## 2026-04-26 - i18n Text Convention: No Hardcoded Strings
+
+- **Type:** skill/agent/workflow
+- **Source:** Refactoring transparency layout to /about, /join-us, /contact — discovered massive duplication of hardcoded strings across pages
+- **Summary:** Established mandatory convention: ALL user-visible text in `.astro` templates must use the i18n system (`t()`). Updated `astro-i18n` skill with text convention rule, updated `frontend-engineer` and `code-reviewer` agents to enforce it, and documented in `AGENTS.md`. Data-driven content from `src/data/*.ts` files (member names, metric values, etc.) is exempted.
+- **Location:** `.opencode/skills/astro-i18n/SKILL.md`, `.opencode/agent/frontend-engineer.md`, `.opencode/agent/code-reviewer.md`, `AGENTS.md`
 - **Confidence:** 🟢 High
