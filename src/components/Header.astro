@@ -6,7 +6,7 @@ import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
-const pathname = Astro.url.pathname;
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 
 const navigationLinks = [
   { href: getRelativeLocaleUrl(lang, '/'), label: t('nav.home') },
@@ -50,19 +50,23 @@ const ctaLinks = {
         <Logo size="nav" showTitle />
         <ul class="menu menu-horizontal flex flex-1 flex-wrap gap-0 px-0 lg:gap-1">
           {
-            navigationLinks.map((link) => (
-              <li>
-                <a
-                  class:list={[
-                    'btn btn-xs btn-ghost',
-                    link.href === pathname && 'btn-outline btn-primary',
-                  ]}
-                  href={link.href}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))
+            navigationLinks.map((link) => {
+              const href = typeof link.href === 'string' ? link.href : link.href?.pathname ?? '/';
+              const isActive = href.replace(/\/$/, '') === pathname;
+              return (
+                <li>
+                  <a
+                    class:list={[
+                      'btn btn-xs btn-ghost',
+                      isActive && 'btn-outline btn-primary',
+                    ]}
+                    href={link.href}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })
           }
         </ul>
       </div>
