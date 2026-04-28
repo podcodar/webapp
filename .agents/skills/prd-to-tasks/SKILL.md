@@ -125,19 +125,43 @@ Convert a PRD into a machine-readable `tasks.json` file that drives implementati
 
 ### Field Reference
 
-| Field                | Type         | Required | Description                                                 |
-| -------------------- | ------------ | -------- | ----------------------------------------------------------- |
-| `id`                 | string       | Yes      | Unique task ID, format `T001`, `T002`, etc.                 |
-| `title`              | string       | Yes      | Short, actionable task title                                |
-| `description`        | string       | Yes      | What needs to be done, context, approach hints              |
-| `phase`              | string       | Yes      | Must match a key in `phases`                                |
-| `priority`           | string       | Yes      | `critical`, `high`, `medium`, `low`                         |
-| `estimatedHours`     | number       | Yes      | Rough estimate in hours                                     |
-| `dependencies`       | string[]     | Yes      | IDs of tasks that must complete first (empty array if none) |
-| `userStory`          | string\|null | No       | The user story this task satisfies                          |
-| `functionalReq`      | string       | No       | The FR this task maps to (e.g., "FR-1")                     |
-| `tags`               | string[]     | No       | Labels for filtering (auth, ui, api, db, test, docs, etc.)  |
-| `acceptanceCriteria` | string[]     | Yes      | Verifiable conditions that prove the task is done           |
+| Field                | Type         | Required | Description                                                                 |
+| -------------------- | ------------ | -------- | --------------------------------------------------------------------------- |
+| `id`                 | string       | Yes      | Unique task ID, format `T001`, `T002`, etc.                                 |
+| `title`              | string       | Yes      | Short, actionable task title                                                |
+| `description`        | string       | Yes      | What needs to be done, context, approach hints                              |
+| `phase`              | string       | Yes      | Must match a key in `phases`                                                |
+| `priority`           | string       | Yes      | `critical`, `high`, `medium`, `low`                                         |
+| `estimatedHours`     | number       | Yes      | Rough estimate in hours                                                     |
+| `dependencies`       | string[]     | Yes      | IDs of tasks that must complete first (empty array if none)                 |
+| `agent`              | string       | Yes      | Squad agent responsible for implementation (see Agent Mapping)              |
+| `moeExperts`         | string[]     | Yes      | MoE experts who review/analyze before implementation (see Expert Selection) |
+| `userStory`          | string\|null | No       | The user story this task satisfies                                          |
+| `functionalReq`      | string       | No       | The FR this task maps to (e.g., "FR-1")                                     |
+| `tags`               | string[]     | No       | Labels for filtering (auth, ui, api, db, test, docs, etc.)                  |
+| `acceptanceCriteria` | string[]     | Yes      | Verifiable conditions that prove the task is done                           |
+
+#### Top-Level `agents` Key
+
+The `agents` object maps each squad agent to their assigned tasks for quick
+reference during implementation:
+
+```jsonc
+"agents": {
+  "frontend-engineer": {
+    "role": "UI components, client-side functionality",
+    "tasks": ["T003", "T004", "T006"]
+  },
+  "backend-engineer": {
+    "role": "Business logic, APIs, data processing",
+    "tasks": ["T001", "T002", "T005"]
+  },
+  "qa-engineer": {
+    "role": "Automated tests, linting, integration checks",
+    "tasks": ["T007", "T008"]
+  }
+}
+```
 
 ### Dependency Rules
 
@@ -200,7 +224,86 @@ Encode in the `dependencies` arrays.
 - **estimatedHours:** Be conservative. If unsure, round up.
 - **tags:** Use consistent tags across the project. Common: `setup`, `types`, `auth`, `api`, `ui`, `db`, `test`, `docs`, `security`, `performance`, `a11y`, `dx`.
 
-### 6. Validate the File
+### 6. Assign Agent and MoE Experts
+
+Every task must be assigned to a squad agent (who implements) and a set of MoE
+experts (who review/analyze before implementation). These go in the `agent` and
+`moeExperts` fields on each task, and are summarized in the top-level `agents` key.
+
+#### Agent Mapping
+
+Map each task to the squad agent whose domain matches:
+
+| Squad Agent         | Domains                                                             | Task Tags                                                            |
+| ------------------- | ------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `frontend-engineer` | UI components, client-side JS, Astro pages, i18n, CSS, Alpine, htmx | `ui`, `astro`, `alpine`, `htmx`, `i18n`, `form`, `css`, `responsive` |
+| `backend-engineer`  | Libraries, APIs, Astro endpoints, business logic, data processing   | `lib`, `api`, `endpoint`, `pix`, `qr`, `server`, `svg`               |
+| `devops-sre`        | Dependency management, build tooling, CI/CD, configuration          | `setup`, `deps`, `config`, `ci`, `deploy`                            |
+| `qa-engineer`       | Unit tests, integration tests, E2E tests, linting                   | `test`, `unit`, `integration`, `e2e`                                 |
+
+If a task spans domains (e.g., an endpoint with UI), pick the primary agent. If
+unsure, default to `backend-engineer` for server-side work and `frontend-engineer`
+for client-side work.
+
+#### MoE Expert Selection
+
+Choose 2–4 MoE experts based on the task's concerns. Use the `mixture-of-experts`
+skill definitions:
+
+| Task Domain (tags)                           | Recommended MoE Experts                                    | Why                                 |
+| -------------------------------------------- | ---------------------------------------------------------- | ----------------------------------- |
+| `setup`, `deps`, `config`                    | `maintainer`, `dx-specialist`                              | Tooling and dev experience          |
+| `lib`, `pix`, `qr`                           | `architect`, `security`, `maintainer`                      | Core logic correctness              |
+| `lib`, `svg`, `qr`                           | `architect`, `performance`, `maintainer`                   | Rendering performance               |
+| `api`, `endpoint`, `svg`, `caching`          | `architect`, `api-designer`, `security`, `performance`     | API design + caching + security     |
+| `api`, `endpoint`, `html`, `htmx`, `caching` | `architect`, `api-designer`, `maintainer`, `performance`   | API design + templates + caching    |
+| `i18n`, `pt-br`                              | `maintainer`, `dx-specialist`                              | Consistency and completeness        |
+| `ui`, `alpine`, `form`, `validation`         | `maintainer`, `minimalist`, `dx-specialist`, `performance` | Interactive form quality            |
+| `ui`, `htmx`, `clipboard`, `qr`              | `maintainer`, `minimalist`, `dx-specialist`, `performance` | Async UI quality                    |
+| `ui`, `astro`, `integration`                 | `maintainer`, `minimalist`                                 | Page structure simplicity           |
+| `ui`, `edge-case`                            | `maintainer`, `minimalist`, `dx-specialist`                | Edge case UX clarity                |
+| `ui`, `a11y`, `graceful-degradation`         | `maintainer`, `dx-specialist`                              | Accessibility and fallbacks         |
+| `ui`, `responsive`, `dark-mode`, `a11y`      | `maintainer`, `minimalist`, `dx-specialist`                | Visual quality across modes         |
+| `alpine`, `htmx`, `integration`              | `maintainer`, `dx-specialist`, `architect`                 | Framework interop complexity        |
+| `test`, `unit`                               | `maintainer`, `security`                                   | Test coverage + security edge cases |
+| `test`, `integration`, `api`                 | `maintainer`, `security`, `api-designer`                   | API correctness + security          |
+| `test`, `e2e`                                | `maintainer`, `dx-specialist`                              | User-facing test quality            |
+
+**Override rule:** If the task description or acceptance criteria suggest special
+concerns (e.g., unusual security risk, strict performance target), adjust the
+expert mix accordingly. Add `security` for auth/PII concerns, `performance` for
+latency-sensitive work, `minimalist` if the task risks over-engineering.
+
+#### Build the `agents` Top-Level Key
+
+After assigning every task's `agent`, build the `agents` summary:
+
+```jsonc
+"agents": {
+  "frontend-engineer": {
+    "role": "UI components, client-side functionality (Alpine, htmx, Astro pages, i18n, CSS)",
+    "tasks": ["T006", "T007", "T008", "T009"]
+  },
+  "backend-engineer": {
+    "role": "Libraries (pix, qrcode), Astro server endpoints",
+    "tasks": ["T002", "T003", "T004", "T005"]
+  },
+  "devops-sre": {
+    "role": "Dependency management",
+    "tasks": ["T001"]
+  },
+  "qa-engineer": {
+    "role": "Unit tests, integration tests, E2E tests",
+    "tasks": ["T014", "T015", "T016", "T017"]
+  }
+}
+```
+
+The `agents` key must be validated: every task ID listed in `agents.*.tasks` must
+appear in the `tasks` array, and every task in `tasks` must have its `agent` field
+match exactly one agent entry.
+
+### 7. Validate the File
 
 Run these checks:
 
@@ -223,11 +326,35 @@ print('Dependencies OK')
 # No circular dependencies (topological sort must succeed)
 # Check phase keys match
 # Check IDs are unique
+
+# Every task has agent and moeExperts assigned
+cat tasks.json | python3 -c "
+import json
+data = json.load(open('tasks.json'))
+for t in data['tasks']:
+    if 'agent' not in t:
+        print(f'ERROR: {t[\"id\"]} missing agent field')
+    if 'moeExperts' not in t:
+        print(f'ERROR: {t[\"id\"]} missing moeExperts field')
+print('Agent/MoE fields OK')
+"
+
+# agents key matches task assignments
+cat tasks.json | python3 -c "
+import json
+data = json.load(open('tasks.json'))
+for agent_name, agent_data in data.get('agents', {}).items():
+    listed = set(agent_data['tasks'])
+    actual = {t['id'] for t in data['tasks'] if t.get('agent') == agent_name}
+    if listed != actual:
+        print(f'WARN: {agent_name} task list mismatch')
+print('Agent summary OK')
+"
 ```
 
-### 7. Present for Review
+### 8. Present for Review
 
-Summarize the task breakdown:
+Summarize the task breakdown including agent assignments:
 
 ```
 I've created tasks.json with [N] tasks across [M] phases:
@@ -238,12 +365,17 @@ Phase 3 - Polish (3 tasks, 8h): Error handling, tests, docs
 Phase 4 - Nice to Have (2 tasks, 6h): P2 stories
 
 Total estimated: 44h
-
 Critical path: T001 → T002 → T004 → T007 → T009
+
+Agent assignments:
+- frontend-engineer: 4 tasks (12h) — form, result pane, page integration
+- backend-engineer: 3 tasks (10h) — libraries, endpoints
+- devops-sre: 1 task (0.5h) — dependencies
+- qa-engineer: 4 tasks (9h) — unit, integration, E2E tests
 
 File: tasks.json — ready for implement-tasks
 
-Want me to adjust any priorities or estimates?
+Want me to adjust any priorities, estimates, or agent assignments?
 ```
 
 ## Complete Example
@@ -260,6 +392,13 @@ Given the Dark Mode PRD from `create-prd`:
     "version": "1.0",
     "totalTasks": 5,
     "totalEstimatedHours": 12,
+    "totalTasks": 5,
+  },
+  "agents": {
+    "frontend-engineer": {
+      "role": "UI components, CSS, state management",
+      "tasks": ["T001", "T002", "T003", "T004", "T005"],
+    },
   },
   "phases": {
     "1-foundation": {
@@ -287,6 +426,8 @@ Given the Dark Mode PRD from `create-prd`:
       "priority": "critical",
       "estimatedHours": 3,
       "dependencies": [],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "minimalist"],
       "userStory": null,
       "functionalReq": "FR-1",
       "tags": ["ui", "css"],
@@ -305,6 +446,8 @@ Given the Dark Mode PRD from `create-prd`:
       "priority": "critical",
       "estimatedHours": 2,
       "dependencies": ["T001"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "dx-specialist", "architect"],
       "userStory": null,
       "functionalReq": "FR-1",
       "tags": ["ui", "state"],
@@ -323,6 +466,8 @@ Given the Dark Mode PRD from `create-prd`:
       "priority": "high",
       "estimatedHours": 2,
       "dependencies": ["T002"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "minimalist", "dx-specialist"],
       "userStory": "As a user, I want to toggle between light and dark mode so that I can reduce eye strain in low-light environments.",
       "functionalReq": "FR-1",
       "tags": ["ui"],
@@ -341,6 +486,8 @@ Given the Dark Mode PRD from `create-prd`:
       "priority": "high",
       "estimatedHours": 1.5,
       "dependencies": ["T002"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "dx-specialist"],
       "userStory": "As a user, I want the app to follow my OS color scheme by default so that I don't need to configure it manually.",
       "functionalReq": "FR-2",
       "tags": ["ui", "a11y"],
@@ -359,6 +506,8 @@ Given the Dark Mode PRD from `create-prd`:
       "priority": "medium",
       "estimatedHours": 1.5,
       "dependencies": ["T002", "T004"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "minimalist"],
       "userStory": "As a user, I want my preference to persist across sessions so that I don't need to re-set it.",
       "functionalReq": "FR-1",
       "tags": ["ui", "state"],
@@ -423,7 +572,8 @@ For dependencies on external systems or other teams:
 - **Acceptance criteria are binary** — Either passing or failing, no judgment calls.
 - **Keep estimates honest** — Don't pad, don't optimistically undercount.
 - **Dependencies are minimal** — Only list what must precede. Don't chain everything.
-- **Tags enable filtering** — Use consistent tags so `implement-tasks` can filter by domain.
+- **Assign agent and MoE experts** — Every task must have an `agent` and `moeExperts`. Validate with the checks in Step 7. Don't skip this — it's required for `implement-tasks` to delegate correctly.
+- **Tags enable filtering** — Use consistent tags so agent assignment and MoE selection are predictable.
 - **One tasks.json per project** — Not per feature within a project (use phases for that).
 - **Version the file** — If the PRD changes, update tasks.json and bump the version.
 

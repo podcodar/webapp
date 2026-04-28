@@ -92,7 +92,8 @@ Before implementing, check for common issues:
 1. **All dependency IDs exist** — No dangling references
 2. **No circular dependencies** — The graph must be a DAG (can run a topological sort)
 3. **All tasks have acceptance criteria** — Cannot verify completion without them
-4. **Phase ordering is logical** — Foundation before features, core before polish
+4. **All tasks have agent and moeExperts** — Required for delegation (added by `prd-to-tasks` step 6)
+5. **Phase ordering is logical** — Foundation before features, core before polish
 
 Run validation with:
 
@@ -157,25 +158,31 @@ T001 → T002 → T003 → T004 → T005 → T006 → T007 → ...
 
 Tasks with no dependencies can run in parallel. Tasks that depend on others must wait.
 
-### Step 4: For Each Task, Select Expert Mix
+### Step 4: For Each Task, Read Agent and MoE Experts
 
-Map task tags/domain to the optimal MoE expert panel. See the `mixture-of-experts` skill for expert definitions:
+Since `prd-to-tasks` v1.1+, every task already has explicit `agent` and
+`moeExperts` fields assigned. Read them directly from tasks.json — no inference
+needed:
 
-| Task Domain (tags)          | Expert Mix                                                         | Why                       |
-| --------------------------- | ------------------------------------------------------------------ | ------------------------- |
-| `setup`, `types`, `config`  | `architect`, `maintainer`                                          | Structure and conventions |
-| `auth`, `security`          | `architect`, `security`, `maintainer`                              | Security-critical code    |
-| `api`, `endpoint`           | `architect`, `api-designer`, `security`, `performance`             | API design + security     |
-| `ui`, `component`           | `maintainer`, `minimalist`, `performance`, `dx-specialist`         | Frontend quality          |
-| `db`, `schema`, `migration` | `data-modeler`, `performance`, `architect`                         | Data correctness          |
-| `test`                      | `maintainer`, `security`                                           | Test quality and coverage |
-| `docs`                      | `maintainer`, `dx-specialist`                                      | Clarity and usefulness    |
-| `performance`, `optimize`   | `performance`, `architect`                                         | Speed and scalability     |
-| `a11y`                      | `maintainer`, `dx-specialist`                                      | Accessibility standards   |
-| Mixed / complex             | `architect`, `security`, `performance`, `maintainer`, `minimalist` | Full coverage             |
-| Unknown                     | `architect`, `maintainer`, `minimalist`                            | Safe default              |
+```python
+# Read pre-assigned agent and experts
+task = tasks['T004']
+agent = task['agent']           # e.g., "backend-engineer"
+moe_experts = task['moeExperts']  # e.g., ["architect", "api-designer", "security"]
+```
 
-**Override rule:** If the task description or acceptance criteria suggest special concerns (e.g., high security, strict performance target), adjust the expert mix accordingly.
+The `agent` field determines who writes the code (the squad agent). The
+`moeExperts` field determines who reviews before implementation.
+
+#### Fallback: Tasks Without Explicit Assignments
+
+If a task is missing `agent` or `moeExperts` (pre-v1.1 tasks.json or manually
+created), use the `mixture-of-experts` skill to select the appropriate experts
+based on the task's tags and domain. See `mixture-of-experts` → "Common Patterns"
+for the canonical tag-to-expert mapping table.
+
+Prefer updating the tasks.json with explicit assignments — it's more reliable
+and reviewable than runtime inference.
 
 ### Step 5: Delegate via MoE
 
@@ -201,19 +208,25 @@ When multiple tasks have no mutual dependencies, run them concurrently:
 
 ```bash
 # Tasks T004 and T005 are independent (both depend on T003 but not each other)
-# Spawn them in parallel tmux sessions
+# Read their moeExperts from tasks.json and spawn in parallel
 
-# T004
+# T004: moeExperts read from tasks.json, e.g., ["architect", "api-designer", "security"]
+EXPERTS_T004=$(python3 -c "
+import json
+t = [t for t in json.load(open('tasks.json'))['tasks'] if t['id']=='T004'][0]
+print(','.join(t['moeExperts']))
+")
+
 tmux new-session -d -s task-T004
 tmux send-keys -t task-T004 \
   "pi -p 'Implement task T004: [description]. Acceptance criteria: [criteria].
-   Use MoE experts: architect, api-designer, security.'" C-m
+   Use MoE experts: \$EXPERTS_T004.'" C-m
 
-# T005
+# T005: same pattern
 tmux new-session -d -s task-T005
 tmux send-keys -t task-T005 \
   "pi -p 'Implement task T005: [description]. Acceptance criteria: [criteria].
-   Use MoE experts: data-modeler, performance, architect.'" C-m
+   Use MoE experts: \$EXPERTS_T005.'" C-m
 ```
 
 ### Step 6: Verify Completion
@@ -374,29 +387,17 @@ echo ""
 
 # Execute each task
 for TID in $ORDER; do
-  # Get task details
+  # Get task details including pre-assigned agent and MoE experts
   TITLE=$(python3 -c "import json; [print(t['title']) for t in json.load(open('$TASKS_FILE'))['tasks'] if t['id']=='$TID']")
   DESC=$(python3 -c "import json; [print(t['description']) for t in json.load(open('$TASKS_FILE'))['tasks'] if t['id']=='$TID']")
-  TAGS=$(python3 -c "import json; [print(' '.join(t.get('tags',[]))) for t in json.load(open('$TASKS_FILE'))['tasks'] if t['id']=='$TID']")
+  AGENT=$(python3 -c "import json; [print(t['agent']) for t in json.load(open('$TASKS_FILE'))['tasks'] if t['id']=='$TID']")
+  EXPERTS=$(python3 -c "import json; [print(','.join(t['moeExperts'])) for t in json.load(open('$TASKS_FILE'))['tasks'] if t['id']=='$TID']")
   CRITERIA=$(python3 -c "import json; [print('\n'.join('- ' + a for a in t['acceptanceCriteria'])) for t in json.load(open('$TASKS_FILE'))['tasks'] if t['id']=='$TID']")
 
   echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
   echo "📋 $TID: $TITLE"
-  echo "   Tags: $TAGS"
-  echo ""
-
-  # Select expert mix based on tags (simplified)
-  EXPERTS="architect maintainer"
-  case "$TAGS" in
-    *auth*|*security*) EXPERTS="architect security maintainer" ;;
-    *api*)             EXPERTS="architect api-designer security performance" ;;
-    *ui*)              EXPERTS="maintainer minimalist performance dx-specialist" ;;
-    *db*)              EXPERTS="data-modeler performance architect" ;;
-    *test*)            EXPERTS="maintainer security" ;;
-    *docs*)            EXPERTS="maintainer dx-specialist" ;;
-  esac
-
-  echo "   Experts: $EXPERTS"
+  echo "   Agent: $AGENT"
+  echo "   MoE Experts: $EXPERTS"
   echo ""
 
   # Build MoE prompt
@@ -435,7 +436,7 @@ echo "   $TOTAL/$TOTAL tasks done"
 - **Verify each task against acceptance criteria** — Don't mark done without checking
 - **Fix problems at the source** — If T005 fails because T002 is buggy, fix T002
 - **Report progress clearly** — Phase + task status so the user knows what's happening
-- **Adjust expert mix per task** — Auth tasks need `security`, UI tasks don't
+- **Use explicit agent and moeExperts from tasks.json** — Read them directly, don't infer. They were assigned during `prd-to-tasks` step 6 for a reason.
 - **Keep the user in the loop** — Especially when a task is blocked or needs clarification
 
 ### DON'Ts
@@ -481,7 +482,7 @@ Last Updated: 2026-04-27 14:30
 create-prd    → Produces PRD
 prd-to-tasks  → Produces tasks.json
 implement-tasks → Executes tasks.json
-    ├── Uses: mixture-of-experts (for each task)
+    ├── Uses: mixture-of-experts (expert definitions, spawn/aggregate patterns)
     ├── Uses: terminal-multiplexer (for parallel tasks)
     ├── Uses: grill-me (when blocked by ambiguity)
     └── Uses: project-files (for status tracking)
