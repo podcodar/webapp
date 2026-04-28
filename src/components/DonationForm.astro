@@ -4,13 +4,19 @@
  *
  * Renders suggested amount buttons + custom input with client-side validation.
  * Dispatches "amount-valid" custom event for htmx result pane integration.
+ * Alpine is loaded globally by the Layout.
  */
 import { useTranslations } from '@/i18n/utils';
 
 const t = useTranslations();
 ---
 
-<div class="donation-form space-y-5" x-data="donationForm">
+<div
+  class="donation-form space-y-5"
+  x-data="donationForm"
+  data-msg-invalid-format={t("contributing.donations.pix.validation.invalid_format")}
+  data-msg-below-minimum={t("contributing.donations.pix.validation.below_minimum")}
+>
   <!-- Suggested amount buttons -->
   <div class="flex flex-wrap gap-3" role="group" aria-label="Valores sugeridos de doação">
     <button
@@ -98,56 +104,69 @@ const t = useTranslations();
   <input type="hidden" name="amount" id="donation-amount" :value="amount" />
 </div>
 
-<script define:vars={{
-  invalidFormatMsg: t("contributing.donations.pix.validation.invalid_format"),
-  belowMinimumMsg: t("contributing.donations.pix.validation.below_minimum"),
-}}>
-  document.addEventListener("alpine:init", () => {
-    (window as any).Alpine.data("donationForm", () => ({
-      amount: null as number | null,
-      customRaw: "",
-      errorMessage: "",
-      largeDonation: false,
+<script is:inline>
+  // Register the Alpine component data *before* Alpine.start() runs.
+  // Layout's script at the bottom of <body> calls Alpine.start() which
+  // fires 'alpine:init'. We register our component on that event.
+  document.addEventListener('alpine:init', function () {
+    var Alpine = window.Alpine;
+    if (!Alpine) return;
 
-      validate(raw: string) {
-        this.largeDonation = false;
-        this.errorMessage = "";
+    Alpine.data('donationForm', function () {
+      return {
+        amount: null,
+        customRaw: '',
+        errorMessage: '',
+        largeDonation: false,
 
-        if (!raw.trim()) {
-          this.amount = null;
-          return;
-        }
+        // i18n strings come from data-* attributes on the root element
+        get invalidFormatMsg() {
+          return this.$el.dataset.msgInvalidFormat || '';
+        },
+        get belowMinimumMsg() {
+          return this.$el.dataset.msgBelowMinimum || '';
+        },
 
-        if (!/^\d+(\.\d{1,2})?$/.test(raw.trim())) {
-          this.errorMessage = invalidFormatMsg;
-          this.amount = null;
-          return;
-        }
+        validate: function (raw) {
+          this.largeDonation = false;
+          this.errorMessage = '';
 
-        const val = parseFloat(raw);
-        if (val < 5) {
-          this.errorMessage = belowMinimumMsg;
-          this.amount = null;
-          return;
-        }
+          if (!raw.trim()) {
+            this.amount = null;
+            return;
+          }
 
-        if (val > 10000) {
-          this.largeDonation = true;
-          this.amount = null;
-          return;
-        }
+          if (!/^\d+(\.\d{1,2})?$/.test(raw.trim())) {
+            this.errorMessage = this.invalidFormatMsg;
+            this.amount = null;
+            return;
+          }
 
-        this.amount = val;
-        this.$dispatch("amount-valid", { amount: val });
-      },
+          var val = parseFloat(raw);
+          if (val < 5) {
+            this.errorMessage = this.belowMinimumMsg;
+            this.amount = null;
+            return;
+          }
 
-      setAmount(val: number) {
-        this.amount = val;
-        this.customRaw = val.toString();
-        this.errorMessage = "";
-        this.largeDonation = false;
-        this.$dispatch("amount-valid", { amount: val });
-      },
-    }));
+          if (val > 10000) {
+            this.largeDonation = true;
+            this.amount = null;
+            return;
+          }
+
+          this.amount = val;
+          this.$dispatch('amount-valid', { amount: val });
+        },
+
+        setAmount: function (val) {
+          this.amount = val;
+          this.customRaw = val.toString();
+          this.errorMessage = '';
+          this.largeDonation = false;
+          this.$dispatch('amount-valid', { amount: val });
+        },
+      };
+    });
   });
 </script>

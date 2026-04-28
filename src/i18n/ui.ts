@@ -235,6 +235,8 @@ export const ui = {
     'contributing.donations.pix.nojs_message':
       'Para doar via PIX, é necessário que o JavaScript esteja habilitado. Você também pode entrar em contato conosco para combinar outra forma de doação.',
     'contributing.donations.pix.nojs_link': 'Entrar em contato',
+    'contributing.donations.pix.incentive':
+      'Toda doação, de qualquer valor, ajuda a manter e expandir nossos programas gratuitos de mentoria, grupos de estudo, oficinas e a infraestrutura que torna a comunidade possível. Sua contribuição financia diretamente a educação de centenas de pessoas que estão começando ou migrando de carreira para a tecnologia.',
     'contributing.volunteering.title': 'Voluntariado',
     'contributing.volunteering.subtitle':
       'Tempo e talento: mentoria, facilitação de estudos e eventos, revisão de código, design, comunicação e muito mais.',

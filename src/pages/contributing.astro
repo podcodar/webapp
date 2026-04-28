@@ -55,17 +55,16 @@ const description = t('contributing.hero.subtitle');
         class="mb-10"
       />
 
-      <div class="grid gap-8 lg:grid-cols-5">
-        <!-- Left column: Form -->
-        <div class="lg:col-span-2">
-          <div class="bg-base-100 rounded-2xl p-6 shadow-sm border border-base-300/30">
-            <DonationForm client:load />
-          </div>
-        </div>
+      <div class="max-w-2xl mx-auto space-y-8">
+        <!-- Incentive text -->
+        <p class="text-base-content/70 text-base md:text-lg leading-relaxed m-0">
+          {t('contributing.donations.pix.incentive')}
+        </p>
 
-        <!-- Right column: Result pane -->
-        <div class="lg:col-span-3">
-          <div class="bg-base-100 rounded-2xl p-6 shadow-sm border border-base-300/30 min-h-[300px]">
+        <!-- Form + Result in a single card -->
+        <div class="bg-base-100 rounded-2xl p-6 md:p-8 shadow-sm border border-base-300/30">
+          <DonationForm />
+          <div class="mt-6">
             <DonationResult />
           </div>
         </div>

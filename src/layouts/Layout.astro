@@ -48,5 +48,10 @@ const t = useTranslations(rawLang as Lang);
       <slot />
     </main>
     <Footer />
+    <script>
+      import Alpine from 'alpinejs';
+      (window as any).Alpine = Alpine;
+      Alpine.start();
+    </script>
   </body>
 </html>
