@@ -206,6 +206,35 @@ export const ui = {
     'contributing.donations.body':
       'Se quiser contribuir financeiramente ou combinar outras formas de apoio, fale com a gente — assim direcionamos sua contribuição de acordo com as necessidades atuais da comunidade.',
     'contributing.donations.cta': 'Falar sobre doação',
+
+    // ── PIX Donation section ────────────────────────────────────────────────────
+    'contributing.donations.pix.title': 'Faça uma doação via PIX',
+    'contributing.donations.pix.subtitle':
+      'Escolha um valor e receba o QR code na hora. Rápido, seguro e sem burocracia.',
+    'contributing.donations.pix.amount_25': 'R$ 25',
+    'contributing.donations.pix.amount_50': 'R$ 50',
+    'contributing.donations.pix.amount_100': 'R$ 100',
+    'contributing.donations.pix.custom_label': 'Outro valor',
+    'contributing.donations.pix.custom_placeholder': 'Digite um valor (ex: 50.00)',
+    'contributing.donations.pix.validation.required': 'Informe um valor para doação.',
+    'contributing.donations.pix.validation.below_minimum': 'O valor mínimo para doação é R$ 5,00.',
+    'contributing.donations.pix.validation.above_maximum':
+      'Para doações acima de R$ 10.000,00, entre em contato conosco.',
+    'contributing.donations.pix.validation.invalid_format':
+      'Formato inválido. Use ponto como separador decimal (ex: 50.00).',
+    'contributing.donations.pix.large_donation.title': 'Doação de grande valor',
+    'contributing.donations.pix.large_donation.message':
+      'Para doações acima de R$ 10.000,00, prefira entrar em contato conosco para alinharmos a melhor forma de contribuir.',
+    'contributing.donations.pix.large_donation.link': 'Falar com a equipe',
+    'contributing.donations.pix.copia_e_cola': 'Copia e Cola',
+    'contributing.donations.pix.copy_button': 'Copiar',
+    'contributing.donations.pix.copied_feedback': '✓ Copiado!',
+    'contributing.donations.pix.expand': 'Expandir',
+    'contributing.donations.pix.collapse': 'Recolher',
+    'contributing.donations.pix.loading': 'Gerando QR code…',
+    'contributing.donations.pix.nojs_message':
+      'Para doar via PIX, é necessário que o JavaScript esteja habilitado. Você também pode entrar em contato conosco para combinar outra forma de doação.',
+    'contributing.donations.pix.nojs_link': 'Entrar em contato',
     'contributing.volunteering.title': 'Voluntariado',
     'contributing.volunteering.subtitle':
       'Tempo e talento: mentoria, facilitação de estudos e eventos, revisão de código, design, comunicação e muito mais.',

@@ -1,5 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
+import DonationForm from '@/components/DonationForm.astro';
+import DonationResult from '@/components/DonationResult.astro';
 import HeroSection from '@/components/ui/HeroSection.astro';
 import SectionHeader from '@/components/ui/SectionHeader.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
@@ -42,27 +44,44 @@ const description = t('contributing.hero.subtitle');
     <Icon name="lucide:heart" slot="eyebrow-icon" class="w-4 h-4" />
   </HeroSection>
 
-  <!-- Donations Section -->
-  <section class="py-16 md:py-24 bg-base-100">
+  <!-- PIX Donation Section (replaces old CTA-based donations) -->
+  <section class="py-16 md:py-24 bg-primary/5 border-y border-primary/10">
     <div class="mx-auto max-w-6xl px-4">
       <SectionHeader
         icon="lucide:gift"
-        title={t('contributing.donations.title')}
-        subtitle={t('contributing.donations.subtitle')}
+        title={t('contributing.donations.pix.title')}
+        subtitle={t('contributing.donations.pix.subtitle')}
         color="primary"
-        class="mb-8"
+        class="mb-10"
       />
 
-      <div class="max-w-3xl">
-        <p class="text-base-content/90 m-0 mb-6 text-lg leading-relaxed">
-          {t('contributing.donations.body')}
-        </p>
-        <p class="m-0">
-          <a href="/contact" class="btn btn-primary no-underline">
-            {t('contributing.donations.cta')}
-          </a>
-        </p>
+      <div class="grid gap-8 lg:grid-cols-5">
+        <!-- Left column: Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-base-100 rounded-2xl p-6 shadow-sm border border-base-300/30">
+            <DonationForm client:load />
+          </div>
+        </div>
+
+        <!-- Right column: Result pane -->
+        <div class="lg:col-span-3">
+          <div class="bg-base-100 rounded-2xl p-6 shadow-sm border border-base-300/30 min-h-[300px]">
+            <DonationResult />
+          </div>
+        </div>
       </div>
+
+      <!-- No-JS fallback -->
+      <noscript>
+        <div class="mt-8 bg-base-100 rounded-2xl p-6 shadow-sm border border-base-300/30 text-center">
+          <p class="text-base-content/70 m-0 mb-3">
+            {t('contributing.donations.pix.nojs_message')}
+          </p>
+          <a href="/contact" class="btn btn-primary no-underline">
+            {t('contributing.donations.pix.nojs_link')}
+          </a>
+        </div>
+      </noscript>
     </div>
   </section>
 

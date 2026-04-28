@@ -1,0 +1,418 @@
+{
+  "$schema": "tasks/v1",
+  "metadata": {
+    "project": "PIX Donations",
+    "prd": "docs/PRD-pix-donations.md",
+    "created": "2026-04-28",
+    "version": "1.1",
+    "totalTasks": 17,
+    "totalEstimatedHours": 43.5
+  },
+  "agents": {
+    "frontend-engineer": {
+      "role": "UI components, client-side functionality (Alpine, htmx, Astro pages, i18n, CSS)",
+      "tasks": ["T006", "T007", "T008", "T009", "T010", "T011", "T012", "T013"]
+    },
+    "backend-engineer": {
+      "role": "Libraries (pix, qrcode), Astro server endpoints (/api/pix-qr, /api/pix-result), API logic",
+      "tasks": ["T002", "T003", "T004", "T005"]
+    },
+    "devops-sre": {
+      "role": "Dependency management, build tooling, CI/CD",
+      "tasks": ["T001"]
+    },
+    "qa-engineer": {
+      "role": "Unit tests, integration tests, E2E tests",
+      "tasks": ["T014", "T015", "T016", "T017"]
+    }
+  },
+  "phases": {
+    "1-foundation": {
+      "label": "Phase 1: Foundation — Libs & Endpoints",
+      "description": "Shared utilities (PIX BR Code, QR SVG) and the two server endpoints. Everything else depends on these.",
+      "tasks": ["T001", "T002", "T003", "T004", "T005"]
+    },
+    "2-core": {
+      "label": "Phase 2: Core — Donation Form UI",
+      "description": "Alpine.js donation form, htmx result pane, i18n keys, and page integration (P0 user stories).",
+      "tasks": ["T006", "T007", "T008", "T009"]
+    },
+    "3-polish": {
+      "label": "Phase 3: Polish — Edge Cases & Hardening",
+      "description": "Large donations, no-JS fallback, responsive layout, dark mode, Alpine+htmx sync (P1 user stories).",
+      "tasks": ["T010", "T011", "T012", "T013"]
+    },
+    "4-quality": {
+      "label": "Phase 4: Quality — Tests",
+      "description": "Unit tests for libs, integration tests for endpoints, and an E2E smoke test.",
+      "tasks": ["T014", "T015", "T016", "T017"]
+    }
+  },
+  "tasks": [
+    {
+      "id": "T001",
+      "title": "Install Alpine.js and htmx dependencies",
+      "description": "Run `bun add alpinejs htmx.org`. Both libraries must be available for client-side imports. Alpine.js handles form interactivity (amount selection, validation display); htmx handles lazy-fetching the donation result pane from the /api/pix-result endpoint.",
+      "phase": "1-foundation",
+      "priority": "critical",
+      "estimatedHours": 0.5,
+      "dependencies": [],
+      "agent": "devops-sre",
+      "moeExperts": ["maintainer", "dx-specialist"],
+      "userStory": null,
+      "functionalReq": null,
+      "tags": ["setup", "deps"],
+      "acceptanceCriteria": [
+        "`bun add alpinejs htmx.org` succeeds",
+        "alpinejs and htmx.org appear in package.json dependencies",
+        "Both can be imported in an Astro component script"
+      ]
+    },
+    {
+      "id": "T002",
+      "title": "Create src/lib/pix.ts — PIX BR Code generator",
+      "description": "Implement a pure TypeScript module that builds an EMV QRCPS-MPM compliant PIX 'copia e cola' string. Must include: (1) EMV tag-value encoding with length prefixes, (2) all mandatory fields (00, 26 with GUI + PIX key, 52, 53, 54, 58, 59, 60), (3) CRC16-CCITT computation (polynomial 0x1021) over the full payload excluding the 6304 trailer. Accepts an amount parameter. Hardcode constants: key=doar@podcodar.org, merchantName=PodCodar, merchantCity=Belo Horizonte. Export a single function `generatePixCode(amount: number): string`. Keep the module framework-agnostic (no Astro imports) so it can be tested independently.",
+      "phase": "1-foundation",
+      "priority": "critical",
+      "estimatedHours": 4,
+      "dependencies": [],
+      "agent": "backend-engineer",
+      "moeExperts": ["architect", "security", "maintainer"],
+      "userStory": null,
+      "functionalReq": "FR-2",
+      "tags": ["lib", "pix", "server"],
+      "acceptanceCriteria": [
+        "`generatePixCode(25)` returns a valid EMV string",
+        "CRC16-CCITT checksum is correct (verify against known PIX test vectors)",
+        "Field 26 contains GUI br.gov.bcb.pix and key doar@podcodar.org",
+        "Field 54 reflects the passed amount with 2 decimal places",
+        "Module has zero external dependencies"
+      ]
+    },
+    {
+      "id": "T003",
+      "title": "Create src/lib/qrcode.ts — QR code SVG generator",
+      "description": "Implement a minimal QR code generator that outputs an inline SVG string. No external QR library. The generator must: (1) encode the input string using byte mode QR encoding, (2) produce a matrix of modules (black/white squares), (3) render as a clean SVG with configurable size. Export a function `generateQrSvg(data: string, size?: number): string`. Reference: QR code standard (ISO/IEC 18004) — implement only the subset needed for PIX strings (alphanumeric/byte, up to version 10 for typical PIX payloads).",
+      "phase": "1-foundation",
+      "priority": "critical",
+      "estimatedHours": 6,
+      "dependencies": [],
+      "agent": "backend-engineer",
+      "moeExperts": ["architect", "performance", "maintainer"],
+      "userStory": null,
+      "functionalReq": "FR-2",
+      "tags": ["lib", "qr", "svg"],
+      "acceptanceCriteria": [
+        "`generateQrSvg(pixString, 200)` returns valid SVG markup",
+        "SVG renders a scannable QR code when opened in a browser",
+        "QR code scans correctly with a PIX-compatible banking app",
+        "Module has zero external dependencies",
+        "Works for PIX strings of typical length (200-400 chars)"
+      ]
+    },
+    {
+      "id": "T004",
+      "title": "Create /api/pix-qr endpoint (Astro server endpoint)",
+      "description": "Create `src/pages/api/pix-qr.ts` as an Astro endpoint (prerender = false for on-demand Cloudflare Worker). Accepts query param `amount`. Uses T002 (pix.ts) to generate the PIX BR Code and T003 (qrcode.ts) to render the SVG. Returns Content-Type: image/svg+xml. Sets response headers: X-Pix-Code (full PIX string), Cache-Control: public, max-age=86400, s-maxage=604800, ETag (hash of PIX string), Vary: Accept. Respects If-None-Match for 304. Validates amount (5-10000 BRL); returns 400 JSON on invalid input. Ignores unknown query params.",
+      "phase": "1-foundation",
+      "priority": "critical",
+      "estimatedHours": 3,
+      "dependencies": ["T002", "T003"],
+      "agent": "backend-engineer",
+      "moeExperts": ["architect", "api-designer", "security", "performance"],
+      "userStory": null,
+      "functionalReq": "FR-2, FR-2a",
+      "tags": ["api", "endpoint", "svg", "caching"],
+      "acceptanceCriteria": [
+        "GET /api/pix-qr?amount=25 returns 200 with Content-Type: image/svg+xml",
+        "Response body is valid SVG with a scannable QR code",
+        "X-Pix-Code header contains the full PIX BR Code string",
+        "Cache-Control, ETag, and Vary headers are present",
+        "GET /api/pix-qr?amount=4.99 returns 400 with JSON error body",
+        "GET /api/pix-qr (no amount) returns 400",
+        "If-None-Match with matching ETag returns 304",
+        "Unknown query params (e.g., ?amount=25&foo=1) are ignored, returns 200"
+      ]
+    },
+    {
+      "id": "T005",
+      "title": "Create /api/pix-result endpoint (HTML partial)",
+      "description": "Create `src/pages/api/pix-result.ts` as an Astro endpoint (prerender = false). Accepts query param `amount`. Uses T002 to generate the PIX string, then returns an HTML fragment (Content-Type: text/html) containing: (1) an `<img>` tag pointing to `/api/pix-qr?amount=X`, (2) the Copia e Cola section with truncated PIX string preview, expand toggle, and copy button. Uses DaisyUI utility classes. Same caching headers as T004. Same validation (5-10000, 400 on invalid). The HTML fragment is a self-contained snippet ready for htmx swap.",
+      "phase": "1-foundation",
+      "priority": "critical",
+      "estimatedHours": 3,
+      "dependencies": ["T002", "T003"],
+      "agent": "backend-engineer",
+      "moeExperts": ["architect", "api-designer", "maintainer", "performance"],
+      "userStory": null,
+      "functionalReq": "FR-3a",
+      "tags": ["api", "endpoint", "html", "htmx", "caching"],
+      "acceptanceCriteria": [
+        "GET /api/pix-result?amount=25 returns 200 with Content-Type: text/html",
+        "Response contains <img src=\"/api/pix-qr?amount=25\">",
+        "Response contains truncated PIX string preview + expand toggle markup",
+        "Response contains a 'Copiar' button element",
+        "Caching headers (Cache-Control, ETag, Vary) match T004 strategy",
+        "GET /api/pix-result?amount=abc returns 400 JSON error",
+        "HTML uses DaisyUI classes for styling"
+      ]
+    },
+    {
+      "id": "T006",
+      "title": "Add i18n keys for the donation form",
+      "description": "Add all user-facing strings to `src/i18n/ui.ts` under the `contributing.donations.*` namespace. Required keys: section title, section subtitle, suggested amount button labels (25, 50, 100), custom amount label, custom amount placeholder, validation errors (below_minimum, above_maximum, invalid_format, required), large donation contact message + link text, Copia e Cola label, copy button text, copied feedback text, expand/collapse toggle labels, loading text, no-JS fallback message. All values in pt-BR.",
+      "phase": "2-core",
+      "priority": "high",
+      "estimatedHours": 1,
+      "dependencies": ["T001"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "dx-specialist"],
+      "userStory": null,
+      "functionalReq": "FR-1, FR-4, FR-5",
+      "tags": ["i18n", "pt-br"],
+      "acceptanceCriteria": [
+        "All keys are under the contributing.donations namespace",
+        "All values are in pt-BR",
+        "Keys cover every user-visible string in the donation section",
+        "Keys include validation error messages for all Zod error types",
+        "No hardcoded strings remain in the form markup"
+      ]
+    },
+    {
+      "id": "T007",
+      "title": "Build Alpine.js donation form component",
+      "description": "Create `src/components/DonationForm.astro` — an Astro component with a client:load Alpine.js island. The form includes: three suggested amount buttons (R$ 25, 50, 100) that set the input value and trigger PIX generation, a custom amount `<input>` with Zod validation (via astro/zod), inline error display in pt-BR. When a valid amount is selected or typed, the Alpine component updates a reactive `amount` state. The form does NOT render the QR/Copia e Cola — that's T008's htmx domain. Use DaisyUI button and input styles. The component must expose the current valid amount as a data attribute or via an Alpine event so htmx can read it.",
+      "phase": "2-core",
+      "priority": "high",
+      "estimatedHours": 4,
+      "dependencies": ["T001", "T006"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "minimalist", "dx-specialist", "performance"],
+      "userStory": "As a visitor, I want to select a suggested donation amount (R$ 25, R$ 50, R$ 100) with one click so that I can donate quickly without typing.",
+      "functionalReq": "FR-1",
+      "tags": ["ui", "alpine", "form", "validation"],
+      "acceptanceCriteria": [
+        "Three suggested amount buttons are displayed and clickable",
+        "Clicking a button populates the input and marks amount as valid",
+        "Custom amount input accepts values between R$ 5.00 and R$ 10,000.00",
+        "Invalid inputs show inline Zod error messages in pt-BR",
+        "Valid amounts update an Alpine reactive state accessible to htmx",
+        "Buttons use DaisyUI primary/outline styles",
+        "Input is keyboard accessible"
+      ]
+    },
+    {
+      "id": "T008",
+      "title": "Build htmx-powered donation result pane",
+      "description": "Add an htmx-powered result pane below the donation form. When Alpine signals a valid amount, htmx issues `hx-get=\"/api/pix-result\"` with the amount as a query param, triggered via `hx-trigger`. The target `<div>` is swapped with the HTML fragment from T005, which includes: the QR code `<img>`, the truncated Copia e Cola preview with expand/collapse toggle, and the copy button. The copy button uses clipboard API with a 'Copiado!' feedback state. Show a loading skeleton (DaisyUI or Tailwind animate-pulse) during fetch. Handle 400 errors from the endpoint by showing an error message in the result pane.",
+      "phase": "2-core",
+      "priority": "high",
+      "estimatedHours": 4,
+      "dependencies": ["T001", "T005", "T006"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "minimalist", "dx-specialist", "performance"],
+      "userStory": "As a visitor, I want to see the QR code and Copia e Cola appear without a full page reload so that the experience feels fast and seamless.",
+      "functionalReq": "FR-3, FR-4",
+      "tags": ["ui", "htmx", "clipboard", "qr"],
+      "acceptanceCriteria": [
+        "Valid amount triggers htmx GET /api/pix-result?amount=X",
+        "Result pane shows QR <img>, truncated PIX preview, and copy button",
+        "Expand toggle reveals full PIX string",
+        "Copy button copies full PIX string to clipboard",
+        "After copy, button text changes to 'Copiado!' for 2 seconds",
+        "Loading skeleton is visible during htmx fetch",
+        "400 response shows error message in result pane instead of QR",
+        "Clipboard fallback (select + manual copy) works when API unavailable"
+      ]
+    },
+    {
+      "id": "T009",
+      "title": "Integrate donation section into /contributing page",
+      "description": "Modify `src/pages/contributing.astro`: (1) Replace the current Donations section (the one with 'Falar sobre doação' CTA linking to /contact) with the new PIX donation section. (2) Position the section immediately after the HeroSection. (3) Give it a highlighted visual treatment — distinct background (e.g., bg-primary/5 with a border), prominent heading. (4) Include the DonationForm (T007) and the htmx result pane (T008) inside a client:load island or astro island. (5) Keep the Volunteering and Partnerships sections unchanged below it.",
+      "phase": "2-core",
+      "priority": "high",
+      "estimatedHours": 2,
+      "dependencies": ["T007", "T008"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "minimalist"],
+      "userStory": "As a visitor, I want the donation section to be prominently visible right after the hero so I can find it immediately.",
+      "functionalReq": "FR-6",
+      "tags": ["ui", "astro", "integration"],
+      "acceptanceCriteria": [
+        "PIX donation section appears immediately after HeroSection on /contributing",
+        "Old 'Falar sobre doação' CTA linking to /contact is removed",
+        "Section has a visually highlighted background or border treatment",
+        "Volunteering and Partnerships sections are unchanged",
+        "Section uses i18n keys from T006 for all text",
+        "Page builds without errors (`bun run build`)"
+      ]
+    },
+    {
+      "id": "T010",
+      "title": "Implement large donation flow (> R$ 10,000)",
+      "description": "When the user enters an amount > R$ 10,000 (or > 10000.00), the Alpine form must prevent PIX generation and instead display an informative message directing the donor to contact the team via /contact. This is not an error state — it must use a distinct, friendly style (e.g., info alert with a link). The htmx result pane must NOT be triggered for amounts > 10,000. The Zod schema must treat > 10,000 as a separate validation path (not just 'above_maximum' but a specific 'contact_us' condition).",
+      "phase": "3-polish",
+      "priority": "high",
+      "estimatedHours": 2,
+      "dependencies": ["T007"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "minimalist", "dx-specialist"],
+      "userStory": "As a donor considering a large contribution (> R$ 10,000), I want to be directed to the contact form instead of being blocked, so that I can discuss the donation with the team.",
+      "functionalReq": "FR-5",
+      "tags": ["ui", "alpine", "edge-case"],
+      "acceptanceCriteria": [
+        "Entering 10000.01 shows 'contact us' message, not a validation error",
+        "No htmx request is made for amounts > 10000",
+        "Message includes a link to /contact",
+        "Message uses a distinct, friendly style (not red error style)",
+        "Entering 10000.00 still generates PIX as usual"
+      ]
+    },
+    {
+      "id": "T011",
+      "title": "Add no-JS graceful degradation",
+      "description": "When JavaScript is disabled (or Alpine/htmx fail to load), the donation section must degrade gracefully: show a static message explaining that donations can be made by contacting the team, with a direct link to /contact. Use a `<noscript>` tag or CSS-based fallback. The Alpine+htmx content is hidden; the fallback is visible. This ensures the page is still useful without JS.",
+      "phase": "3-polish",
+      "priority": "medium",
+      "estimatedHours": 1,
+      "dependencies": ["T009"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "dx-specialist"],
+      "userStory": null,
+      "functionalReq": "FR-6",
+      "tags": ["ui", "a11y", "graceful-degradation"],
+      "acceptanceCriteria": [
+        "<noscript> content is visible when JS is disabled",
+        "Fallback message includes a link to /contact",
+        "Alpine/htmx content is hidden when JS is disabled (not broken)",
+        "Page still looks intentional and on-brand without JS"
+      ]
+    },
+    {
+      "id": "T012",
+      "title": "Responsive layout and dark mode adjustments",
+      "description": "Ensure the donation section looks good on all viewports and in both light/dark themes. Desktop (≥1024px): amount buttons in a row, QR and Copia e Cola side by side. Mobile (375px+): buttons stack vertically, QR and Copia e Cola stack. The QR code SVG must have sufficient contrast in dark mode — add a light background/border behind the QR img. Test with DaisyUI's built-in dark theme support.",
+      "phase": "3-polish",
+      "priority": "medium",
+      "estimatedHours": 2,
+      "dependencies": ["T009"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "minimalist", "dx-specialist"],
+      "userStory": null,
+      "functionalReq": "FR-6",
+      "tags": ["ui", "responsive", "dark-mode", "a11y"],
+      "acceptanceCriteria": [
+        "Amount buttons in a row on ≥1024px, stacked on mobile",
+        "QR code + Copia e Cola side by side on desktop, stacked on mobile",
+        "QR code has visible contrast in dark mode (light bg/border around QR)",
+        "All text is readable in both podcodar-light and podcodar-dark themes",
+        "Layout does not break at 375px viewport width"
+      ]
+    },
+    {
+      "id": "T013",
+      "title": "Alpine.js re-initialization after htmx content swaps",
+      "description": "When htmx swaps the result pane HTML (from /api/pix-result), any Alpine.js directives in the swapped content must initialize correctly. By default, Alpine does not auto-initialize on htmx-swapped content. Solution: listen for the `htmx:afterSwap` event and call `Alpine.initTree()` on the swapped element, OR use Alpine's `Alpine.morph()` plugin if the result pane has persistent Alpine state. Ensure the copy button's clipboard feedback (Alpine-driven) works after swap. The result pane itself should use minimal Alpine (only for copy feedback and expand toggle); the main form Alpine component is outside the htmx swap zone.",
+      "phase": "3-polish",
+      "priority": "high",
+      "estimatedHours": 2,
+      "dependencies": ["T008"],
+      "agent": "frontend-engineer",
+      "moeExperts": ["maintainer", "dx-specialist", "architect"],
+      "userStory": null,
+      "functionalReq": "FR-3",
+      "tags": ["alpine", "htmx", "integration"],
+      "acceptanceCriteria": [
+        "After htmx swap, copy button clipboard logic works (Alpine x-data active)",
+        "Expand/collapse toggle in swapped content works",
+        "No console errors about uninitialized Alpine components",
+        "htmx:afterSwap event listener is registered and fires correctly",
+        "Repeated swaps (changing amounts) do not leak Alpine instances"
+      ]
+    },
+    {
+      "id": "T014",
+      "title": "Unit tests for src/lib/pix.ts",
+      "description": "Write Vitest unit tests for the PIX BR Code generator. Cover: (1) valid PIX string structure for known amounts (25, 50, 100), (2) all mandatory EMV fields present, (3) CRC16-CCITT correctness against known test vectors, (4) edge cases: minimum amount (5.00), maximum (10000.00), decimal amounts (50.50), (5) field 54 formatting (always 2 decimal places). Tests must run with `bun test`.",
+      "phase": "4-quality",
+      "priority": "medium",
+      "estimatedHours": 2,
+      "dependencies": ["T002"],
+      "agent": "qa-engineer",
+      "moeExperts": ["maintainer", "security"],
+      "userStory": null,
+      "functionalReq": "FR-2",
+      "tags": ["test", "unit", "pix"],
+      "acceptanceCriteria": [
+        "All test cases from the PRD Appendix (PIX BR Code table) pass",
+        "CRC16 test: verify against an independently computed checksum",
+        "Tests run via `bun test` or `vitest run`",
+        "Edge cases: 5.00, 10000.00, 50.50, integer vs decimal amounts"
+      ]
+    },
+    {
+      "id": "T015",
+      "title": "Unit tests for src/lib/qrcode.ts",
+      "description": "Write Vitest unit tests for the QR code SVG generator. Cover: (1) generates valid SVG output for typical PIX strings, (2) SVG contains correct viewBox and size attributes, (3) output includes both dark and light modules, (4) edge cases: empty string, very long string (max PIX payload), (5) SVG is valid XML. Tests must run with `bun test`.",
+      "phase": "4-quality",
+      "priority": "medium",
+      "estimatedHours": 2,
+      "dependencies": ["T003"],
+      "agent": "qa-engineer",
+      "moeExperts": ["maintainer", "performance"],
+      "userStory": null,
+      "functionalReq": "FR-2",
+      "tags": ["test", "unit", "qr"],
+      "acceptanceCriteria": [
+        "SVG output is valid XML (parseable by DOMParser or regex checks)",
+        "SVG viewBox matches the requested size",
+        "QR matrix representation is consistent (same input → same output)",
+        "Edge case: very long PIX strings do not crash or produce invalid SVG"
+      ]
+    },
+    {
+      "id": "T016",
+      "title": "Integration tests for /api/pix-qr and /api/pix-result",
+      "description": "Write integration tests that hit the actual endpoints (Astro dev server or via request mocking). Cover: (1) 200 responses for valid amounts, (2) 400 responses for invalid amounts, (3) correct Content-Type headers, (4) X-Pix-Code header present and non-empty, (5) Cache-Control/ETag/Vary headers present, (6) 304 response when If-None-Match matches, (7) /api/pix-result returns HTML fragment with expected elements (img tag, truncated text, copy button). Use Vitest with fetch or Astro's test utilities.",
+      "phase": "4-quality",
+      "priority": "medium",
+      "estimatedHours": 3,
+      "dependencies": ["T004", "T005"],
+      "agent": "qa-engineer",
+      "moeExperts": ["maintainer", "security", "api-designer"],
+      "userStory": null,
+      "functionalReq": "FR-2, FR-2a, FR-3a",
+      "tags": ["test", "integration", "api"],
+      "acceptanceCriteria": [
+        "All test scenarios from PRD Appendix (endpoint tables) pass",
+        "Both 200 and 400 response paths are tested",
+        "Caching headers are verified on 200 responses",
+        "304 response is verified with matching ETag",
+        "HTML fragment from /api/pix-result contains expected elements",
+        "Tests run via `bun test` or `vitest run`"
+      ]
+    },
+    {
+      "id": "T017",
+      "title": "E2E smoke test for donation flow",
+      "description": "Write a Playwright E2E test that exercises the full donation flow on /contributing: (1) navigate to /contributing, (2) verify the donation section is visible after the hero, (3) click the R$ 25 button, (4) verify the QR code image loads and is visible, (5) verify the Copia e Cola section appears with truncated preview, (6) click 'Copiar' and verify clipboard content, (7) type 10000.01 and verify the 'contact us' message appears instead of QR. This serves as a single smoke test proving the critical path works end-to-end.",
+      "phase": "4-quality",
+      "priority": "medium",
+      "estimatedHours": 2,
+      "dependencies": ["T009"],
+      "agent": "qa-engineer",
+      "moeExperts": ["maintainer", "dx-specialist"],
+      "userStory": "As a visitor, I want to select a donation amount and receive a PIX QR code + Copia e Cola.",
+      "functionalReq": "FR-1, FR-3, FR-4, FR-5",
+      "tags": ["test", "e2e", "playwright"],
+      "acceptanceCriteria": [
+        "Test navigates to /contributing and finds donation section after hero",
+        "Clicking R$ 25 button results in visible QR code image",
+        "Copia e Cola truncated preview is visible",
+        "Copy button click populates clipboard with PIX string",
+        "Entering 10000.01 shows contact us message, no QR",
+        "Test passes with `bun run e2e`"
+      ]
+    }
+  ]
+}

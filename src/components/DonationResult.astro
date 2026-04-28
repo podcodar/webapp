@@ -1,0 +1,136 @@
+---
+/**
+ * DonationResult.astro — htmx-powered result pane.
+ *
+ * Listens for the "amount-valid" custom event dispatched by DonationForm,
+ * then fetches /api/pix-result?amount=X via htmx and swaps the content.
+ * Shows a loading skeleton during fetch and handles errors.
+ */
+import { useTranslations } from '@/i18n/utils';
+
+const t = useTranslations();
+---
+
+<div
+  id="donation-result"
+  class="donation-result-container"
+  hx-get="/api/pix-result"
+  hx-trigger="amount-valid from:body"
+  hx-target="#donation-result"
+  hx-swap="innerHTML"
+  hx-include="#donation-amount"
+  hx-indicator="#donation-loading"
+>
+  <!-- Loading skeleton (hidden by default, shown by htmx during request) -->
+  <div id="donation-loading" class="htmx-indicator space-y-5">
+    <!-- QR skeleton -->
+    <div class="flex justify-center">
+      <div class="bg-base-200 animate-pulse rounded-2xl w-56 h-56"></div>
+    </div>
+    <!-- Copia e Cola skeleton -->
+    <div class="space-y-3">
+      <div class="bg-base-200 animate-pulse rounded h-4 w-28"></div>
+      <div class="bg-base-300/50 animate-pulse rounded-xl h-24"></div>
+      <div class="bg-base-200 animate-pulse rounded-lg h-12"></div>
+    </div>
+    <!-- Amount skeleton -->
+    <div class="flex justify-center">
+      <div class="bg-base-200 animate-pulse rounded h-4 w-40"></div>
+    </div>
+  </div>
+
+  <!-- Initial placeholder (visible before first selection) -->
+  <div id="donation-placeholder" class="text-center py-8">
+    <div class="text-base-content/40 text-6xl mb-4">💜</div>
+    <p class="text-base-content/50 text-sm m-0">
+      {t("contributing.donations.pix.loading")}
+    </p>
+  </div>
+</div>
+
+<!-- Error handler + Alpine re-initialization after htmx swaps (T013) -->
+<script>
+  // Alpine is loaded by DonationForm (client:load island).
+  // After Alpine.start(), window.Alpine is available and 'alpine:init' fires.
+  // We use that event to guarantee Alpine is ready before registering htmx hooks.
+  function registerHtmxHooks() {
+    const Alpine = (window as any).Alpine;
+    if (!Alpine) return;
+
+    // T013: Re-initialize Alpine components inside htmx-swapped content.
+    // The /api/pix-result endpoint returns HTML with Alpine directives
+    // (x-data, x-show, @click) that need Alpine.initTree() after swap.
+    document.body.addEventListener("htmx:afterSwap", (e: Event) => {
+      const evt = e as CustomEvent;
+      const target = evt.detail?.target as HTMLElement | undefined;
+      if (!target || target.id !== "donation-result") return;
+
+      Alpine.destroyTree(target);
+      Alpine.initTree(target);
+    });
+
+    // T013 cleanup: destroy Alpine instances before htmx swap to prevent leaks.
+    document.body.addEventListener("htmx:beforeSwap", (e: Event) => {
+      const evt = e as CustomEvent;
+      const target = evt.detail?.target as HTMLElement | undefined;
+      if (!target || target.id !== "donation-result") return;
+      Alpine.destroyTree(target);
+    });
+
+    // T008: Handle 400 errors from /api/pix-result
+    document.body.addEventListener("htmx:responseError", (e: Event) => {
+      const evt = e as CustomEvent;
+      const target = evt.detail?.target as HTMLElement | undefined;
+      if (!target || target.id !== "donation-result") return;
+
+      try {
+        const body = JSON.parse(evt.detail?.xhr?.responseText ?? "{}");
+        if (body.error) {
+          target.innerHTML = '<div class="alert alert-error text-sm" role="alert"><svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" /></svg><span>' + body.error + '</span></div>';
+        }
+      } catch {
+        target.innerHTML = '<p class="text-error text-sm m-0">Erro ao gerar QR code. Tente novamente.</p>';
+      }
+    });
+  }
+
+  if ((window as any).Alpine) {
+    registerHtmxHooks();
+  } else {
+    document.addEventListener("alpine:init", registerHtmxHooks, { once: true });
+  }
+</script>
+
+<!-- T012: Responsive & dark mode adjustments -->
+<style>
+  /* htmx indicator transitions */
+  .htmx-indicator {
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+  }
+  .htmx-request .htmx-indicator {
+    opacity: 1;
+  }
+  .htmx-request #donation-placeholder {
+    display: none;
+  }
+
+  /* T012: Dark mode QR code contrast — ensure white background is visible */
+  :global([data-theme="podcodar-dark"]) .donation-result-container img {
+    background: white;
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+
+  /* T012: Mobile responsive — form and result stack on small screens */
+  @media (max-width: 639px) {
+    .donation-result-container {
+      margin-top: 1.5rem;
+    }
+  }
+
+  /* Alpine x-cloak: hide elements until Alpine initializes */
+  [x-cloak] {
+    display: none !important;
+  }
+</style>
