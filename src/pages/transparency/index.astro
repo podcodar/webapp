@@ -1,13 +1,12 @@
 ---
 import { getCollection } from 'astro:content';
 import { Icon } from 'astro-icon/components';
-import FormattedDate from '@/components/FormattedDate.astro';
 import DocumentCard from '@/components/transparency/DocumentCard.astro';
 import CallToAction from '@/components/ui/CallToAction.astro';
 import HeroSection from '@/components/ui/HeroSection.astro';
 import IconCard from '@/components/ui/IconCard.astro';
 import SectionHeader from '@/components/ui/SectionHeader.astro';
-import { BOARD_MEMBERS, CNPJ, CONTACT_EMAIL, METRICS } from '@/data/transparency';
+import { BOARD_MEMBERS, CONTACT_EMAIL, METRICS } from '@/data/transparency';
 import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
@@ -174,25 +173,10 @@ const formattedLastUpdated = lastUpdated?.toLocaleDateString('pt-br', {
   <CallToAction icon="lucide:message-circle" title={t('transparency.contact.title')} description={t('transparency.contact.text')}>
     <a
       href={`mailto:${CONTACT_EMAIL}`}
-      class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-content rounded-xl font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
+      class="btn btn-primary btn-xl gap-2 text-sm"
     >
       <Icon name="lucide:mail" class="w-5 h-5" />
       {CONTACT_EMAIL}
     </a>
-
-    <div slot="footer" class="mt-12 pt-8 border-t border-base-300/50">
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 text-sm text-base-content/60">
-        <span class="flex items-center gap-2">
-          <Icon name="lucide:building" class="w-4 h-4" />
-          {t('transparency.cnpj')}: {CNPJ}
-        </span>
-        {lastUpdated && (
-          <span class="flex items-center gap-2">
-            <Icon name="lucide:refresh-cw" class="w-4 h-4" />
-            {t('transparency.lastUpdated')}: <FormattedDate date={lastUpdated} />
-          </span>
-        )}
-      </div>
-    </div>
   </CallToAction>
 </Layout>

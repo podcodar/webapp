@@ -1,6 +1,8 @@
 ---
+import { Icon } from 'astro-icon/components';
 import Logo from '@/components/Logo.astro';
 import SocialLinks from '@/components/SocialLinks.astro';
+import { CNPJ } from '@/data/transparency';
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 
 const today = new Date();
@@ -13,5 +15,13 @@ const t = useTranslations(lang);
     <Logo size="sm" showTitle class="justify-center" />
   </div>
   <p class="m-0">&copy; {today.getFullYear()} PodCodar. {t('footer.copyright')}</p>
+  
+  <div class="flex items-center justify-center gap-4 text-sm text-base-content/60">
+    <span class="flex items-center gap-2">
+      <Icon name="lucide:building" class="w-4 h-4" />
+      {t('transparency.cnpj')}: {CNPJ}
+    </span>
+  </div>
+
   <SocialLinks />
 </footer>
