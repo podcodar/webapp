@@ -9,6 +9,11 @@ description: >
 
 # Grill Me — Human-in-the-Loop Clarification
 
+> **⚠️ THIS SKILL ONLY ASKS QUESTIONS.**
+> It never writes code, creates files, edits text, or implements anything.
+> When clarification is done, hand off to another skill (e.g. `create-prd`,
+> `prd-to-tasks`) or return control to the user.
+
 Interview the user to resolve ambiguities before executing. Always attempt self-service research first. When questions remain, ask exactly **one question per turn** and wait for the answer before continuing.
 
 ## Core Principle
@@ -29,6 +34,9 @@ Interview the user to resolve ambiguities before executing. Always attempt self-
 - The ambiguity can be resolved by reading files already in the workspace
 - The answer is a well-known fact (use web search instead)
 - The user explicitly said "just do it" or "use your best judgment"
+- **You intend to implement something.** This skill never writes code, creates files,
+  or edits text. It only asks questions. Use `implement-tasks`, `prd-to-tasks`,
+  or direct execution for building.
 
 ## Process
 
@@ -54,7 +62,8 @@ ls docs/
 # Use your built-in web search for: library docs, error messages, best practices
 ```
 
-**Decision point:** If ALL questions are answered by the above, proceed with the task. If ANY ambiguity remains, go to Step 2.
+**Decision point:** If ALL questions are answered by the above, the request is clear — exit
+and hand off to the appropriate skill. If ANY ambiguity remains, go to Step 2.
 
 ### Step 2: Identify the Most Critical Unknown
 
@@ -85,20 +94,28 @@ Options:
 Receive the answer, integrate it into your understanding, then:
 
 - If ambiguities remain → go back to Step 2 (ask the next question)
-- If everything is clear → proceed with the task
+- If everything is clear → go to Step 5 (exit and hand off)
 
-### Step 5: Confirm Understanding (Optional)
+### Step 5: Exit — Hand Off, Don't Build
 
-If the task is complex (3+ clarification rounds), summarize before acting:
+Once all critical ambiguities are resolved:
+
+1. **Summarize** the clarified requirements in a structured format
+2. **Recommend** the next skill to use (e.g. `create-prd`, `prd-to-tasks`,
+   `implement-tasks`) or ask the user what they'd like to do next
+3. **Stop.** Do not write code, create files, or make edits.
+
+Example exit:
 
 ```
-Got it. Here's what I understand:
+Got it. Here's the clarified plan:
 
-- [Point 1]
-- [Point 2]
-- [Point 3]
+- Provider: Itaú PIX API
+- Flow: donation form → checkout with QR code → thank-you page
+- Architecture: stateless, Cloudflare Workers
+- Pages: /contributing (form), /donate (checkout), /thank-you (success)
 
-I'll proceed with this plan: [one-line summary]. That sound right?
+Ready to turn this into a PRD with `create-prd`. Want me to proceed?
 ```
 
 ## Question Templates
@@ -133,13 +150,14 @@ Which do you prefer?
 
 ## Anti-Patterns
 
-| Don't                                   | Do Instead                                                |
-| --------------------------------------- | --------------------------------------------------------- |
-| Ask 5 questions at once                 | Ask the most important one, let the answer guide the next |
-| Ask questions answerable by `grep`      | Search the codebase first                                 |
-| Ask "What do you want?" with no options | Present concrete options with trade-offs                  |
-| Guess and hope it's right               | Spend 30 seconds asking vs hours redoing                  |
-| Keep asking when 80% clarity is enough  | Accept reasonable defaults for low-impact details         |
+| Don't                                   | Do Instead                                                              |
+| --------------------------------------- | ----------------------------------------------------------------------- |
+| Ask 5 questions at once                 | Ask the most important one, let the answer guide the next               |
+| Ask questions answerable by `grep`      | Search the codebase first                                               |
+| Ask "What do you want?" with no options | Present concrete options with trade-offs                                |
+| Guess and hope it's right               | Spend 30 seconds asking vs hours redoing                                |
+| Keep asking when 80% clarity is enough  | Accept reasonable defaults for low-impact details                       |
+| Start implementing after clarification  | Hand off to `create-prd` or `implement-tasks`. This skill never builds. |
 
 ## Examples
 
@@ -248,13 +266,14 @@ Clarify scope and constraints via grill-me, then feed the answers into create-pr
 
 ```
 1. Grill user on scope, constraints, and priorities
-2. Create PRD from the clarified requirements
+2. Exit grill-me → invoke create-prd with the clarified requirements
 3. Review PRD with user (one more grill-me pass if needed)
 ```
 
 ### With `implement-tasks`
 
-Use grill-me to resolve ambiguous tasks in tasks.json before delegating.
+Use grill-me to resolve ambiguous tasks in tasks.json before delegating. Once
+ambiguities are resolved, exit grill-me and hand back to the implementation flow.
 
 ## Best Practices
 
