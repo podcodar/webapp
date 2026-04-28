@@ -1,0 +1,227 @@
+---
+/**
+ * DonationSection.astro — Datastar-powered PIX donation section.
+ *
+ * Combines form selection, validation, QR display, and Copia e Cola
+ * using Datastar signals and attributes. Replaces Alpine.js + htmx.
+ */
+import { useTranslations } from '@/i18n/utils';
+
+const t = useTranslations();
+
+// i18n strings for client-side validation
+const msgInvalidFormat = t('contributing.donations.pix.validation.invalid_format');
+const msgBelowMinimum = t('contributing.donations.pix.validation.below_minimum');
+const msgLargeDonationTitle = t('contributing.donations.pix.large_donation.title');
+const msgLargeDonationBody = t('contributing.donations.pix.large_donation.message');
+const msgLargeDonationLink = t('contributing.donations.pix.large_donation.link');
+---
+
+<div
+  data-signals="{amount: 0, customRaw: '', errorMessage: '', largeDonation: false, pixCode: '', expanded: false, copied: false, fetching: false}"
+  class="donation-section space-y-5"
+>
+  <!-- Suggested amount buttons -->
+  <div class="flex flex-wrap gap-3" role="group" aria-label="Valores sugeridos de doação">
+    <button
+      type="button"
+      class="btn btn-lg flex-1 min-w-[100px]"
+      data-class:btn-primary="$amount == 25"
+      data-class:btn-outline="$amount != 25"
+      data-on:click="
+        $amount = 25;
+        $customRaw = '25';
+        $errorMessage = '';
+        $largeDonation = false;
+        $pixCode = generatePixCode(25);
+        $expanded = false;
+      "
+      data-attr:aria-pressed="$amount == 25 ? 'true' : 'false'"
+    >
+      {t("contributing.donations.pix.amount_25")}
+    </button>
+    <button
+      type="button"
+      class="btn btn-lg flex-1 min-w-[100px]"
+      data-class:btn-primary="$amount == 50"
+      data-class:btn-outline="$amount != 50"
+      data-on:click="
+        $amount = 50;
+        $customRaw = '50';
+        $errorMessage = '';
+        $largeDonation = false;
+        $pixCode = generatePixCode(50);
+        $expanded = false;
+      "
+      data-attr:aria-pressed="$amount == 50 ? 'true' : 'false'"
+    >
+      {t("contributing.donations.pix.amount_50")}
+    </button>
+    <button
+      type="button"
+      class="btn btn-lg flex-1 min-w-[100px]"
+      data-class:btn-primary="$amount == 100"
+      data-class:btn-outline="$amount != 100"
+      data-on:click="
+        $amount = 100;
+        $customRaw = '100';
+        $errorMessage = '';
+        $largeDonation = false;
+        $pixCode = generatePixCode(100);
+        $expanded = false;
+      "
+      data-attr:aria-pressed="$amount == 100 ? 'true' : 'false'"
+    >
+      {t("contributing.donations.pix.amount_100")}
+    </button>
+  </div>
+
+  <!-- Custom amount input -->
+  <div class="form-control w-full max-w-sm">
+    <label class="label" for="donation-custom-amount">
+      <span class="label-text font-medium">{t("contributing.donations.pix.custom_label")}</span>
+    </label>
+    <label class="input input-bordered flex items-center gap-2" for="donation-custom-amount">
+      <span class="text-base-content/50 font-medium">R$</span>
+      <input
+        id="donation-custom-amount"
+        type="text"
+        inputmode="decimal"
+        class="grow"
+        data-bind:customRaw
+        data-on:input__debounce.300ms="
+          $largeDonation = false;
+          $errorMessage = '';
+          const raw = ($customRaw || '').trim();
+          if (!raw) { $amount = 0; $pixCode = ''; return; }
+          if (!/^\d+(\.\d{1,2})?$/.test(raw)) {
+            $errorMessage = INVALID_FORMAT_MSG;
+            $amount = 0;
+            $pixCode = '';
+            return;
+          }
+          const val = parseFloat(raw);
+          if (val < 5) {
+            $errorMessage = BELOW_MIN_MSG;
+            $amount = 0;
+            $pixCode = '';
+            return;
+          }
+          if (val > 10000) {
+            $largeDonation = true;
+            $amount = 0;
+            $pixCode = '';
+            return;
+          }
+          $amount = val;
+          $pixCode = generatePixCode(val);
+          $expanded = false;
+        "
+        placeholder={t("contributing.donations.pix.custom_placeholder")}
+        autocomplete="off"
+      />
+    </label>
+  </div>
+
+  <!-- Validation error -->
+  <div
+    data-show="$errorMessage != '' && !$largeDonation"
+    class="alert alert-error text-sm"
+    role="alert"
+    style="display:none"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
+    </svg>
+    <span data-text="$errorMessage"></span>
+  </div>
+
+  <!-- Large donation message -->
+  <div
+    data-show="$largeDonation"
+    class="alert alert-info text-sm border border-info/20 bg-info/10"
+    role="status"
+    style="display:none"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    <div>
+      <p class="font-semibold m-0">{msgLargeDonationTitle}</p>
+      <p class="m-0 mt-1">{msgLargeDonationBody}</p>
+      <a href="/contact" class="link link-info font-medium mt-1 inline-block">
+        {msgLargeDonationLink} →
+      </a>
+    </div>
+  </div>
+
+  <!-- Result: QR code + Copia e Cola -->
+  <div data-show="$pixCode != ''" class="space-y-5" style="display:none">
+    <!-- QR Code -->
+    <div class="flex justify-center bg-white rounded-2xl p-4 border border-base-300/50">
+      <img
+        data-attr-src="'/api/pix-qr?amount=' + $amount"
+        data-attr-alt="'QR Code PIX para doação de R$ ' + $amount.toFixed(2).replace('.', ',')"
+        class="w-56 h-56"
+        width="256"
+        height="256"
+      />
+    </div>
+
+    <!-- Copia e Cola -->
+    <div class="space-y-3">
+      <h3 class="text-sm font-semibold text-base-content/70 uppercase tracking-wide">
+        {t("contributing.donations.pix.copia_e_cola")}
+      </h3>
+
+      <!-- Truncated / full PIX preview -->
+      <div
+        class="cursor-pointer select-all rounded-xl border border-base-300/50 bg-base-200/50 p-4 font-mono text-sm break-all leading-relaxed"
+        data-on:click="$expanded = !$expanded"
+        role="button"
+        tabindex="0"
+        data-attr:aria-expanded="$expanded ? 'true' : 'false'"
+        data-on:keydown__self="evt.key == 'Enter' || evt.key == ' ' ? ($expanded = !$expanded, evt.preventDefault()) : null"
+      >
+        <span data-show="!$expanded" data-text="$pixCode.substring(0, 48) + '…'"></span>
+        <span data-show="$expanded" data-text="$pixCode" style="display:none"></span>
+        <span class="block mt-1 text-xs text-primary" data-text="$expanded ? COLLAPSE_LABEL : EXPAND_LABEL"></span>
+      </div>
+
+      <!-- Copy button -->
+      <button
+        type="button"
+        class="btn w-full"
+        data-class:btn-success="$copied"
+        data-class:btn-primary="!$copied"
+        data-on:click="
+          navigator.clipboard?.writeText?.($pixCode);
+          $copied = true;
+          setTimeout(() => $copied = false, 2000);
+        "
+      >
+        <span data-show="!$copied">{t("contributing.donations.pix.copy_button")}</span>
+        <span data-show="$copied" style="display:none">{t("contributing.donations.pix.copied_feedback")}</span>
+      </button>
+    </div>
+
+    <!-- Amount confirmation -->
+    <p class="text-center text-sm text-base-content/50 m-0">
+      Doação de <strong class="text-base-content/70" data-text="'R$ ' + $amount.toFixed(2).replace('.', ',')"></strong>
+    </p>
+  </div>
+</div>
+
+<script>
+  import { generatePixCode } from '@/lib/pix';
+  // Expose PIX code generator globally so Datastar expressions can call it
+  window.generatePixCode = generatePixCode;
+</script>
+
+<script define:vars={{ INVALID_FORMAT_MSG: msgInvalidFormat, BELOW_MIN_MSG: msgBelowMinimum, EXPAND_LABEL: t("contributing.donations.pix.expand"), COLLAPSE_LABEL: t("contributing.donations.pix.collapse") }}>
+  // i18n strings available to Datastar expressions
+  window.INVALID_FORMAT_MSG = INVALID_FORMAT_MSG;
+  window.BELOW_MIN_MSG = BELOW_MIN_MSG;
+  window.EXPAND_LABEL = EXPAND_LABEL;
+  window.COLLAPSE_LABEL = COLLAPSE_LABEL;
+</script>

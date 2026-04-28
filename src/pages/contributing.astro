@@ -1,7 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import DonationForm from '@/components/DonationForm.astro';
-import DonationResult from '@/components/DonationResult.astro';
+import DonationSection from '@/components/DonationSection.astro';
 import HeroSection from '@/components/ui/HeroSection.astro';
 import SectionHeader from '@/components/ui/SectionHeader.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
@@ -61,12 +60,9 @@ const description = t('contributing.hero.subtitle');
           {t('contributing.donations.pix.incentive')}
         </p>
 
-        <!-- Form + Result in a single card -->
+        <!-- Form + Result in a single card (Datastar handles all interactivity) -->
         <div class="bg-base-100 rounded-2xl p-6 md:p-8 shadow-sm border border-base-300/30">
-          <DonationForm />
-          <div class="mt-6">
-            <DonationResult />
-          </div>
+          <DonationSection />
         </div>
       </div>
 
