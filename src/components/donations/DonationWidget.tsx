@@ -138,7 +138,7 @@ function AmountInput(props: {
           onInput={props.onInput}
           onFocus={props.onFocus}
           onBlur={props.onBlur}
-          class="flex-1 bg-transparent focus:outline-none font-bold text-lg text-base-content placeholder:text-base-content/30"
+          class="flex-1 bg-transparent focus:outline-none font-bold text-lg text-base-content placeholder:text-base-content/30 w-12 md:w-24 lg:w-48"
           placeholder={t('donations.widget.customPlaceholder')}
           aria-label={t('donations.widget.customAriaLabel')}
         />
@@ -162,7 +162,7 @@ function PixCopySection(props: { pixString: string; copied: boolean; onCopy: () 
           type="text"
           value={props.pixString}
           readOnly
-          class="flex-1 bg-transparent px-3 py-2.5 font-mono text-[11px] md:text-xs text-base-content/70 truncate focus:outline-none"
+          class="flex-1 bg-transparent px-3 py-2.5 font-mono text-[11px] md:text-xs text-base-content/70 truncate focus:outline-none w-12 md:w-24 lg:w-48"
           aria-label={t('donations.widget.pixCodeAriaLabel')}
         />
         <button
