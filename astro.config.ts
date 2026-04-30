@@ -2,6 +2,7 @@
 import cloudflare from '@astrojs/cloudflare';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import solidJs from '@astrojs/solid-js';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
@@ -22,6 +23,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
+    solidJs(),
     icon({
       include: {
         'simple-icons': ['github', 'linkedin', 'instagram', 'youtube', 'x', 'discord'],

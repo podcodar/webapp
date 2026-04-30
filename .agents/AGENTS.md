@@ -1,15 +1,26 @@
-# AGENTS.md - AI Agent Skills
+# AGENTS.md - AI Agent Skills & Rules
 
-This directory contains AI agent skills for this project.
+This directory contains AI agent skills and project rules for this project.
 
 ## Structure
 
 ```
 .agents/
-└── skills/          # Skill definitions (SKILL.md files)
+├── rules/          # Project conventions and rules
+│   └── icons.md    # Icon componentization rules
+└── skills/         # Skill definitions (SKILL.md files)
     └── my-skill/
         └── SKILL.md
 ```
+
+## Rules
+
+Rules in `.agents/rules/` are project-level conventions that agents must follow.
+They are not skills — they are enforced standards.
+
+| Rule                       | Applies to | Summary                                           |
+| -------------------------- | ---------- | ------------------------------------------------- |
+| [icons.md](rules/icons.md) | All agents | Never write inline SVGs; use astro-icon or LcIcon |
 
 ## Usage
 

@@ -6,6 +6,10 @@ description: >
   Use when a PRD exists and the user wants to break it down into implementable tasks,
   or says "turn this into tasks," "create issues from the PRD," or "what are the next steps?"
   Do NOT use when there is no PRD or when the user wants to skip planning and start coding immediately.
+metadata:
+  scripts:
+    - ../../scripts/validate-dag.py
+  runtime: python3
 ---
 
 # PRD to Tasks
@@ -305,52 +309,19 @@ match exactly one agent entry.
 
 ### 7. Validate the File
 
-Run these checks:
+Run the shared DAG validator. It checks everything: valid JSON, missing dependencies, circular dependencies, phase keys, unique IDs, agent/moeExperts fields, and the agents summary.
 
 ```bash
-# Parse JSON is valid
-cat tasks.json | python3 -c "import json,sys; json.load(sys.stdin); print('Valid JSON')"
-
-# No missing dependency targets
-cat tasks.json | python3 -c "
-import json, sys
-data = json.load(sys.stdin)
-tasks = {t['id'] for t in data['tasks']}
-for t in data['tasks']:
-    for dep in t['dependencies']:
-        if dep not in tasks:
-            print(f'ERROR: {t[\"id\"]} depends on missing task {dep}')
-print('Dependencies OK')
-"
-
-# No circular dependencies (topological sort must succeed)
-# Check phase keys match
-# Check IDs are unique
-
-# Every task has agent and moeExperts assigned
-cat tasks.json | python3 -c "
-import json
-data = json.load(open('tasks.json'))
-for t in data['tasks']:
-    if 'agent' not in t:
-        print(f'ERROR: {t[\"id\"]} missing agent field')
-    if 'moeExperts' not in t:
-        print(f'ERROR: {t[\"id\"]} missing moeExperts field')
-print('Agent/MoE fields OK')
-"
-
-# agents key matches task assignments
-cat tasks.json | python3 -c "
-import json
-data = json.load(open('tasks.json'))
-for agent_name, agent_data in data.get('agents', {}).items():
-    listed = set(agent_data['tasks'])
-    actual = {t['id'] for t in data['tasks'] if t.get('agent') == agent_name}
-    if listed != actual:
-        print(f'WARN: {agent_name} task list mismatch')
-print('Agent summary OK')
-"
+# Run from the skill directory; validates the tasks.json in cwd
+../../scripts/validate-dag.py tasks.json --summary
 ```
+
+Flags:
+
+- `--summary` — include topological order, phase breakdown, and hour estimates
+- `--quiet` — exit code only (useful in scripts)
+
+If validation fails, the script exits with code 1 and prints a specific error. Fix the issue before proceeding.
 
 ### 8. Present for Review
 

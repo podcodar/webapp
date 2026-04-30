@@ -8,6 +8,10 @@ description: >
   Do NOT use when no tasks.json exists (run prd-to-tasks first), for a single
   straightforward task (just do it directly), or when the user wants manual control
   over each step.
+metadata:
+  scripts:
+    - ../../scripts/validate-dag.py
+  runtime: python3
 ---
 
 # Implement Tasks
@@ -95,58 +99,15 @@ Before implementing, check for common issues:
 4. **All tasks have agent and moeExperts** — Required for delegation (added by `prd-to-tasks` step 6)
 5. **Phase ordering is logical** — Foundation before features, core before polish
 
-Run validation with:
+Run validation with the shared DAG validator:
 
 ```bash
-python3 -c "
-import json, sys
-from collections import deque
-
-data = json.load(open('tasks.json'))
-tasks = {t['id']: t for t in data['tasks']}
-task_ids = set(tasks.keys())
-
-# Check all deps exist
-for tid, t in tasks.items():
-    for dep in t['dependencies']:
-        if dep not in task_ids:
-            print(f'ERROR: {tid} depends on missing task {dep}')
-            sys.exit(1)
-
-# Detect cycles via Kahn's algorithm
-in_degree = {tid: 0 for tid in task_ids}
-adj = {tid: [] for tid in task_ids}
-for tid, t in tasks.items():
-    for dep in t['dependencies']:
-        adj[dep].append(tid)
-        in_degree[tid] += 1
-
-q = deque([tid for tid, deg in in_degree.items() if deg == 0])
-sorted_tasks = []
-while q:
-    tid = q.popleft()
-    sorted_tasks.append(tid)
-    for neighbor in adj[tid]:
-        in_degree[neighbor] -= 1
-        if in_degree[neighbor] == 0:
-            q.append(neighbor)
-
-if len(sorted_tasks) != len(task_ids):
-    remaining = task_ids - set(sorted_tasks)
-    print(f'ERROR: Circular dependency involving tasks: {remaining}')
-    sys.exit(1)
-
-print('Task graph is valid (DAG)')
-print(f'Topological order: {\" → \".join(sorted_tasks)}')
-
-# Critical path
-# (simplified: longest path by estimatedHours)
-# ... (expand as needed)
-print(f'Total tasks: {len(tasks)}, Total estimated hours: {sum(t[\"estimatedHours\"] for t in tasks.values())}')
-"
+../../scripts/validate-dag.py tasks.json --summary
 ```
 
-**If validation fails**, stop and report the issues. Do NOT proceed until fixed.
+This checks: valid JSON, missing dependencies, circular dependencies (Kahn's algorithm), phase keys, unique IDs, agent/moeExperts fields, and agent summary consistency. With `--summary` it also prints the topological order and hour estimates.
+
+**If validation fails**, the script exits with code 1 and prints a specific error. Stop and report the issues. Do NOT proceed until fixed.
 
 ### Step 3: Determine Execution Order
 
@@ -358,29 +319,8 @@ echo ""
 TOTAL=$(python3 -c "import json; print(json.load(open('$TASKS_FILE'))['metadata']['totalTasks'])")
 echo "Total tasks: $TOTAL"
 
-# Get topological order
-ORDER=$(python3 -c "
-import json
-from collections import deque
-data = json.load(open('$TASKS_FILE'))
-tasks = {t['id']: t for t in data['tasks']}
-in_degree = {tid: 0 for tid in tasks}
-adj = {tid: [] for tid in tasks}
-for tid, t in tasks.items():
-    for dep in t['dependencies']:
-        adj[dep].append(tid)
-        in_degree[tid] += 1
-q = deque([tid for tid, deg in in_degree.items() if deg == 0])
-order = []
-while q:
-    tid = q.popleft()
-    order.append(tid)
-    for n in adj[tid]:
-        in_degree[n] -= 1
-        if in_degree[n] == 0:
-            q.append(n)
-print(' '.join(order))
-")
+# Get topological order from the shared DAG validator
+ORDER=$(../../scripts/validate-dag.py "$TASKS_FILE" --order)
 
 echo "Execution order: $ORDER"
 echo ""

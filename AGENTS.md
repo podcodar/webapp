@@ -281,6 +281,7 @@ Required for deployment (Cloudflare/Pulumi credentials).
 | `astro.config.ts`                 | Site configuration, i18n settings     |
 | `biome.json`                      | Code style and linting rules          |
 | `.opencode/learnings/registry.md` | Captured learnings from past work     |
+| `.agents/rules/`                  | Project conventions (icons, styles)   |
 
 ---
 
