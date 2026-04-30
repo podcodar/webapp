@@ -416,7 +416,7 @@ export default function DonationWidget() {
               <QrCodePanel qrSvg={qrSvg()} />
               <SecurityBadge />
             </Show>
-            <Show when={pixString().length === 0 && amount().length > 0}>
+            <Show when={pixString().length === 0}>
               <EmptyState />
             </Show>
           </div>
