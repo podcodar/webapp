@@ -232,7 +232,6 @@ export const ui = {
     'donations.widget.validation.belowMin': 'O valor mínimo para doação é R$ 5,00.',
     'donations.widget.validation.invalidFormat': 'Digite um valor numérico válido.',
     'donations.widget.validation.tooManyDecimals': 'Use no máximo duas casas decimais.',
-    'donations.widget.validation.overMax': 'Para doações acima de R$ 10.000, entre em contato.',
     'contributing.volunteering.title': 'Voluntariado',
     'contributing.volunteering.subtitle':
       'Tempo e talento: mentoria, facilitação de estudos e eventos, revisão de código, design, comunicação e muito mais.',

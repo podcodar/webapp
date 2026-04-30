@@ -1,18 +1,9 @@
 import { z } from 'astro/zod';
 import QRCode from 'qrcode';
-import { createEffect, createSignal, Show } from 'solid-js';
+import { createEffect, createMemo, createSignal, Show } from 'solid-js';
 import { useTranslations } from '@/i18n/utils';
 import { generatePixString } from '@/lib/pix';
-import {
-  CheckIcon,
-  ClockIcon,
-  CoinIcon,
-  CopyIcon,
-  ErrorIcon,
-  GiftIcon,
-  LockIcon,
-  PhoneIcon,
-} from './icons';
+import { CheckIcon, ClockIcon, CoinIcon, CopyIcon, ErrorIcon, GiftIcon, LockIcon } from './icons';
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const PIX_KEY = 'doar@podcodar.org';
@@ -34,12 +25,7 @@ const amountSchema = z
     { message: 'donations.widget.validation.tooManyDecimals' }
   )
   .transform((val) => parseFloat(val.replace(',', '.')))
-  .pipe(
-    z
-      .number()
-      .min(5, { message: 'donations.widget.validation.belowMin' })
-      .max(10000, { message: 'donations.widget.validation.overMax' })
-  );
+  .pipe(z.number().min(5, { message: 'donations.widget.validation.belowMin' }));
 
 type ValidationResult =
   | { kind: 'valid'; value: number }
@@ -262,22 +248,6 @@ function EmptyState() {
   );
 }
 
-function OverMaxContact() {
-  const t = useTranslations();
-
-  return (
-    <div class="flex flex-col items-center gap-4 py-6 px-4 text-center rounded-xl bg-info/5 border border-info/20">
-      <div class="w-12 h-12 rounded-full bg-info/10 flex items-center justify-center">
-        <PhoneIcon />
-      </div>
-      <p class="text-sm text-info font-medium">{t('donations.widget.validation.overMax')}</p>
-      <a href="/contact" class="btn btn-info btn-sm">
-        {t('contributing.donations.cta')}
-      </a>
-    </div>
-  );
-}
-
 function ValidationError(props: { messageKey: string }) {
   const t = useTranslations();
 
@@ -341,11 +311,9 @@ export default function DonationWidget() {
   let copyTimeout: ReturnType<typeof setTimeout>;
 
   // ── Derived ───────────────────────────────────────────────────────────────
-  const validation = () => validate(amount());
-
   const currentValue = (): number => {
-    const v = validation();
-    return v.kind === 'valid' ? v.value : 0;
+    const result = validationResult();
+    return result.kind === 'valid' ? result.value : 0;
   };
 
   const pixString = (): string => {
@@ -409,11 +377,12 @@ export default function DonationWidget() {
     setAmount(String(val));
   };
 
-  // ── Display flags ─────────────────────────────────────────────────────────
-  const v = validation();
-  const isOverMax = v.kind === 'error' && v.key === 'donations.widget.validation.overMax';
-  const isValidationError = v.kind === 'error' && v.key !== 'donations.widget.validation.overMax';
-  const hasPixCode = pixString().length > 0;
+  // ── Derived reactive state ────────────────────────────────────────────────
+  const validationResult = createMemo(() => validate(amount()));
+  const errorKey = createMemo(() => {
+    const result = validationResult();
+    return result.kind === 'error' ? result.key : undefined;
+  });
 
   return (
     <div class="relative">
@@ -433,8 +402,8 @@ export default function DonationWidget() {
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
             />
-            <Show when={isValidationError}>
-              <ValidationError messageKey={v.kind} />
+            <Show when={errorKey()}>
+              <ValidationError messageKey={errorKey()!} />
             </Show>
             <Show when={pixErr()}>
               <PixErrorMessage message={pixErr()!} />
@@ -443,14 +412,11 @@ export default function DonationWidget() {
 
           {/* Right Column — PIX results */}
           <div class="space-y-5">
-            <Show when={isOverMax}>
-              <OverMaxContact />
-            </Show>
-            <Show when={hasPixCode}>
+            <Show when={pixString().length > 0}>
               <QrCodePanel qrSvg={qrSvg()} />
               <SecurityBadge />
             </Show>
-            <Show when={!hasPixCode && !isOverMax && amount().length > 0}>
+            <Show when={pixString().length === 0 && amount().length > 0}>
               <EmptyState />
             </Show>
           </div>
