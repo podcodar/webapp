@@ -217,7 +217,7 @@ function QrCorner(props: { position: 'top-left' | 'top-right' | 'bottom-left' | 
 
 function QrCodePanel(props: { qrSvg: string }) {
   return (
-    <div class="relative justify-center hidden md:flex">
+    <div class="relative justify-center hidden lg:flex">
       <div class="absolute inset-0 flex items-center justify-center">
         <div class="rounded-3xl bg-gradient-to-br from-primary/10 via-secondary/10 to-primary/10 animate-pulse" />
       </div>
@@ -421,7 +421,7 @@ export default function DonationWidget() {
 
       {/* Main Card */}
       <div class="relative rounded-3xl border border-base-300/60 bg-gradient-to-b from-base-100 to-base-200/50 p-6 shadow-xl shadow-primary/5 backdrop-blur-sm flex flex-col gap-4">
-        <div class="grid md:grid-cols-2 gap-6">
+        <div class="grid lg:grid-cols-2 gap-6">
           {/* Left Column — Amount selection */}
           <div class="space-y-5">
             <WidgetHeader />
