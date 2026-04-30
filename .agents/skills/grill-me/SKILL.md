@@ -150,14 +150,13 @@ Which do you prefer?
 
 ## Anti-Patterns
 
-| Don't                                   | Do Instead                                                              |
-| --------------------------------------- | ----------------------------------------------------------------------- |
-| Ask 5 questions at once                 | Ask the most important one, let the answer guide the next               |
-| Ask questions answerable by `grep`      | Search the codebase first                                               |
-| Ask "What do you want?" with no options | Present concrete options with trade-offs                                |
-| Guess and hope it's right               | Spend 30 seconds asking vs hours redoing                                |
-| Keep asking when 80% clarity is enough  | Accept reasonable defaults for low-impact details                       |
-| Start implementing after clarification  | Hand off to `create-prd` or `implement-tasks`. This skill never builds. |
+| Don't                                   | Do Instead                                                |
+| --------------------------------------- | --------------------------------------------------------- |
+| Ask 5 questions at once                 | Ask the most important one, let the answer guide the next |
+| Ask questions answerable by `grep`      | Search the codebase first                                 |
+| Ask "What do you want?" with no options | Present concrete options with trade-offs                  |
+| Guess and hope it's right               | Spend 30 seconds asking vs hours redoing                  |
+| Keep asking when 80% clarity is enough  | Accept reasonable defaults for low-impact details         |
 
 ## Examples
 
