@@ -3,7 +3,17 @@ import QRCode from 'qrcode';
 import { createEffect, createMemo, createSignal, Show } from 'solid-js';
 import { useTranslations } from '@/i18n/utils';
 import { generatePixString } from '@/lib/pix';
-import { CheckIcon, ClockIcon, CoinIcon, CopyIcon, ErrorIcon, GiftIcon, LockIcon } from './icons';
+import {
+  CheckIcon,
+  ClockIcon,
+  CoinIcon,
+  CopyIcon,
+  ErrorIcon,
+  GiftIcon,
+  HeartIcon,
+  LockIcon,
+  SparklesIcon,
+} from './icons';
 
 // ── Config ────────────────────────────────────────────────────────────────────
 const PIX_KEY = 'doar@podcodar.org';
@@ -272,27 +282,10 @@ function Decorations() {
   return (
     <>
       <div class="absolute -top-6 -right-6 w-16 h-16 text-primary/10 pointer-events-none">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          class="w-full h-full animate-pulse"
-          aria-hidden="true"
-        >
-          <path d="M12 2l1.5 4.5L18 8l-4.5 1.5L12 14l-1.5-4.5L6 8l4.5-1.5z" />
-          <path d="M19 13l1 3h3l-2.5 2 1 3-2.5-1.5L16 21l1-3-2.5-2h3z" opacity="0.6" />
-        </svg>
+        <SparklesIcon class="w-full h-full animate-pulse" />
       </div>
       <div class="absolute -bottom-4 -left-4 w-10 h-10 text-secondary/20 pointer-events-none">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          class="w-full h-full"
-          aria-hidden="true"
-        >
-          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-        </svg>
+        <HeartIcon class="w-full h-full" />
       </div>
     </>
   );
