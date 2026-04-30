@@ -382,8 +382,8 @@ export default function DonationWidget() {
       <Decorations />
 
       {/* Main Card */}
-      <div class="relative rounded-3xl border border-base-300/60 bg-gradient-to-b from-base-100 to-base-200/50 p-6 shadow-xl shadow-primary/5 backdrop-blur-sm flex flex-col gap-4">
-        <div class="grid lg:grid-cols-2 gap-6">
+      <div class="relative rounded-3xl border border-base-300/60 bg-gradient-to-b from-base-100 to-base-200/50 p-4 lg:p-6 shadow-xl shadow-primary/5 backdrop-blur-sm flex flex-col gap-4">
+        <div class="grid lg:grid-cols-2 gap-4 lg:gap-6">
           {/* Left Column — Amount selection */}
           <div class="space-y-5">
             <WidgetHeader />
