@@ -1,5 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
+import DonationWidget from '@/components/donations/DonationWidget';
 import HeroSection from '@/components/ui/HeroSection.astro';
 import SectionHeader from '@/components/ui/SectionHeader.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
@@ -43,25 +44,78 @@ const description = t('contributing.hero.subtitle');
   </HeroSection>
 
   <!-- Donations Section -->
-  <section class="py-16 md:py-24 bg-base-100">
-    <div class="mx-auto max-w-6xl px-4">
+  <section class="relative py-16 md:py-24 overflow-hidden">
+    {/* Background gradients */}
+    <div class="absolute inset-0 bg-gradient-to-b from-base-100 via-primary/[0.02] to-base-100 pointer-events-none" />
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-primary/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+    <div class="absolute bottom-0 right-0 w-96 h-96 bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
+
+    <div class="relative mx-auto max-w-6xl px-4">
       <SectionHeader
         icon="lucide:gift"
         title={t('contributing.donations.title')}
         subtitle={t('contributing.donations.subtitle')}
         color="primary"
-        class="mb-8"
+        class="mb-10 md:mb-14"
       />
 
-      <div class="max-w-3xl">
-        <p class="text-base-content/90 m-0 mb-6 text-lg leading-relaxed">
-          {t('contributing.donations.body')}
-        </p>
-        <p class="m-0">
-          <a href="/contact" class="btn btn-primary no-underline">
+      <div class="grid grid-cols-2 gap-10 lg:gap-16 items-start">
+        {/* Text side — 2/3 width */}
+        <div class="flex flex-col justify-center">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 text-primary text-xs font-semibold mb-5 w-fit">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z" />
+            </svg>
+            <span>{t('contributing.donations.tagline')}</span>
+          </div>
+
+          <h3 class="text-3xl md:text-4xl font-bold mb-5 bg-gradient-to-r from-base-content via-base-content to-base-content/70 bg-clip-text">
+            {t('contributing.donations.heading')}
+          </h3>
+
+          <p class="text-base-content/75 text-lg leading-relaxed mb-6">
+            {t('contributing.donations.body')}
+          </p>
+
+          {/* Impact points */}
+          <div class="space-y-3 mb-8">
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </div>
+              <span class="text-base-content/70 text-sm">{t('contributing.donations.benefit1')}</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </div>
+              <span class="text-base-content/70 text-sm">{t('contributing.donations.benefit2')}</span>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-md bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true">
+                  <path d="M20 6 9 17l-5-5" />
+                </svg>
+              </div>
+              <span class="text-base-content/70 text-sm">{t('contributing.donations.benefit3')}</span>
+            </div>
+          </div>
+
+          <p class="text-base-content/50 text-sm">
             {t('contributing.donations.cta')}
-          </a>
-        </p>
+            {' '}
+            <a href="/contact" class="link link-primary font-medium">{t('contributing.donations.contactLink')}</a>.
+          </p>
+        </div>
+
+        {/* Widget side — 1/3 width */}
+        <div class="lg:sticky lg:top-8 lg:col-span-1">
+          <DonationWidget client:load />
+        </div>
       </div>
     </div>
   </section>
