@@ -7,7 +7,7 @@ import Section from '@/components/marketing/Section.astro';
 import TestimonialGrid from '@/components/marketing/TestimonialGrid.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_DESCRIPTION, SITE_TITLE } from '@/consts';
 import { aboutCommunity, activities, howToHelp, mission, testimonials } from '@/data/marketing';
-import ogDefaultImage from '@/data/og-default';
+
 import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
@@ -22,7 +22,7 @@ const heroContent = {
 } as const;
 ---
 
-<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
+<Layout title={SITE_TITLE} description={SITE_DESCRIPTION} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
   <Hero content={heroContent} />
   <Section id="mission" title={t('home.mission.title')} variant="muted">
     <div class="max-w-3xl space-y-4">

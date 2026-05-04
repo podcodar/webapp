@@ -13,7 +13,7 @@ import {
   mission,
   projects,
 } from '@/data/marketing';
-import ogDefaultImage from '@/data/og-default';
+
 import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
@@ -22,7 +22,7 @@ const title = `${t('nav.about')} — ${SITE_TITLE}`;
 const description = t('about.hero.subtitle');
 ---
 
-<Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
+<Layout {title} {description} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
   <!-- Hero Section -->
   <HeroSection
     eyebrow={t('about.hero.eyebrow')}

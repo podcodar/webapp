@@ -4,7 +4,7 @@ import DonationWidget from '@/components/donations/DonationWidget';
 import HeroSection from '@/components/ui/HeroSection.astro';
 import SectionHeader from '@/components/ui/SectionHeader.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
-import ogDefaultImage from '@/data/og-default';
+
 import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
@@ -13,7 +13,7 @@ const title = `${t('nav.contributing')} — ${SITE_TITLE}`;
 const description = t('contributing.hero.subtitle');
 ---
 
-<Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
+<Layout {title} {description} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
   <!-- Hero Section -->
   <HeroSection
     eyebrow={t('contributing.hero.eyebrow')}

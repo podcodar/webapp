@@ -6,7 +6,7 @@ import SectionHeader from '@/components/ui/SectionHeader.astro';
 import StepItem from '@/components/ui/StepItem.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
 import { communicationChannels } from '@/data/marketing';
-import ogDefaultImage from '@/data/og-default';
+
 import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
@@ -16,7 +16,7 @@ const description = t('joinUs.hero.subtitle');
 const channelStats = communicationChannels.length;
 ---
 
-<Layout {title} {description} image={ogDefaultImage} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
+<Layout {title} {description} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
   <!-- Hero Section -->
   <HeroSection
     eyebrow={t('joinUs.hero.eyebrow')}

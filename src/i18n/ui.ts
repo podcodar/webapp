@@ -105,6 +105,11 @@ export const ui = {
     'footer.copyright': 'Todos os direitos reservados.',
     'layout.skipToContent': 'Pular para o conteúdo',
 
+    // ── 404 page ───────────────────────────────────────────────────────────────
+    '404.title': 'Ops! Essa página não existe.',
+    '404.message':
+      'Parece que você seguiu um link quebrado ou digitou um endereço errado. Volte ao início e continue navegando.',
+
     // ── Home page ─────────────────────────────────────────────────────────────
     'home.hero.eyebrow': 'PodCodar',
     'home.hero.headline': 'Educação em tecnologia, feita em comunidade',

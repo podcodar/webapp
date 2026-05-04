@@ -1,0 +1,34 @@
+---
+import Logo from '@/components/Logo.astro';
+import { LAYOUT_MAIN_FULL_WIDTH } from '@/consts';
+import { useTranslations } from '@/i18n/utils';
+import Layout from '@/layouts/Layout.astro';
+
+const t = useTranslations();
+
+const title = `404 — ${t('nav.home')}`;
+const description = t('404.message');
+---
+
+<Layout {title} {description} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
+  <section class="flex flex-1 flex-col items-center justify-center py-24 text-center">
+    <!-- PodCodar logo mark (larger, faded for visual interest) -->
+    <div class="mb-8 opacity-20" aria-hidden="true">
+      <Logo size="lg" showTitle={false} />
+    </div>
+
+    <!-- 404 error code -->
+    <p class="mb-4 text-8xl font-bold text-primary">404</p>
+
+    <!-- Message -->
+    <h1 class="mb-4 text-3xl font-bold">{t('404.title')}</h1>
+    <p class="mb-8 max-w-md text-base-content/70">{t('404.message')}</p>
+
+    <!-- Navigation links -->
+    <nav class="flex flex-wrap justify-center gap-4" aria-label="404 navigation">
+      <a href="/" class="btn btn-primary no-underline">{t('nav.home')}</a>
+      <a href="/blog/" class="btn btn-outline btn-primary no-underline">{t('nav.blog')}</a>
+      <a href="/join-us/" class="btn btn-outline btn-primary no-underline">{t('nav.join_us')}</a>
+    </nav>
+  </section>
+</Layout>
