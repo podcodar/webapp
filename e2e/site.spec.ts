@@ -584,7 +584,7 @@ test.describe('404 page', () => {
     );
   });
 
-  test('returns 404 status for non-existent page', async ({ page, context }) => {
+  test('returns 404 status for non-existent page', async ({ page }) => {
     const response = await page.goto('/definitely-not-real');
     expect(response?.status()).toBe(404);
   });
