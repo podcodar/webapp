@@ -179,19 +179,19 @@ export const ui = {
     'joinUs.steps.s5.title': 'Crescimento',
     'joinUs.steps.s5.desc':
       'Peça feedback, peça sugestões de estudo e proponha ideias novas para as guildas.',
-    'joinUs.github.title': 'GitHub',
-    'joinUs.github.desc': 'Código aberto, transparência e boas primeiras contribuições.',
-    'joinUs.github.linkText': 'Acessar github.com/podcodar',
+    'joinUs.github.title': 'Contribua com código aberto',
+    'joinUs.github.desc':
+      'Nossos repositórios são o coração da PodCodar — aqui é onde a comunidade constrói projetos reais.',
+    'joinUs.github.body':
+      'Explore os repositórios da organização, encontre issues com a tag "good first issue" e faça sua primeira contribuição. Toda Pull Request é revisada com cuidado e carinho por membros da comunidade.',
     'joinUs.github.cta': 'Ver repositórios',
-    'joinUs.contact.title': 'Contato',
-    'joinUs.contact.subtitle': 'Prefere uma mensagem antes de entrar nos grupos? Entre em contato!',
-    'joinUs.contact.sendTitle': 'Envie uma mensagem',
-    'joinUs.contact.sendDesc': 'Fale diretamente com a gente pelo formulário de contato.',
-    'joinUs.contact.discordTitle': 'Conversar no Discord',
-    'joinUs.contact.discordDesc': 'Participe das discussões e conheça a comunidade.',
-    'joinUs.contact.tagFast': 'Resposta rápida',
-    'joinUs.contact.tagCommunity': 'Comunidade acolhedora',
-    'joinUs.contact.tagSafe': 'Espaço seguro',
+    'joinUs.github.contributingLink': 'Guia de contribuição',
+
+    'joinUs.cta.title': 'Pronto para fazer parte?',
+    'joinUs.cta.description':
+      'Entre em contato ou junte-se ao nosso Discord — estamos prontos para te receber.',
+    'joinUs.cta.button': 'Entre em contato',
+    'joinUs.cta.discord': 'Entrar no Discord',
 
     // ── Contributing page ─────────────────────────────────────────────────────
     'contributing.hero.eyebrow': 'Participe',
@@ -293,8 +293,8 @@ export const ui = {
     'contact.email.value': 'contato@podcodar.org',
     'contact.discord.label': 'Discord',
     'contact.discord.value': 'Comunidade Discord',
-    'contact.events.label': 'Eventos',
-    'contact.events.value': 'Participe de eventos',
+    'contact.linkedin.label': 'LinkedIn',
+    'contact.linkedin.value': 'Conecte-se conosco',
     'contact.inquiries.title': 'Sobre o que você pode entrar em contato?',
     'contact.inquiries.subtitle': 'Estamos abertos para diversos tipos de interação.',
     'contact.inquiries.hiring.title': 'Precisando contratar?',

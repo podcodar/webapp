@@ -9,7 +9,6 @@ import {
   aboutCommunity,
   communicationChannels,
   coreValues,
-  eventsBlock,
   mission,
   projects,
 } from '@/data/marketing';
@@ -166,16 +165,14 @@ const description = t('about.hero.subtitle');
     </div>
   </section>
 
-  <!-- Events CTA Section -->
-  <CallToAction icon="lucide:calendar-days" title={t(eventsBlock.titleKey)} description={t(eventsBlock.bodyKey)}>
+  <!-- Join Us CTA Section -->
+  <CallToAction icon="lucide:users" title={t('joinUs.hero.title')} description={t('joinUs.hero.subtitle')}>
     <a
-      href={eventsBlock.externalHref}
-      target="_blank"
-      rel="noopener noreferrer"
+      href="/join-us"
       class="inline-flex items-center gap-3 px-8 py-4 bg-primary text-primary-content rounded-xl font-semibold hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
     >
-      <Icon name="lucide:external-link" class="w-5 h-5" />
-      {t(eventsBlock.ctaKey)}
+      <Icon name="lucide:heart-handshake" class="w-5 h-5" />
+      {t('nav.join_us')}
     </a>
   </CallToAction>
 </Layout>
