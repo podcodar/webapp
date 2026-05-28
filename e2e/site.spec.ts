@@ -256,8 +256,10 @@ test.describe('Join Us page', () => {
     await page.goto('/join-us');
 
     // GitHub section
-    await expect(page.getByRole('heading', { name: /^github$/i, level: 2 })).toBeVisible();
-    await expect(page.getByText(/github.com\/podcodar/i)).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /contribua com código aberto/i, level: 2 })
+    ).toBeVisible();
+    await expect(page.getByText(/repositórios da organização/i)).toBeVisible();
 
     // GitHub CTA button
     await expect(page.getByRole('link', { name: /ver repositórios/i })).toHaveAttribute(
@@ -270,10 +272,12 @@ test.describe('Join Us page', () => {
     await page.goto('/join-us');
 
     // Contact section
-    await expect(page.getByRole('heading', { name: /^contato$/i, level: 2 })).toBeVisible();
+    await expect(
+      page.getByRole('heading', { name: /pronto para fazer parte/i, level: 2 })
+    ).toBeVisible();
 
     // Link to contact page
-    await expect(page.getByRole('link', { name: /envie uma mensagem/i })).toHaveAttribute(
+    await expect(page.getByRole('link', { name: /entre em contato/i })).toHaveAttribute(
       'href',
       '/contact'
     );
@@ -344,5 +348,292 @@ test.describe('Contact page', () => {
     // CTA section with email button
     const mailtoLink = page.locator('a[href^="mailto:"]').last();
     await expect(mailtoLink).toBeVisible();
+  });
+
+  test('has FAQ section with multiple categories', async ({ page }) => {
+    await page.goto('/contact');
+
+    // FAQ section heading
+    await expect(page.getByRole('heading', { name: /perguntas frequentes/i })).toBeVisible();
+
+    // FAQ categories
+    await expect(page.getByText('Sobre a PodCodar e Nossa Missão')).toBeVisible();
+    await expect(page.getByText('Para Novos Membros')).toBeVisible();
+    await expect(page.getByText('Para Empresas e Parceiros')).toBeVisible();
+    await expect(page.getByText('Outras Dúvidas')).toBeVisible();
+
+    // Sample questions from each category
+    await expect(page.getByText('O que é a PodCodar?')).toBeVisible();
+    await expect(page.getByText('Preciso pagar para participar da comunidade?')).toBeVisible();
+    await expect(page.getByText('Quero participar! Qual é o primeiro passo?')).toBeVisible();
+    await expect(
+      page.getByText('Somos uma empresa. Como podemos ser parceiros da PodCodar?')
+    ).toBeVisible();
+    await expect(page.getByText('Quais ferramentas de comunicação vocês usam?')).toBeVisible();
+  });
+});
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Transparency page (/transparency)
+// ──────────────────────────────────────────────────────────────────────────────
+
+test.describe('Transparency page', () => {
+  test('navigates to Transparency page via nav link', async ({ page }) => {
+    await page.goto('/');
+
+    await page
+      .getByRole('navigation', { name: 'Primary' })
+      .getByRole('link', { name: /transparência/i })
+      .click();
+
+    await expect(page).toHaveURL(/\/transparency/);
+    await expect(page.getByRole('heading', { name: /transparência/i, level: 1 })).toBeVisible();
+  });
+
+  test('can navigate directly to /transparency', async ({ page }) => {
+    await page.goto('/transparency');
+
+    await expect(page).toHaveTitle(/PodCodar/i);
+    await expect(page.getByRole('heading', { name: /transparência/i, level: 1 })).toBeVisible();
+  });
+
+  test('has hero section with stats', async ({ page }) => {
+    await page.goto('/transparency');
+
+    // Eyebrow badge
+    await expect(page.getByText('Compromisso com a Transparência')).toBeVisible();
+
+    // Hero heading
+    await expect(page.getByRole('heading', { name: /transparência/i, level: 1 })).toBeVisible();
+
+    // Stats are visible
+    await expect(page.locator('text=Documentos').first()).toBeVisible();
+    await expect(page.locator('text=Membros').first()).toBeVisible();
+  });
+
+  test('has documents section with categories', async ({ page }) => {
+    await page.goto('/transparency');
+
+    // Documents section heading
+    await expect(page.getByRole('heading', { name: /documentos/i, level: 2 })).toBeVisible();
+
+    // CNPJ badge - scoped to main content to avoid footer match
+    await expect(
+      page.locator('main, [role="main"]').getByText('53.979.776/0001-61').first()
+    ).toBeVisible();
+
+    // Category headings (at least one should exist based on content)
+    const hasInstitucional = await page
+      .getByText('Institucional')
+      .first()
+      .isVisible()
+      .catch(() => false);
+    const hasFinanceiro = await page
+      .getByText('Financeiro')
+      .first()
+      .isVisible()
+      .catch(() => false);
+    const hasFiscal = await page
+      .getByText('Fiscal')
+      .first()
+      .isVisible()
+      .catch(() => false);
+    expect(hasInstitucional || hasFinanceiro || hasFiscal).toBe(true);
+  });
+
+  test('has board members section', async ({ page }) => {
+    await page.goto('/transparency');
+
+    await expect(
+      page.getByRole('heading', { name: /conselho administrativo/i, level: 2 })
+    ).toBeVisible();
+
+    // Board members from data/transparency.ts
+    await expect(page.getByText('Marco Antônio de Souza Júnior')).toBeVisible();
+    await expect(page.getByText('Pedro Henrique Ramos Costa')).toBeVisible();
+    await expect(page.getByText('Marina Andrade Fonseca')).toBeVisible();
+    await expect(page.getByText('Pedro Frattezi Silva')).toBeVisible();
+  });
+
+  test('has metrics section with impact numbers', async ({ page }) => {
+    await page.goto('/transparency');
+
+    await expect(
+      page.getByRole('heading', { name: /impacto e resultados/i, level: 2 })
+    ).toBeVisible();
+
+    // Metrics from data/transparency.ts
+    await expect(page.locator('text=300+').first()).toBeVisible();
+    await expect(page.locator('text=30+').first()).toBeVisible();
+    await expect(page.locator('text=16+').first()).toBeVisible();
+  });
+
+  test('has commitment section with CTA links', async ({ page }) => {
+    await page.goto('/transparency');
+
+    await expect(page.getByRole('heading', { name: /nosso compromisso/i, level: 2 })).toBeVisible();
+
+    // CTA links
+    await expect(page.getByRole('link', { name: /fale conosco/i }).first()).toHaveAttribute(
+      'href',
+      '/contact'
+    );
+    await expect(page.getByRole('link', { name: /como ajudar/i })).toHaveAttribute(
+      'href',
+      '/contributing'
+    );
+  });
+
+  test('has contact CTA with mailto link', async ({ page }) => {
+    await page.goto('/transparency');
+
+    await expect(page.getByRole('heading', { name: /fale conosco/i, level: 2 })).toBeVisible();
+
+    const mailtoLink = page.locator('a[href^="mailto:contato@podcodar.org"]');
+    await expect(mailtoLink).toBeVisible();
+  });
+
+  test('can navigate to a document detail page', async ({ page }) => {
+    await page.goto('/transparency');
+
+    // Click the first document card
+    const firstDocLink = page.locator('a[href^="/transparency/"]').first();
+    await expect(firstDocLink).toBeVisible();
+    await firstDocLink.click();
+
+    // Should be on a detail page
+    await expect(page).toHaveURL(/\/transparency\/.+/);
+
+    // Detail page should have a breadcrumb back to transparency
+    const backLink = page
+      .getByRole('navigation', { name: 'Breadcrumb' })
+      .getByRole('link', { name: /transparência/i });
+    await expect(backLink).toHaveAttribute('href', '/transparency');
+  });
+});
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Transparency detail pages (/transparency/:slug)
+// ──────────────────────────────────────────────────────────────────────────────
+
+test.describe('Transparency detail pages', () => {
+  test('estatuto page has title, description and back link', async ({ page }) => {
+    await page.goto('/transparency/estatuto');
+
+    // Page should have a heading (the page title h1, not the markdown content h1)
+    await expect(
+      page.locator('h1.text-3xl').filter({ hasText: /ata de assembleia/i })
+    ).toBeVisible();
+
+    // Category badge
+    await expect(page.getByText('Institucional').first()).toBeVisible();
+
+    // Back link to transparency - use the breadcrumb nav, not the header nav
+    const breadcrumbLink = page
+      .getByRole('navigation', { name: 'Breadcrumb' })
+      .getByRole('link', { name: /transparência/i });
+    await expect(breadcrumbLink).toHaveAttribute('href', /\/transparency/);
+
+    // Back navigation at bottom
+    await expect(
+      page.getByRole('link', { name: /voltar para todos os documentos/i })
+    ).toHaveAttribute('href', '/transparency');
+  });
+
+  test('document page has external file link when available', async ({ page }) => {
+    await page.goto('/transparency/estatuto');
+
+    // Should have a view/download link
+    const viewLink = page.getByRole('link', { name: /ver documento/i });
+    await expect(viewLink).toBeVisible();
+  });
+
+  test('renders 404 for non-existent transparency slug', async ({ page }) => {
+    await page.goto('/transparency/non-existent-doc');
+
+    // Should show 404
+    await expect(page.getByText('404')).toBeVisible();
+    await expect(page.getByRole('heading', { name: /ops/i })).toBeVisible();
+  });
+});
+
+// ──────────────────────────────────────────────────────────────────────────────
+// 404 page
+// ──────────────────────────────────────────────────────────────────────────────
+
+test.describe('404 page', () => {
+  test('shows 404 for non-existent routes', async ({ page }) => {
+    await page.goto('/this-page-does-not-exist');
+
+    await expect(page.getByText('404')).toBeVisible();
+    await expect(page.getByRole('heading', { name: /ops/i })).toBeVisible();
+    await expect(page.getByText(/essa página não existe/i)).toBeVisible();
+  });
+
+  test('has navigation links back to main pages', async ({ page }) => {
+    await page.goto('/non-existent-page');
+
+    // Link back to home - scoped to 404 navigation
+    const nav404 = page.getByRole('navigation', { name: '404 navigation' });
+    await expect(nav404.getByRole('link', { name: /início/i })).toHaveAttribute('href', '/');
+
+    // Link to join-us
+    await expect(nav404.getByRole('link', { name: /faça parte/i })).toHaveAttribute(
+      'href',
+      '/join-us/'
+    );
+  });
+
+  test('returns 404 status for non-existent page', async ({ page, context }) => {
+    const response = await page.goto('/definitely-not-real');
+    expect(response?.status()).toBe(404);
+  });
+});
+
+// ──────────────────────────────────────────────────────────────────────────────
+// Cross-page navigation
+// ──────────────────────────────────────────────────────────────────────────────
+
+test.describe('Cross-page navigation', () => {
+  test('all main nav links are present in header', async ({ page }) => {
+    await page.goto('/');
+
+    const nav = page.getByRole('navigation', { name: 'Primary' });
+
+    await expect(nav.getByRole('link', { name: /início/i })).toBeVisible();
+    await expect(nav.getByRole('link', { name: /sobre/i })).toBeVisible();
+    await expect(nav.getByRole('link', { name: /transparência/i })).toBeVisible();
+    await expect(nav.getByRole('link', { name: /contato/i })).toBeVisible();
+  });
+
+  test('can navigate from about to join-us via CTA', async ({ page }) => {
+    await page.goto('/about');
+
+    const cta = page.getByRole('link', { name: /faça parte/i }).last();
+    await cta.click();
+
+    await expect(page).toHaveURL(/\/join-us/);
+  });
+
+  test('footer social links are consistent across pages', async ({ page }) => {
+    const pages = ['/', '/about', '/contact', '/transparency', '/join-us', '/contributing'];
+
+    for (const path of pages) {
+      await page.goto(path);
+      const socialLinks = page.locator('footer').getByTestId('social-links');
+      await expect(socialLinks.getByRole('link')).toHaveCount(4);
+    }
+  });
+
+  test('can navigate to transparency from footer or nav on any page', async ({ page }) => {
+    await page.goto('/join-us');
+
+    await page
+      .getByRole('navigation', { name: 'Primary' })
+      .getByRole('link', { name: /transparência/i })
+      .click();
+
+    await expect(page).toHaveURL(/\/transparency/);
+    await expect(page.getByRole('heading', { name: /transparência/i, level: 1 })).toBeVisible();
   });
 });

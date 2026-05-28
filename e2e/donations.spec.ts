@@ -21,7 +21,7 @@ test.describe('Donations page (/contributing)', () => {
 
     await expect(page.getByRole('heading', { name: /doe via pix/i, level: 3 })).toBeVisible();
     await expect(page.getByText('100% do valor vai diretamente para a comunidade')).toBeVisible();
-    await expect(page.getByText('Sem taxas, sem burocracia — é instantâneo')).toBeVisible();
+    await expect(page.getByText('Sem taxas, sem burocracia - é instantâneo')).toBeVisible();
     await expect(page.getByText('Você recebe o comprovante no app do banco')).toBeVisible();
   });
 
@@ -41,7 +41,7 @@ test.describe('Donations page (/contributing)', () => {
     const pixInput = page.locator('#pix-copia-cola');
     await expect(pixInput).toBeVisible();
     await expect(pixInput).toHaveValue(/br\.gov\.bcb\.pix/);
-    await expect(pixInput).toHaveValue(/doar@podcodar\.org/);
+    await expect(pixInput).toHaveValue(/podcodar@gmail\.com/);
   });
 
   test('switches PIX code when clicking suggested amounts', async ({ page }) => {
@@ -75,7 +75,7 @@ test.describe('Donations page (/contributing)', () => {
     // Clear and type a custom amount
     await customInput.fill('75');
     await expect(pixInput).toHaveValue(/75\.00/);
-    await expect(pixInput).toHaveValue(/doar@podcodar\.org/);
+    await expect(pixInput).toHaveValue(/podcodar@gmail\.com/);
   });
 
   test('shows validation error for amount below minimum', async ({ page }) => {
