@@ -6,12 +6,15 @@ import CallToAction from '@/components/ui/CallToAction.astro';
 import HeroSection from '@/components/ui/HeroSection.astro';
 import IconCard from '@/components/ui/IconCard.astro';
 import SectionHeader from '@/components/ui/SectionHeader.astro';
+import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
 
-import { BOARD_MEMBERS, CONTACT_EMAIL, METRICS } from '@/data/transparency';
+import { BOARD_MEMBERS, CNPJ, CONTACT_EMAIL, METRICS } from '@/data/transparency';
 import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
 const t = useTranslations();
+const title = `${t('transparency.title')} - ${SITE_TITLE}`;
+const description = t('transparency.subtitle');
 
 const documents = (await getCollection('transparency')).sort(
   (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
@@ -29,11 +32,7 @@ const formattedLastUpdated = lastUpdated?.toLocaleDateString('pt-br', {
 });
 ---
 
-<Layout
-  title={t('transparency.title')}
-  description={t('transparency.subtitle')}
-  mainClass="flex flex-1 flex-col"
->
+<Layout {title} {description} mainClass={LAYOUT_MAIN_FULL_WIDTH}>
   <!-- Hero Section -->
   <HeroSection
     eyebrow={t('transparency.hero.eyebrow')}
@@ -59,11 +58,27 @@ const formattedLastUpdated = lastUpdated?.toLocaleDateString('pt-br', {
         class="mb-12"
       />
 
+      <!-- CNPJ Badge -->
+      <div class="mb-10">
+        <a href="https://drive.google.com/file/d/1UV10TOi8XVwqqV-bN-LLsUKSfybYViU8/view" target="_blank">
+          <div class="inline-flex items-center gap-3 bg-base-200/50 border border-base-300/50 rounded-xl px-5 py-3">
+            <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center">
+              <Icon name="lucide:building" class="w-4 h-4 text-primary" />
+            </div>
+            <div>
+              <span class="text-xs text-base-content/50 font-medium uppercase tracking-wide">{t('transparency.cnpj')}</span>
+              <p class="text-sm font-semibold text-base-content">{CNPJ}</p>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Category: Institucional -->
       {institutionalDocs.length > 0 && (
         <div class="mb-12">
           <h3 class="text-lg font-semibold mb-4 flex items-center gap-2 text-base-content/80">
             <span class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center">
-              <Icon name="lucide:building-2" class="w-4 h-4 text-blue-500" />
+              <Icon name="lucide:scroll-text" class="w-4 h-4 text-blue-500" />
             </span>
             {t('transparency.category.institucional')}
           </h3>
@@ -77,11 +92,12 @@ const formattedLastUpdated = lastUpdated?.toLocaleDateString('pt-br', {
         </div>
       )}
 
+      <!-- Category: Financeiro -->
       {financialDocs.length > 0 && (
         <div class="mb-12">
           <h3 class="text-lg font-semibold mb-4 flex items-center gap-2 text-base-content/80">
             <span class="w-8 h-8 rounded-lg bg-emerald-500/10 flex items-center justify-center">
-              <Icon name="lucide:bar-chart-3" class="w-4 h-4 text-emerald-500" />
+              <Icon name="lucide:trending-up" class="w-4 h-4 text-emerald-500" />
             </span>
             {t('transparency.category.financeiro')}
           </h3>
@@ -95,6 +111,7 @@ const formattedLastUpdated = lastUpdated?.toLocaleDateString('pt-br', {
         </div>
       )}
 
+      <!-- Category: Fiscal -->
       {fiscalDocs.length > 0 && (
         <div>
           <h3 class="text-lg font-semibold mb-4 flex items-center gap-2 text-base-content/80">
@@ -116,8 +133,12 @@ const formattedLastUpdated = lastUpdated?.toLocaleDateString('pt-br', {
   </section>
 
   <!-- Board Section -->
-  <section class="py-16 md:py-24 bg-gradient-to-b from-base-200/50 to-base-100 border-y border-base-300/50">
-    <div class="mx-auto max-w-6xl px-4">
+  <section class="relative py-16 md:py-24 overflow-hidden">
+    {/* Background gradients */}
+    <div class="absolute inset-0 bg-gradient-to-b from-base-200/50 to-base-100 pointer-events-none" />
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-gradient-to-b from-violet-500/5 to-transparent rounded-full blur-3xl pointer-events-none" />
+
+    <div class="relative mx-auto max-w-6xl px-4">
       <SectionHeader
         icon="lucide:users"
         title={t('transparency.board.title')}
@@ -167,6 +188,32 @@ const formattedLastUpdated = lastUpdated?.toLocaleDateString('pt-br', {
           <IconCard value={metric.value} label={metric.label} color="emerald" />
         ))}
       </ul>
+    </div>
+  </section>
+
+  <!-- Commitment Section -->
+  <section class="py-16 md:py-24 bg-gradient-to-b from-base-200/50 to-base-100 border-y border-base-300/50">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:heart-handshake"
+        title={t('transparency.commitment.title')}
+        subtitle={t('transparency.commitment.subtitle')}
+        color="primary"
+        class="mb-8"
+      />
+
+      <div class="max-w-3xl">
+        <p class="text-base-content/90 m-0 mb-4 text-lg leading-relaxed">
+          {t('transparency.commitment.body.1')}
+        </p>
+        <p class="text-base-content/90 m-0 mb-6 text-lg leading-relaxed">
+          {t('transparency.commitment.body.2')}
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/contact" class="btn btn-primary no-underline">{t('transparency.commitment.cta')}</a>
+          <a href="/contributing" class="btn btn-ghost no-underline">{t('transparency.commitment.contributingCta')}</a>
+        </div>
+      </div>
     </div>
   </section>
 

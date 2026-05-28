@@ -6,6 +6,8 @@ import solidJs from '@astrojs/solid-js';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 export default defineConfig({
@@ -56,6 +58,21 @@ export default defineConfig({
       },
     },
   ],
+
+  markdown: {
+    rehypePlugins: [
+      rehypeSlug,
+      [
+        rehypeAutolinkHeadings,
+        {
+          behavior: 'wrap',
+          properties: {
+            className: ['heading-anchor'],
+          },
+        },
+      ],
+    ],
+  },
 
   vite: {
     plugins: [tailwindcss(), tsconfigPaths()],

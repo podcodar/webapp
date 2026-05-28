@@ -1,0 +1,82 @@
+---
+/**
+ * ProseContent - Gorgeous markdown rendering wrapper
+ *
+ * Uses Tailwind Typography plugin with PodCodar theme customizations.
+ * Wraps any Astro Content component or markdown content.
+ *
+ * @example
+ * <ProseContent>
+ *   <Content />
+ * </ProseContent>
+ */
+
+interface Props {
+  /**
+   * Prose size variant. Default: 'lg'
+   * - sm: compact, good for sidebars
+   * - base: default reading size
+   * - lg: spacious, great for articles (default)
+   * - xl: large, for featured content
+   */
+  size?: 'sm' | 'base' | 'lg' | 'xl';
+
+  /**
+   * Color theme for accent elements (links, bullets, quotes, etc.)
+   * Uses DaisyUI semantic colors. Default: 'primary'
+   */
+  accent?: 'primary' | 'secondary' | 'accent' | 'info' | 'success' | 'warning' | 'error';
+
+  /**
+   * Additional classes to apply
+   */
+  class?: string;
+}
+
+const { size = 'lg', accent = 'primary', class: className = '' } = Astro.props;
+
+const sizeClasses: Record<string, string> = {
+  sm: 'prose-sm',
+  base: 'prose-base',
+  lg: 'prose-lg',
+  xl: 'prose-xl',
+};
+---
+
+<div
+  class:list={[
+    'prose',
+    sizeClasses[size] || 'prose-lg',
+    'max-w-none',
+    /* Headings */
+    'prose-headings:font-bold',
+    'prose-headings:tracking-tight',
+    'prose-headings:text-base-content',
+    'prose-h1:text-4xl',
+    'prose-h2:text-3xl',
+    'prose-h3:text-2xl',
+    'prose-h4:text-xl',
+    /* Links */
+    `prose-a:text-${accent}`,
+    `hover:prose-a:text-${accent}/80`,
+    'prose-a:font-medium',
+    'prose-a:underline-offset-4',
+    'prose-a:transition-colors',
+    /* Images */
+    'prose-img:rounded-xl',
+    'prose-img:shadow-sm',
+    /* Strong / Bold */
+    'prose-strong:text-base-content',
+    'prose-strong:font-semibold',
+    /* Lists */
+    'prose-li:marker:text-primary',
+    /* Figures / Captions */
+    'prose-figure:my-8',
+    'prose-figcaption:text-sm',
+    'prose-figcaption:text-base-content/60',
+    'prose-figcaption:text-center',
+    className,
+  ]}
+>
+  <slot />
+</div>

@@ -15,7 +15,7 @@ export const ui = {
     // ── Marketing data ────────────────────────────────────────────────────────
     'marketing.mission.title': 'Missão',
     'marketing.mission.body.0':
-      'A PodCodar existe para democratizar o acesso à educação profissionalizante nas áreas de tecnologia. Acreditamos que qualificação e acesso ao conhecimento digital são motores de mudança de vida — e que, no Brasil, essa educação ainda costuma ser elitizada, limitada e cara.',
+      'A PodCodar existe para democratizar o acesso à educação profissionalizante nas áreas de tecnologia. Acreditamos que qualificação e acesso ao conhecimento digital são motores de mudança de vida - e que, no Brasil, essa educação ainda costuma ser elitizada, limitada e cara.',
     'marketing.mission.body.1':
       'Por isso guiamos e damos acesso a quem deseja se profissionalizar: em comunidade, com escuta e responsabilidade social.',
     'marketing.mission.body.2':
@@ -25,30 +25,30 @@ export const ui = {
       'Pratique processos seletivos com apoio da comunidade e feedback para ganhar confiança antes da entrevista de verdade.',
     'marketing.activities.career.title': 'Mentoria de carreira',
     'marketing.activities.career.desc':
-      'Conversas e orientação para transição, currículo, portfólio e próximos passos — do primeiro estágio à troca de área.',
+      'Conversas e orientação para transição, currículo, portfólio e próximos passos - do primeiro estágio à troca de área.',
     'marketing.activities.groups.title': 'Grupos de estudo',
     'marketing.activities.groups.desc':
       'Turmas e canais no WhatsApp e no Discord para tirar dúvidas, compartilhar materiais e manter o ritmo de estudo coletivo.',
     'marketing.activities.project.title': 'Assistência em projetos',
     'marketing.activities.project.desc':
-      'Mentoria em projetos práticos — da ideia ao repositório — com apoio de quem já passou por desafios parecidos.',
+      'Mentoria em projetos práticos - da ideia ao repositório - com apoio de quem já passou por desafios parecidos.',
     'marketing.activities.cafe.title': 'Café com Código',
     'marketing.activities.cafe.desc':
       'Encontros para trocar experiência, apresentar o que você está construindo e conhecer a comunidade com calma (e café).',
     'marketing.activities.workshop.title': 'Workshops',
     'marketing.activities.workshop.desc':
-      'Oficinas práticas sobre tecnologia, carreira e ferramentas — do básico ao avançado, abertas para toda a comunidade.',
+      'Oficinas práticas sobre tecnologia, carreira e ferramentas - do básico ao avançado, abertas para toda a comunidade.',
     'marketing.help.donations.title': 'Doações',
     'marketing.help.donations.desc':
-      'Apoio financeiro de pessoas físicas e patrocínios ajudam a manter a PodCodar sustentável e a ampliar impacto — plataforma de ensino, oficinas e equipe.',
+      'Apoio financeiro de pessoas físicas e patrocínios ajudam a manter a PodCodar sustentável e a ampliar impacto - plataforma de ensino, oficinas e equipe.',
     'marketing.help.donations.cta': 'Falar sobre doação',
     'marketing.help.volunteering.title': 'Voluntariado',
     'marketing.help.volunteering.desc':
-      'Tempo e habilidades: mentoria, facilitação de estudos e eventos, revisão de código, design e comunicação — há espaço para o seu jeito de contribuir.',
+      'Tempo e habilidades: mentoria, facilitação de estudos e eventos, revisão de código, design e comunicação - há espaço para o seu jeito de contribuir.',
     'marketing.help.volunteering.cta': 'Ver voluntariado',
     'marketing.help.partnerships.title': 'Parcerias',
     'marketing.help.partnerships.desc':
-      'Empresas e fundos podem apoiar diversidade e educação em tecnologia — inclusive parcerias para contratação de pessoas qualificadas pela comunidade.',
+      'Empresas e fundos podem apoiar diversidade e educação em tecnologia - inclusive parcerias para contratação de pessoas qualificadas pela comunidade.',
     'marketing.help.partnerships.cta': 'Propor parceria',
     'marketing.values.inclusion.title': 'Inclusão',
     'marketing.values.inclusion.text':
@@ -67,13 +67,13 @@ export const ui = {
     'marketing.community.point.2':
       'Guildas: núcleos por área de interesse ou entrega (projetos, eventos, design e outras frentes).',
     'marketing.community.point.3':
-      'Iniciativas: programas concretos — mentorias, incubadora, Café com Código, meetups, workshops, Chá com Design e mais.',
+      'Iniciativas: programas concretos - mentorias, incubadora, Café com Código, meetups, workshops, Chá com Design e mais.',
     'marketing.projects.site.name': 'Site e materiais PodCodar',
     'marketing.projects.site.desc':
-      'Este site e recursos da comunidade em evolução — contribuições são bem-vindas.',
+      'Este site e recursos da comunidade em evolução - contribuições são bem-vindas.',
     'marketing.projects.github.name': 'Organização no GitHub',
     'marketing.projects.github.desc':
-      'Repositórios abertos da PodCodar — issues e PRs são um ótimo primeiro passo.',
+      'Repositórios abertos da PodCodar - issues e PRs são um ótimo primeiro passo.',
     'marketing.events.title': 'Eventos',
     'marketing.events.body':
       'Café com Código, meetups e workshops são alguns dos formatos em que a comunidade se encontra ao vivo (muitas vezes no Google Meet). Novidades e convites circulam nos grupos e no Discord.',
@@ -83,19 +83,19 @@ export const ui = {
       'Comunicação do dia a dia: avisos rápidos, interação social e coordenação com a turma.',
     'marketing.channels.discord.name': 'Discord',
     'marketing.channels.discord.desc':
-      'Grupos de estudo, canais técnicos, mentorias e discussões — é o "quartel-general" assíncrono da PodCodar.',
+      'Grupos de estudo, canais técnicos, mentorias e discussões - é o "quartel-general" assíncrono da PodCodar.',
     'marketing.channels.meet.name': 'Google Meet',
     'marketing.channels.meet.desc':
       'Reuniões do núcleo pedagógico, workshops e encontros ao vivo com a comunidade.',
     'marketing.testimonials.1.name': 'Giovanna Neves Damasceno',
     'marketing.testimonials.1.quote':
-      'A PodCodar juntou minha trajetória em tecnologia com o desejo de trabalhar com pessoas e ajudá-las a se desenvolver. É um projeto com propósito claro — amo fazer parte.',
+      'A PodCodar juntou minha trajetória em tecnologia com o desejo de trabalhar com pessoas e ajudá-las a se desenvolver. É um projeto com propósito claro - amo fazer parte.',
     'marketing.testimonials.2.name': 'Gilberto Ferreira Borges Júnior',
     'marketing.testimonials.2.quote':
       'Com o apoio da comunidade fiz a transição da pesquisa e do ensino em física para engenharia de software. Hoje contribuir de volta é tão gratificante quanto aprender aqui.',
     'marketing.testimonials.3.name': 'Filipe Barbosa',
     'marketing.testimonials.3.quote':
-      'Pensei que programar não era pra mim — entrei na comunidade e, com o tempo, a confiança veio. Hoje sigo construindo carreira com a rede ao lado.',
+      'Pensei que programar não era pra mim - entrei na comunidade e, com o tempo, a confiança veio. Hoje sigo construindo carreira com a rede ao lado.',
     'marketing.testimonials.4.name': 'Guilherme Barbosa',
     'marketing.testimonials.4.quote':
       'A PodCodar mudou minha perspectiva: novas conversas, novos aprendizados e um lugar onde me sinto em casa na tecnologia.',
@@ -113,19 +113,19 @@ export const ui = {
     'home.hero.eyebrow': 'PodCodar',
     'home.hero.headline': 'Educação em tecnologia, feita em comunidade',
     'home.hero.subhead':
-      'Somos uma comunidade e organização sem fins lucrativos focada em transformar a vida de brasileiros por meio da educação profissionalizante em tecnologia — com mentoria, estudos em grupo e projetos reais.',
+      'Somos uma comunidade e organização sem fins lucrativos focada em transformar a vida de brasileiros por meio da educação profissionalizante em tecnologia - com mentoria, estudos em grupo e projetos reais.',
     'home.mission.title': 'Missão',
     'home.activities.eyebrow': 'Comunidade',
     'home.activities.title': 'Atividades',
     'home.activities.subtitle':
-      'Da mentoria à roda de conversa — conheça algumas formas de participar da PodCodar.',
+      'Da mentoria à roda de conversa - conheça algumas formas de participar da PodCodar.',
     'home.testimonials.eyebrow': 'Vozes',
     'home.testimonials.title': 'Depoimentos',
     'home.testimonials.subtitle':
       'Quem passou por aqui compartilha um pouco da experiência. Textos podem ser atualizados junto às pessoas citadas.',
     'home.howToHelp.eyebrow': 'Participe',
     'home.howToHelp.title': 'Como posso ajudar?',
-    'home.howToHelp.subtitle': 'Três caminhos comuns — escolha o que combina com você hoje.',
+    'home.howToHelp.subtitle': 'Três caminhos comuns - escolha o que combina com você hoje.',
     'home.community.title': 'Sobre a comunidade',
     'home.community.cta': 'Conheça mais no Sobre',
 
@@ -133,7 +133,7 @@ export const ui = {
     'about.hero.eyebrow': 'PodCodar',
     'about.hero.title': 'Sobre nós',
     'about.hero.subtitle':
-      'Somos uma comunidade e organização sem fins lucrativos focada em transformar vidas por meio da educação profissionalizante em tecnologia — com inclusão, colaboração e qualidade de ensino.',
+      'Somos uma comunidade e organização sem fins lucrativos focada em transformar vidas por meio da educação profissionalizante em tecnologia - com inclusão, colaboração e qualidade de ensino.',
     'about.hero.stats.community.value': 'Comunidade',
     'about.hero.stats.community.label': 'Inclusiva e acolhedora',
     'about.hero.stats.education.value': 'Educação',
@@ -145,17 +145,17 @@ export const ui = {
     'about.values.title': 'Valores',
     'about.values.subtitle': 'Três princípios que guiam a cultura da comunidade',
     'about.channels.title': 'Onde conversamos',
-    'about.channels.subtitle': 'Cada canal tem um papel — escolha o ritmo que combina com você',
+    'about.channels.subtitle': 'Cada canal tem um papel - escolha o ritmo que combina com você',
     'about.projects.title': 'Projetos e repositórios',
     'about.projects.subtitle':
-      'A comunidade também constrói em código aberto — além das iniciativas dentro das guildas',
+      'A comunidade também constrói em código aberto - além das iniciativas dentro das guildas',
     'about.projects.linkText': 'Abrir link',
 
     // ── Join Us page ──────────────────────────────────────────────────────────
     'joinUs.hero.eyebrow': 'Junte-se à comunidade',
     'joinUs.hero.title': 'Faça parte',
     'joinUs.hero.subtitle':
-      'Seja para aprender, ensinar ou colaborar com a comunidade, o caminho começa nos canais e nas guildas — espaços onde organizamos estudos, mentorias e projetos.',
+      'Seja para aprender, ensinar ou colaborar com a comunidade, o caminho começa nos canais e nas guildas - espaços onde organizamos estudos, mentorias e projetos.',
     'joinUs.hero.stats.channels': 'Canais principais',
     'joinUs.hero.stats.members': 'Membros ativos',
     'joinUs.hero.stats.meetups': 'Encontros',
@@ -163,7 +163,7 @@ export const ui = {
     'joinUs.channels.subtitle':
       'Comunicação diária no WhatsApp; estudos e conteúdo no Discord; reuniões e eventos ao vivo no Meet.',
     'joinUs.steps.title': 'Primeiros passos',
-    'joinUs.steps.subtitle': 'Sugestão de roteiro para quem está chegando — adapte ao seu tempo.',
+    'joinUs.steps.subtitle': 'Sugestão de roteiro para quem está chegando - adapte ao seu tempo.',
     'joinUs.steps.s1.title': 'Imersão',
     'joinUs.steps.s1.desc':
       'Entre nos grupos no WhatsApp e nos canais do Discord; leia as regras e se apresente.',
@@ -172,7 +172,7 @@ export const ui = {
       'Participe das guildas e iniciativas que mais fazem sentido para você (projetos, eventos, design, etc.).',
     'joinUs.steps.s3.title': 'Engajamento',
     'joinUs.steps.s3.desc':
-      'Participe de grupos de estudo e de mentorias em projetos — como mentorado ou mentor.',
+      'Participe de grupos de estudo e de mentorias em projetos - como mentorado ou mentor.',
     'joinUs.steps.s4.title': 'Colaboração',
     'joinUs.steps.s4.desc':
       'Entre em discussões, junte-se a projetos e compartilhe o que está aprendendo.',
@@ -181,7 +181,7 @@ export const ui = {
       'Peça feedback, peça sugestões de estudo e proponha ideias novas para as guildas.',
     'joinUs.github.title': 'Contribua com código aberto',
     'joinUs.github.desc':
-      'Nossos repositórios são o coração da PodCodar — aqui é onde a comunidade constrói projetos reais.',
+      'Nossos repositórios são o coração da PodCodar - aqui é onde a comunidade constrói projetos reais.',
     'joinUs.github.body':
       'Explore os repositórios da organização, encontre issues com a tag "good first issue" e faça sua primeira contribuição. Toda Pull Request é revisada com cuidado e carinho por membros da comunidade.',
     'joinUs.github.cta': 'Ver repositórios',
@@ -189,9 +189,58 @@ export const ui = {
 
     'joinUs.cta.title': 'Pronto para fazer parte?',
     'joinUs.cta.description':
-      'Entre em contato ou junte-se ao nosso Discord — estamos prontos para te receber.',
+      'Entre em contato ou junte-se ao nosso Discord - estamos prontos para te receber.',
     'joinUs.cta.button': 'Entre em contato',
     'joinUs.cta.discord': 'Entrar no Discord',
+
+    // ── Join Us FAQ ───────────────────────────────────────────────────────────
+    'joinUs.faq.title': 'Perguntas Frequentes',
+    'joinUs.faq.subtitle':
+      'Reunimos aqui as dúvidas mais comuns sobre nossa comunidade, missão e formas de participação.',
+    'joinUs.faq.about.title': 'Sobre a PodCodar e Nossa Missão',
+    'joinUs.faq.about.q1.question': 'O que é a PodCodar?',
+    'joinUs.faq.about.q1.answer':
+      'A PodCodar é uma comunidade e Organização Non-Profit (sem fins lucrativos) brasileira. Nossa missão é democratizar o acesso à educação profissionalizante nas áreas de tecnologia.',
+    'joinUs.faq.about.q2.question': 'Preciso pagar para participar da comunidade?',
+    'joinUs.faq.about.q2.answer':
+      'Não. A participação na comunidade e em nossas atividades (mentorias, grupos de estudo, eventos) é gratuita. Acreditamos que a educação de qualidade não deve ser elitizada ou cara.',
+    'joinUs.faq.about.q3.question': 'Quais áreas da tecnologia a PodCodar cobre?',
+    'joinUs.faq.about.q3.answer':
+      'Atualmente, nossos pilares de ensino e mentoria estão focados em: Programação, Área de Dados e UI/UX Design.',
+    'joinUs.faq.about.q4.question': 'Como a PodCodar se financia, sendo uma non-profit?',
+    'joinUs.faq.about.q4.answer':
+      'Hoje, nosso financiamento vem principalmente de doações de pessoas físicas que acreditam na nossa missão. Nosso objetivo de crescimento é consolidar parcerias com empresas que desejam contratar nossos membros e investir na próxima geração de profissionais digitais.',
+    'joinUs.faq.members.title': 'Para Novos Membros',
+    'joinUs.faq.members.q5.question': 'Quero participar! Qual é o primeiro passo?',
+    'joinUs.faq.members.q5.answer':
+      'Que ótimo! O primeiro passo é entrar em nossos canais de comunicação. Usamos o WhatsApp para conversas do dia a dia e o Discord para organizar grupos de estudos, mentorias e projetos técnicos.',
+    'joinUs.faq.members.q6.question': 'Sou totalmente iniciante. A PodCodar é para mim?',
+    'joinUs.faq.members.q6.answer':
+      'Sim! Um dos nossos principais valores é a Inclusão. A PodCodar existe justamente para guiar e dar acesso a pessoas que têm interesse em se profissionalizar, independentemente do seu nível de conhecimento atual.',
+    'joinUs.faq.members.q7.question': 'O que são as "Guildas" e "Iniciativas"?',
+    'joinUs.faq.members.q7.answer':
+      'Guildas são nossos núcleos de organização por área de interesse (Ex: Guilda de Projetos, Guilda de Eventos, Guilda de Design). Iniciativas são as atividades práticas que acontecem dentro das Guildas (Ex: Mentoria em Projetos, Café com Código, Chá com Design).',
+    'joinUs.faq.members.q8.question': 'Como posso contribuir ativamente com a comunidade?',
+    'joinUs.faq.members.q8.answer':
+      'A melhor forma é participar! Entre em uma Guilda do seu interesse, participe dos grupos de estudo no Discord, das mentorias e eventos, colabore em discussões, sugira projetos e compartilhe seus estudos.',
+    'joinUs.faq.members.q9.question': 'O que é a bolsa "Meu Código Minha Vida"?',
+    'joinUs.faq.members.q9.answer':
+      'É a nossa bolsa de assistência social. Ela é destinada a membros engajados na comunidade que não possuem uma fonte de renda fixa. O objetivo é oferecer alguma tranquilidade financeira para que essas pessoas possam priorizar seus estudos e transformar suas vidas através da tecnologia.',
+    'joinUs.faq.partners.title': 'Para Empresas e Parceiros',
+    'joinUs.faq.partners.q10.question':
+      'Somos uma empresa. Como podemos ser parceiros da PodCodar?',
+    'joinUs.faq.partners.q10.answer':
+      'Ficamos felizes com o interesse! Nossas parcerias com empresas têm dois focos principais: Contratação (facilitar o acesso das empresas aos profissionais qualificados que apoiamos) e Financiamento (patrocínio para crescermos nosso time, construir nossa plataforma de ensino e melhorar nossa presença social).',
+    'joinUs.faq.partners.q11.question': 'Como podemos doar ou patrocinar a PodCodar?',
+    'joinUs.faq.partners.q11.answer':
+      'Para discutir parcerias, patrocínios ou doações corporativas, por favor, entre em contato com nosso Núcleo Pedagógico através do https://podcodar.org/parceiros.',
+    'joinUs.faq.other.title': 'Outras Dúvidas',
+    'joinUs.faq.other.q12.question': 'Quais ferramentas de comunicação vocês usam?',
+    'joinUs.faq.other.q12.answer':
+      'WhatsApp para conversas rápidas e avisos; Discord para grupos de estudo, mentorias e organização de projetos; Google Meet para reuniões do núcleo, eventos ao vivo e workshops.',
+    'joinUs.faq.other.q13.question': 'Minha dúvida não está aqui. Com quem eu falo?',
+    'joinUs.faq.other.q13.answer':
+      'Se você já é membro, sinta-se à vontade para perguntar no canal principal do WhatsApp ou Discord. Se você é um visitante ou empresa, por favor, utilize nosso canal de contato: contato@podcodar.org.',
 
     // ── Contributing page ─────────────────────────────────────────────────────
     'contributing.hero.eyebrow': 'Participe',
@@ -206,14 +255,14 @@ export const ui = {
     'contributing.hero.stats.years.label': 'Anos',
     'contributing.donations.title': 'Doações',
     'contributing.donations.subtitle':
-      'Doações de pessoas físicas e patrocínios ajudam a financiar sustentabilidade, impacto e crescimento — plataforma de ensino, oficinas e fortalecimento do time.',
+      'Doações de pessoas físicas e patrocínios ajudam a financiar sustentabilidade, impacto e crescimento - plataforma de ensino, oficinas e fortalecimento do time.',
     'contributing.donations.body':
       'Sua doação financia diretamente a plataforma de ensino, oficinas gratuitas e os projetos que conectam centenas de pessoas ao mercado de tecnologia. É rápido, seguro e cada valor faz diferença.',
     'contributing.donations.cta': 'Prefere apoiar de outra forma?',
     'contributing.donations.tagline': 'Rápido e seguro',
     'contributing.donations.heading': 'Doe via PIX em segundos',
     'contributing.donations.benefit1': '100% do valor vai diretamente para a comunidade',
-    'contributing.donations.benefit2': 'Sem taxas, sem burocracia — é instantâneo',
+    'contributing.donations.benefit2': 'Sem taxas, sem burocracia - é instantâneo',
     'contributing.donations.benefit3': 'Você recebe o comprovante no app do banco',
     'contributing.donations.contactLink': 'Entre em contato',
 
@@ -240,14 +289,14 @@ export const ui = {
     'contributing.volunteering.subtitle':
       'Tempo e talento: mentoria, facilitação de estudos e eventos, revisão de código, design, comunicação e muito mais.',
     'contributing.volunteering.body.1':
-      'Você não precisa ser "nível sênior" para ajudar — quem está um passo à frente já pode apoiar quem vem atrás. Também há espaço para quem quer organizar encontros, revisar materiais ou participar de projetos nas guildas.',
+      'Você não precisa ser "nível sênior" para ajudar - quem está um passo à frente já pode apoiar quem vem atrás. Também há espaço para quem quer organizar encontros, revisar materiais ou participar de projetos nas guildas.',
     'contributing.volunteering.body.2':
       'Repositórios abertos e issues no GitHub são outra porta de entrada para contribuir com código e documentação.',
     'contributing.volunteering.cta1': 'Primeiros passos na comunidade',
     'contributing.volunteering.cta2': 'GitHub da organização',
     'contributing.partnerships.title': 'Parcerias',
     'contributing.partnerships.subtitle':
-      'Empresas e fundos podem apoiar diversidade e educação em tecnologia — inclusive parcerias para contratação de pessoas qualificadas pela PodCodar.',
+      'Empresas e fundos podem apoiar diversidade e educação em tecnologia - inclusive parcerias para contratação de pessoas qualificadas pela PodCodar.',
     'contributing.partnerships.body':
       'Se sua organização quer patrocinar iniciativas, bancar oficinas ou conectar-se a talentos da comunidade, entre em contato para alinharmos expectativas e formato de parceria.',
     'contributing.partnerships.cta': 'Propor parceria',
@@ -279,6 +328,15 @@ export const ui = {
     'transparency.category.financeiro': 'Financeiro',
     'transparency.category.fiscal': 'Fiscal',
     'transparency.cnpj': 'CNPJ',
+    'transparency.commitment.title': 'Nosso Compromisso',
+    'transparency.commitment.subtitle':
+      'A transparência é um pilar fundamental da PodCodar como organização sem fins lucrativos.',
+    'transparency.commitment.body.1':
+      'Publicamos nossos documentos institucionais e financeiros para que toda a comunidade - membros, doadores, parceiros e sociedade - possa acompanhar nossas atividades e a gestão dos recursos recebidos.',
+    'transparency.commitment.body.2':
+      'Se você tem dúvidas sobre nossas finanças, governança ou atividades, entre em contato. Estamos sempre abertos ao diálogo e à prestação de contas.',
+    'transparency.commitment.cta': 'Fale Conosco',
+    'transparency.commitment.contributingCta': 'Como Ajudar',
 
     // ── Contact page ──────────────────────────────────────────────────────────
     'contact.title': 'Fale Conosco',
@@ -299,7 +357,7 @@ export const ui = {
     'contact.inquiries.subtitle': 'Estamos abertos para diversos tipos de interação.',
     'contact.inquiries.hiring.title': 'Precisando contratar?',
     'contact.inquiries.hiring.desc':
-      'A PodCodar é um parceiro valioso para empresas que buscam profissionais qualificados. Nossa comunidade forma talentos prontos para atuar no mercado — entre em contato para encontrar o candidato ideal para a sua vaga.',
+      'A PodCodar é um parceiro valioso para empresas que buscam profissionais qualificados. Nossa comunidade forma talentos prontos para atuar no mercado - entre em contato para encontrar o candidato ideal para a sua vaga.',
     'contact.inquiries.workshops.title': 'Workshops Patrocinados',
     'contact.inquiries.workshops.desc':
       'Criamos workshops de treinamento focados em preparar candidatos para vagas específicas da sua empresa. Uma forma de conectar seu processo seletivo a profissionais já em formação.',

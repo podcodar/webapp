@@ -1,35 +1,33 @@
 ---
 title: "Relatório de Atividades 2024"
-description: "Relatório anual de atividades da PodCodar, apresentando as principais ações realizadas, métricas de impacto e planos para o futuro."
+description: "Relatório anual de atividades da Associação PodCodar, apresentando as principais ações realizadas em 2024, métricas de impacto, resultados alcançados e perspectivas para o futuro."
 category: "financeiro"
 date: 2024-12-31
-fileUrl: "https://drive.google.com/file/d/RELATORIO_2024_ID/view"
+fileUrl: "https://drive.google.com/file/d/1UV10TOi8XVwqqV-bN-LLsUKSfybYViU8/view"
 icon: "trending-up"
 ---
 
 ## Relatório de Atividades 2024
 
-A PodCodar encerra o ano de 2024 com importantes conquistas na missão de democratizar o acesso à educação em tecnologia.
+A Associação PodCodar encerra o ano de 2024 com importantes conquistas na missão de democratizar o acesso à educação profissionalizante em tecnologia.
 
-### Principais Realizações
-
-#### Programas de Mentoria
+### Programas de Mentoria
 
 - **30+ mentorados** atendidos durante o ano
 - **16 pessoas colocadas em empregos** na área de tecnologia
 - **2 alunos aprovados** em universidades federais
 
-#### Grupos de Estudo
+### Grupos de Estudo
 
-- Formação de novas turmas de estudo
-- Expansão dos canais de comunicação
-- Integração com o Discord da comunidade
+- Formação de novas turmas de estudo em diversas áreas
+- Expansão dos canais de comunicação (WhatsApp e Discord)
+- Integração com a comunidade tech brasileira
 
-#### Projetos e Eventos
+### Projetos e Eventos
 
-- Realização de encontros online
-- Workshops técnicos
-- Participação em eventos da comunidade tech
+- Realização de encontros online regulares (Café com Código)
+- Workshops técnicos abertos à comunidade
+- Participação em eventos da comunidade de tecnologia
 
 ### Impacto Acumulado
 
@@ -41,10 +39,11 @@ Desde a fundação, a PodCodar já impactou:
 
 ### Agradecimentos
 
-Agradecemos a todos os voluntários, mentores, doadores e parceiros que fazem este trabalho acontecer. Sem a colaboração da comunidade, nada disso seria possível.
+Agradecemos a todos os **voluntários, mentores, doadores e parceiros** que fazem este trabalho acontecer. Sem a colaboração da comunidade, nada disso seria possível.
 
-### Próximos Passos para 2025
+### Perspectivas para 2025
 
 - Expansão do programa de mentoria
 - Novos parceiros corporativos
 - Programa de estágio e colocação profissional
+- Fortalecimento das guildas por área

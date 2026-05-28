@@ -1,11 +1,11 @@
 ---
 import { Icon } from 'astro-icon/components';
 import CallToAction from '@/components/ui/CallToAction.astro';
+import FaqItem from '@/components/ui/FaqItem.astro';
 import HeroSection from '@/components/ui/HeroSection.astro';
 import InquiryCard from '@/components/ui/InquiryCard.astro';
 import SectionHeader from '@/components/ui/SectionHeader.astro';
 import { SITE_TITLE } from '@/consts';
-
 import { DISCORD_INVITE_URL } from '@/data/community';
 import { socialLinks } from '@/data/social-links';
 import { CONTACT_EMAIL } from '@/data/transparency';
@@ -60,7 +60,7 @@ const inquiries = [
 ];
 ---
 
-<Layout title={`${t('nav.contact')} | ${SITE_TITLE}`} description={t('contact.subtitle')} mainClass="flex flex-1 flex-col">
+<Layout title={`${t('nav.contact')} — ${SITE_TITLE}`} description={t('contact.subtitle')} mainClass="flex flex-1 flex-col">
   <!-- Hero Section -->
   <HeroSection
     eyebrow={t('contact.eyebrow')}
@@ -171,6 +171,62 @@ const inquiries = [
           </li>
         ))}
       </ul>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="py-16 md:py-24 bg-base-100">
+    <div class="mx-auto max-w-6xl px-4">
+      <SectionHeader
+        icon="lucide:help-circle"
+        title={t('joinUs.faq.title')}
+        subtitle={t('joinUs.faq.subtitle')}
+        color="blue"
+        class="mb-10"
+      />
+
+      <div class="space-y-10 max-w-4xl mx-auto">
+        <!-- Sobre a PodCodar -->
+        <div>
+          <h3 class="text-lg font-semibold text-base-content mb-4">{t('joinUs.faq.about.title')}</h3>
+          <div class="space-y-3">
+            <FaqItem question={t('joinUs.faq.about.q1.question')} answer={t('joinUs.faq.about.q1.answer')} />
+            <FaqItem question={t('joinUs.faq.about.q2.question')} answer={t('joinUs.faq.about.q2.answer')} />
+            <FaqItem question={t('joinUs.faq.about.q3.question')} answer={t('joinUs.faq.about.q3.answer')} />
+            <FaqItem question={t('joinUs.faq.about.q4.question')} answer={t('joinUs.faq.about.q4.answer')} />
+          </div>
+        </div>
+
+        <!-- Para Novos Membros -->
+        <div>
+          <h3 class="text-lg font-semibold text-base-content mb-4">{t('joinUs.faq.members.title')}</h3>
+          <div class="space-y-3">
+            <FaqItem question={t('joinUs.faq.members.q5.question')} answer={t('joinUs.faq.members.q5.answer')} />
+            <FaqItem question={t('joinUs.faq.members.q6.question')} answer={t('joinUs.faq.members.q6.answer')} />
+            <FaqItem question={t('joinUs.faq.members.q7.question')} answer={t('joinUs.faq.members.q7.answer')} />
+            <FaqItem question={t('joinUs.faq.members.q8.question')} answer={t('joinUs.faq.members.q8.answer')} />
+            <FaqItem question={t('joinUs.faq.members.q9.question')} answer={t('joinUs.faq.members.q9.answer')} />
+          </div>
+        </div>
+
+        <!-- Para Empresas e Parceiros -->
+        <div>
+          <h3 class="text-lg font-semibold text-base-content mb-4">{t('joinUs.faq.partners.title')}</h3>
+          <div class="space-y-3">
+            <FaqItem question={t('joinUs.faq.partners.q10.question')} answer={t('joinUs.faq.partners.q10.answer')} />
+            <FaqItem question={t('joinUs.faq.partners.q11.question')} answer={t('joinUs.faq.partners.q11.answer')} />
+          </div>
+        </div>
+
+        <!-- Outras Dúvidas -->
+        <div>
+          <h3 class="text-lg font-semibold text-base-content mb-4">{t('joinUs.faq.other.title')}</h3>
+          <div class="space-y-3">
+            <FaqItem question={t('joinUs.faq.other.q12.question')} answer={t('joinUs.faq.other.q12.answer')} />
+            <FaqItem question={t('joinUs.faq.other.q13.question')} answer={t('joinUs.faq.other.q13.answer')} />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

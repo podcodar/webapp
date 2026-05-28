@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import { Icon } from 'astro-icon/components';
 import FormattedDate from '@/components/FormattedDate.astro';
+import ProseContent from '@/components/ProseContent.astro';
 import { useTranslations } from '@/i18n/utils';
 import Layout from '@/layouts/Layout.astro';
 
@@ -135,9 +136,9 @@ const colors = categoryColors[doc.data.category] || {
   <!-- Content -->
   <article class="flex-1 py-12 md:py-16">
     <div class="mx-auto max-w-4xl px-4">
-      <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-a:text-primary hover:prose-a:text-primary/80 prose-img:rounded-xl">
+      <ProseContent size="lg" accent="primary">
         <Content />
-      </div>
+      </ProseContent>
       
       <!-- Navigation -->
       <div class="mt-16 pt-8 border-t border-base-300/50">
