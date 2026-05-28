@@ -4,7 +4,6 @@ export const ui = {
   'pt-br': {
     // ── Navigation ────────────────────────────────────────────────────────────
     'nav.home': 'Início',
-    'nav.blog': 'Blog',
     'nav.about': 'Sobre',
     'nav.contact': 'Contato',
     'nav.contributing': 'Como posso ajudar?',
