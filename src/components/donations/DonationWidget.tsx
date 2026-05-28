@@ -318,7 +318,7 @@ export default function DonationWidget({ pixKey = PIX_KEY }) {
         merchantName: MERCHANT_NAME,
         merchantCity: MERCHANT_CITY,
         amount: value,
-        description: 'Doação',
+        description: 'Apoie a PodCodar',
       });
     } catch {
       setPixErr(t('donations.widget.errorGeneratingPix'));

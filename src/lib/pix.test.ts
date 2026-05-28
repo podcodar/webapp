@@ -159,7 +159,31 @@ describe('generatePixString', () => {
         amount: 25,
         description: 'Doação',
       });
-      expect(pix).toContain('Doação');
+      // Description is sanitized (accents removed)
+      expect(pix).toContain('Doacao');
+      expect(crcIsValid(pix)).toBe(true);
+    });
+
+    it('sanitizes description by removing accents and special chars', () => {
+      const pix = generatePixString({
+        ...BASE_OPTIONS,
+        amount: 25,
+        description: 'Apoio à PodCodar',
+      });
+      // Accents removed: "à" becomes "a", spaces removed
+      expect(pix).toContain('ApoioaPodCodar');
+      expect(pix).not.toContain('à');
+      expect(crcIsValid(pix)).toBe(true);
+    });
+
+    it('omits description when sanitization results in empty string', () => {
+      const pix = generatePixString({
+        ...BASE_OPTIONS,
+        amount: 25,
+        description: '!!!',
+      });
+      // No description field should be added
+      expect(pix).not.toContain('0703');
       expect(crcIsValid(pix)).toBe(true);
     });
 

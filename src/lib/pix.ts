@@ -3,7 +3,29 @@
  *
  * Generates the "copia e cola" string for PIX payments following the
  * Brazilian Central Bank specification.
+ *
+ * Field constraints:
+ * - Merchant name (59): max 25 chars
+ * - Merchant city (60): max 15 chars
+ * - Description (07 in 62): max 25 chars, alphanumeric + basic punctuation only
+ *
+ * @see https://www.bcb.gov.br/estabilidadefinanceira/pix
  */
+
+/**
+ * Sanitize a string for use in PIX EMV fields.
+ * - Removes accents and special chars
+ * - Replaces spaces with underscores
+ * - Truncates to max length
+ */
+function sanitize(str: string, maxLen: number): string {
+  // Remove accents (normalize to NFD then strip diacritics)
+  const normalized = str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  // Replace spaces with underscore and keep only alphanumeric + underscore
+  const sanitized = normalized.replace(/[^a-zA-Z0-9_]/g, '');
+  // Truncate and remove trailing underscores
+  return sanitized.slice(0, maxLen).replace(/_+$/, '');
+}
 
 /**
  * CRC-16/CCITT-FALSE checksum used by the PIX EMV specification.
@@ -87,7 +109,10 @@ export function generatePixString(options: PixOptions): string {
   const txidValue = txid ?? '***';
   let additional = emvField('05', txidValue);
   if (description) {
-    additional += emvField('07', description);
+    const sanitizedDesc = sanitize(description, 25);
+    if (sanitizedDesc) {
+      additional += emvField('07', sanitizedDesc);
+    }
   }
   payloads.push(emvField('62', additional));
 
