@@ -5,6 +5,7 @@ import HeroSection from '@/components/ui/HeroSection.astro';
 import SectionHeader from '@/components/ui/SectionHeader.astro';
 import StepItem from '@/components/ui/StepItem.astro';
 import { LAYOUT_MAIN_FULL_WIDTH, SITE_TITLE } from '@/consts';
+import { DISCORD_INVITE_URL } from '@/data/community';
 import { communicationChannels } from '@/data/marketing';
 
 import { useTranslations } from '@/i18n/utils';
@@ -139,7 +140,7 @@ const channelStats = communicationChannels.length;
           </a>
 
           <a
-            href="https://github.com/podcodar"
+            href={DISCORD_INVITE_URL}
             target="_blank"
             rel="noopener noreferrer"
             class="group relative p-6 bg-base-100 rounded-2xl border border-base-300 hover:border-violet-500/30 hover:shadow-lg hover:shadow-violet-500/5 transition-all duration-300 text-center"
