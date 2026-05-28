@@ -1,5 +1,6 @@
 ---
-import type { Testimonial } from '@/data/marketing';
+import { Icon } from 'astro-icon/components';
+import type { Testimonial, TestimonialLink } from '@/data/marketing';
 import { useTranslations } from '@/i18n/utils';
 
 interface Props {
@@ -8,36 +9,54 @@ interface Props {
 
 const { items } = Astro.props;
 const t = useTranslations();
+
+function getIconName(link: TestimonialLink) {
+  return link.type === 'github' ? 'lucide:github' : 'lucide:linkedin';
+}
+
+function getLinkLabel(link: TestimonialLink) {
+  return link.type === 'github' ? 'GitHub' : 'LinkedIn';
+}
 ---
 
 <div class="grid gap-4 md:gap-8 grid-cols-1 md:grid-cols-2">
   {
     items.map((item) => (
-      <figure class="border-base-300 bg-base-100/80 flex flex-col gap-4 rounded-2xl border p-6 shadow-sm">
+      <figure class="border-base-300 bg-base-100/80 flex flex-col gap-5 rounded-2xl border p-6 shadow-sm">
         <blockquote class="border-primary/40 text-base-content/90 flex-1 border-l-4 pl-4 text-base leading-relaxed">
           <p class="m-0">{t(item.quoteKey)}</p>
         </blockquote>
-        <figcaption class="border-base-300/80 border-t pt-4">
-          <a
-            href={item.profileUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="hover:bg-base-200/60 -m-1 flex min-w-0 items-center gap-3 rounded-lg p-1 no-underline transition-colors"
-          >
-            <img
-              src={item.avatarUrl}
-              alt=""
-              width={48}
-              height={48}
-              loading="lazy"
-              decoding="async"
-              class="border-base-300 h-12 w-12 shrink-0 rounded-full border object-cover"
-            />
-            <div class="min-w-0">
-              <cite class="text-base-content block font-semibold not-italic">{t(item.nameKey)}</cite>
-              {item.role && <p class="text-base-content/60 mt-0.5 text-sm">{item.role}</p>}
-            </div>
-          </a>
+        <figcaption class="border-base-300/80 flex items-center gap-4 border-t pt-5">
+          <img
+            src={item.avatarUrl}
+            alt=""
+            width={56}
+            height={56}
+            loading="lazy"
+            decoding="async"
+            class="border-primary/30 h-14 w-14 shrink-0 rounded-full border-2 object-cover"
+          />
+          <div class="min-w-0 flex-1">
+            <cite class="text-base-content block text-base font-semibold not-italic">
+              {t(item.nameKey)}
+            </cite>
+            {item.role && (
+              <p class="text-base-content/70 mt-0.5 text-sm">{item.role}</p>
+            )}
+          </div>
+          <div class="flex items-center gap-1">
+            {item.links.map((link) => (
+              <a
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={getLinkLabel(link)}
+                class="hover:bg-base-200/70 text-base-content/60 hover:text-primary flex h-9 w-9 items-center justify-center rounded-lg transition-colors"
+              >
+                <Icon name={getIconName(link)} class="h-[18px] w-[18px]" />
+              </a>
+            ))}
+          </div>
         </figcaption>
       </figure>
     ))

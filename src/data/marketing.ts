@@ -48,13 +48,18 @@ export const activities: Activity[] = [
 
 // ── Testimonials ─────────────────────────────────────────────────────────────
 
+export type TestimonialLink = {
+  type: 'github' | 'linkedin';
+  url: string;
+};
+
 export type Testimonial = {
   id: number;
   nameKey: string;
   role?: string;
   avatarUrl: string;
-  profileUrl: string;
   quoteKey: string;
+  links: TestimonialLink[];
 };
 
 export const testimonials: Testimonial[] = [
@@ -63,28 +68,28 @@ export const testimonials: Testimonial[] = [
     nameKey: 'marketing.testimonials.1.name',
     quoteKey: 'marketing.testimonials.1.quote',
     avatarUrl: 'https://avatars.githubusercontent.com/u/18710340?v=4',
-    profileUrl: 'https://github.com/giovannand',
+    links: [{ type: 'github', url: 'https://github.com/giovannand' }],
   },
   {
     id: 2,
     nameKey: 'marketing.testimonials.2.name',
     quoteKey: 'marketing.testimonials.2.quote',
     avatarUrl: 'https://avatars.githubusercontent.com/u/57193296?v=4',
-    profileUrl: 'https://github.com/borgesgfj',
+    links: [{ type: 'github', url: 'https://github.com/borgesgfj' }],
   },
   {
     id: 3,
     nameKey: 'marketing.testimonials.3.name',
     quoteKey: 'marketing.testimonials.3.quote',
     avatarUrl: 'https://avatars.githubusercontent.com/u/65319425?v=4',
-    profileUrl: 'https://github.com/Filipe-barbosa',
+    links: [{ type: 'github', url: 'https://github.com/Filipe-barbosa' }],
   },
   {
     id: 4,
     nameKey: 'marketing.testimonials.4.name',
     quoteKey: 'marketing.testimonials.4.quote',
     avatarUrl: 'https://avatars.githubusercontent.com/u/73261443?v=4',
-    profileUrl: 'https://github.com/Guilherme-BS',
+    links: [{ type: 'github', url: 'https://github.com/Guilherme-BS' }],
   },
 ] as const;
 
