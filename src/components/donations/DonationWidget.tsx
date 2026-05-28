@@ -292,7 +292,7 @@ function Decorations() {
 }
 
 // ── Main Component ────────────────────────────────────────────────────────────
-export default function DonationWidget() {
+export default function DonationWidget({ pixKey = PIX_KEY }) {
   const t = useTranslations();
 
   // ── State ─────────────────────────────────────────────────────────────────
@@ -314,7 +314,7 @@ export default function DonationWidget() {
     if (value <= 0) return '';
     try {
       return generatePixString({
-        pixKey: PIX_KEY,
+        pixKey,
         merchantName: MERCHANT_NAME,
         merchantCity: MERCHANT_CITY,
         amount: value,
