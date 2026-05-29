@@ -3,7 +3,6 @@ export const defaultLang = 'pt-br' as const;
 export const ui = {
   'pt-br': {
     // ── Navigation ────────────────────────────────────────────────────────────
-    'nav.home': 'Início',
     'nav.about': 'Sobre',
     'nav.contact': 'Contato',
     'nav.contributing': 'Como posso ajudar?',

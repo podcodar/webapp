@@ -9,7 +9,6 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 const navigationLinks = [
-  { href: getRelativeLocaleUrl(lang, '/'), label: t('nav.home') },
   { href: getRelativeLocaleUrl(lang, '/about'), label: t('nav.about') },
   { href: getRelativeLocaleUrl(lang, '/transparency'), label: t('nav.transparency') },
   { href: getRelativeLocaleUrl(lang, '/contact'), label: t('nav.contact') },
