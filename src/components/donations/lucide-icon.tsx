@@ -2,7 +2,7 @@ import { type Component } from 'solid-js';
 
 /**
  * Icon names used by the DonationWidget.
- * Only the subset we actually need — keeps the bundle small.
+ * Only the subset we actually need - keeps the bundle small.
  */
 export type LcIconName =
   | 'gift'
@@ -49,7 +49,7 @@ export interface LcIconProps {
  * The <svg> wrapper applies the standard Lucide viewport (0 0 24 24) and
  * forwards className / size props.  The inner body is rendered via
  * innerHTML because SolidJS does not have a JSX equivalent of Astro's
- * `set:html` — and we're already shipping the body strings.
+ * `set:html` - and we're already shipping the body strings.
  */
 export const LcIcon: Component<LcIconProps> = (props) => {
   const body = ICON_BODIES[props.name];

@@ -15,14 +15,14 @@ Stack-based Infrastructure as Code for provisioning Cloudflare Workers.
 
 ## Prereqs
 
-1. **Pulumi CLI** — `curl -fsSL https://get.pulumi.com | sh` (or `brew install pulumi`)
-2. **Bun** — `brew install oven-sh/node/bun`
+1. **Pulumi CLI** - `curl -fsSL https://get.pulumi.com | sh` (or `brew install pulumi`)
+2. **Bun** - `brew install oven-sh/node/bun`
 3. **Cloudflare account** with:
-   - `CLOUDFLARE_API_TOKEN` — scoped to Workers & Zone (not Global Key)
-   - `accountId` — Found in Cloudflare Dashboard → Workers & Pages → Overview
-   - `zoneId` — Found in Cloudflare Dashboard → Domain → Overview
+   - `CLOUDFLARE_API_TOKEN` - scoped to Workers & Zone (not Global Key)
+   - `accountId` - Found in Cloudflare Dashboard → Workers & Pages → Overview
+   - `zoneId` - Found in Cloudflare Dashboard → Domain → Overview
 
-4. **Pulumi access token** — `pulumi login` then `pulumi org`, or create at [app.pulumi.com](https://app.pulumi.com)
+4. **Pulumi access token** - `pulumi login` then `pulumi org`, or create at [app.pulumi.com](https://app.pulumi.com)
 
 ---
 
@@ -32,7 +32,7 @@ All secrets live in the stack config, **never** in code.
 
 ### Why secrets.yaml?
 
-`Pulumi.*.yaml` files are encrypted at rest via `encryptionsalt`. The raw `secure:` values are only readable by you. However, **never commit `secure:` values that are real** — treat them like passwords.
+`Pulumi.*.yaml` files are encrypted at rest via `encryptionsalt`. The raw `secure:` values are only readable by you. However, **never commit `secure:` values that are real** - treat them like passwords.
 
 ### Required secrets
 
@@ -57,7 +57,7 @@ pulumi config set zoneId YOUR_ZONE_ID --secret
 ### Reading secrets
 
 ```bash
-# Reveal a secret (prints to stdout — be careful)
+# Reveal a secret (prints to stdout - be careful)
 pulumi config get zoneId --show-secrets
 ```
 
@@ -132,11 +132,11 @@ bun run up
 
 Merge to `main` → Quality gateway passes → Deploy workflow:
 
-1. **Build** — `bun run w:build` produces `dist/server/` + `dist/client/`
-2. **Pulumi login** — via `pulumi/actions@v5` (OIDC or `PULUMI_ACCESS_TOKEN`)
-3. **Pulumi up** — runs on `webapp.production` stack, uploads modules + deploys
+1. **Build** - `bun run w:build` produces `dist/server/` + `dist/client/`
+2. **Pulumi login** - via `pulumi/actions@v5` (OIDC or `PULUMI_ACCESS_TOKEN`)
+3. **Pulumi up** - runs on `webapp.production` stack, uploads modules + deploys
 
-The deploy is **idempotent** — `pulumi up` only creates/changes what has changed since last run.
+The deploy is **idempotent** - `pulumi up` only creates/changes what has changed since last run.
 
 ---
 
@@ -153,7 +153,7 @@ wrangler build
   └── modules auto-discovered from dist/server/chunks/
 ```
 
-`discoverWorkerModules()` in `index.ts` scans `dist/server/` at **plan time** (not deploy time) — so Pulumi knows which files changed and triggers a new version accordingly.
+`discoverWorkerModules()` in `index.ts` scans `dist/server/` at **plan time** (not deploy time) - so Pulumi knows which files changed and triggers a new version accordingly.
 
 ---
 

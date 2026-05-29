@@ -77,35 +77,35 @@ export interface PixOptions {
 export function generatePixString(options: PixOptions): string {
   const { pixKey, merchantName, merchantCity, amount, description, txid } = options;
 
-  // 00 — Payload Format Indicator (fixed)
+  // 00 - Payload Format Indicator (fixed)
   const payloads: string[] = ['000201'];
 
-  // 26 — Merchant Account Information (PIX GUI)
+  // 26 - Merchant Account Information (PIX GUI)
   const pixGui = emvField('00', 'br.gov.bcb.pix') + emvField('01', pixKey);
   payloads.push(emvField('26', pixGui));
 
-  // 52 — Merchant Category Code (0000 = not specified)
+  // 52 - Merchant Category Code (0000 = not specified)
   payloads.push('52040000');
 
-  // 53 — Transaction Currency (986 = BRL)
+  // 53 - Transaction Currency (986 = BRL)
   payloads.push('5303986');
 
-  // 54 — Transaction Amount (optional)
+  // 54 - Transaction Amount (optional)
   if (amount !== undefined && amount > 0) {
     const amountStr = amount.toFixed(2);
     payloads.push(emvField('54', amountStr));
   }
 
-  // 58 — Country Code
+  // 58 - Country Code
   payloads.push('5802BR');
 
-  // 59 — Merchant Name
+  // 59 - Merchant Name
   payloads.push(emvField('59', merchantName));
 
-  // 60 — Merchant City
+  // 60 - Merchant City
   payloads.push(emvField('60', merchantCity));
 
-  // 62 — Additional Data Field (TXID + optional description)
+  // 62 - Additional Data Field (TXID + optional description)
   const txidValue = txid ?? '***';
   let additional = emvField('05', txidValue);
   if (description) {
@@ -116,7 +116,7 @@ export function generatePixString(options: PixOptions): string {
   }
   payloads.push(emvField('62', additional));
 
-  // 63 — CRC16 placeholder
+  // 63 - CRC16 placeholder
   const partial = `${payloads.join('')}6304`;
   const crc = crc16(partial);
 

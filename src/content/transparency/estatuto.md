@@ -1,6 +1,6 @@
 ---
 title: "Ata de Assembleia Geral de Constituição"
-description: "Ata de fundação da Associação de Apoio ao Desenvolvimento Social e Tecnológico — PodCodar, realizada em 11 de agosto de 2022."
+description: "Ata de fundação da Associação de Apoio ao Desenvolvimento Social e Tecnológico - PodCodar, realizada em 11 de agosto de 2022."
 category: "institucional"
 date: 2022-08-11
 fileUrl: "https://drive.google.com/file/d/1UV10TOi8XVwqqV-bN-LLsUKSfybYViU8/view"
@@ -33,7 +33,7 @@ Em conformidade com a convocação de **30 de julho de 2022**, os presentes deli
 
 Após as discussões acerca da constituição da Associação, foi aprovada **por unanimidade**, tendo sido aprovada também por unanimidade a seguinte denominação social:
 
-> **Nome**: Associação de Apoio ao Desenvolvimento Social e Tecnológico — PodCodar
+> **Nome**: Associação de Apoio ao Desenvolvimento Social e Tecnológico - PodCodar
 
 ## 2. Aprovação da Sede da Associação
 
@@ -94,18 +94,18 @@ Nada mais havendo, foi realizado resumo das deliberações e agradecimentos pelo
 
 ## Lista de Presença
 
-Assembleia de Constituição da Associação de Apoio ao Desenvolvimento Social e Tecnológico — PodCodar, realizada em **11 de agosto de 2022**, em Guanhães, Minas Gerais.
+Assembleia de Constituição da Associação de Apoio ao Desenvolvimento Social e Tecnológico - PodCodar, realizada em **11 de agosto de 2022**, em Guanhães, Minas Gerais.
 
 Presentes:
 
-1. Giovanna Neves Damasceno — Guanhães, MG
-2. Marina Andrade Fonseca — Belo Horizonte, MG
-3. Cássios Kley Martins Marques — Guanhães, MG
-4. Marco Antônio de Souza Júnior — Belo Horizonte, MG
-5. Pedro Frattezi Silva — Belo Horizonte, MG
-6. Filipe Barbosa Silva — Guanhães, MG
-7. Raysson Ornelas de Andrade — João Monlevade, MG
-8. Gilberto Ferreira Borges Júnior — Belo Horizonte, MG
-9. Joel Morais Leal — Guanhães, MG
+1. Giovanna Neves Damasceno - Guanhães, MG
+2. Marina Andrade Fonseca - Belo Horizonte, MG
+3. Cássios Kley Martins Marques - Guanhães, MG
+4. Marco Antônio de Souza Júnior - Belo Horizonte, MG
+5. Pedro Frattezi Silva - Belo Horizonte, MG
+6. Filipe Barbosa Silva - Guanhães, MG
+7. Raysson Ornelas de Andrade - João Monlevade, MG
+8. Gilberto Ferreira Borges Júnior - Belo Horizonte, MG
+9. Joel Morais Leal - Guanhães, MG
 
 Acompanhamento jurídico: **Viviane Kelly Silva Sá**, OAB/MG nº 191.633

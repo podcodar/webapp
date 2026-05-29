@@ -353,7 +353,7 @@ export default function DonationWidget({ pixKey = PIX_KEY }) {
     try {
       await navigator.clipboard.writeText(pixString());
     } catch {
-      // Clipboard API unavailable — user can manually copy from the visible input
+      // Clipboard API unavailable - user can manually copy from the visible input
     }
     setCopied(true);
     clearTimeout(copyTimeout);
@@ -384,7 +384,7 @@ export default function DonationWidget({ pixKey = PIX_KEY }) {
       {/* Main Card */}
       <div class="relative rounded-3xl border border-base-300/60 bg-gradient-to-b from-base-100 to-base-200/50 p-4 lg:p-6 shadow-xl shadow-primary/5 backdrop-blur-sm flex flex-col gap-4">
         <div class="grid lg:grid-cols-2 gap-4 lg:gap-6">
-          {/* Left Column — Amount selection */}
+          {/* Left Column - Amount selection */}
           <div class="space-y-5">
             <WidgetHeader />
             <SuggestedAmounts amount={amount()} onSelect={handleAmountClick} />
@@ -403,7 +403,7 @@ export default function DonationWidget({ pixKey = PIX_KEY }) {
             </Show>
           </div>
 
-          {/* Right Column — PIX results */}
+          {/* Right Column - PIX results */}
           <div class="space-y-5">
             <Show when={pixString().length > 0}>
               <QrCodePanel qrSvg={qrSvg()} />
