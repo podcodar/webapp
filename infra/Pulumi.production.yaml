@@ -3,3 +3,5 @@ config:
   podcodar:accountId: 9ccff81da5d7c234138d96989610537d
   podcodar:zoneId: ec5904d9f2d5278ff1ecaf0ca2b71808
   podcodar:environment: production
+  podcodar:discord-invite-url:
+    secure: v1:k1SUxsqe0gi3XW9q:YgcOFpVdXhClBNqWkEQtmTyOLZTdLHHaeGmeHiG9mURZMjbzP+IF172NLbi8

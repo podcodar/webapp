@@ -8,6 +8,8 @@ const config = new pulumi.Config();
 const accountId = config.require('accountId');
 const zoneId = config.require('zoneId');
 const environment = config.require('environment');
+const discordInviteUrl = config.getSecret('discord-invite-url');
+
 const isProd = environment === 'production';
 const workerDomain = isProd ? 'https://prod.podcodar.org' : 'https://dev.podcodar.org';
 
@@ -63,6 +65,11 @@ const workerVersion = new cloudflare.WorkerVersion(
         name: 'BASE_URL',
         type: 'plain_text',
         text: workerDomain,
+      },
+      {
+        name: 'DISCORD_INVITE_URL',
+        type: 'plain_text',
+        text: discordInviteUrl,
       },
     ],
 
