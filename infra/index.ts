@@ -8,7 +8,7 @@ const config = new pulumi.Config();
 const accountId = config.require('accountId');
 const zoneId = config.require('zoneId');
 const environment = config.require('environment');
-const discordInviteUrl = config.getSecret('discord-invite-url');
+const discordInviteUrl = config.requireSecret('discord-invite-url');
 
 const isProd = environment === 'production';
 const workerDomain = isProd ? 'https://prod.podcodar.org' : 'https://dev.podcodar.org';
@@ -20,6 +20,7 @@ const builder = new command.local.Command(
     delete: 'echo "No cleanup necessary"',
     environment: {
       BASE_URL: workerDomain,
+      DISCORD_INVITE_URL: discordInviteUrl,
     },
   },
   { replacementTrigger: getGitCommitHash() }
