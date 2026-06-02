@@ -12,6 +12,7 @@ const discordInviteUrl = config.requireSecret('discord-invite-url');
 
 const isProd = environment === 'production';
 const workerDomain = isProd ? 'https://podcodar.org' : 'https://dev.podcodar.org';
+const workerHostname = isProd ? 'podcodar.org' : 'dev.podcodar.org';
 
 const builder = new command.local.Command(
   'build-worker',
@@ -101,7 +102,7 @@ new cloudflare.WorkersCustomDomain(
     zoneId,
     accountId,
     service: worker.name,
-    hostname: workerDomain,
+    hostname: workerHostname,
   },
   { dependsOn: [worker, workerDeployment] }
 );
