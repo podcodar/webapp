@@ -19,6 +19,10 @@ This WebApp is the main project of [PodCodar](https://github.com/podcodar), a le
 ```sh
 bun install
 bun dev
+
+# E2E
+bun run e2e
+bun run tests
 ```
 
 The dev server runs at [http://localhost:4321](http://localhost:4321).
