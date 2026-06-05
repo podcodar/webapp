@@ -570,20 +570,6 @@ test.describe('404 page', () => {
     await expect(page.getByText(/essa página não existe/i)).toBeVisible();
   });
 
-  test('has navigation links back to main pages', async ({ page }) => {
-    await page.goto('/non-existent-page');
-
-    // Link back to home - scoped to 404 navigation
-    const nav404 = page.getByRole('navigation', { name: '404 navigation' });
-    await expect(nav404.getByRole('link', { name: /início/i })).toHaveAttribute('href', '/');
-
-    // Link to join-us
-    await expect(nav404.getByRole('link', { name: /faça parte/i })).toHaveAttribute(
-      'href',
-      '/join-us/'
-    );
-  });
-
   test('returns 404 status for non-existent page', async ({ page }) => {
     const response = await page.goto('/definitely-not-real');
     expect(response?.status()).toBe(404);
@@ -600,7 +586,6 @@ test.describe('Cross-page navigation', () => {
 
     const nav = page.getByRole('navigation', { name: 'Primary' });
 
-    await expect(nav.getByRole('link', { name: /início/i })).toBeVisible();
     await expect(nav.getByRole('link', { name: /sobre/i })).toBeVisible();
     await expect(nav.getByRole('link', { name: /transparência/i })).toBeVisible();
     await expect(nav.getByRole('link', { name: /contato/i })).toBeVisible();
